@@ -4,17 +4,18 @@ import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Your web app's Firebase configuratio
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAo0sXN1aeb95oJf3tm31ITGMXDVu8isyQ",
-  authDomain: "coffeefuel-4eee7.firebaseapp.com",
-  projectId: "coffeefuel-4eee7",
-  storageBucket: "coffeefuel-4eee7.appspot.com",
-  messagingSenderId: "979512079125",
-  appId: "1:979512079125:web:28b5062bec65280d2f6f1c",
-  measurementId: "G-5HWXQNMFZM"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
