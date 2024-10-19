@@ -1,0 +1,356 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Remove or comment out the following line if it exists */
+/* background: linear-gradient(to right, #094978, #3cc0da); */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.logo {
+  height: 60px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.brand-slogan {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.brand-slogan .terbigen-text {
+  font-size: 1.5rem; /* Increased by 25% from 1.2rem */
+  transition: font-size 0.3s ease;
+}
+
+.brand-slogan:hover .terbigen-text {
+  font-size: 172.5%; /* Increase size by 15% on hover (1.5rem * 1.15) */
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-menu ul li a.nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-menu ul li a.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-menu ul li a.nav-link:hover {
+  color: #ff6b35; /* Change text color on hover */
+}
+
+.nav-menu ul li a.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.contact-button {
+  background-color: #ff6b35;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.contact-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #ff8c5a;
+  transform: scale(1.05);
+}
+
+.contact-button:hover::before {
+  opacity: 1;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 40px 0;
+}
+
+.text-content {
+  max-width: 600px;
+  text-align: left; /* Ensure text is left-aligned */
+  padding-right: 20px; /* Add some spacing between text and image */
+}
+
+.text-content h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px; /* Ensure spacing below the heading */
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 20px; /* Consistent margin for text */
+}
+
+.cta-button {
+  background-color: #3fc0da;
+  padding: 15px 30px;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: inline-block; /* Ensure the button behaves properly */
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.image-content .main-image {
+  max-width: 875px; /* Increased by 75% from 500px */
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  animation: moveImage 1s ease-out forwards;
+  transform-origin: center center;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animated-image {
+  opacity: 0; /* Start with the image invisible */
+}
+
+.animated-image.slide-in {
+  animation: slideInFromRight 1s ease-in forwards;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1400px) {
+  .image-content .main-image {
+    max-width: 700px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .image-content .main-image {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-content {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .image-content {
+    justify-content: center;
+  }
+
+  .image-content .main-image {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image-content .main-image {
+    max-width: 90%;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .text-content p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .image-content .main-image {
+    max-width: 100%;
+  }
+
+  .text-content h1 {
+    font-size: 2rem;
+  }
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.21);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.top-nav.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.top-nav::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #ff6b35;
+}
+
+/* Update header padding to accommodate fixed nav */
+.header {
+  padding-top: 0; /* Remove the fixed padding */
+}
+
+/* Remove or adjust styles for .navbar if it's no longer used */
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-button {
+    margin-top: 10px;
+  }
+
+  .header {
+    padding-top: 120px; /* Adjust based on your collapsed nav height */
+  }
+}
+
+.nav-links li a,
+.contact-button,
+.brand-slogan {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  max-width: 1200px; /* You can adjust this width as needed */
+  margin: 0 auto;    /* Centers the container */
+  padding: 0 20px;   /* Optional: Adds some horizontal padding */
+}

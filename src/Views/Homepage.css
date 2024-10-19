@@ -1,41 +1,22 @@
 /* src/Views/HomePage.css */
 .cafe-homepage {
   text-align: center;
-  padding: 50px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #094978);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
 }
 
-.cafe-homepage h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.cafe-homepage p {
-  font-size: 1.5rem;
-  color: #555;
-}
-
-.cafe-color-box {
-  width: 100px;
-  height: 100px;
-  margin: 20px auto;
-  transition: background-color 0.5s ease-in-out;
-}
-
-.cafe-color-box.cafe-red {
-  background-color: red;
-}
-
-.cafe-color-box.cafe-blue {
-  background-color: blue;
-}
-
-.cafe-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cafe-button:hover {
-  background-color: #ddd;
-}
+/* Add more styles for your homepage content here */
