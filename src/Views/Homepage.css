@@ -1,7 +1,6 @@
 /* src/Views/HomePage.css */
 .cafe-homepage {
-  text-align: center;
-  min-height: 100vh;
+  min-height: 300vh; /* Make it 3 times the viewport height */
   background: linear-gradient(135deg, #ffffff, #094978);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;

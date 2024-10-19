@@ -6,8 +6,10 @@ import Header from './Header.js';
 const HomePage = () => {
     return (
         <div className="cafe-homepage">
-            <Header />
-            {/* Add more content for your homepage here */}
+            <div className="content-wrapper">
+                <Header />
+                {/* Add more content for your homepage here if needed */}
+            </div>
         </div>
     );
 };

@@ -10,10 +10,12 @@ body {
 
 .header {
   color: white;
-  padding: 20px;
+  min-height: 300vh; /* Make the header 3 times the viewport height */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Remove or comment out the following line if it exists */
@@ -28,15 +30,18 @@ body {
 .logo-container {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+}
+
+.top-nav.scrolled .logo-container {
+  transform: scale(0.5);
 }
 
 .logo {
   height: 60px;
   margin-right: 10px;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .logo:hover {
@@ -46,6 +51,11 @@ body {
 .brand-slogan {
   font-size: 1.2rem;
   font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-nav.scrolled .brand-slogan {
+  display: none;
 }
 
 .brand-slogan .terbigen-text {
@@ -106,8 +116,10 @@ body {
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
   position: relative;
+  overflow: hidden;
 }
 
 .contact-button::before {
@@ -122,6 +134,7 @@ body {
   filter: blur(10px);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .contact-button:hover {
@@ -137,26 +150,28 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
-  padding: 40px 0;
+  padding: 40px 20px;
+  height: 100vh; /* Make this section take up one full viewport height */
 }
 
 .text-content {
-  max-width: 600px;
-  text-align: left; /* Ensure text is left-aligned */
-  padding-right: 20px; /* Add some spacing between text and image */
+  max-width: 800px;
+  text-align: left;
+  z-index: 1;
 }
 
 .text-content h1 {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 20px; /* Ensure spacing below the heading */
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text-content p {
   font-size: 1.2rem;
   opacity: 0.8;
-  margin-bottom: 20px; /* Consistent margin for text */
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .cta-button {
@@ -171,21 +186,20 @@ body {
 }
 
 .image-content {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70%; /* Change from 50% to 70% */
+  height: 70vh; /* Set height to 70% of viewport height */
+  overflow: hidden;
 }
 
 .image-content .main-image {
-  max-width: 875px; /* Increased by 75% from 500px */
   width: 100%;
-  height: auto;
-  border-radius: 15px;
+  height: 100%;
   object-fit: cover;
-  animation: moveImage 1s ease-out forwards;
-  transform-origin: center center;
+  opacity: 0.7;
 }
 
 @keyframes slideInFromRight {
@@ -265,41 +279,57 @@ body {
   }
 }
 
+/* Update the top-nav styles */
 .top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: rgba(9, 73, 120, 0.9);
   padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.21);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: translateY(-100%);
-  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
 }
 
-.top-nav.visible {
-  transform: translateY(0);
-  opacity: 1;
+.top-nav.scrolled {
+  height: 56px; /* Reduce height by 30% when scrolled (80px * 0.7) */
+  background-color: rgba(9, 73, 120, 0.45);
 }
 
-.top-nav::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  height: 50px;
+/* Update logo styles for scrolled state */
+.top-nav.scrolled .logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0;
 }
 
+/* Update nav-wrapper styles */
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-nav.scrolled .nav-wrapper {
+  gap: 33px; /* Increase by 10% when scrolled (30px * 1.1) */
+  margin-top: 10px; /* Add top margin when scrolled */
+}
+
+/* Update nav-links styles */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  transition: gap 0.3s ease-in-out;
 }
 
 .nav-links li a {
@@ -307,25 +337,71 @@ body {
   color: white;
   font-size: 16px;
   font-weight: bold;
+  position: relative;
   transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ff6b35;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .nav-links li a:hover {
   color: #ff6b35;
 }
 
-/* Update header padding to accommodate fixed nav */
-.header {
-  padding-top: 0; /* Remove the fixed padding */
+.nav-links li a:hover::after {
+  transform: scaleX(1);
 }
 
-/* Remove or adjust styles for .navbar if it's no longer used */
+/* Adjust vertical alignment for all elements when scrolled */
+.top-nav.scrolled .logo-container,
+.top-nav.scrolled .nav-wrapper,
+.top-nav.scrolled .nav-links,
+.top-nav.scrolled .contact-button {
+  transform: translateY(0); /* Remove the vertical translation */
+}
+
+/* Update contact-button styles */
+.contact-button {
+  background-color: #ff6b35;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.top-nav.scrolled .contact-button {
+  padding: 7px 17px;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .top-nav {
     flex-direction: column;
+    height: auto;
     padding: 10px;
+  }
+
+  .top-nav.scrolled {
+    height: auto;
+  }
+
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: center;
   }
 
   .nav-links {
@@ -338,8 +414,11 @@ body {
     margin-top: 10px;
   }
 
-  .header {
-    padding-top: 120px; /* Adjust based on your collapsed nav height */
+  .top-nav.scrolled .logo-container,
+  .top-nav.scrolled .nav-wrapper,
+  .top-nav.scrolled .nav-links,
+  .top-nav.scrolled .contact-button {
+    transform: none;
   }
 }
 
@@ -353,4 +432,102 @@ body {
   max-width: 1200px; /* You can adjust this width as needed */
   margin: 0 auto;    /* Centers the container */
   padding: 0 20px;   /* Optional: Adds some horizontal padding */
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-nav.scrolled .nav-wrapper {
+  gap: 33px; /* Increase by 10% when scrolled (30px * 1.1) */
+  margin-top: 10px; /* Add top margin when scrolled */
+}
+
+/* Adjust the contact button margin */
+.contact-button {
+  margin-left: 10px;
+  transition: margin-top 0.3s ease-in-out;
+}
+
+.top-nav.scrolled .contact-button {
+  margin-left: 11px;
+  margin-top: 10px; /* Add top margin when scrolled */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    gap: 20px; /* Reduce gap for smaller screens */
+  }
+
+  .top-nav.scrolled .nav-links {
+    gap: 22px; /* Increase by 10% when scrolled (20px * 1.1) */
+  }
+
+  .nav-wrapper {
+    gap: 20px;
+  }
+
+  .top-nav.scrolled .nav-wrapper {
+    gap: 22px;
+  }
+
+  .contact-button {
+    margin-left: 0; /* Remove margin on smaller screens */
+  }
+
+  .top-nav.scrolled .contact-button {
+    margin-left: 0;
+  }
+}
+
+/* Adjust the top-nav height to accommodate the larger logo */
+.top-nav.scrolled {
+  height: 40px; /* Changed back to 40px from 70px */
+}
+
+/* Adjust vertical alignment of nav items when scrolled */
+.top-nav.scrolled .nav-wrapper {
+  transform: translateY(-3.5px); /* Adjust this value (5px * 0.7) */
+}
+
+/* Ensure the logo container doesn't affect the nav height */
+.top-nav.scrolled .logo-container {
+  height: 42px; /* Match the new logo size */
+  overflow: visible;
+}
+
+/* Adjust the top-nav height and padding */
+.top-nav {
+  padding: 10px 20px;
+  height: 80px;
+}
+
+.top-nav.scrolled {
+  height: 60px; /* Increase height to accommodate the logo */
+  padding: 5px 20px;
+}
+
+/* Adjust vertical alignment for all elements when scrolled */
+.top-nav.scrolled .logo-container,
+.top-nav.scrolled .nav-wrapper,
+.top-nav.scrolled .nav-links,
+.top-nav.scrolled .contact-button {
+  transform: translateY(0); /* Remove the vertical translation */
+}
+
+/* Ensure the logo container doesn't affect the nav height */
+.top-nav.scrolled .logo-container {
+  height: 50px; /* Increase height to fully contain the logo */
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+/* Adjust the nav-wrapper margin */
+.top-nav.scrolled .nav-wrapper {
+  margin-top: 0; /* Remove top margin when scrolled */
 }
