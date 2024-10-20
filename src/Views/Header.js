@@ -35,29 +35,48 @@ const Header = () => {
     window.location.reload();
   };
 
+  const handleBBEEEClick = () => {
+    // Add your BBEEE button click logic here
+    console.log('BBEEE button clicked');
+  };
+
+  const animateWord = (word) => {
+    return word.split('').map((letter, index) => (
+      <span key={index} className="animated-letter">
+        {letter}
+      </span>
+    ));
+  };
+
   return (
     <header className="header">
       <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="logo-container" onClick={handleLogoClick}>
-          <img src={logo} alt="Terbigen Logo" className="logo" />
-          <span className="brand-slogan">
-            <span className="terbigen-text">Terbigen</span>
-          </span>
-        </div>
-        <div className="nav-wrapper">
+        <div className="left-nav">
+          <div className="logo-container" onClick={handleLogoClick}>
+            <img src={logo} alt="Terbigen Logo" className="logo" />
+            <span className="brand-slogan">
+              <span className="terbigen-text">Terbigen</span>
+            </span>
+          </div>
           <ul className="nav-links">
             <li><a href="#what" className="nav-link">Home</a></li>
             <li><a href="#how" className="nav-link">About</a></li>
             <li><a href="#who" className="nav-link">Contact</a></li>
             <li><a href="#clients" className="nav-link">Services</a></li>
           </ul>
+        </div>
+        <button className="bbeee-button" onClick={handleBBEEEClick}>BBEEE Level 1 contributor</button>
+        <div className="right-nav">
           <a href="#contact" className="contact-button">CONTACT</a>
         </div>
       </nav>
       
       <div className="header-content">
         <div className="text-content">
-          <h1>A Fresh Approach to Growing People and Business</h1>
+          <h1>
+            A <span className="animated-word fresh">{animateWord('Fresh')}</span> Approach to{' '}
+            <span className="animated-word growing">{animateWord('Growing')}</span> People and Business
+          </h1>
           <p>Because creative thinking powers problem solving, innovation, people & culture.</p>
           <a href="#video" className="cta-button">WATCH THE VIDEO</a>
         </div>
