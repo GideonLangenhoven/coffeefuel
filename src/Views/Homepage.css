@@ -1,12 +1,76 @@
 /* src/Views/HomePage.css */
-.cafe-homepage {
-  min-height: 300vh; /* Make it 3 times the viewport height */
-  background: linear-gradient(135deg, #ffffff, #094978);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  box-sizing: border-box;
 }
 
-@keyframes gradientAnimation {
+.container-fluid {
+  min-height: 300vh; /* Make it 3 times the viewport height */
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #D7D4E4;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 12s ease-in forwards infinite;
+}
+
+.cube:nth-child(2n) {
+  border-color: #FFF;
+}
+.cube:nth-child(2) {
+  animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+.cube:nth-child(3) {
+  animation-delay: 4s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube:nth-child(4) {
+  animation-delay: 6s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube:nth-child(5) {
+  animation-delay: 8s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube:nth-child(6) {
+  animation-delay: 10s;
+  left: 50vw;
+  top: 10vh;
+}
+
+/* Animate Background */
+@keyframes Gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -17,5 +81,21 @@
     background-position: 0% 50%;
   }
 }
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
 
-/* Add more styles for your homepage content here */
+/* Ensure content appears above the background */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add more styles for your homepage content here if needed */

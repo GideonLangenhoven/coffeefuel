@@ -1,3 +1,4 @@
+/* src/Views/Header.css */
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .header {
@@ -16,6 +17,7 @@ body {
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
+  z-index: 1; /* Ensure header content appears above the background */
 }
 
 /* Remove or comment out the following line if it exists */
@@ -40,7 +42,11 @@ body {
 
 .logo {
   height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-right: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease-in-out;
 }
 
@@ -120,6 +126,8 @@ body {
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  margin-left: 10px;
+  transition: margin-top 0.3s ease-in-out;
 }
 
 .contact-button::before {
@@ -331,6 +339,7 @@ body {
   font-weight: bold;
   position: relative;
   transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links li a::after {
@@ -361,22 +370,11 @@ body {
   transform: translateY(0); /* Remove the vertical translation */
 }
 
-/* Update contact-button styles */
-.contact-button {
-  background-color: #ff6b35;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-}
-
+/* Update contact-button styles when scrolled */
 .top-nav.scrolled .contact-button {
   padding: 7px 17px;
+  margin-left: 11px;
+  margin-top: 10px; /* Add top margin when scrolled */
 }
 
 /* Responsive adjustments */
@@ -394,16 +392,27 @@ body {
   .nav-wrapper {
     flex-direction: column;
     align-items: center;
+    gap: 20px; /* Reduce gap for smaller screens */
+  }
+
+  .top-nav.scrolled .nav-wrapper {
+    gap: 22px; /* Increase by 10% when scrolled (20px * 1.1) */
   }
 
   .nav-links {
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px; /* Reduce gap for smaller screens */
   }
 
   .contact-button {
     margin-top: 10px;
+    margin-left: 0; /* Remove margin on smaller screens */
+  }
+
+  .top-nav.scrolled .contact-button {
+    margin-left: 0;
   }
 
   .top-nav.scrolled .logo-container,
@@ -438,47 +447,9 @@ body {
   margin-top: 10px; /* Add top margin when scrolled */
 }
 
-/* Adjust the contact button margin */
-.contact-button {
-  margin-left: 10px;
-  transition: margin-top 0.3s ease-in-out;
-}
-
-.top-nav.scrolled .contact-button {
-  margin-left: 11px;
-  margin-top: 10px; /* Add top margin when scrolled */
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .nav-links {
-    gap: 20px; /* Reduce gap for smaller screens */
-  }
-
-  .top-nav.scrolled .nav-links {
-    gap: 22px; /* Increase by 10% when scrolled (20px * 1.1) */
-  }
-
-  .nav-wrapper {
-    gap: 20px;
-  }
-
-  .top-nav.scrolled .nav-wrapper {
-    gap: 22px;
-  }
-
-  .contact-button {
-    margin-left: 0; /* Remove margin on smaller screens */
-  }
-
-  .top-nav.scrolled .contact-button {
-    margin-left: 0;
-  }
-}
-
 /* Adjust the top-nav height to accommodate the larger logo */
 .top-nav.scrolled {
-  height: 40px; /* Changed back to 40px from 70px */
+  height: 40px; /* Adjusted height */
 }
 
 /* Adjust vertical alignment of nav items when scrolled */
@@ -489,31 +460,6 @@ body {
 /* Ensure the logo container doesn't affect the nav height */
 .top-nav.scrolled .logo-container {
   height: 42px; /* Match the new logo size */
-  overflow: visible;
-}
-
-/* Adjust the top-nav height and padding */
-.top-nav {
-  padding: 10px 20px;
-  height: 80px;
-}
-
-.top-nav.scrolled {
-  height: 60px; /* Increase height to accommodate the logo */
-  padding: 5px 20px;
-}
-
-/* Adjust vertical alignment for all elements when scrolled */
-.top-nav.scrolled .logo-container,
-.top-nav.scrolled .nav-wrapper,
-.top-nav.scrolled .nav-links,
-.top-nav.scrolled .contact-button {
-  transform: translateY(0); /* Remove the vertical translation */
-}
-
-/* Ensure the logo container doesn't affect the nav height */
-.top-nav.scrolled .logo-container {
-  height: 50px; /* Increase height to fully contain the logo */
   overflow: visible;
   display: flex;
   align-items: center;
@@ -533,20 +479,20 @@ body {
 
 /* Add these new styles for the hover effect */
 .brand-slogan .highlight {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .brand-slogan:hover .highlight.fresh {
-    color: #3cc0da; /* You can adjust this color as needed */
-    text-decoration: underline;
+  color: #3cc0da; /* You can adjust this color as needed */
+  text-decoration: underline;
 }
 
 .brand-slogan:hover .highlight.growing {
-    color: #ff6b35; /* You can adjust this color as needed */
-    text-decoration: underline;
+  color: #ff6b35; /* You can adjust this color as needed */
+  text-decoration: underline;
 }
 
-/* Add these new styles for the BBEEE button and logo */
+/* Styles for the BBEEE button */
 .bbeee-button {
   background-color: #3cc0da;
   color: white;
@@ -556,54 +502,15 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .bbeee-button:hover {
   background-color: #2a8fa3;
-  transform: scale(1.05);
-}
-
-.logo {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease-in-out;
-}
-
-/* Update the top-nav styles */
-.top-nav {
-  background-color: rgba(9, 73, 120, 0.9);
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: all 0.3s ease-in-out;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-}
-
-/* Adjust the logo container styles */
-.logo-container {
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Update scrolled state styles */
-.top-nav.scrolled {
-  height: 60px;
-  background-color: rgba(9, 73, 120, 0.45);
-}
-
-.top-nav.scrolled .logo {
-  height: 40px;
-  width: 40px;
+  transform: translateX(-50%) scale(1.05);
 }
 
 .top-nav.scrolled .bbeee-button {
@@ -611,46 +518,87 @@ body {
   font-size: 0.9em;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
+/* Responsive adjustments for BBEEE button */
+@media screen and (max-width: 1024px) {
   .top-nav {
     flex-wrap: wrap;
     height: auto;
     padding: 10px;
   }
 
-  .bbeee-button {
-    order: 3;
-    margin-top: 10px;
-    width: 100%;
-  }
-
-  .nav-wrapper {
-    order: 2;
-    width: 100%;
-  }
-
-  .logo-container {
-    order: 1;
+  .left-nav,
+  .right-nav {
     width: 100%;
     justify-content: center;
     margin-bottom: 10px;
+  }
+
+  .bbeee-button {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .bbeee-button:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
 }
 
 /* The rest of your existing CSS styles... */
 
-/* Add these new styles and modify existing ones */
-
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  height: 80px;
+/* Animated words and letters */
+.animated-word {
+  display: inline-block;
 }
 
-.left-nav, .right-nav {
+.animated-letter {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    to right,
+    rgb(76, 217, 105),
+    rgb(52, 170, 220),
+    rgb(88, 86, 217),
+    rgb(255, 45, 83),
+    rgb(255, 45, 83),
+    rgb(88, 86, 217),
+    rgb(52, 170, 220),
+    rgb(76, 217, 105)
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 900;
+  animation: sTransition 10s linear infinite;
+}
+
+@keyframes sTransition {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+.fresh .animated-letter {
+  animation-delay: calc(0.1s * var(--letter-index));
+}
+
+.growing .animated-letter {
+  animation-delay: calc(0.5s * var(--letter-index));
+}
+
+/* Left and right navigation containers */
+.left-nav,
+.right-nav {
   display: flex;
   align-items: center;
 }
@@ -678,110 +626,61 @@ body {
   padding: 0;
 }
 
-.bbeee-button {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #3cc0da;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  white-space: nowrap;
-}
-
-.bbeee-button:hover {
-  background-color: #2a8fa3;
-  transform: translateX(-50%) scale(1.05);
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 1024px) {
-  .top-nav {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 10px;
-  }
-
-  .left-nav, .right-nav {
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .bbeee-button {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  .bbeee-button:hover {
-    transform: scale(1.05);
-  }
-
+/* Additional responsive adjustments */
+@media screen and (max-width: 768px) {
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    gap: 20px;
+  }
+
+  .top-nav.scrolled .nav-links {
+    gap: 22px;
+  }
+
+  .nav-wrapper {
+    gap: 20px;
+  }
+
+  .top-nav.scrolled .nav-wrapper {
+    gap: 22px;
+  }
+
+  .contact-button {
+    margin-left: 0;
+  }
+
+  .top-nav.scrolled .contact-button {
+    margin-left: 0;
   }
 }
 
-/* Update existing styles */
+/* Ensure the logo container doesn't affect the nav height */
+.top-nav.scrolled .logo-container {
+  height: 50px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+/* Adjust the top-nav height and padding */
+.top-nav {
+  padding: 10px 20px;
+  height: 80px;
+}
+
 .top-nav.scrolled {
   height: 60px;
+  padding: 5px 20px;
 }
 
-.top-nav.scrolled .logo {
-  height: 40px;
-  width: 40px;
+/* Adjust vertical alignment for all elements when scrolled */
+.top-nav.scrolled .logo-container,
+.top-nav.scrolled .nav-wrapper,
+.top-nav.scrolled .nav-links,
+.top-nav.scrolled .contact-button {
+  transform: translateY(0);
 }
 
-.top-nav.scrolled .bbeee-button {
-  padding: 7px 15px;
-  font-size: 0.9em;
+/* Adjust the nav-wrapper margin */
+.top-nav.scrolled .nav-wrapper {
+  margin-top: 0;
 }
-
-/* The rest of your existing CSS styles... */
-
-.animated-word {
-  display: inline-block;
-}
-
-.animated-letter {
-  display: inline-block;
-  color: rgba(255, 255, 255, .1);
-  background: linear-gradient(to right,
-    rgb(76, 217, 105), rgb(52, 170, 220),
-    rgb(88, 86, 217), rgb(255, 45, 83),
-    rgb(255, 45, 83), rgb(88, 86, 217),
-    rgb(52, 170, 220), rgb(76, 217, 105));
-  background-size: 400%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  font-weight: 900;
-  animation: sTransition 10s linear infinite;
-}
-
-.fresh .animated-letter {
-  animation-delay: calc(0.1s * var(--letter-index));
-}
-
-.growing .animated-letter {
-  animation-delay: calc(0.5s * var(--letter-index));
-}
-
-@keyframes sTransition {
-  0% {
-    background-position: 0%;
-  }
-  
-  100% {
-    background-position: 400%;
-  }
-}
-
-/* ... (remaining styles unchanged) */
