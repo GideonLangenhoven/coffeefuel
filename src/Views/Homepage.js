@@ -13,7 +13,7 @@ const HomePage = () => {
         <div className="cube"></div>
         <div className="cube"></div>
       </div>
-      <div className="content-wrapper">
+      <div className="scrollable-content">
         <Header />
         {/* Add more content for your homepage here if needed */}
       </div>

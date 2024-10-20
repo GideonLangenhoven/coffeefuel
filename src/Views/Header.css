@@ -11,13 +11,13 @@ body {
 
 .header {
   color: white;
-  min-height: 300vh; /* Make the header 3 times the viewport height */
+  min-height: 300vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  z-index: 1; /* Ensure header content appears above the background */
+  z-index: 2;
 }
 
 /* Remove or comment out the following line if it exists */
@@ -115,19 +115,23 @@ body {
   transform: scaleX(1);
 }
 
+/* Update contact-button styles */
 .contact-button {
-  background-color: #ff6b35;
-  color: white;
+  background-color: #B3E9C7;
+  color: #000000;
   padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
-  font-weight: bold;
+
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
   margin-left: 10px;
-  transition: margin-top 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; /* Set a fixed height */
 }
 
 .contact-button::before {
@@ -146,7 +150,7 @@ body {
 }
 
 .contact-button:hover {
-  background-color: #ff8c5a;
+  background-color: #9AD7B0; /* Slightly darker shade for hover effect */
   transform: scale(1.05);
 }
 
@@ -159,9 +163,13 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 40px 20px;
-  height: 100vh;
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 75vh; /* 75% of the viewport height */
+  max-width: 80%;
+  margin: 80px auto 0; /* Adjust top margin to account for the navigation bar */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative; /* Add this */
+  z-index: 2; /* Add this */
 }
 
 .text-content {
@@ -186,15 +194,22 @@ body {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Update cta-button styles */
 .cta-button {
-  background-color: #3fc0da;
+  background-color: #B3E9C7;
   padding: 15px 30px;
-  color: white;
+  color: #000000; /* Change text color to black for better contrast */
   border-radius: 25px;
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  display: inline-block; /* Ensure the button behaves properly */
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #9AD7B0; /* Slightly darker shade for hover effect */
+  transform: scale(1.05);
 }
 
 .image-content {
@@ -267,6 +282,15 @@ body {
   .text-content p {
     font-size: 1rem;
   }
+
+  .background {
+    top: 60px; /* Adjust for smaller navigation bar on mobile */
+  }
+
+  .header-content {
+    margin-top: 60px; /* Adjust for smaller navigation bar on mobile */
+    height: auto; /* Allow content to expand on smaller screens */
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -281,7 +305,7 @@ body {
 
 /* Update the top-nav styles */
 .top-nav {
-  background-color: rgba(9, 73, 120, 0.9);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -293,20 +317,32 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  width: 100%;
 }
 
 .top-nav.scrolled {
-  height: 56px; /* Reduce height by 30% when scrolled (80px * 0.7) */
-  background-color: rgba(9, 73, 120, 0.45);
+  height: 60px; /* Reduce height when scrolled */
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Update logo styles for scrolled state */
 .top-nav.scrolled .logo {
   height: 40px;
   width: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 0;
+}
+
+.top-nav.scrolled .brand-slogan {
+  font-size: 1rem;
+}
+
+.top-nav.scrolled .nav-links li a {
+  font-size: 14px;
+}
+
+.top-nav.scrolled .contact-button,
+.top-nav.scrolled .bbeee-button {
+  padding: 7px 15px;
+  font-size: 0.9em;
 }
 
 /* Update nav-wrapper styles */
@@ -334,12 +370,12 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: white;
+  color: #000000; /* Black text */
   font-size: 16px;
   font-weight: bold;
   position: relative;
   transition: color 0.3s ease;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: none; /* Remove text shadow */
 }
 
 .nav-links li a::after {
@@ -349,13 +385,13 @@ body {
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: #ff6b35;
+  background-color: #000000; /* Black underline */
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
 
 .nav-links li a:hover {
-  color: #ff6b35;
+  color: #000000; /* Keep black on hover */
 }
 
 .nav-links li a:hover::after {
@@ -426,7 +462,7 @@ body {
 .nav-links li a,
 .contact-button,
 .brand-slogan {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
 }
 
 .container {
@@ -492,14 +528,12 @@ body {
   text-decoration: underline;
 }
 
-/* Styles for the BBEEE button */
+/* Update BBEEE button styles */
 .bbeee-button {
-  background-color: #3cc0da;
-  color: white;
+  background-color: #B3E9C7;
+  color: #000000; /* Change text color to black for better contrast */
   padding: 10px 20px;
-  border: none;
   border-radius: 25px;
-  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
@@ -509,7 +543,7 @@ body {
 }
 
 .bbeee-button:hover {
-  background-color: #2a8fa3;
+  background-color: #9AD7B0; /* Slightly darker shade for hover effect */
   transform: translateX(-50%) scale(1.05);
 }
 
@@ -556,11 +590,12 @@ body {
 /* Animated words and letters */
 .animated-word {
   display: inline-block;
+  position: relative;
 }
 
 .animated-letter {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.81);
   background: linear-gradient(
     to right,
     rgb(76, 217, 105),
@@ -575,7 +610,6 @@ body {
   background-size: 400%;
   -webkit-background-clip: text;
   background-clip: text;
-  font-weight: 900;
   animation: sTransition 10s linear infinite;
 }
 
@@ -684,3 +718,13 @@ body {
 .top-nav.scrolled .nav-wrapper {
   margin-top: 0;
 }
+
+/* Add media query for full screen */
+@media screen and (min-width: 1024px) {
+  .header-content {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
