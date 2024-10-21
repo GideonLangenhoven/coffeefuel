@@ -2,7 +2,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './Views/Homepage'; // Changed 'HomePage' to 'Homepage'
+import HomePage from './Views/Homepage';
+import Contact from './Views/Contact';
 
 function App() {
   return (

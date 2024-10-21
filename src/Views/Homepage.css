@@ -1,13 +1,6 @@
 /* src/Views/HomePage.css */
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
-body {
-  font-family: 'Josefin Sans', sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .container-fluid {
   min-height: 300vh;
   position: relative;

@@ -1,14 +1,20 @@
 // src/Views/Header.js
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../assets/images/logo512.png';
-import picture from '../assets/images/Picture.png';
+import picture1 from '../assets/images/Picture.png';
+import picture2 from '../assets/images/Picture2.png';
+import picture3 from '../assets/images/Picture3.png';
+import Banner from './Banner';
 
 const Header = () => {
   const navigate = useNavigate();
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [picture1, picture2, picture3];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,9 +31,15 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll);
 
+    // Image rotation
+    const imageRotation = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(imageRotation);
     };
   }, []);
 
@@ -37,16 +49,11 @@ const Header = () => {
   };
 
   const handleBBEEEClick = () => {
-    // Add your BBEEE button click logic here
     console.log('BBEEE button clicked');
   };
 
-  const animateWord = (word) => {
-    return word.split('').map((letter, index) => (
-      <span key={index} className="animated-letter">
-        {letter}
-      </span>
-    ));
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -59,33 +66,58 @@ const Header = () => {
               <span className="terbigen-text">Terbigen</span>
             </span>
           </div>
-          <ul className="nav-links">
+          <ul className="main-nav-links">
             <li><a href="#what" className="nav-link">Home</a></li>
             <li><a href="#how" className="nav-link">About</a></li>
-            <li><a href="#who" className="nav-link">Contact</a></li>
             <li><a href="#clients" className="nav-link">Services</a></li>
           </ul>
+          <div className={`burger-menu ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+            <div className="burger-bar"></div>
+            <div className="burger-bar"></div>
+            <div className="burger-bar"></div>
+          </div>
         </div>
-        <button className="bbeee-button" onClick={handleBBEEEClick}>BBEEE Level 1 contributor</button>
         <div className="right-nav">
+          <button className="bbeee-button" onClick={handleBBEEEClick}>BBEEE Level 1 contributor</button>
           <a href="#contact" className="contact-button">CONTACT</a>
         </div>
+        <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
+          <li><a href="#what" className="nav-link" onClick={toggleMenu}>Home</a></li>
+          <li><a href="#how" className="nav-link" onClick={toggleMenu}>About</a></li>
+          <li><a href="#clients" className="nav-link" onClick={toggleMenu}>Services</a></li>
+          <li><a href="#contact" className="nav-link contact-button" onClick={toggleMenu}>CONTACT</a></li>
+          <li><button className="bbeee-button" onClick={() => { handleBBEEEClick(); toggleMenu(); }}>BBEEE Level 1 contributor</button></li>
+        </ul>
       </nav>
       
       <div className="header-content">
         <div className="text-content">
-          <h1>
-            A <span className="animated-word fresh">{animateWord('Fresh')}</span> Approach to{' '}
-            <span className="animated-word growing">{animateWord('Growing')}</span> People and Business
-          </h1>
-          <p>Because creative thinking powers problem solving, innovation, people & culture.</p>
-          <a href="#video" className="cta-button">WATCH THE VIDEO</a>
+          <div className="main">
+            <h1>A Fresh Approach to Growing<br />People and Business: 
+              <div className="roller">
+                <span id="rolltext">
+                  Innovation<br/>
+                  <span>Transformation</span><br/>
+                  Agility<br/>
+                  <span>Empowerment</span><br/>
+                  Strategy<br/>
+                  Vision<br/>
+                  Growth<br/>
+                  Adaptability<br/>
+                </span>
+              </div>
+            </h1>
+          </div>
+          <div className="cta-container">
+            <a href="#video" className="cta-button">WATCH THE VIDEO</a>
+          </div>
         </div>
         <div className="image-content">
           <img 
-            src={picture} 
+            key={currentImage}
+            src={images[currentImage]} 
             alt="Team Collaboration" 
-            className={`main-image animated-image ${shouldAnimate ? 'slide-in' : ''}`} 
+            className="main-image"
           />
         </div>
       </div>
