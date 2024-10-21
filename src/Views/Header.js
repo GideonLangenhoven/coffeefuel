@@ -83,10 +83,10 @@ const Header = () => {
           <a href="#contact" className="contact-button">CONTACT</a>
         </div>
         <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/home" className="nav-link" onClick={toggleMenu}>Home</Link></li>
-          <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
-          <li><Link to="/services" className="nav-link" onClick={toggleMenu}>Services</Link></li>
-          <li><a href="#contact" className="nav-link contact-button" onClick={toggleMenu}>CONTACT</a></li>
+          <li><a href="#home" onClick={toggleMenu}>Home</a></li>
+          <li><a href="#about" onClick={toggleMenu}>About</a></li>
+          <li><a href="#services" onClick={toggleMenu}>Services</a></li>
+          <li><a href="#contact" className="contact-button" onClick={toggleMenu}>CONTACT</a></li>
           <li><button className="bbeee-button" onClick={() => { handleBBEEEClick(); toggleMenu(); }}>BBEEE Level 1 contributor</button></li>
         </ul>
       </nav>
