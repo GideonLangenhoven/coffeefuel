@@ -50,6 +50,7 @@ const Header = () => {
 
   const handleBBEEEClick = () => {
     console.log('BBEEE button clicked');
+    // You can add logic here for the BBEEE button click
   };
 
   const toggleMenu = () => {
@@ -67,9 +68,9 @@ const Header = () => {
             </span>
           </div>
           <ul className="main-nav-links">
-            <li><a href="#what" className="nav-link">Home</a></li>
-            <li><a href="#how" className="nav-link">About</a></li>
-            <li><a href="#clients" className="nav-link">Services</a></li>
+            <li><Link to="/home" className="nav-link">Home</Link></li>
+            <li><Link to="/about" className="nav-link">About</Link></li>
+            <li><Link to="/services" className="nav-link">Services</Link></li>
           </ul>
           <div className={`burger-menu ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
             <div className="burger-bar"></div>
@@ -82,9 +83,9 @@ const Header = () => {
           <a href="#contact" className="contact-button">CONTACT</a>
         </div>
         <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#what" className="nav-link" onClick={toggleMenu}>Home</a></li>
-          <li><a href="#how" className="nav-link" onClick={toggleMenu}>About</a></li>
-          <li><a href="#clients" className="nav-link" onClick={toggleMenu}>Services</a></li>
+          <li><Link to="/home" className="nav-link" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
+          <li><Link to="/services" className="nav-link" onClick={toggleMenu}>Services</Link></li>
           <li><a href="#contact" className="nav-link contact-button" onClick={toggleMenu}>CONTACT</a></li>
           <li><button className="bbeee-button" onClick={() => { handleBBEEEClick(); toggleMenu(); }}>BBEEE Level 1 contributor</button></li>
         </ul>
@@ -113,12 +114,13 @@ const Header = () => {
           </div>
         </div>
         <div className="image-content">
-          <img 
-            key={currentImage}
-            src={images[currentImage]} 
-            alt="Team Collaboration" 
-            className="main-image"
-          />
+          <div className="main-image">
+            <img 
+              key={currentImage}
+              src={images[currentImage]} 
+              alt="Team Collaboration" 
+            />
+          </div>
         </div>
       </div>
       {/* You can add more content here for the remaining 2 viewport heights */}
