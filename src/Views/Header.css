@@ -187,12 +187,13 @@ transform: scale(1.05);
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
-  overflow: hidden; /* Add this to hide the image during animation */
+  overflow: hidden;
+  margin-top: 10px; /* Add this line to move the image down by 10px */
 }
 
 .image-content .main-image {
   width: 100%;
-  padding-bottom: 100%; /* This creates a 1:1 aspect ratio */
+  padding-bottom: 100%;
   max-width: 586px;
   border-radius: 50%;
   border: 10px solid white;
@@ -242,7 +243,7 @@ transform: scale(1.05);
 }
 
 /* Tablet styles */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 769px) {
   .header-content {
     flex-direction: column;
     height: auto;
@@ -258,8 +259,8 @@ transform: scale(1.05);
   }
 
   .image-content {
-    width: 60%; /* Adjust this value as needed for tablet */
-    padding-bottom: 60%; /* Maintain 1:1 aspect ratio */
+    width: 48%; /* Decreased by 20% from 60% */
+    padding-bottom: 48%; /* Maintain 1:1 aspect ratio */
     position: relative;
     overflow: visible;
     margin: 0 auto;
@@ -272,7 +273,7 @@ transform: scale(1.05);
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 10px solid white;
+    border: 8px solid white; /* Slightly reduced border width */
     overflow: hidden;
     box-sizing: border-box;
   }
@@ -295,6 +296,31 @@ transform: scale(1.05);
 
   .mobile-nav-links {
     display: flex;
+  }
+
+  .mobile-nav-links a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-links a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  /* Specific styles for Home, About, and Services */
+  .mobile-nav-links li:nth-child(-n+3) a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-links li:nth-child(-n+3) a:hover {
+    font-weight: bold;
+    text-decoration: underline;
   }
 }
 
@@ -1447,7 +1473,7 @@ overflow: hidden;
 @media screen and (max-width: 1024px) {
   .top-nav {
     flex-wrap: nowrap;
-    justify-content: center; /* Center the content */
+    justify-content: space-between;
     align-items: center;
     padding: 5px 15px;
     height: 60px;
@@ -1462,22 +1488,29 @@ overflow: hidden;
   .left-nav {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the logo */
-    width: 100%;
-    position: relative; /* For absolute positioning of burger menu */
+    justify-content: flex-start;
+    flex: 1;
   }
 
   .logo-container {
-    margin: 0 auto; /* Center the logo */
+    display: flex;
+    align-items: center;
   }
 
   .logo {
     height: 40px;
     width: 40px;
+    margin-right: 10px;
   }
 
   .brand-slogan {
-    display: none;
+    display: block; /* Show the brand slogan */
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .brand-slogan .terbigen-text {
+    color: #A788F5;
   }
 
   .main-nav-links {
@@ -1490,55 +1523,10 @@ overflow: hidden;
 
   .burger-menu {
     display: block;
-    position: absolute;
-    right: 15px;
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust for perfect centering */
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
+    margin-left: auto;
   }
 
-  .burger-bar {
-    width: 100%;
-    height: 3px;
-    background-color: #000000;
-    position: absolute;
-    left: 0;
-    transition: 0.4s;
-  }
-
-  .burger-bar:nth-child(1) { top: 0; }
-  .burger-bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
-  .burger-bar:nth-child(3) { bottom: 0; }
-
-  .mobile-nav-links {
-    display: none;
-    position: fixed;
-    top: 60px; /* Should match the height of .top-nav */
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-
-  .mobile-nav-links.active {
-    display: block;
-  }
-
-  .mobile-nav-links li {
-    margin: 10px 0;
-  }
-
-  .mobile-nav-links a,
-  .mobile-nav-links button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem;
-  }
+  /* ... (keep other existing styles) ... */
 }
 
 /* Additional adjustments for phone size */
@@ -1552,11 +1540,16 @@ overflow: hidden;
     width: 30px;
   }
 
-  .burger-menu {
-    top: calc(50% + 10px); /* Move down by 10px */
-    transform: translateY(-50%); /* Maintain vertical centering */
+  .brand-slogan {
+    font-size: 1rem;
   }
+
+  /* ... (keep other existing styles) ... */
 }
 
 /* ... (keep other existing styles) ... */
+
+
+
+
 

@@ -7,6 +7,7 @@ import picture1 from '../assets/images/Picture.png';
 import picture2 from '../assets/images/Picture2.png';
 import picture3 from '../assets/images/Picture3.png';
 import Banner from './Banner';
+import VideoPopup from '../Components/VideoPopup';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Header = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [picture1, picture2, picture3];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showVideoPopup, setShowVideoPopup] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,7 +45,7 @@ const Header = () => {
     };
   }, []);
 
-  const handleLogoClick = () => {
+  const handleTerbigenClick = () => {
     navigate('/', { replace: true });
     window.location.reload();
   };
@@ -57,11 +59,20 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleWatchVideo = (e) => {
+    e.preventDefault();
+    setShowVideoPopup(true);
+  };
+
+  const handleCloseVideo = () => {
+    setShowVideoPopup(false);
+  };
+
   return (
     <header className="header">
       <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="left-nav">
-          <div className="logo-container" onClick={handleLogoClick}>
+          <div className="logo-container" onClick={handleTerbigenClick}>
             <img src={logo} alt="Terbigen Logo" className="logo" />
             <span className="brand-slogan">
               <span className="terbigen-text">Terbigen</span>
@@ -86,7 +97,7 @@ const Header = () => {
           <li><a href="#home" onClick={toggleMenu}>Home</a></li>
           <li><a href="#about" onClick={toggleMenu}>About</a></li>
           <li><a href="#services" onClick={toggleMenu}>Services</a></li>
-          <li><a href="#contact" className="contact-button" onClick={toggleMenu}>CONTACT</a></li>
+          <li><a href="#contact" className="contact-button" onClick={toggleMenu}>Contact</a></li>
           <li><button className="bbeee-button" onClick={() => { handleBBEEEClick(); toggleMenu(); }}>BBEEE Level 1 contributor</button></li>
         </ul>
       </nav>
@@ -110,7 +121,7 @@ const Header = () => {
             </h1>
           </div>
           <div className="cta-container">
-            <a href="#video" className="cta-button">WATCH THE VIDEO</a>
+            <a href="#video" className="cta-button" onClick={handleWatchVideo}>WATCH THE VIDEO</a>
           </div>
         </div>
         <div className="image-content">
@@ -123,6 +134,12 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {showVideoPopup && (
+        <VideoPopup
+          videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"
+          onClose={handleCloseVideo}
+        />
+      )}
       {/* You can add more content here for the remaining 2 viewport heights */}
     </header>
   );
