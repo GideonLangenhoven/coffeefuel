@@ -33,6 +33,8 @@ align-items: center;
 transition: all 0.3s ease-in-out;
 height: 100%;
 cursor: pointer; /* Add this line */
+position: relative; /* Add this */
+z-index: 10; /* Add this to ensure it stays above other elements */
 }
 
 .top-nav.scrolled .logo-container {
@@ -45,13 +47,21 @@ width: 40px;
 border-radius: 50%;
 object-fit: cover;
 margin-right: 10px;
-border: 2px solid rgba(0, 0, 0, 0.7);
+border: 2px solid rgba(0, 0, 0, 0.7); /* Always visible border */
 transition: all 0.3s ease-in-out;
 cursor: pointer; /* Add this line */
 }
 
 .logo:hover {
-transform: scale(1.05);
+transform: scale(1.1);
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+border-width: 3px; /* Increase border width to make it bolder */
+z-index: 11; /* Ensure it's above other elements when hovered */
+}
+
+/* Add this new rule */
+.logo-container:hover {
+  overflow: visible;
 }
 
 .brand-slogan {
@@ -437,7 +447,7 @@ transform: translateY(-3.5px); /* Adjust this value (5px * 0.7) */
 
 /* Ensure the logo container doesn't affect the nav height */
 .top-nav.scrolled .logo-container {
-height: 42px; /* Match the new logo size */
+height: 50px; /* Match the new logo size */
 overflow: visible;
 display: flex;
 align-items: center;
