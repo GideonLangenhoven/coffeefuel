@@ -1443,3 +1443,120 @@ overflow: hidden;
 
 /* ... (keep other existing styles) ... */
 
+/* Responsive styles for tablet and phone */
+@media screen and (max-width: 1024px) {
+  .top-nav {
+    flex-wrap: nowrap;
+    justify-content: center; /* Center the content */
+    align-items: center;
+    padding: 5px 15px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+  }
+
+  .left-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the logo */
+    width: 100%;
+    position: relative; /* For absolute positioning of burger menu */
+  }
+
+  .logo-container {
+    margin: 0 auto; /* Center the logo */
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+
+  .brand-slogan {
+    display: none;
+  }
+
+  .main-nav-links {
+    display: none;
+  }
+
+  .right-nav {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for perfect centering */
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .burger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    position: absolute;
+    left: 0;
+    transition: 0.4s;
+  }
+
+  .burger-bar:nth-child(1) { top: 0; }
+  .burger-bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .burger-bar:nth-child(3) { bottom: 0; }
+
+  .mobile-nav-links {
+    display: none;
+    position: fixed;
+    top: 60px; /* Should match the height of .top-nav */
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .mobile-nav-links.active {
+    display: block;
+  }
+
+  .mobile-nav-links li {
+    margin: 10px 0;
+  }
+
+  .mobile-nav-links a,
+  .mobile-nav-links button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+/* Additional adjustments for phone size */
+@media screen and (max-width: 768px) {
+  .top-nav {
+    padding: 5px 10px;
+  }
+
+  .logo {
+    height: 30px;
+    width: 30px;
+  }
+
+  .burger-menu {
+    top: calc(50% + 10px); /* Move down by 10px */
+    transform: translateY(-50%); /* Maintain vertical centering */
+  }
+}
+
+/* ... (keep other existing styles) ... */
+
