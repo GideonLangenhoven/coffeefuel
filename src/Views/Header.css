@@ -187,6 +187,7 @@ transform: scale(1.05);
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
+  overflow: hidden; /* Add this to hide the image during animation */
 }
 
 .image-content .main-image {
@@ -197,6 +198,7 @@ transform: scale(1.05);
   border: 10px solid white;
   overflow: hidden;
   position: relative;
+  animation: slideInFromRight 1s ease-out;
 }
 
 .image-content .main-image img {
@@ -207,6 +209,17 @@ transform: scale(1.05);
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(50px); /* Increased from 20px to 50px */
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Responsive styles */
@@ -228,28 +241,111 @@ transform: scale(1.05);
   }
 }
 
-@media screen and (max-width: 768px) {
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
   .header-content {
     flex-direction: column;
     height: auto;
-    margin-top: -45px; /* Decreased by 10px */
+    margin-top: -45px;
     padding: 20px;
   }
   
   .text-content,
   .image-content {
     max-width: 100%;
+    width: 100%;
     margin-bottom: 20px;
   }
 
+  .image-content {
+    width: 60%; /* Adjust this value as needed for tablet */
+    padding-bottom: 60%; /* Maintain 1:1 aspect ratio */
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+  }
+
   .image-content .main-image {
-    max-width: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid white;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .image-content .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Burger menu styles */
+  .burger-menu {
+    display: block;
+  }
+
+  .main-nav-links {
+    display: none;
+  }
+
+  .mobile-nav-links {
+    display: flex;
   }
 }
 
-@media screen and (max-width: 576px) {
+/* Phone styles */
+@media screen and (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    height: auto;
+    margin-top: -45px;
+    padding: 20px;
+  }
+  
+  .text-content,
+  .image-content {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .image-content {
+    width: 80%; /* Increase size for mobile */
+    padding-bottom: 80%;
+  }
+
   .image-content .main-image {
-    max-width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid white;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .image-content .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ... (keep other existing mobile styles) ... */
+}
+
+/* Smaller phones */
+@media screen and (max-width: 576px) {
+  .image-content {
+    width: 80%;
+    padding-bottom: 80%;
   }
 }
 
