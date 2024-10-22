@@ -18,24 +18,24 @@ const HomePage = () => {
       </div>
       <div className="scrollable-content">
         <Header />
-        <TeamSection />
         <div className="info-cards-container">
-          <InfoCard 
+          <InfoCard
             icon={<FaLightbulb />}
             title="Innovative Solutions"
             description="We provide cutting-edge solutions to help your business grow and thrive in today's competitive market."
           />
-          <InfoCard 
+          <InfoCard
             icon={<FaChartLine />}
             title="Strategic Growth"
             description="Our expert team develops tailored strategies to accelerate your business growth and achieve your goals."
           />
-          <InfoCard 
+          <InfoCard
             icon={<FaUsers />}
             title="Collaborative Approach"
             description="We work closely with you, fostering a collaborative environment to ensure the best outcomes for your business."
           />
         </div>
+        <TeamSection />
       </div>
     </div>
   );
