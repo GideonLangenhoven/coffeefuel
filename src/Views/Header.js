@@ -59,6 +59,7 @@ const Header = () => {
 
   return (
     <header className="header">
+      {/* Navigation Bar */}
       <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="logo-container" onClick={handleTerbigenClick}>
           <img src={logo} alt="Terbigen Logo" className="logo" />
@@ -67,20 +68,46 @@ const Header = () => {
           </span>
         </div>
         <ul className="nav-links">
-          <li>
-            <Link to="/home" className="nav-link">
-              Home
-            </Link>
+          {/* Navigation Links with Drop-Down Menus */}
+          <li className="nav-link">
+            <span>Industries</span>
+            <div className="dropdown-content">
+              <Link to="/industry1">Industry 1</Link>
+              <Link to="/industry2">Industry 2</Link>
+              <Link to="/industry3">Industry 3</Link>
+              <Link to="/industry4">Industry 4</Link>
+              <Link to="/industry5">Industry 5</Link>
+            </div>
           </li>
-          <li>
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
+          <li className="nav-link">
+            <span>Services</span>
+            <div className="dropdown-content">
+              <Link to="/service1">Service 1</Link>
+              <Link to="/service2">Service 2</Link>
+              <Link to="/service3">Service 3</Link>
+              <Link to="/service4">Service 4</Link>
+              <Link to="/service5">Service 5</Link>
+            </div>
           </li>
-          <li>
-            <Link to="/services" className="nav-link">
-              Services
-            </Link>
+          <li className="nav-link">
+            <span>Insights</span>
+            <div className="dropdown-content">
+              <Link to="/insight1">Insight 1</Link>
+              <Link to="/insight2">Insight 2</Link>
+              <Link to="/insight3">Insight 3</Link>
+              <Link to="/insight4">Insight 4</Link>
+              <Link to="/insight5">Insight 5</Link>
+            </div>
+          </li>
+          <li className="nav-link">
+            <span>About Us</span>
+            <div className="dropdown-content">
+              <Link to="/about">Company</Link>
+              <Link to="/team">Team</Link>
+              <Link to="/careers">Careers</Link>
+              <Link to="/contact">Contact</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
           </li>
         </ul>
         <div className="right-nav">
@@ -101,18 +128,23 @@ const Header = () => {
         </div>
         <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li>
-            <Link to="/home" onClick={toggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" onClick={toggleMenu}>
-              About
+            <Link to="/industry1" onClick={toggleMenu}>
+              Industries
             </Link>
           </li>
           <li>
             <Link to="/services" onClick={toggleMenu}>
               Services
+            </Link>
+          </li>
+          <li>
+            <Link to="/insights" onClick={toggleMenu}>
+              Insights
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={toggleMenu}>
+              About Us
             </Link>
           </li>
           <li>
@@ -134,6 +166,7 @@ const Header = () => {
         </ul>
       </nav>
 
+      {/* Header Content */}
       <div className="header-content">
         <div className="text-content">
           <div className="main">
@@ -141,26 +174,27 @@ const Header = () => {
               A Fresh Approach to Growing
               <br />
               People and Business:
-              <div className="roller">
-                <div id="rolltext">
-                  Innovation
-                  <br />
-                  <span>Transformation</span>
-                  <br />
-                  Agility
-                  <br />
-                  <span>Empowerment</span>
-                  <br />
-                  Strategy
-                  <br />
-                  Vision
-                  <br />
-                  Growth
-                  <br />
-                  Adaptability
-                </div>
-              </div>
             </h1>
+            {/* Roller centered below the text */}
+            <div className="roller">
+              <div id="rolltext">
+                Innovation
+                <br />
+                <span>Transformation</span>
+                <br />
+                Agility
+                <br />
+                <span>Empowerment</span>
+                <br />
+                Strategy
+                <br />
+                Vision
+                <br />
+                Growth
+                <br />
+                Adaptability
+              </div>
+            </div>
           </div>
           <div className="cta-container">
             <a href="#video" className="cta-button" onClick={handleWatchVideo}>
@@ -170,18 +204,18 @@ const Header = () => {
         </div>
         <div className="image-content">
           <div className="main-image">
-            <img
-              src={images[currentImage]}
-              alt="Team Collaboration"
-            />
+            <img src={images[currentImage]} alt="Team Collaboration" />
           </div>
         </div>
       </div>
-      {/* New Ocean and Waves Background */}
+
+      {/* Ocean Waves */}
       <div className="ocean">
         <div className="wave"></div>
         <div className="wave"></div>
       </div>
+
+      {/* Video Popup */}
       {showVideoPopup && (
         <VideoPopup
           videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"

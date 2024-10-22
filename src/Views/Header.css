@@ -72,7 +72,7 @@ body {
 .top-nav {
   background-color: transparent; /* Transparent background */
   padding: 10px 20px;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -86,7 +86,7 @@ body {
 
 .top-nav.scrolled {
   background-color: rgba(255, 255, 255, 0.9); /* Background when scrolled */
-  height: 60px;
+  transform: scale(0.7); /* Scale down to 70% when scrolled */
 }
 
 .logo-container {
@@ -116,19 +116,41 @@ body {
 }
 
 .nav-link {
-  text-decoration: none;
+  position: relative; /* For dropdown positioning */
   color: #fff; /* White text */
-  font-size: 16px;
-  position: relative;
-  transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link > span {
+  cursor: pointer;
+}
+
+.nav-link > span:hover {
   color: #f0f0f0;
 }
 
-.burger-menu {
-  display: none; /* Hidden by default */
+/* Drop-down Menu Styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1000;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.nav-link:hover .dropdown-content {
+  display: block;
 }
 
 .right-nav {
@@ -155,6 +177,86 @@ body {
   transform: scale(1.05);
 }
 
+/* Burger Menu */
+.burger-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.burger-bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+.burger-menu.active .burger-bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger-menu.active .burger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .burger-bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Navigation */
+.mobile-nav-links {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: rgba(0, 21, 50, 0.9);
+    transition: right 0.3s ease-in-out;
+    padding-top: 80px;
+    z-index: 1001;
+  }
+
+  .mobile-nav-links.active {
+    right: 0;
+  }
+
+  .mobile-nav-links li {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .mobile-nav-links a,
+  .mobile-nav-links button {
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+  }
+
+  .nav-link:hover .dropdown-content {
+    display: none;
+  }
+}
+
 /* Header Content Styles */
 .header-content {
   display: flex;
@@ -170,18 +272,49 @@ body {
   height: calc(100vh - 100px); /* Full height minus padding */
 }
 
+/* Center the text in the header */
 .text-content {
   flex: 1;
   max-width: 50%;
-  color: #fff; /* White text for contrast */
+  color: #fff;
+  text-align: center; /* Center the text */
 }
 
+/* Adjusted h1 styles */
 .text-content h1 {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
+/* Roller styles */
+.roller {
+  margin: 0 auto; /* Center the roller */
+  height: 4.5rem;
+  line-height: 4.5rem;
+  position: relative;
+  overflow: hidden;
+  color: #FFD700; /* Change color to differentiate */
+}
+
+#rolltext {
+  position: absolute;
+  animation: slide 20s infinite;
+  color: #FFD700;
+}
+
+@keyframes slide {
+  0%, 12.5% { top: 0; }
+  12.5%, 25% { top: -4.5rem; }
+  25%, 37.5% { top: -9rem; }
+  37.5%, 50% { top: -13.5rem; }
+  50%, 62.5% { top: -18rem; }
+  62.5%, 75% { top: -22.5rem; }
+  75%, 87.5% { top: -27rem; }
+  87.5%, 100% { top: -31.5rem; }
+}
+
+/* CTA Button */
 .cta-container {
   margin-top: 20px;
 }
@@ -215,9 +348,10 @@ body {
 .main-image {
   width: 100%;
   max-width: 500px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes the image round */
   overflow: hidden;
   border: 10px solid #fff;
+  transition: border-radius 0.3s ease; /* Smooth transition */
 }
 
 .main-image img {
@@ -226,7 +360,7 @@ body {
   object-fit: cover;
 }
 
-/* Responsive Styles */
+/* Media query for tablet and phone widths */
 @media screen and (max-width: 992px) {
   .header-content {
     flex-direction: column;
@@ -251,10 +385,55 @@ body {
   .main-image {
     max-width: 80%;
     margin: 0 auto;
+    border-radius: 50% / 60%; /* Makes the image oval */
   }
 
+
   .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    position: relative; /* For dropdown positioning */
+  }
+  
+  /* Drop-down Menu Styles */
+  .dropdown-content {
     display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1000;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .dropdown-content a {
+    color: #000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .nav-link:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Adjust for mobile */
+  @media screen and (max-width: 992px) {
+    .dropdown-content {
+      position: static;
+      box-shadow: none;
+    }
+  
+    .nav-link:hover .dropdown-content {
+      display: none;
+    }
   }
 
   .burger-menu {
@@ -296,6 +475,10 @@ body {
 @media screen and (max-width: 600px) {
   .top-nav {
     padding: 10px;
+    position: sticky; /* Changed from fixed to sticky */
+    top: 0;
+    /* ... (rest of the styles) ... */
+    transition: all 0.3s ease-in-out;
   }
 
   .logo {
@@ -330,16 +513,19 @@ body {
 }
 
 .roller {
+  margin: 0 auto; /* Center the roller */
   height: 4.5rem;
   line-height: 4.5rem;
   position: relative;
   overflow: hidden;
-  color: #fff;
+  color: #FFD700; /* Changed color to gold */
 }
 
+/* Changed color of the roller text */
 #rolltext {
   position: absolute;
   animation: slide 20s infinite;
+  color: #FFD700; /* Ensure text inherits the roller color */
 }
 
 @keyframes slide {
