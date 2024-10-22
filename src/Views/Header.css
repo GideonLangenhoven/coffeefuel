@@ -1,6 +1,6 @@
 /* src/Views/Header.css */
 
-/* Universal box-sizing to include padding and border in element's total width and height */
+/* Universal box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -9,165 +9,183 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  height: 100%; /* Ensure the body takes full height */
 }
 
-.banner h1 {
-  font-size: 2rem;
+body {
+  overflow-x: hidden;
 }
 
-.banner p {
-  font-size: 1rem;
-}
-
+/* Header Styles */
 .header {
-  color: rgba(255, 255, 255, 0.831);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   position: relative;
-  z-index: 2;
+  overflow: hidden;
+  height: 100vh; /* Full viewport height */
 }
 
-.navbar {
+/* Ocean and Wave Background */
+.ocean {
+  height: 100%; /* Cover the header area */
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #015871;
+  z-index: 1; /* Place behind content */
+}
+
+.wave {
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg') repeat-x;
+  position: absolute;
+  bottom: 0;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+  bottom: 10px; /* Adjust for visual effect */
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1600px, 0, 0);
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+/* Top Navigation Styles */
+.top-nav {
+  background-color: transparent; /* Transparent background */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+  transition: all 0.3s ease-in-out;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
+}
+
+.top-nav.scrolled {
+  background-color: rgba(255, 255, 255, 0.9); /* Background when scrolled */
+  height: 60px;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  transition: all 0.3s ease-in-out;
-  height: 100%;
   cursor: pointer;
-  position: relative;
-  z-index: 10;
-}
-
-.top-nav.scrolled .logo-container {
-  transform: scale(0.5);
 }
 
 .logo {
   height: 40px;
   width: 40px;
-  border-radius: 50%;
-  object-fit: cover;
   margin-right: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.7);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.logo:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-width: 3px;
-  z-index: 11;
-}
-
-.logo-container:hover {
-  overflow: visible;
 }
 
 .brand-slogan {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  transition: all 0.3s ease-in-out;
   user-select: none;
   cursor: pointer;
+  color: #fff; /* White text for better contrast */
 }
 
-.brand-slogan .terbigen-text {
-  font-size: 1.5rem;
-  color: #A788F5;
-  transition: none;
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
-/* Remove or comment out any hover, active, or focus styles for .terbigen-text */
-
-/* Contact button styles */
-.contact-button {
-  background-color: #00E676;
-  color: #000000;
-  padding: 6px 11px;
-  border-radius: 25px;
+.nav-link {
   text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: normal;
-  transition: all 0.3s ease-in-out;
-  white-space: nowrap;
+  color: #fff; /* White text */
+  font-size: 16px;
   position: relative;
-  margin-left: 10px;
-  margin-right: 40px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #f0f0f0;
+}
+
+.burger-menu {
+  display: none; /* Hidden by default */
+}
+
+.right-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 20px;
 }
 
-.contact-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.3);
+.contact-button,
+.bbeee-button {
+  background-color: #00E676;
+  color: #000;
+  padding: 7px 15px;
   border-radius: 25px;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-left: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
-.contact-button:hover {
+.contact-button:hover,
+.bbeee-button:hover {
   background-color: #00C853;
   transform: scale(1.05);
 }
 
-.contact-button:hover::before {
-  opacity: 1;
-}
-
+/* Header Content Styles */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
-  height: calc(100vh - 185px);
-  max-width: 80%;
-  margin: -65px auto 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
-  z-index: 2;
-  margin-bottom: 0;
+  z-index: 2; /* Above the waves */
+  padding-top: 100px; /* Adjust for navigation height */
+  padding-left: 20px;
+  padding-right: 20px;
+  height: calc(100vh - 100px); /* Full height minus padding */
 }
 
 .text-content {
   flex: 1;
   max-width: 50%;
-  text-align: left;
-  z-index: 1;
-  padding-right: 40px;
+  color: #fff; /* White text for contrast */
 }
 
 .text-content h1 {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.text-content p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+.cta-container {
+  margin-top: 20px;
 }
 
-/* CTA button styles */
 .cta-button {
   background-color: #00E676;
   padding: 10px 20px;
@@ -185,184 +203,99 @@ html, body {
   transform: scale(1.05);
 }
 
+/* Image Content */
 .image-content {
   flex: 1;
   max-width: 50%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0;
-  margin-top: 10px;
-  overflow: hidden; /* Add this line to hide overflow */
 }
 
-.image-content .main-image {
+.main-image {
   width: 100%;
-  padding-bottom: 100%;
-  max-width: 586px;
+  max-width: 500px;
   border-radius: 50%;
-  border: 10px solid white;
-  position: relative;
-  animation: slideInFromRight 1s ease-out;
-  overflow: hidden; /* Add this line to hide overflow */
+  overflow: hidden;
+  border: 10px solid #fff;
 }
 
-.image-content .main-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
+.main-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Responsive styles */
-@media screen and (max-width: 1400px) {
-  .image-content .main-image {
-    max-width: 500px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .image-content .main-image {
-    max-width: 450px;
-  }
-}
-
+/* Responsive Styles */
 @media screen and (max-width: 992px) {
-  .image-content .main-image {
-    max-width: 400px;
-  }
-}
-
-/* Tablet styles */
-@media screen and (max-width: 1024px) {
   .header-content {
     flex-direction: column;
+    text-align: center;
     height: auto;
-    margin-top: -45px;
-    padding: 20px;
+    padding-top: 120px;
   }
 
   .text-content,
   .image-content {
     max-width: 100%;
-    width: 100%;
-    margin-bottom: 20px;
+  }
+
+  .text-content {
+    padding-right: 0;
   }
 
   .image-content {
-    width: 80%;
-    padding-bottom: 80%;
-    position: relative;
-    overflow: hidden;
+    margin-top: 30px;
+  }
+
+  .main-image {
+    max-width: 80%;
     margin: 0 auto;
   }
 
-  .image-content .main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 8px solid white;
-    box-sizing: border-box;
+  .nav-links {
+    display: none;
   }
 
-  .image-content .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    overflow: hidden;
-  }
-
-  /* Burger menu styles */
   .burger-menu {
     display: block;
-  }
-
-  .main-nav-links {
-    display: none;
+    cursor: pointer;
   }
 
   .mobile-nav-links {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 60px;
-    right: 0;
-    transform: translateX(100%);
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: rgba(255, 255, 255, 0.95);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 20px;
-    z-index: 1000;
-    overflow-y: auto;
+    right: -100%;
+    top: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: rgba(0, 21, 50, 0.9);
+    transition: right 0.3s ease-in-out;
+    padding-top: 80px;
+    z-index: 1001;
   }
 
   .mobile-nav-links.active {
-    transform: translateX(0);
+    right: 0;
   }
 
   .mobile-nav-links li {
-    margin: 15px 0;
-  }
-
-  .mobile-nav-links a {
-    color: #000000;
-    text-decoration: none;
-    font-weight: normal;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    padding: 10px;
-    width: 80%;
-    margin: 0 auto;
-    display: block;
+    margin: 20px 0;
     text-align: center;
   }
 
-  .mobile-nav-links a:hover {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  .contact-button,
-  .bbeee-button {
-    position: static;
-    transform: none;
-    margin: 10px auto;
-    width: 80%;
-  }
-
-  .header-content {
-    margin-top: 80px;
-  }
-
-  .right-nav {
-    display: none;
+  .mobile-nav-links a,
+  .mobile-nav-links button {
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
   }
 }
 
-/* Phone styles */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .top-nav {
-    padding: 5px 10px;
+    padding: 10px;
   }
 
   .logo {
@@ -370,427 +303,76 @@ html, body {
     width: 30px;
   }
 
-  .mobile-nav-links a {
-    font-size: 1rem;
+  .brand-slogan {
+    font-size: 1.2rem;
   }
 
   .text-content h1 {
     font-size: 2rem;
   }
 
-  .text-content p {
+  .nav-link {
     font-size: 1rem;
   }
 
-  .cta-button,
-  .contact-button {
+  .contact-button,
+  .bbeee-button {
     font-size: 0.8rem;
-    padding: 8px 16px;
+    padding: 5px 10px;
   }
 }
 
-/* Smaller phones */
-@media screen and (max-width: 576px) {
-  .image-content {
-    width: 80%;
-    padding-bottom: 80%;
-  }
-}
-
-/* Top navigation styles */
-.top-nav {
-  background-color: rgba(172, 91, 166, 0.7);
-  padding: 5px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: all 0.3s ease-in-out;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  width: 100%;
-}
-
-.top-nav.scrolled {
-  height: 50px;
-  background-color: rgba(171, 100, 195, 0.5);
-}
-
-.top-nav.scrolled .logo {
-  height: 35px;
-  width: 35px;
-}
-
-.top-nav.scrolled .brand-slogan {
-  font-size: 0.9rem;
-}
-
-.top-nav.scrolled .nav-links li a {
-  font-size: 14px;
-}
-
-.top-nav.scrolled .contact-button,
-.top-nav.scrolled .bbeee-button {
-  padding: 7px 15px;
-  font-size: 0.8rem;
-}
-
-.nav-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  transition: all 0.3s ease-in-out;
-}
-
-.top-nav.scrolled .nav-wrapper {
-  gap: 33px;
-  margin-top: 10px;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #000000;
-  font-size: 14px;
-  position: relative;
-  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.8;
-}
-
-.nav-links li a:hover {
-  color: #000000;
-  transform: scale(1.02);
-  opacity: 1;
-}
-
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: #000000;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.nav-links li a:hover::after {
-  transform: scaleX(1);
-}
-
-.top-nav.scrolled .logo-container,
-.top-nav.scrolled .nav-wrapper,
-.top-nav.scrolled .nav-links,
-.top-nav.scrolled .contact-button {
-  transform: translateY(0);
-}
-
-.top-nav.scrolled .contact-button {
-  padding: 5px 10px;
-  font-size: 0.75rem;
-  height: 28px;
-}
-
-/* Adjust the logo container in scrolled state */
-.top-nav.scrolled .logo-container {
-  height: 50px;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-}
-
-.top-nav.scrolled .nav-wrapper {
-  margin-top: 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Animated words and letters */
-.animated-word {
-  display: inline-block;
-  position: relative;
-}
-
-.animated-letter {
-  display: inline-block;
-  color: rgba(255, 255, 255, 0.81);
-  background: linear-gradient(
-    to right,
-    rgb(113, 113, 136),
-    rgb(167, 121, 130),
-    rgb(148, 121, 126),
-    rgb(145, 145, 179),
-    rgb(142, 179, 195),
-    rgb(155, 195, 163)
-  );
-  background-size: 400%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: sTransition 10s linear infinite;
-}
-
-@keyframes sTransition {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 400%;
-  }
-}
-
-.fresh .animated-letter {
-  animation-delay: calc(0.1s * var(--letter-index));
-}
-
-.growing .animated-letter {
-  animation-delay: calc(0.5s * var(--letter-index));
-}
-
-/* Left and right navigation containers */
-.left-nav,
-.right-nav {
-  display: flex;
-  align-items: center;
-}
-
-.left-nav {
-  flex: 1;
-}
-
-.right-nav {
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a,
-.contact-button,
-.brand-slogan {
-  text-shadow: none;
-}
-
-/* Glow effect for buttons */
-@keyframes glowing {
-  0% {
-    box-shadow: 0 0 5px #00E676;
-  }
-  50% {
-    box-shadow: 0 0 20px #00E676;
-  }
-  100% {
-    box-shadow: 0 0 5px #00E676;
-  }
-}
-
-.contact-button,
-.bbeee-button,
-.cta-button {
-  transition: all 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.contact-button:hover,
-.bbeee-button:hover,
-.cta-button:hover {
-  animation: glowing 1.5s infinite;
-  background-color: #00C853;
-  transform: scale(1.05);
-}
-
-/* BBEEE button styles */
-.bbeee-button {
-  background-color: #00E676;
-  color: #000000;
-  padding: 7px 15px;
-  border-radius: 25px;
-  font-weight: normal;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  white-space: nowrap;
-  position: relative;
-  font-size: 0.8rem;
-  border: none;
-}
-
-.bbeee-button:hover {
-  animation: glowing 1.5s infinite;
-  background-color: #00C853;
-  transform: scale(1.05);
-}
-
-/* Additional responsive adjustments */
-@media screen and (max-width: 768px) {
-  .nav-links {
-    gap: 20px;
-  }
-
-  .top-nav.scrolled .nav-links {
-    gap: 22px;
-  }
-
-  .nav-wrapper {
-    gap: 20px;
-  }
-
-  .top-nav.scrolled .nav-wrapper {
-    gap: 22px;
-  }
-
-  .contact-button {
-    margin-left: 0;
-  }
-
-  .top-nav.scrolled .contact-button {
-    margin-left: 0;
-  }
-}
-
-/* Adjust the top-nav height and padding */
-.top-nav {
-  padding: 10px 20px;
-  height: 80px;
-}
-
-.top-nav.scrolled {
-  height: 60px;
-  padding: 5px 20px;
-}
-
-.top-nav.scrolled .logo-container,
-.top-nav.scrolled .nav-wrapper,
-.top-nav.scrolled .nav-links,
-.top-nav.scrolled .contact-button {
-  transform: translate;
-}
-
-/* Adjust the nav-wrapper margin */
-.top-nav.scrolled .nav-wrapper {
-margin-top: 0;
-}
-
-/* Add media query for full screen */
-@media screen and (min-width: 1024px) {
-.header-content {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.image-content {
-  max-width: 50%;
-}
-
-.image-content .main-image {
-  max-width: 100%;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-}
-}
-
-/* Add this media query for very large screens */
-@media screen and (min-width: 1440px) {
-  .image-content .main-image {
-    max-width: 586px;
-    width: 586px;
-    height: 586px;
-    padding-bottom: 0;
-  }
-}
-
-/* Add these new styles for the rolling text */
+/* Rolling Text Styles */
 .main {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-}
-
-.text-content h1 {
-text-align: center;
-text-transform: uppercase;
-color: #F1FAEE; 
-font-size: 3rem; /* Slightly reduced font size */
-margin-bottom: 0.5rem; /* Add some space below the h1 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .roller {
-height: 4.5rem; /* Increased height to fit text */
-line-height: 4.5rem; /* Matched line-height to height */
-position: relative;
-width: 100%;
-overflow: hidden;
-display: flex;
-justify-content: center;
-align-items: center;
-color: #1c28d5; /* Changed color to #d51c3f */
+  height: 4.5rem;
+  line-height: 4.5rem;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
 }
 
-.roller #rolltext {
-position: absolute;
-top: 0;
-animation: slide 20s infinite; /* Increased duration to show all 8 words */
-}
-
-/* Add these new styles for Empowerment and Transformation */
-.roller #rolltext span {
-display: inline-block;
-font-size: 0.8em; /* Make Empowerment and Transformation smaller */
+#rolltext {
+  position: absolute;
+  animation: slide 20s infinite;
 }
 
 @keyframes slide {
-0%, 12.5% {
-  top: 0;
+  0%, 12.5% { top: 0; }
+  12.5%, 25% { top: -4.5rem; }
+  25%, 37.5% { top: -9rem; }
+  37.5%, 50% { top: -13.5rem; }
+  50%, 62.5% { top: -18rem; }
+  62.5%, 75% { top: -22.5rem; }
+  75%, 87.5% { top: -27rem; }
+  87.5%, 100% { top: -31.5rem; }
 }
-12.5%, 25% {
-  top: -4.5rem;
-}
-25%, 37.5% {
-  top: -9rem;
-}
-37.5%, 50% {
-  top: -13.5rem;
-}
-50%, 62.5% {
-  top: -18rem;
-}
-62.5%, 75% {
-  top: -22.5rem;
-}
-75%, 87.5% {
-  top: -27rem;
-}
-87.5%, 100% {
-  top: -31.5rem;
-}
+
+@media screen and (max-width: 600px) {
+  .roller {
+    height: 3rem;
+    line-height: 3rem;
+  }
+
+  #rolltext {
+    animation: slide-mob 20s infinite;
+  }
+
+  @keyframes slide-mob {
+    0%, 12.5% { top: 0; }
+    12.5%, 25% { top: -3rem; }
+    25%, 37.5% { top: -6rem; }
+    37.5%, 50% { top: -9rem; }
+    50%, 62.5% { top: -12rem; }
+    62.5%, 75% { top: -15rem; }
+    75%, 87.5% { top: -18rem; }
+    87.5%, 100% { top: -21rem; }
+  }
 }
 
 .cta-container {
@@ -1472,6 +1054,8 @@ max-width: calc(100% - 100px); /* Adjusted based on new burger menu position */
 }
 
 /* ... (keep other existing styles) ... */
+
+
 
 
 

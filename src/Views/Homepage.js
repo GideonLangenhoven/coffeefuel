@@ -9,15 +9,8 @@ import { FaLightbulb, FaChartLine, FaUsers } from 'react-icons/fa';
 const HomePage = () => {
   return (
     <div className="container-fluid">
-      <div className="background">
-        <div className="cube"></div>
-        <div className="cube"></div>
-        <div className="cube"></div>
-        <div className="cube"></div>
-        <div className="cube"></div>
-      </div>
-      <div className="scrollable-content">
-        <Header />
+      <Header />
+      <div className="content-wrapper">
         <div className="info-cards-container">
           <InfoCard
             icon={<FaLightbulb />}
@@ -42,3 +35,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

@@ -60,30 +60,36 @@ const Header = () => {
   return (
     <header className="header">
       <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="left-nav">
-          <div className="logo-container" onClick={handleTerbigenClick}>
-            <img src={logo} alt="Terbigen Logo" className="logo" />
-            <span className="brand-slogan">
-              <span className="terbigen-text">Terbigen</span>
-            </span>
-          </div>
-          <ul className="main-nav-links">
-            <li>
-              <Link to="/home" className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="nav-link">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="nav-link">
-                Services
-              </Link>
-            </li>
-          </ul>
+        <div className="logo-container" onClick={handleTerbigenClick}>
+          <img src={logo} alt="Terbigen Logo" className="logo" />
+          <span className="brand-slogan">
+            <span className="terbigen-text">Terbigen</span>
+          </span>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <Link to="/home" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/services" className="nav-link">
+              Services
+            </Link>
+          </li>
+        </ul>
+        <div className="right-nav">
+          <button className="bbeee-button" onClick={handleBBEEEClick}>
+            BBEEE Level 1 contributor
+          </button>
+          <a href="#contact" className="contact-button">
+            CONTACT
+          </a>
           <div
             className={`burger-menu ${isMenuOpen ? 'active' : ''}`}
             onClick={toggleMenu}
@@ -93,29 +99,21 @@ const Header = () => {
             <div className="burger-bar"></div>
           </div>
         </div>
-        <div className="right-nav">
-          <button className="bbeee-button" onClick={handleBBEEEClick}>
-            BBEEE Level 1 contributor
-          </button>
-          <a href="#contact" className="contact-button">
-            CONTACT
-          </a>
-        </div>
         <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li>
-            <a href="#home" onClick={toggleMenu}>
+            <Link to="/home" onClick={toggleMenu}>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#about" onClick={toggleMenu}>
+            <Link to="/about" onClick={toggleMenu}>
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#services" onClick={toggleMenu}>
+            <Link to="/services" onClick={toggleMenu}>
               Services
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#contact" className="contact-button" onClick={toggleMenu}>
@@ -144,7 +142,7 @@ const Header = () => {
               <br />
               People and Business:
               <div className="roller">
-                <span id="rolltext">
+                <div id="rolltext">
                   Innovation
                   <br />
                   <span>Transformation</span>
@@ -160,8 +158,7 @@ const Header = () => {
                   Growth
                   <br />
                   Adaptability
-                  <br />
-                </span>
+                </div>
               </div>
             </h1>
           </div>
@@ -179,6 +176,11 @@ const Header = () => {
             />
           </div>
         </div>
+      </div>
+      {/* New Ocean and Waves Background */}
+      <div className="ocean">
+        <div className="wave"></div>
+        <div className="wave"></div>
       </div>
       {showVideoPopup && (
         <VideoPopup
