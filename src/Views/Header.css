@@ -194,6 +194,7 @@ html, body {
   align-items: center;
   margin-bottom: 0;
   margin-top: 10px;
+  overflow: hidden; /* Add this line to hide overflow */
 }
 
 .image-content .main-image {
@@ -204,6 +205,7 @@ html, body {
   border: 10px solid white;
   position: relative;
   animation: slideInFromRight 1s ease-out;
+  overflow: hidden; /* Add this line to hide overflow */
 }
 
 .image-content .main-image img {
@@ -286,6 +288,7 @@ html, body {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    overflow: hidden;
   }
 
   /* Burger menu styles */
@@ -699,6 +702,27 @@ margin-top: 0;
   margin-left: auto;
   margin-right: auto;
 }
+
+.image-content {
+  max-width: 50%;
+}
+
+.image-content .main-image {
+  max-width: 100%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+}
+
+/* Add this media query for very large screens */
+@media screen and (min-width: 1440px) {
+  .image-content .main-image {
+    max-width: 586px;
+    width: 586px;
+    height: 586px;
+    padding-bottom: 0;
+  }
 }
 
 /* Add these new styles for the rolling text */
@@ -1448,6 +1472,7 @@ max-width: calc(100% - 100px); /* Adjusted based on new burger menu position */
 }
 
 /* ... (keep other existing styles) ... */
+
 
 
 
