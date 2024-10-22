@@ -5,6 +5,7 @@ import Header from './Header.js';
 import InfoCard from '../Components/InfoCard';
 import TeamSection from '../Components/TeamSection';
 import { FaLightbulb, FaChartLine, FaUsers } from 'react-icons/fa';
+import Footer from '../Components/Footer';
 
 const HomePage = () => {
   return (
@@ -30,6 +31,7 @@ const HomePage = () => {
         </div>
         <TeamSection />
       </div>
+      <Footer />
     </div>
   );
 };

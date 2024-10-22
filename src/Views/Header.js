@@ -70,7 +70,9 @@ const Header = () => {
         <ul className="nav-links">
           {/* Navigation Links with Drop-Down Menus */}
           <li className="nav-link">
-            <span>Industries</span>
+            <span>
+              Industries <span className="dropdown-arrow">&#9662;</span>
+            </span>
             <div className="dropdown-content">
               <Link to="/industry1">Industry 1</Link>
               <Link to="/industry2">Industry 2</Link>
@@ -80,7 +82,9 @@ const Header = () => {
             </div>
           </li>
           <li className="nav-link">
-            <span>Services</span>
+            <span>
+              Services <span className="dropdown-arrow">&#9662;</span>
+            </span>
             <div className="dropdown-content">
               <Link to="/service1">Service 1</Link>
               <Link to="/service2">Service 2</Link>
@@ -90,7 +94,9 @@ const Header = () => {
             </div>
           </li>
           <li className="nav-link">
-            <span>Insights</span>
+            <span>
+              Insights <span className="dropdown-arrow">&#9662;</span>
+            </span>
             <div className="dropdown-content">
               <Link to="/insight1">Insight 1</Link>
               <Link to="/insight2">Insight 2</Link>
@@ -100,7 +106,9 @@ const Header = () => {
             </div>
           </li>
           <li className="nav-link">
-            <span>About Us</span>
+            <span>
+              About Us <span className="dropdown-arrow">&#9662;</span>
+            </span>
             <div className="dropdown-content">
               <Link to="/about">Company</Link>
               <Link to="/team">Team</Link>
@@ -126,33 +134,37 @@ const Header = () => {
             <div className="burger-bar"></div>
           </div>
         </div>
-        <ul className={`mobile-nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li>
-            <Link to="/industry1" onClick={toggleMenu}>
-              Industries
-            </Link>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-nav ${isMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-nav-header">
+          <div className="close-icon" onClick={toggleMenu}>
+            &times;
+          </div>
+        </div>
+        <ul className="mobile-nav-links">
+          <li className="mobile-nav-link">
+            <span onClick={toggleMenu}>
+              <Link to="/industries">Industries</Link>
+            </span>
           </li>
-          <li>
-            <Link to="/services" onClick={toggleMenu}>
-              Services
-            </Link>
+          <li className="mobile-nav-link">
+            <span onClick={toggleMenu}>
+              <Link to="/services">Services</Link>
+            </span>
           </li>
-          <li>
-            <Link to="/insights" onClick={toggleMenu}>
-              Insights
-            </Link>
+          <li className="mobile-nav-link">
+            <span onClick={toggleMenu}>
+              <Link to="/insights">Insights</Link>
+            </span>
           </li>
-          <li>
-            <Link to="/about" onClick={toggleMenu}>
-              About Us
-            </Link>
+          <li className="mobile-nav-link">
+            <span onClick={toggleMenu}>
+              <Link to="/about">About Us</Link>
+            </span>
           </li>
-          <li>
-            <a href="#contact" className="contact-button" onClick={toggleMenu}>
-              Contact
-            </a>
-          </li>
-          <li>
+          <li className="mobile-nav-link">
             <button
               className="bbeee-button"
               onClick={() => {
@@ -163,8 +175,13 @@ const Header = () => {
               BBEEE Level 1 contributor
             </button>
           </li>
+          <li className="mobile-nav-link contact-link">
+            <a href="#contact" className="contact-button" onClick={toggleMenu}>
+              CONTACT
+            </a>
+          </li>
         </ul>
-      </nav>
+      </div>
 
       {/* Header Content */}
       <div className="header-content">
