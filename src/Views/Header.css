@@ -137,6 +137,7 @@ opacity: 1;
   border-radius: 10px;
   position: relative;
   z-index: 2;
+  margin-bottom: 0; /* Remove any bottom margin */
 }
 
 .text-content {
@@ -1548,6 +1549,9 @@ overflow: hidden;
 }
 
 /* ... (keep other existing styles) ... */
+
+
+
 
 
 

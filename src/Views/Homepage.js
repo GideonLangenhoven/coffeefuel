@@ -2,7 +2,9 @@
 import React from 'react';
 import './Homepage.css';
 import Header from './Header.js';
-import Banner from './Banner';
+import InfoCard from '../Components/InfoCard';
+import TeamSection from '../Components/TeamSection';
+import { FaLightbulb, FaChartLine, FaUsers } from 'react-icons/fa';
 
 const HomePage = () => {
   return (
@@ -15,10 +17,25 @@ const HomePage = () => {
         <div className="cube"></div>
       </div>
       <div className="scrollable-content">
-        {/* <Banner /> */}
         <Header />
-        
-        {/* Add more content for your homepage here if needed */}
+        <TeamSection />
+        <div className="info-cards-container">
+          <InfoCard 
+            icon={<FaLightbulb />}
+            title="Innovative Solutions"
+            description="We provide cutting-edge solutions to help your business grow and thrive in today's competitive market."
+          />
+          <InfoCard 
+            icon={<FaChartLine />}
+            title="Strategic Growth"
+            description="Our expert team develops tailored strategies to accelerate your business growth and achieve your goals."
+          />
+          <InfoCard 
+            icon={<FaUsers />}
+            title="Collaborative Approach"
+            description="We work closely with you, fostering a collaborative environment to ensure the best outcomes for your business."
+          />
+        </div>
       </div>
     </div>
   );

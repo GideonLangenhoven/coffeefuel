@@ -1,0 +1,104 @@
+.team-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.team-content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.team-info h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-info p {
+  font-size: 18px;
+  color: #666;
+}
+
+.meet-team-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #4a0e4e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.meet-team-button:hover {
+  background-color: #3a0b3e;
+}
+
+.team-members {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.member-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.member-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.member-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+.view-link {
+  color: #4a0e4e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.view-link:hover {
+  color: #3a0b3e;
+}
+
+@media (min-width: 1024px) {
+  .team-content {
+    flex-direction: row;
+  }
+
+  .team-info,
+  .team-members {
+    width: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-members {
+    grid-template-columns: 1fr;
+  }
+}
