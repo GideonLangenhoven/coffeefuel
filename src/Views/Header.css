@@ -19,6 +19,9 @@ body {
 /* Header Styles */
 .header {
   position: relative;
+  text-align: center;
+  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+  color: white; /* This sets the default text color for all elements in the header to white */
   overflow: hidden;
   height: 100vh; /* Full viewport height */
 }
@@ -361,6 +364,7 @@ body {
   line-height: 1.2;
   margin-bottom: 15px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white; /* Change the color to white */
 }
 
 /* Roller styles */
@@ -384,8 +388,8 @@ body {
   animation: slide 20s infinite;
   width: 100%;
   text-align: center;
-  font-size: 2rem; /* Adjust font size as needed */
-  font-weight: bold; /* Make text bold for better visibility */
+  font-size: 3.25rem; /* Adjust font size as needed */
+  font-weight: ; /* Make text bold for better visibility */
 }
 
 @keyframes slide {
@@ -673,14 +677,14 @@ body {
   line-height: 4.5rem;
   position: relative;
   overflow: hidden;
-  color: #FFD700; /* Changed color to gold */
+  color: #b05456; /* Changed color to gold */
 }
 
 /* Changed color of the roller text */
 #rolltext {
   position: absolute;
   animation: slide 20s infinite;
-  color: #FFD700; /* Ensure text inherits the roller color */
+  color: #b05456; /* Ensure text inherits the roller color */
 }
 
 @keyframes slide {
@@ -1316,94 +1320,55 @@ max-width: calc(100% - 100px); /* Adjusted based on new burger menu position */
 
 /* ... (keep other existing styles) ... */
 
-/* Responsive styles for tablet and phone */
-@media screen and (max-width: 1024px) {
-  .top-nav {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 15px;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    z-index: 1000;
-  }
-
-  .left-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex: 1;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .logo {
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
-
-  .brand-slogan {
-    display: block; /* Show the brand slogan */
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-
-  .brand-slogan .terbigen-text {
-    color: #50388e;
-  }
-
-  .main-nav-links {
-    display: none;
-  }
-
-  .right-nav {
-    display: none;
-  }
-
-  .burger-menu {
-    display: block;
-    margin-left: auto;
-  }
-
-  /* ... (keep other existing styles) ... */
+/* Scroll indicator styles */
+.scroll-indicator {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+  z-index: 10;
 }
 
-/* Additional adjustments for phone size */
-@media screen and (max-width: 768px) {
-  .top-nav {
-    padding: 5px 10px;
-  }
+.scroll-line {
+  width: 2px;
+  height: 40px; /* Increased from 50px to 100px (200% increase) */
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  animation: scrollLine 4s ease-in-out infinite;
+}
 
-  .logo {
-    height: 30px;
-    width: 30px;
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top center;
   }
-
-  .brand-slogan {
-    font-size: 1rem;
+  50% {
+    transform: scaleY(1);
+    transform-origin: top center;
   }
+  50.1% {
+    transform-origin: bottom center;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom center;
+  }
+}
 
-  /* ... (keep other existing styles) ... */
+/* Ensure the waves don't overlap the scroll indicator */
+.waves {
+  z-index: 5;
+  position: relative;
 }
 
 /* ... (keep other existing styles) ... */
-
-
-
-
-
-
-
-
-
 
 
 
