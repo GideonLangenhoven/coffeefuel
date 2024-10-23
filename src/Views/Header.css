@@ -350,31 +350,42 @@ body {
 .text-content {
   flex: 1;
   max-width: 50%;
-  color: #fff;
-  text-align: center; /* Center the text */
+  text-align: center;
+  z-index: 2; /* Increase z-index to ensure visibility */
+  position: relative; /* Add this to create a new stacking context */
 }
 
 /* Adjusted h1 styles */
 .text-content h1 {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Roller styles */
 .roller {
-  margin: 0 auto; /* Center the roller */
   height: 4.5rem;
   line-height: 4.5rem;
   position: relative;
   overflow: hidden;
-  color: #FFD700; /* Change color to differentiate */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #A788F5;
+  margin-top: 10px;
+  z-index: 3; /* Increase z-index to ensure visibility */
 }
 
-#rolltext {
+.roller #rolltext {
   position: absolute;
+  top: 0;
   animation: slide 20s infinite;
-  color: #FFD700;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem; /* Adjust font size as needed */
+  font-weight: bold; /* Make text bold for better visibility */
 }
 
 @keyframes slide {
@@ -1384,6 +1395,7 @@ max-width: calc(100% - 100px); /* Adjusted based on new burger menu position */
 }
 
 /* ... (keep other existing styles) ... */
+
 
 
 
