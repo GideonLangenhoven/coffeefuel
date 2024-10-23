@@ -112,3 +112,15 @@
     margin-top: 16px;
   }
 }
+
+.footer {
+  background-color: #f3f4f6;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}

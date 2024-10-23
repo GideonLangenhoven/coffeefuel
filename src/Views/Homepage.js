@@ -6,7 +6,9 @@ import CompanyShowcase from '../Components/CompanyShowcase';
 import CoreCapabilities from '../Components/CoreCapabilities';
 import InfoCard from '../Components/InfoCard';
 import TeamSection from '../Components/TeamSection';
+import ContactCTA from '../Components/ContactCTA';
 import { FaLightbulb, FaChartLine, FaUsers } from 'react-icons/fa';
+import Footer from '../Components/Footer';
 
 const HomePage = () => {
   return (
@@ -40,7 +42,9 @@ const HomePage = () => {
           />
         </div>
         <TeamSection />
+        <ContactCTA />
       </div>
+      <Footer />
     </div>
   );
 };

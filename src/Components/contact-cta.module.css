@@ -1,0 +1,117 @@
+.contactCtaWrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.gradientBackground {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  transform: translateZ(0);
+  z-index: -1;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.contactCtaContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.contactCtaContent {
+  text-align: left;
+  max-width: 500px;
+}
+
+.contactCtaTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.contactCtaDescription {
+  font-size: 0.875rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.contactCtaButton {
+  background-color: #f97316;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.contactCtaButton:hover {
+  background-color: #ea580c;
+}
+
+@media (min-width: 640px) {
+  .contactCtaWrapper {
+    padding: 1.5rem;
+  }
+
+  .contactCtaContainer {
+    height: 12rem;
+  }
+
+  .contactCtaTitle {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contactCtaDescription {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactCtaWrapper {
+    padding: 2rem;
+  }
+
+  .contactCtaContainer {
+    height: 14rem;
+  }
+
+  .contactCtaTitle {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contactCtaWrapper {
+    padding: 3rem;
+  }
+}
