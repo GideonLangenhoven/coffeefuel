@@ -143,25 +143,44 @@ html, body {
 
 .nav-link {
   position: relative;
+  color: #000;
 }
 
 .nav-link > span {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  transition: font-weight 0.3s ease;
-  color: black; /* Change this to black */
 }
 
-.nav-link > span:hover {
-  text-decoration: underline;
+/* Underline effect */
+.nav-link > span::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: orange; /* Change to orange */
+  transition: width 0.3s ease;
 }
 
-.dropdown-arrow {
+/* Hover effect for text */
+.nav-link > span:hover::after {
+  width: calc(100% - 15px); /* Adjust width to not include dropdown arrow */
+}
+
+/* Dropdown arrow styles */
+.nav-link > span .dropdown-arrow {
   margin-left: 5px;
   font-size: 0.6em;
-  color: rgb(241, 116, 0); /* Change this to black */
+  color: orange; /* Change to orange */
 }
+
+/* Remove the hover effect from the dropdown arrow */
+.nav-link > span:hover .dropdown-arrow {
+  text-decoration: none;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -263,24 +282,79 @@ html, body {
 }
 
 .dropdown-image-column img {
-  width: 100%;
-  max-width: 100%;
+  width: 75%;
+  max-width: 75%;
   height: auto;
   object-fit: cover;
 }
 
-.dropdown-image-column:hover {
-  transform: scale(1.05); /* Enlarge to 1.2 times on hover */
+.dropdown-image-column {
+  flex: 1;
+  padding: 10px;
+  background-color: #f0f0f0; /* Grey background */
+  display: flex;
+  flex-direction: column; /* Stack 'Featured', image, and words */
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.dropdown-image-column:active {
-  transform: scale(1.05); /* Maintain enlargement on click */
+.dropdown-image-column h4 {
+  margin-top: 0;
+  font-size: 1rem;
+  padding-bottom: 5px;
 }
+
+.dropdown-image-column img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-image-column img:hover {
+  transform: scale(1.03); /* Enlarge image by 1.03 times on hover */
+}
+
+.image-links {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.image-links a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0%;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.image-links a:hover::after {
+  width: 100%;
+}
+
+.image-links a:hover {
+  color: #000;
+}
+
 /* Underline effect on hover for all items */
 .nav-link:hover > span,
 .dropdown-column a:hover,
 .view-all:hover {
   text-decoration: underline;
+  : a:hover { text-decoration: underline; } 
 }
 
 /* Adjust the parent nav-link on hover */
@@ -665,6 +739,6 @@ html, body {
 
 /* Update hover effect color */
 .nav-link > span:hover::after {
-  background-color: black; /* Change underline color to black */
+  background-color: rgb(255, 253, 253); /* Change underline color to black */
 }
 

@@ -1,5 +1,6 @@
 // src/Views/Header.js
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../assets/images/logo512.png';
@@ -10,6 +11,7 @@ import industryImg from '../assets/images/Industry.png';
 import servicesImg from '../assets/images/Services.png';
 import insightsImg from '../assets/images/Insights.png';
 import terbigenImg from '../assets/images/Terbigen.png';
+import testimonialsImg from '../assets/images/Testimonials.png';
 import VideoPopup from '../Components/VideoPopup';
 
 const Header = () => {
@@ -28,16 +30,17 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    // Image rotation
+    // Image rotation for the main picture
     const imageRotation = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, 5000); // Change image every 5 seconds
 
-    // Click outside handler
+    // Click outside handler for dropdown menus
     const handleClickOutside = (event) => {
       if (
         openDropdown &&
-        !event.target.closest('.nav-link')
+        !event.target.closest('.nav-link') &&
+        !event.target.closest('.dropdown-content')
       ) {
         setOpenDropdown(null);
       }
@@ -121,7 +124,12 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
+                      <h4>Featured</h4>
                       <img src={industryImg} alt="Industries" />
+                      <div className="image-links">
+                        <a href="#">Industry Insights</a>
+                        <a href="#">Case Studies</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -146,14 +154,19 @@ const Header = () => {
                   </a>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
-                      <h4>Services</h4>
+                      <h4>Categories</h4>
                       <a href="#">Consulting</a>
                       <a href="#">Strategy</a>
                       <a href="#">Technology</a>
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
+                      <h4>Featured</h4>
                       <img src={servicesImg} alt="Services" />
+                      <div className="image-links">
+                        <a href="#">Service Spotlight</a>
+                        <a href="#">Expert Teams</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,14 +190,19 @@ const Header = () => {
                   </a>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
-                      <h4>Insights</h4>
+                      <h4>Categories</h4>
                       <a href="#">Blog</a>
                       <a href="#">News</a>
                       <a href="#">Events</a>
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
+                      <h4>Featured</h4>
                       <img src={insightsImg} alt="Insights" />
+                      <div className="image-links">
+                        <a href="#">Latest Articles</a>
+                        <a href="#">Industry Reports</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -208,14 +226,56 @@ const Header = () => {
                   </a>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
-                      <h4>About</h4>
+                      <h4>Categories</h4>
                       <a href="#">Company</a>
                       <a href="#">Team</a>
                       <a href="#">Careers</a>
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
+                      <h4>Featured</h4>
                       <img src={terbigenImg} alt="About Us" />
+                      <div className="image-links">
+                        <a href="#">Mission & Vision</a>
+                        <a href="#">Our Values</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </li>
+            {/* Testimonials Nav Link */}
+            <li className={`nav-link ${openDropdown === 'testimonials' ? 'open' : ''}`}>
+              <span onClick={() => toggleDropdown('testimonials')}>
+                Testimonials
+                <span className="dropdown-arrow">▼</span>
+              </span>
+              {openDropdown === 'testimonials' && (
+                <div className="dropdown-content">
+                  <div className="dropdown-header">
+                    <span>Testimonials</span>
+                    <span className="close-dropdown" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                  <a href="#" className="view-all">
+                    View All <span className="right-arrow">→</span>
+                  </a>
+                  <div className="dropdown-columns">
+                    <div className="dropdown-column">
+                      <h4>Categories</h4>
+                      <a href="#">Client Stories</a>
+                      <a href="#">Success Cases</a>
+                      <a href="#">Feedback</a>
+                      {/* Add more items */}
+                    </div>
+                    <div className="dropdown-image-column">
+                      <h4>Featured</h4>
+                      <img src={testimonialsImg} alt="Testimonials" />
+                      <div className="image-links">
+                        <a href="#">Top Reviews</a>
+                        <a href="#">Video Testimonials</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -267,6 +327,11 @@ const Header = () => {
             <li className="mobile-nav-link">
               <span onClick={toggleMenu}>
                 <Link to="/about">About Us</Link>
+              </span>
+            </li>
+            <li className="mobile-nav-link">
+              <span onClick={toggleMenu}>
+                <Link to="/testimonials">Testimonials</Link>
               </span>
             </li>
             <li className="mobile-nav-link contact-link">
@@ -326,20 +391,22 @@ const Header = () => {
           <div className="scroll-line"></div>
         </div>
 
-        {/* Ocean Waves */}
-        <div className="ocean">
-          <div className="wave"></div>
-          <div className="wave"></div>
-        </div>
-
-        {/* Video Popup */}
-        {showVideoPopup && (
-          <VideoPopup
-            videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"
-            onClose={handleCloseVideo}
-          />
-        )}
       </div>
+
+      {/* Ocean Waves */}
+      <div className="ocean">
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
+
+      {/* Video Popup */}
+      {showVideoPopup && (
+        <VideoPopup
+          videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"
+          onClose={handleCloseVideo}
+        />
+      )}
+
     </div>
   );
 };
