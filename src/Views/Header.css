@@ -160,10 +160,8 @@ html, body {
 .dropdown-arrow {
   margin-left: 5px;
   font-size: 0.6em;
-  color: black; /* Change this to black */
+  color: rgb(241, 116, 0); /* Change this to black */
 }
-
-/* Drop-down Menu Styles */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -181,6 +179,7 @@ html, body {
   display: block;
 }
 
+/* Dropdown Header */
 .dropdown-header {
   display: flex;
   justify-content: space-between;
@@ -238,6 +237,7 @@ html, body {
   font-size: 1rem;
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
+  color: #000000;
 }
 
 .dropdown-column a {
@@ -251,6 +251,31 @@ html, body {
   text-decoration: underline;
 }
 
+/* New Styles for the Image Column */
+.dropdown-image-column {
+  flex: 1;
+  padding: 10px;
+  background-color: #f0f0f0; /* Grey background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-image-column img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.dropdown-image-column:hover {
+  transform: scale(1.05); /* Enlarge to 1.2 times on hover */
+}
+
+.dropdown-image-column:active {
+  transform: scale(1.05); /* Maintain enlargement on click */
+}
 /* Underline effect on hover for all items */
 .nav-link:hover > span,
 .dropdown-column a:hover,

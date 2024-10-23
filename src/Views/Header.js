@@ -6,6 +6,10 @@ import logo from '../assets/images/logo512.png';
 import picture1 from '../assets/images/Picture.png';
 import picture2 from '../assets/images/Picture2.png';
 import picture3 from '../assets/images/Picture3.png';
+import industryImg from '../assets/images/Industry.png';
+import servicesImg from '../assets/images/Services.png';
+import insightsImg from '../assets/images/Insights.png';
+import terbigenImg from '../assets/images/Terbigen.png';
 import VideoPopup from '../Components/VideoPopup';
 
 const Header = () => {
@@ -19,11 +23,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -120,12 +120,8 @@ const Header = () => {
                       <a href="#">Healthcare</a>
                       {/* Add more items */}
                     </div>
-                    <div className="dropdown-column">
-                      <h4>Featured</h4>
-                      <a href="#">Industry Insights</a>
-                      <a href="#">Case Studies</a>
-                      <a href="#">White Papers</a>
-                      {/* Add more items */}
+                    <div className="dropdown-image-column">
+                      <img src={industryImg} alt="Industries" />
                     </div>
                   </div>
                 </div>
@@ -156,12 +152,8 @@ const Header = () => {
                       <a href="#">Technology</a>
                       {/* Add more items */}
                     </div>
-                    <div className="dropdown-column">
-                      <h4>Featured</h4>
-                      <a href="#">Service Spotlight</a>
-                      <a href="#">Client Success</a>
-                      <a href="#">Expert Teams</a>
-                      {/* Add more items */}
+                    <div className="dropdown-image-column">
+                      <img src={servicesImg} alt="Services" />
                     </div>
                   </div>
                 </div>
@@ -191,12 +183,8 @@ const Header = () => {
                       <a href="#">Events</a>
                       {/* Add more items */}
                     </div>
-                    <div className="dropdown-column">
-                      <h4>Featured</h4>
-                      <a href="#">Latest Articles</a>
-                      <a href="#">Upcoming Webinars</a>
-                      <a href="#">Industry Reports</a>
-                      {/* Add more items */}
+                    <div className="dropdown-image-column">
+                      <img src={insightsImg} alt="Insights" />
                     </div>
                   </div>
                 </div>
@@ -226,12 +214,8 @@ const Header = () => {
                       <a href="#">Careers</a>
                       {/* Add more items */}
                     </div>
-                    <div className="dropdown-column">
-                      <h4>Featured</h4>
-                      <a href="#">Mission & Vision</a>
-                      <a href="#">Our Values</a>
-                      <a href="#">Community Involvement</a>
-                      {/* Add more items */}
+                    <div className="dropdown-image-column">
+                      <img src={terbigenImg} alt="About Us" />
                     </div>
                   </div>
                 </div>
@@ -243,7 +227,7 @@ const Header = () => {
               BBEEE Level 1 contributor
             </button>
             <a href="#contact" className="contact-button">
-              Contact
+              CONTACT
             </a>
             <div
               className={`burger-menu ${isMenuOpen ? 'active' : ''}`}
@@ -296,20 +280,38 @@ const Header = () => {
         {/* Header Content */}
         <div className="header-content">
           <div className="text-content">
-            <h1>A fresh approach to growing people and business</h1>
-            <div className="roller">
-              <span id="rolltext">
-                INNOVATION<br/>
-                STRATEGY<br/>
-                GROWTH<br/>
-                EXCELLENCE<br/>
-                LEADERSHIP<br/>
-                TRANSFORMATION<br/>
-                EMPOWERMENT<br/>
-                SUCCESS
-              </span>
+            <div className="main">
+              <h1>
+                A Fresh Approach to Growing
+                <br />
+                People and Business:
+              </h1>
+              {/* Roller centered below the text */}
+              <div className="roller">
+                <div id="rolltext">
+                  Innovation
+                  <br />
+                  <span>Transformation</span>
+                  <br />
+                  Agility
+                  <br />
+                  <span>Empowerment</span>
+                  <br />
+                  Strategy
+                  <br />
+                  Vision
+                  <br />
+                  Growth
+                  <br />
+                  Adaptability
+                </div>
+              </div>
             </div>
-            <a href="#" className="cta-button">Watch Now</a>
+            <div className="cta-container">
+              <a href="#video" className="cta-button" onClick={handleWatchVideo}>
+                WATCH THE VIDEO
+              </a>
+            </div>
           </div>
           <div className="image-content">
             <div className="main-image">
