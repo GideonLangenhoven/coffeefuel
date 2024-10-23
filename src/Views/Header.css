@@ -102,6 +102,13 @@ body {
   height: 40px;
   width: 40px;
   margin-right: 10px;
+  border-radius: 50%; /* Make the logo round */
+  border: 2px solid black; /* Add a black border */
+  transition: transform 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Slightly increase size on hover */
 }
 
 .brand-slogan {
@@ -109,7 +116,22 @@ body {
   font-weight: bold;
   user-select: none;
   cursor: pointer;
-  color: #fff; /* White text for better contrast */
+  color: #fff;
+  transition: color 0.3s ease, transform 0.3s ease; /* Add transitions for smooth effects */
+}
+
+.brand-slogan:hover {
+  color: #A788F5; /* Change color on hover */
+  transform: scale(1.25); /* Increase size by 25% on hover */
+}
+
+.brand-slogan .terbigen-text {
+  color: #4c3b77; /* Original color */
+  transition: color 0.3s ease; /* Add transition for smooth color change */
+}
+
+.brand-slogan:hover .terbigen-text {
+  color: #A788F5; /* Change color on hover */
 }
 
 /* Navigation Links */
@@ -179,7 +201,7 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: normal;
-  margin-left: 10px;
+  margin-left: 100px;
   transition: all 0.3s ease-in-out;
   border: none;
   cursor: pointer;
@@ -301,7 +323,6 @@ body {
   text-decoration: none;
   font-size: 1rem;
   font-weight: normal;
-  transition: all 0.3s ease-in-out;
   border: none;
   cursor: pointer;
 }
@@ -389,7 +410,7 @@ body {
   width: 100%;
   text-align: center;
   font-size: 3.25rem; /* Adjust font size as needed */
-  font-weight: ; /* Make text bold for better visibility */
+  font-weight: bold; /* Fixed: Provide a value for font-weight */
 }
 
 @keyframes slide {
@@ -1134,7 +1155,6 @@ transform: scale(1.05);
 .bbeee-button:hover {
 animation: glowing 1.5s infinite;
 background-color: #00C853;
-transform: translateX(-50%) scale(1.05);
 }
 
 /* Update styles for mobile */
@@ -1369,6 +1389,8 @@ max-width: calc(100% - 100px); /* Adjusted based on new burger menu position */
 }
 
 /* ... (keep other existing styles) ... */
+
+
 
 
 

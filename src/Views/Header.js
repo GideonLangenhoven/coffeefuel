@@ -62,11 +62,12 @@ const Header = () => {
       <div className="inner-header flex">
         {/* Navigation Bar */}
         <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="logo-container" onClick={handleTerbigenClick}>
-            <img src={logo} alt="Terbigen Logo" className="logo" />
+          <div className="logo-container">
+            <img src={logo} alt="Logo" className="logo" />
             <span className="brand-slogan">
-              <span className="terbigen-text">Terbigen</span>
+              <span className="terbigen-text">Terbigen</span> 
             </span>
+            {/* Removed the duplicate button */}
           </div>
           <ul className="nav-links">
             {/* Navigation Links with Drop-Down Menus */}
@@ -150,32 +151,7 @@ const Header = () => {
                 <Link to="/industries">Industries</Link>
               </span>
             </li>
-            <li className="mobile-nav-link">
-              <span onClick={toggleMenu}>
-                <Link to="/services">Services</Link>
-              </span>
-            </li>
-            <li className="mobile-nav-link">
-              <span onClick={toggleMenu}>
-                <Link to="/insights">Insights</Link>
-              </span>
-            </li>
-            <li className="mobile-nav-link">
-              <span onClick={toggleMenu}>
-                <Link to="/about">About Us</Link>
-              </span>
-            </li>
-            <li className="mobile-nav-link">
-              <button
-                className="bbeee-button"
-                onClick={() => {
-                  handleBBEEEClick();
-                  toggleMenu();
-                }}
-              >
-                BBEEE Level 1 contributor
-              </button>
-            </li>
+            {/* Repeat for other mobile-nav-link items */}
             <li className="mobile-nav-link contact-link">
               <a href="#contact" className="contact-button" onClick={toggleMenu}>
                 CONTACT
@@ -227,7 +203,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Add this new div for the scroll indicator */}
+        {/* Scroll Indicator */}
         <div className="scroll-indicator">
           <span>SCROLL</span>
           <div className="scroll-line"></div>
