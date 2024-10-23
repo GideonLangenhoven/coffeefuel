@@ -678,18 +678,23 @@ html, body {
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: fixed;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed; /* Ensures the element is fixed relative to the viewport */
+  bottom: 50px;    /* Positions the element 50px from the bottom */
+  left: 50%;       /* Centers the element horizontally */
+  transform: translateX(-50%); /* Correctly centers the element */
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   font-size: 14px;
   letter-spacing: 2px;
-  z-index: 10;
+  z-index: 1000;   /* Ensures it's above other elements */
+  
+  /* Optional: Add a subtle animation or effect if desired */
+  /* Example: Fade-in effect */
+  animation: fadeIn 1s ease-in-out;
 }
+
 
 .scroll-line {
   width: 2px;
