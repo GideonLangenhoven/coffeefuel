@@ -3,6 +3,7 @@ import React from 'react';
 import './Homepage.css';
 import Header from './Header';
 import CompanyShowcase from '../Components/CompanyShowcase';
+import CoreCapabilities from '../Components/CoreCapabilities';
 import InfoCard from '../Components/InfoCard';
 import TeamSection from '../Components/TeamSection';
 import { FaLightbulb, FaChartLine, FaUsers } from 'react-icons/fa';
@@ -20,6 +21,7 @@ const HomePage = () => {
       <div className="scrollable-content">
         <Header />
         <CompanyShowcase />
+        <CoreCapabilities />
         <div className="info-cards-container">
           <InfoCard 
             icon={<FaLightbulb />}

@@ -1,0 +1,93 @@
+.coreCapabilitiesWrapper {
+  background-color: white;
+  padding: 4rem 1rem;
+}
+
+.coreCapabilitiesContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.coreCapabilitiesTitle {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.coreCapabilitiesSubtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  margin-bottom: 3rem;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+.capabilityCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.capabilityIcon {
+  height: 3rem;
+  width: 3rem;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.capabilityTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.capabilityDescription {
+  color: #4a5568;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.capabilityLink {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.findOutMore {
+  display: inline-flex;
+  align-items: center;
+  color: #ed8936;
+  text-decoration: none;
+}
+
+.findOutMore:hover {
+  color: #dd6b20;
+}
+
+.arrowIcon {
+  margin-left: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.findOutMore:hover .arrowIcon {
+  transform: translateX(7.5px);
+}
+
+@media (min-width: 768px) {
+  .capabilitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .capabilitiesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
