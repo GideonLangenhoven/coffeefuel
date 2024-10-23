@@ -57,67 +57,84 @@ const Header = () => {
     setShowVideoPopup(false);
   };
 
+  const reloadHomepage = () => {
+    window.location.href = '/';
+  };
+
   return (
     <div className="header">
       <div className="inner-header flex">
         {/* Navigation Bar */}
         <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
           <div className="logo-container">
-            <img src={logo} alt="Logo" className="logo" />
+            <img 
+              src={logo} 
+              alt="Logo" 
+              className="logo" 
+              onClick={reloadHomepage}
+              style={{ cursor: 'pointer' }}
+            />
             <span className="brand-slogan">
-              <span className="terbigen-text">Terbigen</span> 
+              <span 
+                className="terbigen-text" 
+                onClick={reloadHomepage}
+                style={{ cursor: 'pointer' }}
+              >
+                Terbigen
+              </span>
             </span>
             {/* Removed the duplicate button */}
           </div>
           <ul className="nav-links">
-            {/* Navigation Links with Drop-Down Menus */}
             <li className="nav-link">
               <span>
-                Industries <span className="dropdown-arrow">&#9662;</span>
+                Industries
+                <span className="dropdown-arrow">▼</span>
+                <div className="dropdown-content">
+                  <a href="#"><i className="fas fa-industry"></i>Manufacturing</a>
+                  <a href="#"><i className="fas fa-car"></i>Automotive</a>
+                  <a href="#"><i className="fas fa-heartbeat"></i>Healthcare</a>
+                  {/* Add more industry items as needed */}
+                </div>
               </span>
-              <div className="dropdown-content">
-                <Link to="/industry1">Industry 1</Link>
-                <Link to="/industry2">Industry 2</Link>
-                <Link to="/industry3">Industry 3</Link>
-                <Link to="/industry4">Industry 4</Link>
-                <Link to="/industry5">Industry 5</Link>
-              </div>
             </li>
             <li className="nav-link">
               <span>
-                Services <span className="dropdown-arrow">&#9662;</span>
+                Services
+                <span className="dropdown-arrow">▼</span>
+                <div className="dropdown-content">
+                  <a href="#"><i className="fas fa-cogs"></i>Consulting</a>
+                  <a href="#"><i className="fas fa-chart-line"></i>Strategy</a>
+                  <a href="#"><i className="fas fa-code"></i>Technology</a>
+                  {/* Add more service items as needed */}
+                </div>
               </span>
-              <div className="dropdown-content">
-                <Link to="/service1">Service 1</Link>
-                <Link to="/service2">Service 2</Link>
-                <Link to="/service3">Service 3</Link>
-                <Link to="/service4">Service 4</Link>
-                <Link to="/service5">Service 5</Link>
-              </div>
             </li>
             <li className="nav-link">
               <span>
-                Insights <span className="dropdown-arrow">&#9662;</span>
+                Insights
+                <span className="dropdown-arrow">▼</span>
+                <div className="dropdown-content">
+                  <Link to="/insight1">Insight 1</Link>
+                  <Link to="/insight2">Insight 2</Link>
+                  <Link to="/insight3">Insight 3</Link>
+                  <Link to="/insight4">Insight 4</Link>
+                  <Link to="/insight5">Insight 5</Link>
+                </div>
               </span>
-              <div className="dropdown-content">
-                <Link to="/insight1">Insight 1</Link>
-                <Link to="/insight2">Insight 2</Link>
-                <Link to="/insight3">Insight 3</Link>
-                <Link to="/insight4">Insight 4</Link>
-                <Link to="/insight5">Insight 5</Link>
-              </div>
             </li>
             <li className="nav-link">
               <span>
-                About Us <span className="dropdown-arrow">&#9662;</span>
+                About Us
+                <span className="dropdown-arrow">▼</span>
+                <div className="dropdown-content">
+                  <Link to="/about">Company</Link>
+                  <Link to="/team">Team</Link>
+                  <Link to="/careers">Careers</Link>
+                  <Link to="/contact">Contact</Link>
+                  <Link to="/faq">FAQ</Link>
+                </div>
               </span>
-              <div className="dropdown-content">
-                <Link to="/about">Company</Link>
-                <Link to="/team">Team</Link>
-                <Link to="/careers">Careers</Link>
-                <Link to="/contact">Contact</Link>
-                <Link to="/faq">FAQ</Link>
-              </div>
             </li>
           </ul>
           <div className="right-nav">
