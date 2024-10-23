@@ -243,7 +243,7 @@ const Header = () => {
               BBEEE Level 1 contributor
             </button>
             <a href="#contact" className="contact-button">
-              CONTACT
+              Contact
             </a>
             <div
               className={`burger-menu ${isMenuOpen ? 'active' : ''}`}
