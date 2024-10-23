@@ -69,29 +69,31 @@ html, body {
 
 /* Top Navigation Styles */
 .top-nav {
-  background-color: transparent;
+  background-color: white;
   padding: 10px 20px;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1002;
+  z-index: 1000;
   transition: all 0.3s ease-in-out;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 80px; /* Set an initial height */
 }
 
 .top-nav.scrolled {
-  background-color: rgba(255, 255, 255, 0.9);
-  transform: scale(0.7);
+  background-color: rgba(255, 255, 255, 0.8); /* 80% opacity */
+  transform: scale(0.7); /* Reduce to 70% of original size */
+  transform-origin: top;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 100px; /* This will move the logo and text 100px to the right */
 }
 
 .logo {
@@ -147,9 +149,8 @@ html, body {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  padding: 10px;
-  color: #fff;
-  transition: text-decoration 0.3s ease;
+  transition: font-weight 0.3s ease;
+  color: black; /* Change this to black */
 }
 
 .nav-link > span:hover {
@@ -159,6 +160,7 @@ html, body {
 .dropdown-arrow {
   margin-left: 5px;
   font-size: 0.6em;
+  color: black; /* Change this to black */
 }
 
 /* Drop-down Menu Styles */
@@ -624,3 +626,14 @@ html, body {
     display: none;
   }
 }
+
+.nav-links li a {
+  color: black; /* Set font color to black */
+  transition: color 0.3s ease;
+}
+
+/* Update hover effect color */
+.nav-link > span:hover::after {
+  background-color: black; /* Change underline color to black */
+}
+
