@@ -48,3 +48,5 @@ html, body {
     align-items: center;
   }
 }
+
+/* Ensure there are no conflicting styles for .text-content, .roller, or .cta-button */

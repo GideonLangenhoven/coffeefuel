@@ -296,38 +296,20 @@ const Header = () => {
         {/* Header Content */}
         <div className="header-content">
           <div className="text-content">
-            <div className="main">
-              <h1>
-                A Fresh Approach to Growing
-                <br />
-                People and Business:
-              </h1>
-              {/* Roller centered below the text */}
-              <div className="roller">
-                <div id="rolltext">
-                  Innovation
-                  <br />
-                  <span>Transformation</span>
-                  <br />
-                  Agility
-                  <br />
-                  <span>Empowerment</span>
-                  <br />
-                  Strategy
-                  <br />
-                  Vision
-                  <br />
-                  Growth
-                  <br />
-                  Adaptability
-                </div>
-              </div>
+            <h1>A fresh approach to growing people and business</h1>
+            <div className="roller">
+              <span id="rolltext">
+                INNOVATION<br/>
+                STRATEGY<br/>
+                GROWTH<br/>
+                EXCELLENCE<br/>
+                LEADERSHIP<br/>
+                TRANSFORMATION<br/>
+                EMPOWERMENT<br/>
+                SUCCESS
+              </span>
             </div>
-            <div className="cta-container">
-              <a href="#video" className="cta-button" onClick={handleWatchVideo}>
-                WATCH THE VIDEO
-              </a>
-            </div>
+            <a href="#" className="cta-button">Watch Now</a>
           </div>
           <div className="image-content">
             <div className="main-image">

@@ -466,11 +466,14 @@ html, body {
 }
 
 .roller {
-  margin: 0 auto;
   height: 4.5rem;
   line-height: 4.5rem;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #A788F5;
   margin-top: 10px;
   z-index: 3;
@@ -482,7 +485,7 @@ html, body {
   animation: slide 20s infinite;
   width: 100%;
   text-align: center;
-  font-size: 3.25rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
