@@ -15,6 +15,7 @@ const Header = () => {
   const images = [picture1, picture2, picture3];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showVideoPopup, setShowVideoPopup] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,20 +29,28 @@ const Header = () => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, 5000); // Change image every 5 seconds
 
+    // Click outside handler
+    const handleClickOutside = (event) => {
+      if (
+        openDropdown &&
+        !event.target.closest('.nav-link')
+      ) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(imageRotation);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
-
-  const handleTerbigenClick = () => {
-    navigate('/', { replace: true });
-    window.location.reload();
-  };
+  }, [openDropdown]);
 
   const handleBBEEEClick = () => {
     console.log('BBEEE button clicked');
-    // You can add logic here for the BBEEE button click
+    // Add your logic here
   };
 
   const toggleMenu = () => {
@@ -58,7 +67,16 @@ const Header = () => {
   };
 
   const reloadHomepage = () => {
-    window.location.href = '/';
+    navigate('/', { replace: true });
+    window.location.reload();
+  };
+
+  const toggleDropdown = (dropdownName) => {
+    setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
+  };
+
+  const closeDropdown = () => {
+    setOpenDropdown(null);
   };
 
   return (
@@ -66,75 +84,154 @@ const Header = () => {
       <div className="inner-header flex">
         {/* Navigation Bar */}
         <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="logo-container">
-            <img 
-              src={logo} 
-              alt="Logo" 
-              className="logo" 
-              onClick={reloadHomepage}
-              style={{ cursor: 'pointer' }}
-            />
+          <div className="logo-container" onClick={reloadHomepage} style={{ cursor: 'pointer' }}>
+            <img src={logo} alt="Logo" className="logo" />
             <span className="brand-slogan">
-              <span 
-                className="terbigen-text" 
-                onClick={reloadHomepage}
-                style={{ cursor: 'pointer' }}
-              >
-                Terbigen
-              </span>
+              <span className="terbigen-text">Terbigen</span>
             </span>
-            {/* Removed the duplicate button */}
           </div>
           <ul className="nav-links">
-            <li className="nav-link">
-              <span>
+            {/* Navigation Links with Drop-Down Menus */}
+            <li className={`nav-link ${openDropdown === 'industries' ? 'open' : ''}`}>
+              <span onClick={() => toggleDropdown('industries')}>
                 Industries
                 <span className="dropdown-arrow">▼</span>
-                <div className="dropdown-content">
-                  <a href="#"><i className="fas fa-industry"></i>Manufacturing</a>
-                  <a href="#"><i className="fas fa-car"></i>Automotive</a>
-                  <a href="#"><i className="fas fa-heartbeat"></i>Healthcare</a>
-                  {/* Add more industry items as needed */}
-                </div>
               </span>
+              {openDropdown === 'industries' && (
+                <div className="dropdown-content">
+                  <div className="dropdown-header">
+                    <span>Industries</span>
+                    <span className="close-dropdown" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                  <a href="#" className="view-all">
+                    View All <span className="right-arrow">→</span>
+                  </a>
+                  <div className="dropdown-columns">
+                    <div className="dropdown-column">
+                      <h4>Categories</h4>
+                      <a href="#">Manufacturing</a>
+                      <a href="#">Automotive</a>
+                      <a href="#">Healthcare</a>
+                      {/* Add more items */}
+                    </div>
+                    <div className="dropdown-column">
+                      <h4>Featured</h4>
+                      <a href="#">Industry Insights</a>
+                      <a href="#">Case Studies</a>
+                      <a href="#">White Papers</a>
+                      {/* Add more items */}
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
-            <li className="nav-link">
-              <span>
+            {/* Repeat for other nav-link items */}
+            <li className={`nav-link ${openDropdown === 'services' ? 'open' : ''}`}>
+              <span onClick={() => toggleDropdown('services')}>
                 Services
                 <span className="dropdown-arrow">▼</span>
-                <div className="dropdown-content">
-                  <a href="#"><i className="fas fa-cogs"></i>Consulting</a>
-                  <a href="#"><i className="fas fa-chart-line"></i>Strategy</a>
-                  <a href="#"><i className="fas fa-code"></i>Technology</a>
-                  {/* Add more service items as needed */}
-                </div>
               </span>
+              {openDropdown === 'services' && (
+                <div className="dropdown-content">
+                  <div className="dropdown-header">
+                    <span>Services</span>
+                    <span className="close-dropdown" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                  <a href="#" className="view-all">
+                    View All <span className="right-arrow">→</span>
+                  </a>
+                  <div className="dropdown-columns">
+                    <div className="dropdown-column">
+                      <h4>Services</h4>
+                      <a href="#">Consulting</a>
+                      <a href="#">Strategy</a>
+                      <a href="#">Technology</a>
+                      {/* Add more items */}
+                    </div>
+                    <div className="dropdown-column">
+                      <h4>Featured</h4>
+                      <a href="#">Service Spotlight</a>
+                      <a href="#">Client Success</a>
+                      <a href="#">Expert Teams</a>
+                      {/* Add more items */}
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
-            <li className="nav-link">
-              <span>
+            <li className={`nav-link ${openDropdown === 'insights' ? 'open' : ''}`}>
+              <span onClick={() => toggleDropdown('insights')}>
                 Insights
                 <span className="dropdown-arrow">▼</span>
-                <div className="dropdown-content">
-                  <Link to="/insight1">Insight 1</Link>
-                  <Link to="/insight2">Insight 2</Link>
-                  <Link to="/insight3">Insight 3</Link>
-                  <Link to="/insight4">Insight 4</Link>
-                  <Link to="/insight5">Insight 5</Link>
-                </div>
               </span>
+              {openDropdown === 'insights' && (
+                <div className="dropdown-content">
+                  <div className="dropdown-header">
+                    <span>Insights</span>
+                    <span className="close-dropdown" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                  <a href="#" className="view-all">
+                    View All <span className="right-arrow">→</span>
+                  </a>
+                  <div className="dropdown-columns">
+                    <div className="dropdown-column">
+                      <h4>Insights</h4>
+                      <a href="#">Blog</a>
+                      <a href="#">News</a>
+                      <a href="#">Events</a>
+                      {/* Add more items */}
+                    </div>
+                    <div className="dropdown-column">
+                      <h4>Featured</h4>
+                      <a href="#">Latest Articles</a>
+                      <a href="#">Upcoming Webinars</a>
+                      <a href="#">Industry Reports</a>
+                      {/* Add more items */}
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
-            <li className="nav-link">
-              <span>
+            <li className={`nav-link ${openDropdown === 'about' ? 'open' : ''}`}>
+              <span onClick={() => toggleDropdown('about')}>
                 About Us
                 <span className="dropdown-arrow">▼</span>
-                <div className="dropdown-content">
-                  <Link to="/about">Company</Link>
-                  <Link to="/team">Team</Link>
-                  <Link to="/careers">Careers</Link>
-                  <Link to="/contact">Contact</Link>
-                  <Link to="/faq">FAQ</Link>
-                </div>
               </span>
+              {openDropdown === 'about' && (
+                <div className="dropdown-content">
+                  <div className="dropdown-header">
+                    <span>About Us</span>
+                    <span className="close-dropdown" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                  <a href="#" className="view-all">
+                    View All <span className="right-arrow">→</span>
+                  </a>
+                  <div className="dropdown-columns">
+                    <div className="dropdown-column">
+                      <h4>About</h4>
+                      <a href="#">Company</a>
+                      <a href="#">Team</a>
+                      <a href="#">Careers</a>
+                      {/* Add more items */}
+                    </div>
+                    <div className="dropdown-column">
+                      <h4>Featured</h4>
+                      <a href="#">Mission & Vision</a>
+                      <a href="#">Our Values</a>
+                      <a href="#">Community Involvement</a>
+                      {/* Add more items */}
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
           </ul>
           <div className="right-nav">
@@ -163,12 +260,27 @@ const Header = () => {
             </div>
           </div>
           <ul className="mobile-nav-links">
+            {/* Mobile navigation items */}
             <li className="mobile-nav-link">
               <span onClick={toggleMenu}>
                 <Link to="/industries">Industries</Link>
               </span>
             </li>
-            {/* Repeat for other mobile-nav-link items */}
+            <li className="mobile-nav-link">
+              <span onClick={toggleMenu}>
+                <Link to="/services">Services</Link>
+              </span>
+            </li>
+            <li className="mobile-nav-link">
+              <span onClick={toggleMenu}>
+                <Link to="/insights">Insights</Link>
+              </span>
+            </li>
+            <li className="mobile-nav-link">
+              <span onClick={toggleMenu}>
+                <Link to="/about">About Us</Link>
+              </span>
+            </li>
             <li className="mobile-nav-link contact-link">
               <a href="#contact" className="contact-button" onClick={toggleMenu}>
                 CONTACT
