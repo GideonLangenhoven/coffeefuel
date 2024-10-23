@@ -1,0 +1,101 @@
+.company-showcase-bg {
+  background-color: #f3f4f6;
+  padding: 2rem;
+}
+
+.company-showcase-container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.company-showcase-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.company-showcase-logo-item {
+  background-color: white;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-showcase-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.company-showcase-text {
+  flex: 1;
+}
+
+.company-showcase-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.company-showcase-description {
+  margin-bottom: 1.5rem;
+}
+
+.company-showcase-button {
+  background-color: #44337a;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+.company-showcase-button:hover {
+  background-color: #553c9a;
+}
+
+.company-showcase-media {
+  flex: 1;
+  position: relative;
+}
+
+.company-showcase-image {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.company-showcase-video-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-showcase-video-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.company-showcase-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.company-showcase-close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

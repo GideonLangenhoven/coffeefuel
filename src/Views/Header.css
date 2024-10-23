@@ -632,20 +632,49 @@ html, body {
   align-items: center;
 }
 
+/* Base styles for .main-image */
 .main-image {
   width: 100%;
+  height: 100%;
   max-width: 500px;
+  max-height: 500px;
   border-radius: 50%;
   overflow: hidden;
-  border: 10px solid #fff;
+  border: 5px solid #fff;
   transition: border-radius 0.3s ease;
+  margin: 0 auto;
+  
+  /* Apply the X-axis movement animation on load */
+  animation: moveX 1s ease;
 }
 
+/* Ensure the image fills the .main-image container */
 .main-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
+
+/* Responsive styles for tablet and phone widths */
+@media (max-width: 768px) {
+  .main-image {
+    max-width: 80%;
+    border-radius: 50%; /* Creates an oval shape */
+  }
+}
+
+/* Keyframes for the X-axis movement animation */
+@keyframes moveX {
+  0% {
+    transform: translateX(60px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -688,7 +717,6 @@ html, body {
   }
 }
 
-/* Media query for tablet and phone widths */
 @media screen and (max-width: 992px) {
   .header-content {
     flex-direction: column;
@@ -696,7 +724,7 @@ html, body {
     height: auto;
     padding-top: 120px;
   }
-
+}
   .text-content,
   .image-content {
     max-width: 100%;
@@ -709,13 +737,6 @@ html, body {
   .image-content {
     margin-top: 30px;
   }
-
-  .main-image {
-    max-width: 80%;
-    margin: 0 auto;
-    border-radius: 50% / 60%;
-  }
-}
 
 /* Additional responsive adjustments */
 @media screen and (max-width: 768px) {

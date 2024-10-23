@@ -1,6 +1,5 @@
-// src/Views/Header.js
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../assets/images/logo512.png';
@@ -99,6 +98,7 @@ const Header = () => {
           </div>
           <ul className="nav-links">
             {/* Navigation Links with Drop-Down Menus */}
+            {/* Industries */}
             <li className={`nav-link ${openDropdown === 'industries' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('industries')}>
                 Industries
@@ -124,7 +124,11 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
-                      <h4>Featured</h4>
+                      <h4>
+                        <Link to="/industries">
+                          Featured <span className="featured-arrow">→</span>
+                        </Link>
+                      </h4>
                       <img src={industryImg} alt="Industries" />
                       <div className="image-links">
                         <a href="#">Industry Insights</a>
@@ -135,7 +139,7 @@ const Header = () => {
                 </div>
               )}
             </li>
-            {/* Repeat for other nav-link items */}
+            {/* Services */}
             <li className={`nav-link ${openDropdown === 'services' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('services')}>
                 Services
@@ -161,7 +165,11 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
-                      <h4>Featured</h4>
+                      <h4>
+                        <Link to="/services">
+                          Featured <span className="featured-arrow">→</span>
+                        </Link>
+                      </h4>
                       <img src={servicesImg} alt="Services" />
                       <div className="image-links">
                         <a href="#">Service Spotlight</a>
@@ -172,6 +180,7 @@ const Header = () => {
                 </div>
               )}
             </li>
+            {/* Insights */}
             <li className={`nav-link ${openDropdown === 'insights' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('insights')}>
                 Insights
@@ -197,7 +206,11 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
-                      <h4>Featured</h4>
+                      <h4>
+                        <Link to="/insights">
+                          Featured <span className="featured-arrow">→</span>
+                        </Link>
+                      </h4>
                       <img src={insightsImg} alt="Insights" />
                       <div className="image-links">
                         <a href="#">Latest Articles</a>
@@ -208,6 +221,7 @@ const Header = () => {
                 </div>
               )}
             </li>
+            {/* About Us */}
             <li className={`nav-link ${openDropdown === 'about' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('about')}>
                 About Us
@@ -233,7 +247,11 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
-                      <h4>Featured</h4>
+                      <h4>
+                        <Link to="/about">
+                          Featured <span className="featured-arrow">→</span>
+                        </Link>
+                      </h4>
                       <img src={terbigenImg} alt="About Us" />
                       <div className="image-links">
                         <a href="#">Mission & Vision</a>
@@ -244,7 +262,7 @@ const Header = () => {
                 </div>
               )}
             </li>
-            {/* Testimonials Nav Link */}
+            {/* Testimonials */}
             <li className={`nav-link ${openDropdown === 'testimonials' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('testimonials')}>
                 Testimonials
@@ -270,7 +288,11 @@ const Header = () => {
                       {/* Add more items */}
                     </div>
                     <div className="dropdown-image-column">
-                      <h4>Featured</h4>
+                      <h4>
+                        <Link to="/testimonials">
+                          Featured <span className="featured-arrow">→</span>
+                        </Link>
+                      </h4>
                       <img src={testimonialsImg} alt="Testimonials" />
                       <div className="image-links">
                         <a href="#">Top Reviews</a>
