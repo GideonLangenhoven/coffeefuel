@@ -402,7 +402,7 @@ html, body {
 .burger-bar {
   width: 25px;
   height: 3px;
-  background-color: #fff;
+  background-color: #000000;
   margin: 5px 0;
   transition: 0.4s;
 }
@@ -640,8 +640,8 @@ html, body {
   max-height: 500px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid #fff;
-  transition: border-radius 0.3s ease;
+  border: 1.5px solid #fff;
+  transition: border-radius 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
   margin: 0 auto;
   
   /* Apply the X-axis movement animation on load */
@@ -654,13 +654,21 @@ html, body {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  transition: border-radius 0.3s ease;
+  .main-image img {
+    border-radius: 50% / 30%; /* Match 
+    the container's border-radius */
+    aspect-ratio: 1/1;
+  }
 }
 
 /* Responsive styles for tablet and phone widths */
 @media (max-width: 768px) {
   .main-image {
     max-width: 80%;
-    border-radius: 50%; /* Creates an oval shape */
+    max-height: 400px; /* Adjust height to create an oval shape */
+    border-radius: 50% / 30%; /* Creates an oval shape */
+    aspect-ratio: 2/1;
   }
 }
 
@@ -678,23 +686,19 @@ html, body {
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: fixed; /* Ensures the element is fixed relative to the viewport */
-  bottom: 50px;    /* Positions the element 50px from the bottom */
-  left: 50%;       /* Centers the element horizontally */
-  transform: translateX(-50%); /* Correctly centers the element */
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   font-size: 14px;
   letter-spacing: 2px;
-  z-index: 1000;   /* Ensures it's above other elements */
-  
-  /* Optional: Add a subtle animation or effect if desired */
-  /* Example: Fade-in effect */
-  animation: fadeIn 1s ease-in-out;
+  z-index: 1000;
+  pointer-events: none; /* Prevents the indicator from interfering with scrolling */
 }
-
 
 .scroll-line {
   width: 2px;
@@ -751,6 +755,7 @@ html, body {
 
   .burger-menu {
     display: block;
+    color: rgb(11, 10, 10);
   }
 
   .nav-links {

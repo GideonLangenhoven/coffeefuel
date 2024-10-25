@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
@@ -21,6 +20,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showVideoPopup, setShowVideoPopup] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isVideoPopupOpen, setIsVideoPopupOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +83,10 @@ const Header = () => {
 
   const closeDropdown = () => {
     setOpenDropdown(null);
+  };
+
+  const toggleVideo = () => {
+    setIsVideoPopupOpen(!isVideoPopupOpen);
   };
 
   return (
@@ -395,7 +399,7 @@ const Header = () => {
               </div>
             </div>
             <div className="cta-container">
-              <a href="#video" className="cta-button" onClick={handleWatchVideo}>
+              <a href="#video" className="cta-button" onClick={toggleVideo}>
                 WATCH THE VIDEO
               </a>
             </div>
@@ -426,6 +430,14 @@ const Header = () => {
         <VideoPopup
           videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"
           onClose={handleCloseVideo}
+        />
+      )}
+
+      {/* Add this where you want the video popup to appear */}
+      {isVideoPopupOpen && (
+        <VideoPopup
+          videoUrl="https://www.youtube.com/watch?v=your-video-id"
+          onClose={toggleVideo}
         />
       )}
 
