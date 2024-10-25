@@ -1,0 +1,7 @@
+/* src/components/ui/Input.css */
+.input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+}
