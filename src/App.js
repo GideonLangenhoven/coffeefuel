@@ -7,6 +7,7 @@ import Industries from './Views/Industries';
 import Services from './Views/Services';
 import Insights from './Views/Insights';
 import AboutUs from './Views/AboutUs';
+import Testimonials from './Views/Testimonials';
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/industry1" element={<Industries />} />
-          <Route path="/service1" element={<Services />} />
-          <Route path="/insight1" element={<Insights />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/insights" element={<Insights />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           {/* Add more routes as needed */}
         </Routes>
       </div>
