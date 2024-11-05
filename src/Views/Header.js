@@ -11,8 +11,6 @@ import industryImg from '../assets/images/Industry.png';
 import servicesImg from '../assets/images/Services.png';
 import insightsImg from '../assets/images/Insights.png';
 import testimonialsImg from '../assets/images/Testimonials.png';
-// Removed import for 'terbigenImg' since the image does not exist
-import VideoPopup from '../Components/VideoPopup';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,7 +20,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showVideoPopup, setShowVideoPopup] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [isVideoPopupOpen, setIsVideoPopupOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,10 +84,6 @@ const Header = () => {
     setOpenDropdown(null);
   };
 
-  const toggleVideo = () => {
-    setIsVideoPopupOpen(!isVideoPopupOpen);
-  };
-
   return (
     <div className="header">
       <div className="inner-header flex">
@@ -111,7 +104,7 @@ const Header = () => {
             {/* Industries */}
             <li className={`nav-link ${openDropdown === 'industries' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('industries')}>
-                Industries
+                <span className="nav-text">Industries</span>
                 <span className="dropdown-arrow">▼</span>
               </span>
               {openDropdown === 'industries' && (
@@ -135,7 +128,7 @@ const Header = () => {
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
-                        <Link to="/industries">
+                        <Link to="/industries" className="featured-link">
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
@@ -152,7 +145,7 @@ const Header = () => {
             {/* Services */}
             <li className={`nav-link ${openDropdown === 'services' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('services')}>
-                Services
+                <span className="nav-text">Services</span>
                 <span className="dropdown-arrow">▼</span>
               </span>
               {openDropdown === 'services' && (
@@ -176,7 +169,7 @@ const Header = () => {
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
-                        <Link to="/services">
+                        <Link to="/services" className="featured-link">
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
@@ -193,7 +186,7 @@ const Header = () => {
             {/* Insights */}
             <li className={`nav-link ${openDropdown === 'insights' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('insights')}>
-                Insights
+                <span className="nav-text">Insights</span>
                 <span className="dropdown-arrow">▼</span>
               </span>
               {openDropdown === 'insights' && (
@@ -217,7 +210,7 @@ const Header = () => {
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
-                        <Link to="/insights">
+                        <Link to="/insights" className="featured-link">
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
@@ -234,7 +227,7 @@ const Header = () => {
             {/* About Us */}
             <li className={`nav-link ${openDropdown === 'about' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('about')}>
-                About Us
+                <span className="nav-text">About Us</span>
                 <span className="dropdown-arrow">▼</span>
               </span>
               {openDropdown === 'about' && (
@@ -258,11 +251,10 @@ const Header = () => {
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
-                        <Link to="/about">
+                        <Link to="/about" className="featured-link">
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
-                      {/* Replaced 'terbigenImg' with 'servicesImg' or any existing image */}
                       <img src={servicesImg} alt="About Us" />
                       <div className="image-links">
                         <a href="#">Mission & Vision</a>
@@ -276,7 +268,7 @@ const Header = () => {
             {/* Testimonials */}
             <li className={`nav-link ${openDropdown === 'testimonials' ? 'open' : ''}`}>
               <span onClick={() => toggleDropdown('testimonials')}>
-                Testimonials
+                <span className="nav-text">Testimonials</span>
                 <span className="dropdown-arrow">▼</span>
               </span>
               {openDropdown === 'testimonials' && (
@@ -300,7 +292,7 @@ const Header = () => {
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
-                        <Link to="/testimonials">
+                        <Link to="/testimonials" className="featured-link">
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
@@ -406,7 +398,7 @@ const Header = () => {
               </div>
             </div>
             <div className="cta-container">
-              <a href="#video" className="cta-button" onClick={toggleVideo}>
+              <a href="#video" className="cta-button" onClick={handleWatchVideo}>
                 WATCH THE VIDEO
               </a>
             </div>
@@ -434,18 +426,23 @@ const Header = () => {
 
       {/* Video Popup */}
       {showVideoPopup && (
-        <VideoPopup
-          videoUrl="https://www.youtube.com/watch?v=uQfXIDnoSxE"
-          onClose={handleCloseVideo}
-        />
-      )}
-
-      {/* Video Popup for "WATCH THE VIDEO" */}
-      {isVideoPopupOpen && (
-        <VideoPopup
-          videoUrl="https://www.youtube.com/watch?v=your-video-id"
-          onClose={toggleVideo}
-        />
+        <div className="video-popup">
+          <div className="video-popup-content">
+            <button className="video-popup-close" onClick={handleCloseVideo}>
+              &times;
+            </button>
+            <div className="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/uQfXIDnoSxE?rel=0"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                sandbox="allow-scripts allow-same-origin"
+                title="Video"
+              ></iframe>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
