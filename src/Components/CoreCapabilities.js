@@ -40,9 +40,9 @@ const CoreCapabilities = () => {
   return (
     <div className={styles.coreCapabilitiesWrapper}>
       <div className={styles.coreCapabilitiesContainer}>
-        <h2 className={styles.coreCapabilitiesTitle}>Empowering Your Growth Story</h2>
+        <h2 className={styles.coreCapabilitiesTitle}>Our core capabilities</h2>
         <p className={styles.coreCapabilitiesSubtitle}>
-          At Terbigen, we turn your biggest challenges into stepping stones for success. Let us guide you in transforming pain points into pathways to growth and innovation.
+          We turn your biggest challenges into stepping stones for success.
         </p>
 
         <div className={styles.capabilitiesGrid}>
