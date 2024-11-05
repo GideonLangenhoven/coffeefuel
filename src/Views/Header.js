@@ -115,16 +115,30 @@ const Header = () => {
                       ×
                     </span>
                   </div>
-                  <a href="#" className="view-all">
+                  <Link to="/industries" className="view-all">
                     View All <span className="right-arrow">→</span>
-                  </a>
+                  </Link>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
                       <h4>Categories</h4>
-                      <a href="#">Manufacturing</a>
-                      <a href="#">Automotive</a>
-                      <a href="#">Healthcare</a>
-                      {/* Add more items */}
+                      <Link to="/industries#manufacturing" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/industries') {
+                          document.getElementById('manufacturing').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Manufacturing</Link>
+                      <Link to="/industries#automotive" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/industries') {
+                          document.getElementById('automotive').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Automotive</Link>
+                      <Link to="/industries#healthcare" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/industries') {
+                          document.getElementById('healthcare').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Healthcare</Link>
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
@@ -134,8 +148,8 @@ const Header = () => {
                       </h4>
                       <img src={industryImg} alt="Industries" />
                       <div className="image-links">
-                        <a href="#">Industry Insights</a>
-                        <a href="#">Case Studies</a>
+                        <Link to="/industries#client-stories">Industry Insights</Link>
+                        <Link to="/industries#case-studies">Case Studies</Link>
                       </div>
                     </div>
                   </div>
@@ -156,16 +170,30 @@ const Header = () => {
                       ×
                     </span>
                   </div>
-                  <a href="#" className="view-all">
+                  <Link to="/services" className="view-all">
                     View All <span className="right-arrow">→</span>
-                  </a>
+                  </Link>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
                       <h4>Categories</h4>
-                      <a href="#">Consulting</a>
-                      <a href="#">Strategy</a>
-                      <a href="#">Technology</a>
-                      {/* Add more items */}
+                      <Link to="/services#consulting" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/services') {
+                          document.getElementById('consulting').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Consulting</Link>
+                      <Link to="/services#strategy" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/services') {
+                          document.getElementById('strategy').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Strategy</Link>
+                      <Link to="/services#technology" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/services') {
+                          document.getElementById('technology').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Technology</Link>
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
@@ -175,8 +203,8 @@ const Header = () => {
                       </h4>
                       <img src={servicesImg} alt="Services" />
                       <div className="image-links">
-                        <a href="#">Service Spotlight</a>
-                        <a href="#">Expert Teams</a>
+                        <Link to="/services#service-spotlight">Service Spotlight</Link>
+                        <Link to="/services#expert-teams">Expert Teams</Link>
                       </div>
                     </div>
                   </div>
@@ -197,16 +225,30 @@ const Header = () => {
                       ×
                     </span>
                   </div>
-                  <a href="#" className="view-all">
+                  <Link to="/insights" className="view-all">
                     View All <span className="right-arrow">→</span>
-                  </a>
+                  </Link>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
                       <h4>Categories</h4>
-                      <a href="#">Blog</a>
-                      <a href="#">News</a>
-                      <a href="#">Events</a>
-                      {/* Add more items */}
+                      <Link to="/insights#blog" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/insights') {
+                          document.getElementById('blog').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Blog</Link>
+                      <Link to="/insights#news" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/insights') {
+                          document.getElementById('news').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>News</Link>
+                      <Link to="/insights#events" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/insights') {
+                          document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Events</Link>
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
@@ -216,8 +258,8 @@ const Header = () => {
                       </h4>
                       <img src={insightsImg} alt="Insights" />
                       <div className="image-links">
-                        <a href="#">Latest Articles</a>
-                        <a href="#">Industry Reports</a>
+                        <Link to="/insights#latest-articles">Latest Articles</Link>
+                        <Link to="/insights#industry-reports">Industry Reports</Link>
                       </div>
                     </div>
                   </div>
@@ -238,16 +280,30 @@ const Header = () => {
                       ×
                     </span>
                   </div>
-                  <a href="#" className="view-all">
+                  <Link to="/about" className="view-all">
                     View All <span className="right-arrow">→</span>
-                  </a>
+                  </Link>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
                       <h4>Categories</h4>
-                      <a href="#">Company</a>
-                      <a href="#">Team</a>
-                      <a href="#">Careers</a>
-                      {/* Add more items */}
+                      <Link to="/about#company" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/about') {
+                          document.getElementById('company').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Company</Link>
+                      <Link to="/about#team" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/about') {
+                          document.getElementById('team').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Team</Link>
+                      <Link to="/about#careers" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/about') {
+                          document.getElementById('careers').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Careers</Link>
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
@@ -257,8 +313,8 @@ const Header = () => {
                       </h4>
                       <img src={servicesImg} alt="About Us" />
                       <div className="image-links">
-                        <a href="#">Mission & Vision</a>
-                        <a href="#">Our Values</a>
+                        <Link to="/about#mission">Mission & Vision</Link>
+                        <Link to="/about#values">Our Values</Link>
                       </div>
                     </div>
                   </div>
@@ -279,16 +335,30 @@ const Header = () => {
                       ×
                     </span>
                   </div>
-                  <a href="#" className="view-all">
+                  <Link to="/testimonials" className="view-all">
                     View All <span className="right-arrow">→</span>
-                  </a>
+                  </Link>
                   <div className="dropdown-columns">
                     <div className="dropdown-column">
                       <h4>Categories</h4>
-                      <a href="#">Client Stories</a>
-                      <a href="#">Success Cases</a>
-                      <a href="#">Feedback</a>
-                      {/* Add more items */}
+                      <Link to="/testimonials#client-stories" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/testimonials') {
+                          document.getElementById('client-stories').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Client Stories</Link>
+                      <Link to="/testimonials#success-cases" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/testimonials') {
+                          document.getElementById('success-cases').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Success Cases</Link>
+                      <Link to="/testimonials#feedback" onClick={() => {
+                        closeDropdown();
+                        if (window.location.pathname === '/testimonials') {
+                          document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Feedback</Link>
                     </div>
                     <div className="dropdown-image-column">
                       <h4>
@@ -298,8 +368,8 @@ const Header = () => {
                       </h4>
                       <img src={testimonialsImg} alt="Testimonials" />
                       <div className="image-links">
-                        <a href="#">Top Reviews</a>
-                        <a href="#">Video Testimonials</a>
+                        <Link to="/testimonials#top-reviews">Top Reviews</Link>
+                        <Link to="/testimonials#video-testimonials">Video Testimonials</Link>
                       </div>
                     </div>
                   </div>
