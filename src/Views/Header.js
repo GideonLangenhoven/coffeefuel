@@ -1,3 +1,5 @@
+// Header.js
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Header.css';
@@ -8,8 +10,8 @@ import picture3 from '../assets/images/Picture3.png';
 import industryImg from '../assets/images/Industry.png';
 import servicesImg from '../assets/images/Services.png';
 import insightsImg from '../assets/images/Insights.png';
-import terbigenImg from '../assets/images/Terbigen.png';
 import testimonialsImg from '../assets/images/Testimonials.png';
+// Removed import for 'terbigenImg' since the image does not exist
 import VideoPopup from '../Components/VideoPopup';
 
 const Header = () => {
@@ -52,7 +54,7 @@ const Header = () => {
       clearInterval(imageRotation);
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [openDropdown]);
+  }, [openDropdown, images.length]);
 
   const handleBBEEEClick = () => {
     console.log('BBEEE button clicked');
@@ -94,7 +96,11 @@ const Header = () => {
       <div className="inner-header flex">
         {/* Navigation Bar */}
         <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="logo-container" onClick={reloadHomepage} style={{ cursor: 'pointer' }}>
+          <div
+            className="logo-container"
+            onClick={reloadHomepage}
+            style={{ cursor: 'pointer' }}
+          >
             <img src={logo} alt="Logo" className="logo" />
             <span className="brand-slogan">
               <span className="terbigen-text">Terbigen</span>
@@ -256,7 +262,8 @@ const Header = () => {
                           Featured <span className="featured-arrow">→</span>
                         </Link>
                       </h4>
-                      <img src={terbigenImg} alt="About Us" />
+                      {/* Replaced 'terbigenImg' with 'servicesImg' or any existing image */}
+                      <img src={servicesImg} alt="About Us" />
                       <div className="image-links">
                         <a href="#">Mission & Vision</a>
                         <a href="#">Our Values</a>
@@ -404,6 +411,7 @@ const Header = () => {
               </a>
             </div>
           </div>
+          {/* Image Content */}
           <div className="image-content">
             <div className="main-image">
               <img src={images[currentImage]} alt="Team Collaboration" />
@@ -416,7 +424,6 @@ const Header = () => {
           <span>SCROLL</span>
           <div className="scroll-line"></div>
         </div>
-
       </div>
 
       {/* Ocean Waves */}
@@ -433,14 +440,13 @@ const Header = () => {
         />
       )}
 
-      {/* Add this where you want the video popup to appear */}
+      {/* Video Popup for "WATCH THE VIDEO" */}
       {isVideoPopupOpen && (
         <VideoPopup
           videoUrl="https://www.youtube.com/watch?v=your-video-id"
           onClose={toggleVideo}
         />
       )}
-
     </div>
   );
 };
