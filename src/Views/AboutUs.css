@@ -1,0 +1,213 @@
+/* src/Views/AboutUs.css */
+
+/* Basic Reset */
+body, h1, h2, p, button, section {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.aboutus-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.aboutus-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease;
+}
+
+.cta-button {
+  background-color: #00E676;
+  padding: 15px 30px;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #00C853;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 230, 118, 0.2);
+}
+
+.aboutus-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.aboutus-nav button {
+  background-color: #fff;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.aboutus-nav button:hover {
+  background-color: #007BFF;
+  color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
+}
+
+.content-section {
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+  position: relative;
+}
+
+.content-section h2::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: #007BFF;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+.content-section p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease;
+}
+
+.cta-section {
+  background-color: #f6f8fc;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.cta-section .cta-button {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+.cta-section .cta-button:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+  
+  .content-section h2 {
+    font-size: 2rem;
+  }
+  
+  .content-section p {
+    font-size: 1rem;
+  }
+  
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-section p {
+    font-size: 1rem;
+  }
+}
