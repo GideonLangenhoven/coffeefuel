@@ -8,31 +8,31 @@ import styles from './core-capabilities.module.css';
 const capabilities = [
   {
     icon: Atom,
-    title: 'Strategy & Transformation',
+    title: 'Certified Reinvention Practitioners',
     description:
-      'We redefine your mission and vision, transforming your people, processes, and technology to achieve unparalleled success.',
-    link: '/capabilities/strategy-and-transformation',
+      'Reinvention consulting, Transformational leadership, Business reinvention strategies',
+    link: '/services#certified-reinvention-practitioners',
   },
   {
     icon: Cog,
-    title: 'Operational Excellence',
+    title: 'Business Coaching',
     description:
-      'We streamline your operations, enhancing efficiency and quality to drive your organisation towards excellence.',
-    link: '/capabilities/operational-excellence',
+      'Executive coaching for business leaders, Leadership development coaching, Business growth coaching',
+    link: '/services#business-coaching',
   },
   {
     icon: Cpu,
-    title: 'Data & Technology',
+    title: 'Management Consulting',
     description:
-      'We harness data and technology to fuel growth, innovate solutions, and give you a competitive edge.',
-    link: '/capabilities/data-and-technology',
+      'Strategic management consulting, Change management consulting, Organizational transformation services',
+    link: '/services#management-consulting',
   },
   {
     icon: Target,
-    title: 'Digital Experience',
+    title: 'Leadership Experience',
     description:
-      'We craft exceptional digital experiences, elevating your online presence to captivate and engage your audience.',
-    link: '/capabilities/digital-experience',
+      'Experienced business leaders, Leadership expertise, Seasoned management consultants',
+    link: '/services#leadership-experience',
   },
 ];
 
@@ -40,26 +40,32 @@ const CoreCapabilities = () => {
   return (
     <div className={styles.coreCapabilitiesWrapper}>
       <div className={styles.coreCapabilitiesContainer}>
-        <h2 className={styles.coreCapabilitiesTitle}>Our core capabilities</h2>
+        <h2 className={styles.coreCapabilitiesTitle}>Our Core Capabilities</h2>
         <p className={styles.coreCapabilitiesSubtitle}>
-          We turn your biggest challenges into stepping stones for success.
+          We turn your biggest challenges into stepping stones for success. Let us guide you in transforming pain points into pathways to growth and innovation.
         </p>
 
         <div className={styles.capabilitiesGrid}>
           {capabilities.map((capability, index) => (
-            <div key={index} className={styles.capabilityCard}>
+            <Link
+              key={index}
+              to={capability.link}
+              className={styles.capabilityCard}
+            >
               <div className={styles.iconWrapper}>
                 <capability.icon className={styles.capabilityIcon} />
               </div>
               <h3 className={styles.capabilityTitle}>{capability.title}</h3>
-              <p className={styles.capabilityDescription}>{capability.description}</p>
+              <p className={styles.capabilityDescription}>
+                {capability.description}
+              </p>
               <div className={styles.capabilityLink}>
-                <Link to={capability.link} className={styles.findOutMore}>
+                <span className={styles.findOutMore}>
                   Find out more
                   <ArrowRight className={styles.arrowIcon} />
-                </Link>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,6 +1,6 @@
 // src/Views/AboutUs.js
 import React from 'react';
-import Header from './Header';
+import Navigation from './Navigation'; 
 import Footer from '../Components/Footer';
 import './PageStyles.css';
 
@@ -23,7 +23,7 @@ const AboutUs = () => {
 
   return (
     <div className="page-wrapper">
-      <Header />
+      <Navigation />
       <div className="page-container">
         <h1 className="page-title">About Us</h1>
         

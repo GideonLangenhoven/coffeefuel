@@ -25,117 +25,68 @@
   margin-bottom: 3rem;
   text-align: center; /* Default alignment is center */
 }
-
-/* Align title and subtitle to left on larger screens */
-@media (min-width: 1024px) {
-  .coreCapabilitiesTitle,
-  .coreCapabilitiesSubtitle {
-    text-align: left;
-  }
-}
-
-/* Grid Layout */
 .capabilitiesGrid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2rem;
-  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .capabilityCard {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  flex: 1 1 300px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Hover Effect: Move card up by 20px */
 .capabilityCard:hover {
-  transform: translateY(-20px);
+  transform: translateY(-10px);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Icon Wrapper */
 .iconWrapper {
-  overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
-/* Icon Animation */
 .capabilityIcon {
-  height: 3rem;
-  width: 3rem;
-  color: #1a202c;
-  animation: iconMove 10s infinite linear;
-}
-
-/* Keyframes for Icon Movement */
-@keyframes iconMove {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  width: 50px;
+  height: 50px;
+  color: #007BFF;
 }
 
 .capabilityTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a202c;
-  margin-bottom: 0.5rem;
-}
-
-.capabilityDescription {
-  color: #4a5568;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-/* Link Styling */
-.capabilityLink {
-  margin-top: auto;
-}
-
-.findOutMore {
-  display: inline-flex;
-  align-items: center;
-  color: #ed8936;
-  text-decoration: none;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
   font-weight: bold;
 }
 
-.findOutMore:hover {
-  color: #dd6b20;
+.capabilityDescription {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #555;
 }
 
-.arrowIcon {
-  margin-left: 0.5rem;
-  height: 1rem;
-  width: 1rem;
-  transition: transform 0.3s ease-in-out;
+.capabilityLink {
+  display: flex;
+  align-items: center;
+}
+
+.findOutMore {
+  font-size: 1rem;
+  color: #007BFF;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.findOutMore .arrowIcon {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
 }
 
 .findOutMore:hover .arrowIcon {
-  transform: translateX(7.5px);
-}
-
-/* Responsive Grid */
-@media (min-width: 768px) {
-  .capabilitiesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .capabilitiesGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  transform: translateX(5px);
 }

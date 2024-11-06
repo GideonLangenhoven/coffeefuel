@@ -1,18 +1,22 @@
 // src/Views/Services.js
-import React from 'react';
-import Header from './Header';
+
+import React, { useEffect } from 'react';
+import NavigationBar from './Navigation'; // Ensure this path is correct based on your project structure
 import Footer from '../Components/Footer';
-import './PageStyles.css';
+import './Services.css'; // Make sure to create this CSS file
 
 const Services = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: element.offsetTop - 80, // Adjust for fixed header height if necessary
+        behavior: 'smooth',
+      });
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const hash = window.location.hash.replace('#', '');
     if (hash) {
       setTimeout(() => {
@@ -22,30 +26,65 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="page-wrapper">
-      <Header />
-      <div className="page-container">
-        <h1 className="page-title">Services</h1>
-        
-        <div className="section-nav">
-          <button onClick={() => scrollToSection('consulting')}>Consulting</button>
-          <button onClick={() => scrollToSection('strategy')}>Strategy</button>
-          <button onClick={() => scrollToSection('technology')}>Technology</button>
+    <div className="services-page">
+      <NavigationBar />
+      <div className="services-container">
+        <h1 className="services-title">Our Services</h1>
+        <p className="services-subtitle">
+          We offer a range of services designed to help your business thrive in today's competitive environment.
+        </p>
+
+        {/* Sections Navigation */}
+        <div className="services-nav">
+          <button onClick={() => scrollToSection('certified-reinvention-practitioners')}>
+            Certified Reinvention Practitioners
+          </button>
+          <button onClick={() => scrollToSection('business-coaching')}>
+            Business Coaching
+          </button>
+          <button onClick={() => scrollToSection('management-consulting')}>
+            Management Consulting
+          </button>
+          <button onClick={() => scrollToSection('leadership-experience')}>
+            Leadership Experience
+          </button>
         </div>
 
-        <section id="consulting" className="content-section">
-          <h2>Consulting</h2>
-          <p>Expert consulting services for business growth...</p>
+        {/* Service Sections */}
+        <section id="certified-reinvention-practitioners" className="service-section">
+          <div className="service-content">
+            <h2>Certified Reinvention Practitioners</h2>
+            <p>
+              Our Certified Reinvention Practitioners specialize in reinvention consulting, transformational leadership, and business reinvention strategies. We help organizations navigate change and emerge stronger.
+            </p>
+          </div>
         </section>
 
-        <section id="strategy" className="content-section">
-          <h2>Strategy</h2>
-          <p>Strategic planning and implementation services...</p>
+        <section id="business-coaching" className="service-section">
+          <div className="service-content">
+            <h2>Business Coaching</h2>
+            <p>
+              We offer executive coaching for business leaders, leadership development coaching, and business growth coaching to empower you to achieve your professional goals.
+            </p>
+          </div>
         </section>
 
-        <section id="technology" className="content-section">
-          <h2>Technology</h2>
-          <p>Cutting-edge technology solutions...</p>
+        <section id="management-consulting" className="service-section">
+          <div className="service-content">
+            <h2>Management Consulting</h2>
+            <p>
+              Our management consulting services include strategic management consulting, change management consulting, and organizational transformation services to drive your business forward.
+            </p>
+          </div>
+        </section>
+
+        <section id="leadership-experience" className="service-section">
+          <div className="service-content">
+            <h2>Leadership Experience</h2>
+            <p>
+              Benefit from the expertise of our experienced business leaders, leadership expertise, and seasoned management consultants to guide your organization to success.
+            </p>
+          </div>
         </section>
       </div>
       <Footer />

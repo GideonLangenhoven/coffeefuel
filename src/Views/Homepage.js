@@ -7,6 +7,7 @@ import TeamSection from '../Components/TeamSection';
 import ContactCTA from '../Components/ContactCTA';
 import Footer from '../Components/Footer';
 import Header from './Header';
+
 const Homepage = () => {
   return (
     <div className="homepage">

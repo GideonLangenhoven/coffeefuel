@@ -8,11 +8,13 @@ import Services from './Views/Services';
 import Insights from './Views/Insights';
 import AboutUs from './Views/AboutUs';
 import Testimonials from './Views/Testimonials';
+import Navigation from './Views/Navigation'; 
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Navigation />  
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/industries" element={<Industries />} />
