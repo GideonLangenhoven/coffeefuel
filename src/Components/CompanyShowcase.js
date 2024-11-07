@@ -42,10 +42,10 @@ const CompanyShowcase = () => {
         if (entry.isIntersecting) {
           setHasScrolledIntoView(true);
 
-          // Increased delay from 500ms to 1500ms (1 second slower)
+          // Start the animations after a 0.5-second delay
           setTimeout(() => {
             setStartAnimations(true);
-          }, 1500);
+          }, 500);
         }
       },
       { threshold: 0.1 }
@@ -78,7 +78,7 @@ const CompanyShowcase = () => {
           {/* Text Content */}
           <div className={`company-showcase-text ${startAnimations ? 'animate-text' : ''}`}>
             <h1 className="company-showcase-title">
-              <span className="underline-mask underlined">Empowering</span> Your Business Growth Story
+              <span className="empowering-word">Empowering</span> Your Business Growth Story
             </h1>
             <p className="company-showcase-description">
               Growing a small to medium business can be challenging. Many entrepreneurs struggle to launch new ideas,

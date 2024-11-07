@@ -1,32 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Atom, Cog, Cpu, Target } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './core-capabilities.css';
+import finger from '../assets/images/Finger.png';
+import arrow from '../assets/images/arrow.png';
+import elec from '../assets/images/Elec.png';
+import PC from '../assets/images/PC.png';
 
+// Core capabilities data
 const capabilities = [
   {
-    icon: Atom,
+    icon: finger,
     title: 'Certified Reinvention Practitioners',
     description:
       'Reinvention consulting, transformational leadership, business reinvention strategies',
     link: '/services#certified-reinvention-practitioners',
   },
   {
-    icon: Cog,
+    icon: PC,
     title: 'Business Coaching',
     description:
       'Executive coaching for business leaders, leadership development coaching, business growth coaching',
     link: '/services#business-coaching',
   },
   {
-    icon: Cpu,
+    icon: arrow,
     title: 'Management Consulting',
     description:
       'Strategic management consulting, change management consulting, organizational transformation services',
     link: '/services#management-consulting',
   },
   {
-    icon: Target,
+    icon: elec,
     title: 'Leadership Experience',
     description:
       'Experienced business leaders, leadership expertise, seasoned management consultants',
@@ -34,6 +39,7 @@ const capabilities = [
   },
 ];
 
+// CapabilityCard component
 const CapabilityCard = ({ capability, index, isVisible }) => {
   return (
     <Link
@@ -42,7 +48,7 @@ const CapabilityCard = ({ capability, index, isVisible }) => {
       style={{ animationDelay: `${index * 0.3 + 1}s` }} // Staggered delay for sequential animation
     >
       <div className="iconWrapper">
-        <capability.icon className="capabilityIcon" />
+        <img src={capability.icon} alt={capability.title} className="capabilityIcon" />
       </div>
       <div className="cardLine"></div>
       <h3 className="capabilityTitle">{capability.title}</h3>
@@ -57,6 +63,7 @@ const CapabilityCard = ({ capability, index, isVisible }) => {
   );
 };
 
+// CoreCapabilities component
 const CoreCapabilities = () => {
   const [hasScrolledIntoView, setHasScrolledIntoView] = useState(false);
   const wrapperRef = useRef(null);

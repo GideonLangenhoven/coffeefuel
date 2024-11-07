@@ -29,21 +29,21 @@
 
 /* Container to hold content */
 .coreCapabilitiesContainer {
-  max-width: 72rem; /* Decreased by ~10% from previous 80rem */
-  margin: 0 auto;
+  max-width: 1200px; /* Match the grid max-width */
+  margin: 0 auto; /* Center the entire container */
   position: relative;
   z-index: 1;
+  padding: 0 2rem; /* Equal padding on both sides */
 }
 
 /* Title and Subtitle Styling */
 .coreCapabilitiesTitle,
 .coreCapabilitiesSubtitle {
   opacity: 0;
-  transform: translateY(18px); /* Decreased translateY from 20px */
+  transform: translateY(18px);
   transition: opacity 0.8s ease, transform 0.8s ease;
-  margin-bottom: 10rem; 
-  margin-right: 20rem;/*
-   Slower transition for better visibility */
+  margin-bottom: 1rem;
+  margin-right: 0;
 }
 
 .coreCapabilitiesTitle.fadeIn,
@@ -53,45 +53,48 @@
 }
 
 .coreCapabilitiesTitle {
-  font-size: 3rem; /* Decreased from 2.25rem */
+  font-size: 3rem;
   font-weight: bold;
   color: #ffffff;
-  margin-bottom: 0.45rem; /* Decreased from 0.5rem */
+  margin-bottom: 0.45rem;
   text-align: left;
-  margin-left: 20rem;
+  margin-left: 0;
 }
 
 .coreCapabilitiesSubtitle {
-  font-size: 1.5rem; /* Decreased from 1.25rem */
+  font-size: 1.5rem;
   color: #e2e8f0;
-  margin-bottom: 2.7rem; /* Decreased from 3rem */
+  margin-bottom: 2.7rem;
   text-align: left;
+  max-width: 600px;
 }
 
-/* Grid for Capability Cards */
+/* Update Grid for Capability Cards */
 .capabilitiesGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px; /* Decreased from 20px */
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr)); /* Fixed minimum width */
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
-/* Capability Card Styling */
+/* Update Capability Card Styling */
 .capabilityCard {
+  width: 100%;
+  min-height: 350px;
+  margin: 0; /* Remove individual card margins */
+  
+  /* Keep other existing styles */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Push "Find out more" to bottom */
-  
-  flex: 1 1 270px; /* Decreased from 300px */
-  background-color: #ffffff;
-  border-radius: 13.5px; /* Decreased from 15px */
-  padding: 27px; /* Decreased from 30px */
+  justify-content: space-between;
+  background-color: #f2f2f2;
+  border-radius: 13.5px;
+  padding: 27px;
   text-decoration: none;
   color: inherit;
   opacity: 0;
-  transform: translateX(-45px); /* Decreased from -50px */
-  transition: transform 1.8s ease, opacity 1.8s ease; /* Increased transition duration for slower animation */
-  /* No opacity change on hover */
 }
 
 .capabilityCard.animateCard {
@@ -189,6 +192,13 @@
 }
 
 /* Responsive Styles */
+@media (max-width: 1200px) {
+  .capabilitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+}
+
 @media (max-width: 768px) {
   .coreCapabilitiesTitle,
   .coreCapabilitiesSubtitle {
@@ -196,11 +206,12 @@
   }
 
   .capabilitiesGrid {
-    justify-content: center;
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 
   .capabilityCard {
-    flex: 1 1 100%;
+    max-width: 100%;
   }
 
   .capabilityTitle,

@@ -17,7 +17,7 @@ body {
 
 .company-showcase-bg.visible {
   opacity: 1;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 1.5s ease-in;
 }
 
 /* Increase size by 30% */
@@ -40,7 +40,7 @@ body {
   justify-items: center;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
 }
 
 .company-showcase-logo-grid.animate-logos {
@@ -82,7 +82,7 @@ body {
   text-align: left;
   opacity: 0;
   transform: translateX(-50px);
-  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
 }
 
 .company-showcase-text.animate-text {
@@ -167,7 +167,7 @@ body {
   position: relative;
   opacity: 0;
   transform: translateX(50px);
-  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
 }
 
 .company-showcase-media.animate-image {
@@ -277,46 +277,4 @@ body {
     height: 1.95rem;
     font-size: 1.14rem; /* Increased by 30% from 0.875rem */
   }
-}
-
-/* Add these new styles at the top of the file */
-*,
-*:after {
-  box-sizing: border-box;
-}
-
-/* Update the title styling */
-.company-showcase-title {
-  font-size: 3.25rem;
-  font-weight: bold;
-  margin-bottom: 1.3rem;
-  color: #0a0a0a;
-  line-height: 1.2;
-}
-
-/* Remove the old empowering-word styles and add new underline styles */
-.underlined {
-  position: relative;
-  display: inline-block;
-}
-
-.underline-mask:after {
-  content: '';
-  position: absolute;
-  top: 95%;
-  width: 150%;
-  aspect-ratio: 3 / 1;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-radius: 50%;
-  border: 6px solid hsl(280 80% 50%);
-  --spread: 140deg;
-  --start: 290deg;
-  mask: conic-gradient(from var(--start), white 0 var(--spread), transparent var(--spread));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.underline-mask:hover:after {
-  opacity: 1;
 }
