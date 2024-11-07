@@ -1,0 +1,187 @@
+/* Main Wrapper */
+.pivotWrapper {
+  background-color: #ffffff; /* Add your image path */
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark overlay for better text readability */
+.pivotWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+/* Flex container adjustments */
+.pivotContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Adjust image size and container */
+.pivotImageWrapper {
+  position: relative;
+  width: 70%;
+  max-width: 420px;
+  margin: 0 auto 3rem auto;
+  order: -1;
+}
+
+/* Text content wrapper - align left */
+.pivotTextContent {
+  width: 100%;
+  max-width: 800px;
+  margin: 0;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+/* Left Content: Title and Paragraphs */
+.pivotTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  text-align: left;
+  margin-left: 0;
+  max-width: 600px;
+}
+
+.pivotTitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pivotText {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  text-align: left;
+  margin-left: 0;
+}
+
+.pivotText.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button Styling */
+.pivotButton {
+  background-color: #6b46c1; /* Custom purple */
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+  margin-left: 0;
+}
+
+.pivotButton:hover {
+  background-color: #553c9a; /* Darker purple on hover */
+}
+
+/* Right Content: Image and Overlay Box */
+.pivotImage {
+  width: 100%;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.pivotImage.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Purple Overlay Box */
+.pivotOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(107, 70, 193, 0.85); /* Semi-transparent purple */
+  color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0 0 0 1rem;
+  width: 12rem;
+  max-width: 240px;
+  z-index: 1;
+}
+
+.pivotOverlay .percentage {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.pivotOverlay .text-sm {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.pivotOverlay .text-lg {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .pivotContainer {
+    padding: 2rem;
+  }
+
+  .pivotTitle {
+    font-size: 2rem;
+  }
+
+  .pivotText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pivotImageWrapper {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .pivotTextContent {
+    padding-left: 1rem;
+  }
+}

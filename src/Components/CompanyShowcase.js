@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CompanyShowcase.css';
 
 // Import your logo images
@@ -13,11 +13,13 @@ import City from '../assets/images/CityofCapeTown.png';
 import Chat2Brand from '../assets/images/Chat2Brand.png';
 // Import the new image
 import TotoImage from '../assets/images/Toto.png'; // Adjust the extension if needed
+import Animation from '../assets/images/Animation.png';
 
 const CompanyShowcase = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [hasScrolledIntoView, setHasScrolledIntoView] = useState(false);
   const [startAnimations, setStartAnimations] = useState(false);
+  const showcaseRef = useRef(null);
 
   const toggleVideo = () => setShowVideo(!showVideo);
 
@@ -58,8 +60,28 @@ const CompanyShowcase = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showcaseRef.current) {
+        const scrollY = window.scrollY;
+        const element = showcaseRef.current;
+        const rect = element.getBoundingClientRect();
+        
+        // Only apply the effect when the element is in view
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const scrollPosition = (scrollY - rect.top) * 0.1;
+          element.style.backgroundPosition = `0 ${scrollPosition}px`;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div
+      ref={showcaseRef}
       id="company-showcase"
       className={`company-showcase-bg ${hasScrolledIntoView ? 'visible' : 'hidden'}`}
     >
@@ -93,7 +115,7 @@ const CompanyShowcase = () => {
           {/* Media Content */}
           <div className={`company-showcase-media ${startAnimations ? 'animate-image' : ''}`}>
             <img
-              src={TotoImage}
+              src={Animation}
               alt="Video Thumbnail"
               className="company-showcase-image"
               onClick={toggleVideo}

@@ -20,23 +20,33 @@ body {
   transition: opacity 1.5s ease-in;
 }
 
-/* Increase size by 30% */
+/* Updated background styling with smaller centered gradient */
 .company-showcase-bg {
-  background-image: url('../assets/images/random.png') ;
-  padding: 3rem; /* Increased by 30% from 2rem */
+  background: radial-gradient(circle at center, #74a9b5 0%, #ffffff 50%);
+  min-height: 100vh;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-position 0.1s ease-in-out;
 }
 
 .company-showcase-container {
-  max-width: 93.6rem; /* Increased by 30% from 72rem */
+  max-width: 93.6rem;
+  width: 100%;
   margin: 0 auto;
+  padding-top: 70px;
 }
 
 /* Logo Grid Styling */
 .company-showcase-logo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Increased min-width */
-  gap: 1.3rem; /* Increased by 30% from 1rem */
-  margin-bottom: 3.9rem; /* Increased by 30% from 3rem */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.3rem;
+  margin-top: 50px;
+  margin-bottom: 5rem;
   justify-items: center;
   opacity: 0;
   transform: translateY(20px);
@@ -48,16 +58,16 @@ body {
   transform: translateY(0);
 }
 
-/* Individual Logo Item Styling */
 .company-showcase-logo-item {
+  margin-top: 1rem;
   background-color: white;
-  height: 5.2rem; /* Increased by 30% from 4rem */
-  width: 5.2rem;  /* Increased by 30% from 4rem */
+  height: 5.2rem;
+  width: 5.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.65rem; /* Increased by 30% from 0.5rem */
-  box-shadow: 0 2.6px 5.2px rgba(0, 0, 0, 0.1); /* Increased */
+  border-radius: 0.65rem;
+  box-shadow: 0 2.6px 5.2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -70,19 +80,22 @@ body {
 /* Content Section Styling */
 .company-showcase-content {
   display: flex;
-  align-items: flex-start;
-  gap: 2.6rem; /* Increased by 30% from 2rem */
+  align-items: center;
+  gap: 3rem;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Text Content Styling */
 .company-showcase-text {
-  flex: 1;
+  flex: 2;
   text-align: left;
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 1.5s ease-in, transform 1.5s ease-in;
+  max-width: 600px;
 }
 
 .company-showcase-text.animate-text {
@@ -92,9 +105,9 @@ body {
 
 /* Title Styling */
 .company-showcase-title {
-  font-size: 3.25rem; /* Increased by 30% from 2.5rem */
+  font-size: 3.25rem;
   font-weight: bold;
-  margin-bottom: 1.3rem; /* Increased by 30% from 1rem */
+  margin-bottom: 1.3rem;
   color: #0a0a0a;
   line-height: 1.2;
 }
@@ -127,7 +140,7 @@ body {
 
 /* Paragraph Styling */
 .company-showcase-description {
-  margin-bottom: 1.95rem; /* Increased by 30% from 1.5rem */
+  margin-bottom: 1.95rem;
   line-height: 1.6;
   color: #555;
 }
@@ -136,12 +149,12 @@ body {
 .company-showcase-button {
   background-color: #44337a;
   color: white;
-  padding: 0.975rem 1.95rem; /* Increased by 30% from 0.75rem 1.5rem */
+  padding: 0.975rem 1.95rem;
   border: none;
   border-radius: 9999px;
   transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
-  font-size: 1.3rem; /* Increased by 30% from 1rem */
+  font-size: 1.3rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -177,12 +190,11 @@ body {
 
 /* Image Styling */
 .company-showcase-image {
-  width: 46.8vw; /* Increased by 30% from 36vw */
-  height: 46.8vh; /* Increased by 30% from 36vh */
-  cursor: pointer;
-  border-radius: 0.65rem; /* Increased by 30% from 0.5rem */
-  box-shadow: 0 5.2px 7.8px rgba(0, 0, 0, 0.1); /* Increased */
-  transition: transform 0.3s;
+  width: 32.76vw;
+  height: 32.76vh;
+  object-fit: cover;
+  border-radius: 0.65rem;
+  box-shadow: 0 5.2px 7.8px rgba(0, 0, 0, 0.1);
 }
 
 .company-showcase-image:hover {
@@ -207,7 +219,7 @@ body {
 .company-showcase-video-container {
   position: relative;
   width: 90%;
-  max-width: 1040px; /* Increased by 30% from 800px */
+  max-width: 1040px;
   aspect-ratio: 16 / 9;
 }
 
@@ -215,22 +227,22 @@ body {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 0.65rem; /* Increased by 30% from 0.5rem */
+  border-radius: 0.65rem;
 }
 
 /* Close Button Styling */
 .company-showcase-close-button {
   position: absolute;
-  top: -2.6rem; /* Increased by 30% from -2rem */
+  top: -2.6rem;
   right: -2.6rem;
   background: #44337a;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 2.6rem; /* Increased by 30% from 2rem */
+  width: 2.6rem;
   height: 2.6rem;
   cursor: pointer;
-  font-size: 1.3rem; /* Increased by 30% from 1rem */
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,33 +260,30 @@ body {
 }
 
 /* Responsive Styling for Tablets and Phones */
+@media (max-width: 1024px) {
+  .company-showcase-content {
+    padding: 0 2rem;
+  }
+  
+  .company-showcase-image {
+    width: 40vw;
+    height: 40vh;
+  }
+}
+
 @media (max-width: 768px) {
   .company-showcase-content {
     flex-direction: column;
-    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
   }
 
   .company-showcase-text {
     text-align: center;
-    transform: none; /* Remove transform for mobile */
-  }
-
-  .company-showcase-media {
-    align-self: center;
-    margin-top: 1.3rem; /* Increased by 30% from 1rem */
-    transform: none; /* Remove transform for mobile */
   }
 
   .company-showcase-image {
     width: 80vw;
     height: auto;
-  }
-
-  .company-showcase-close-button {
-    top: -1.3rem; /* Increased by 30% from -1rem */
-    right: -1.3rem;
-    width: 1.95rem; /* Increased by 30% from 1.5rem */
-    height: 1.95rem;
-    font-size: 1.14rem; /* Increased by 30% from 0.875rem */
   }
 }
