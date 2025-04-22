@@ -1,7 +1,16 @@
-/* src/components/ui/Input.css */
+/* src/components/Input.css - Consider moving to src/components/ui/ */
 .input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   width: 100%;
+  font-size: 1rem; /* Ensure consistent font size */
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
+
+/* Add focus styles for accessibility */
+.input:focus {
+  outline: 2px solid #007bff; /* Example focus color */
+  outline-offset: 1px;
+  border-color: #007bff;
 }

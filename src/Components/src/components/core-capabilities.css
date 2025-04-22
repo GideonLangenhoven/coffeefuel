@@ -188,7 +188,7 @@
 }
 
 .findOutMore:hover .arrowIcon {
-  transform: translateX(5.85px); /* Decreased from 6.5px */
+  transform: translateX(5.85px); /* Decreased from 6.5cpx */
 }
 
 /* Responsive Styles */

@@ -1,167 +1,154 @@
 // src/Views/AboutUs.js
+import React, { useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'; // useNavigate for button clicks
 
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import NavigationBar from './Navigation'; // Ensure this path is correct
-import Footer from '../Components/Footer';
-import './AboutUs.css'; // Make sure this CSS file exists// Update with your image path
+// Import necessary components (adjust paths as needed)
+import NavigationBar from './Navigation'; // Assuming Header component is here
+import Footer from '../Components/Footer'; // Assuming Footer component is here
+
+// Import styles
+import './AboutUs.css'; // Ensure CSS path is correct
 
 const AboutUs = () => {
-  const location = useLocation();
+  const location = useLocation(); // Gets current URL info, including hash
+  const navigate = useNavigate(); // Used for programmatic navigation
+  const sectionRefs = useRef({}); // Store refs to sections for scrolling
 
+  // Function to smoothly scroll to a specific section by ID
   const scrollToSection = (id) => {
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const yOffset = -80; // Adjust this value based on your header height
-        const yPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: yPosition, behavior: 'smooth' });
-      }
-    }, 0);
+    const element = sectionRefs.current[id];
+    if (element) {
+      const yOffset = -80; // Offset for fixed header height (adjust if necessary)
+      const yPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: yPosition, behavior: 'smooth' });
+    } else {
+      console.warn(`Element with id "${id}" not found for scrolling.`);
+    }
   };
 
+  // Effect to scroll to section based on URL hash when the component mounts or hash changes
   useEffect(() => {
-    const hash = location.hash.replace('#', '');
+    const hash = location.hash.substring(1); // Get id from #hash in URL
     if (hash) {
-      scrollToSection(hash);
+      // Use setTimeout to ensure the element is rendered before scrolling
+      const timer = setTimeout(() => {
+        scrollToSection(hash);
+      }, 100); // Small delay might be needed
+      return () => clearTimeout(timer); // Cleanup timer
+    } else {
+      // Scroll to top if no hash
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [location]);
+  }, [location.hash]); // Depend on hash changes
+
+  // Function to handle button clicks for navigation
+  const handleNavClick = (id) => {
+    // Update URL hash without full page reload (optional, good for bookmarking)
+    navigate(`#${id}`);
+    // Scroll to the section
+    scrollToSection(id);
+  };
+
+  // Ref callback to populate sectionRefs
+  const setSectionRef = (id) => (el) => {
+    sectionRefs.current[id] = el;
+  };
+
+  // TODO: Replace all 'Terbigen' related content with 'coffeefuel' content
+  // focusing on energy solutions, ESKOM pain points, solar, backup power etc.
 
   return (
     <div className="aboutus-page">
       <NavigationBar />
       <div className="aboutus-container">
-        {/* Hero Section */}
-        <section
-        >
+        {/* --- Hero Section --- */}
+        <section className="aboutus-hero">
           <div className="hero-content">
-            <h1>We Guide You Through Business Challenges to Success</h1>
+            {/* TODO: Update Hero Content for coffeefuel */}
+            <h1>Powering Your Independence from the Grid</h1>
             <p>
-              Transforming frustrations into opportunities for growth and innovation.
+              Tired of load shedding and rising electricity costs? Discover reliable, sustainable energy solutions tailored for South African homes and businesses.
             </p>
-            <button className="cta-button" onClick={() => scrollToSection('our-mission')}>
-              Learn More
+            <button className="cta-button" onClick={() => handleNavClick('our-mission')}>
+              Explore Our Solutions
             </button>
           </div>
         </section>
 
-        {/* Navigation Buttons */}
-        <div className="aboutus-nav">
-          <button onClick={() => scrollToSection('our-mission')}>Our Mission</button>
-          <button onClick={() => scrollToSection('our-approach')}>Our Approach</button>
-          <button onClick={() => scrollToSection('our-tools')}>Our Tools</button>
-          <button onClick={() => scrollToSection('strategic-relationships')}>Strategic Relationships</button>
-          <button onClick={() => scrollToSection('founder')}>Our Founder</button>
-          <button onClick={() => scrollToSection('frameworks')}>Our Frameworks</button>
-        </div>
+        {/* --- Navigation Buttons --- */}
+        <nav className="aboutus-nav" aria-label="About Us Sections">
+          {/* TODO: Update section IDs and button text for coffeefuel */}
+          <button onClick={() => handleNavClick('our-mission')}>The Challenge</button>
+          <button onClick={() => handleNavClick('our-approach')}>Our Solution</button>
+          <button onClick={() => handleNavClick('our-services')}>Our Services</button>
+          {/* <button onClick={() => handleNavClick('strategic-relationships')}>Partners</button> */}
+          <button onClick={() => handleNavClick('why-us')}>Why Choose Us</button>
+          {/* <button onClick={() => handleNavClick('frameworks')}>Our Technology</button> */}
+        </nav>
 
-        {/* Our Mission Section */}
-        <section id="our-mission" className="content-section">
-          <h2>The Challenge</h2>
+        {/* --- Content Sections --- */}
+        {/* TODO: Update all section content for coffeefuel */}
+
+        <section id="our-mission" ref={setSectionRef('our-mission')} className="content-section">
+          <h2>The Challenge: Grid Uncertainty</h2>
           <p>
-            The average business owner faces significant challenges in consistently growing and creating lasting value. From the outside, owning a business may seem glamorous, but few truly appreciate the stress of keeping operations running smoothly, capturing market attention, and maintaining customer satisfaction. It can be a lonely, exhausting experience to motivate staff and ensure the business has sufficient funds to reach profitability.
+            South Africans face constant disruptions from load shedding (like ESKOM issues) and unpredictable electricity price hikes. This unreliability impacts daily life, productivity, and business operations, creating stress and financial burdens for homeowners and commercial users alike. Dependence on the national grid feels increasingly risky.
           </p>
         </section>
 
-        {/* Our Approach Section */}
-        <section id="our-approach" className="content-section">
-          <h2>Our Understanding & Solution</h2>
+        <section id="our-approach" ref={setSectionRef('our-approach')} className="content-section">
+          <h2>Our Solution: Energy Empowerment</h2>
           <p>
-            Terbigen brings an in-depth understanding of these day-to-day challenges faced by business owners and managers. Our services are designed to directly address these pressing issues. We have the skills, compassion, and proven methodologies to support our clients. We help you see your business with fresh eyes, cutting through the clutter of frustrations and insecurity. Working with Terbigen enables you to make strategic choices to secure your company's future.
+            Coffeefuel provides tailored energy solutions designed to give you control and peace of mind. We analyze your specific needs – whether residential or commercial – to recommend and install the most effective systems, from solar power generation to reliable backup solutions. Our goal is to reduce your reliance on the unstable grid and lower your long-term energy costs.
           </p>
         </section>
 
-        {/* Our Tools Section */}
-        <section id="our-tools" className="content-section">
-          <h2>Our Approach</h2>
+        <section id="our-services" ref={setSectionRef('our-services')} className="content-section">
+          <h2>Our Services</h2>
           <p>
-            Terbigen provides a structured intervention approach. We assist entrepreneurs in launching new ideas and innovations. For established companies, we help them find their optimal growth path. And for business owners, we guide them towards a successful exit, at a value that meets their goals.
+            We offer a range of services including solar panel installation (PV systems), battery backup systems (inverters and batteries) for load shedding, energy efficiency consultations, and system maintenance. We focus on quality components and expert installation to ensure your system performs optimally for years to come. [Link to Services Page?]
           </p>
-          <p>
-            Terbigen utilizes specialized Reinvention tools to help clients gain a new, expansive perspective on what is possible. This empowers them to create clear pathways towards revitalization and sustainable growth.
-          </p>
+          {/* Consider adding sub-sections or linking to the main Services page */}
         </section>
 
-        {/* Strategic Relationships Section */}
-        <section id="strategic-relationships" className="content-section">
-          <h2>About Our Strategic Relationships</h2>
+         {/* Commenting out sections less relevant to coffeefuel for now */}
+        {/*
+        <section id="strategic-relationships" ref={setSectionRef('strategic-relationships')} className="content-section">
+          <h2>Strategic Relationships / Partners</h2>
+           <p> TODO: Add info about suppliers, technology partners etc. if applicable </p>
+        </section>
+        */}
+
+        <section id="why-us" ref={setSectionRef('why-us')} className="content-section">
+          <h2>Why Choose Coffeefuel?</h2>
           <p>
-            Terbigen has a Joint Business Relationship (JBR) with one of the top 4 accounting firms. This partnership allows Terbigen to collaborate on projects and be deployed by the firm for specific client engagements.
+            We understand the frustrations of South African energy users because we experience them too. We combine technical expertise with a commitment to customer satisfaction. We use high-quality equipment, offer transparent pricing, and provide ongoing support. Our focus is on delivering practical, reliable solutions that make a real difference. [Mention founder/team briefly if relevant to expertise/passion].
           </p>
-          <p>
-            The relationship began in 2017 when Terbigen was engaged as an Enterprise Development Agent. In that role, Terbigen conducted a business review, provided management coaching, and supported a security technology company over an 18-month period, helping to redefine the business strategy, refocus products and services, and restructure the company's financial management.
-          </p>
-          <p>
-            In 2018, Terbigen undertook a comprehensive business review for a training institution. This project involved assessing the institution's delivery systems, marketing practices, organizational systems, and structure, while also providing direct coaching and mentoring support to the leadership team.
-          </p>
-          <p>
-            In 2019, Terbigen was deployed to a major metropolitan municipality to participate in the review of their City Broadband Infrastructure Project. Terbigen worked closely with city officials and other professionals to develop business options for more effective infrastructure deployment and service delivery.
-          </p>
-          <p>
-            In 2020, Terbigen submitted a joint bid to enable local government delivery systems, leading a panel of professional service providers. The goal was to positively impact municipal revenue management and strategic infrastructure planning and management.
-          </p>
-          <p>
-            Terbigen is currently closely associated with the global Reinvention Academy, accessing the latest research on business change management programs. The firm is also partnering with technology companies specializing in cloud computing, telecommunications, and data security.
-          </p>
-          <p>
-            ConnectMobile24 (CM24) is a software technology company leveraging an enterprise platform of Concursive to deliver solutions to the market across a number of sectors. The company invested in software skills and resources to engineer new use-cases and build derived applications.
-          </p>
-          <p>
-            Terbigen and CM24 are in a strategic relationship where Terbigen supports the business strategy development and venture alignment for CM24, who in turn offers its platform to Terbigen projects to establish and manage collaborative working and platform development for common purpose ecosystems.
-          </p>
-          <p>
-            Terbigen is a member of the Turnaround Management Association. This professional body is the leading organization for turnaround specialists and business rescue practitioners.
-          </p>
-          <p>
-            Terbigen is a member of the Cape Chamber of Commerce. Our membership gives us access to the broader business community in the Cape Town area, allowing us to share our expertise as well as learn from others.
-          </p>
+          {/* <p> Franklin Pieterse, the Founder... [Update or remove founder section] </p> */}
         </section>
 
-        {/* Our Founder Section */}
-        <section id="founder" className="content-section">
-          <h2>Meet Our Founder</h2>
-          <p>
-            Franklin Pieterse, the Founder and Business Reinvention Coach (MBA, CRP), brings over 25 years of business leadership experience. With a proven track record in senior executive roles such as CEO, Managing Director, Chief Strategy Officer, and Chief Operating Officer, Franklin is deeply passionate about people, business transformation, and delivering results. He personally provides the tailored support and guidance needed to drive meaningful impact for your business.
-          </p>
-          <p>
-            Franklin's true strength lies in his empathy and compassion when relating to others. He is described as a visionary leader, equally adept at business analysis, strategic planning, and execution.
-          </p>
+        {/*
+        <section id="frameworks" ref={setSectionRef('frameworks')} className="content-section">
+           <h2>Our Technology / Approach</h2>
+           <p> TODO: Discuss technology choices, quality standards, installation process etc. </p>
         </section>
+        */}
 
-        {/* Our Frameworks Section */}
-        <section id="frameworks" className="content-section">
-          <h2>About Terbigen's Strategic Frameworks</h2>
-          <p>
-            The Terbigen Strategic Framework is designed to enhance business performance and results. We help you review your strategy, business model, and company culture to achieve the desired business outcomes. Successful business turnaround requires a structured intervention. The desired change comes from taking the most effective actions. It's all about doing things differently.
-          </p>
-          <p>
-            Terbigen's BBBEE Strategic Framework is based on the principle that transforming the business sector is critical to enabling meaningful transformation of society. BBBEE is a crucial element in alleviating the impacts of South Africa's apartheid legacy.
-          </p>
-          <p>
-            Every business should pursue a strategy that makes it relevant to the entire South African market. A strategic approach to BBBEE means an organization examines all the Codes' elements to make a meaningful contribution and build a market-aligned delivery system that understands its target audience's needs, wants, and desires. Well-structured BBBEE facilitates effective communication with target audiences based on strong community connections.
-          </p>
-          <p>
-            We help you optimize your BBBEE scorecard while simultaneously strengthening your business's competitiveness. BBBEE is about empowering people and connecting with markets.
-          </p>
-          <p>
-            Terbigen stays current with the latest business strategies and approaches, including Lean Startup, Design Thinking, Agile Development, Jobs Theory, and Critical Few Culture Change. We integrate and apply these business principles to create real-world impact for our clients. We have particular expertise in developing effective marketing and pricing strategies.
-          </p>
-        </section>
-
-        {/* Call to Action Section */}
+        {/* --- Final Call to Action Section --- */}
         <section className="cta-section">
-          <h2>Ready to Transform Your Business?</h2>
+          <h2>Ready for Reliable Energy?</h2>
           <p>
-            Let's work together to turn your challenges into opportunities.
+            Take the first step towards energy independence. Contact us for a free consultation and quote.
           </p>
-          <button className="cta-button" onClick={() => window.location.href = '#contact'}>
+          {/* TODO: Link this button to the contact page/form */}
+          <button className="cta-button" onClick={() => navigate('/contact')}>
             Get in Touch
           </button>
         </section>
 
-      </div>
+      </div> {/* End aboutus-container */}
       <Footer />
-    </div>
+    </div> // End aboutus-page
   );
 };
 

@@ -1,36 +1,72 @@
+/* src/components/VideoPopup.css */
 .video-popup-overlay {
-  position: fixed;
+  position: fixed; /* Cover the entire viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0; /* Start hidden for animation */
+  animation: fadeInOverlay 0.3s forwards; /* Fade-in animation */
 }
 
-.video-popup-container {
+.video-popup-content {
   position: relative;
-  width: 80%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
+  width: 90%; /* Responsive width */
+  max-width: 900px; /* Max width for larger screens */
+  aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+  background-color: #000; /* Black background for the video container */
+  transform: scale(0.9); /* Start slightly smaller for animation */
+  animation: scaleInContent 0.3s 0.1s forwards; /* Scale-in animation with delay */
 }
 
 .video-popup-iframe {
   width: 100%;
   height: 100%;
-  border: none;
+  border: none; /* Remove iframe border */
 }
 
-.video-popup-close-button {
+.video-popup-close {
   position: absolute;
-  top: -40px;
-  right: 0;
-  background-color: transparent;
+  top: -35px; /* Position above the video box */
+  right: -10px; /* Position to the right */
+  background: none; /* Transparent background */
   color: white;
   border: none;
-  font-size: 16px;
+  font-size: 2.5rem; /* Larger close icon */
+  line-height: 1;
   cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.video-popup-close:hover {
+  color: #ccc; /* Slightly grey on hover */
+}
+
+/* Keyframes for animations */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleInContent {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Adjust close button position on smaller screens */
+@media (max-width: 600px) {
+  .video-popup-close {
+    top: -30px;
+    right: 5px;
+    font-size: 2rem;
+  }
+  .video-popup-content {
+    width: 95%; /* Use more width on small screens */
+  }
 }

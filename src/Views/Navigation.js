@@ -69,7 +69,7 @@ const NavigationBar = ({ isScrolled }) => {
         >
           <img src={logo} alt="Logo" className="logo" />
           <span className="brand-slogan">
-            <span className="terbigen-text">Terbigen</span>
+            <span className="terbigen-text">SOL Power</span>
           </span>
         </div>
         <ul className="nav-links">

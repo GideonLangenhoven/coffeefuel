@@ -5,7 +5,7 @@ import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, email, message } = req.body;
+    const { name, email, m essage } = req.body;
 
     // Basic validation
     if (!name || !email || !message) {
