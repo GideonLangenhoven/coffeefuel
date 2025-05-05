@@ -1,11 +1,12 @@
-// src/components/Input.js - Consider moving to src/components/ui/
+// src/Components/Input.js
 import React from 'react';
-import './Input.css'; // Ensure CSS path is correct
+import './Input.css'; // Import CSS
 
 // Reusable Input component
-const Input = ({ className = '', ...props }) => {
-  // Combine default 'input' class with any additional classes passed via props
-  return <input className={`input ${className}`.trim()} {...props} />;
+const Input = ({ className = '', type = 'text', ...props }) => {
+  // Combine base 'input' class with any additional classes
+  const inputClasses = `input ${className}`.trim();
+  return <input type={type} className={inputClasses} {...props} />;
 };
 
 export default Input;

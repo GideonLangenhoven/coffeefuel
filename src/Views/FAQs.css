@@ -1,0 +1,32 @@
+/* src/Views/FAQs.css */
+/* ... (previous styles for .faq-list, .faq-item, .faq-question, .faq-icon) ... */
+
+.faq-answer {
+  /* Add transition for smooth open/close */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 1.5rem; /* Keep horizontal padding consistent */
+  padding-right: 1.5rem;
+  background-color: var(--solpower-white);
+  border-top: 1px solid transparent; /* Start transparent */
+}
+.faq-answer.open {
+  max-height: 300px; /* Adjust as needed for content */
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid var(--solpower-border-light);
+}
+
+.faq-answer-content { /* Inner div for consistent padding during animation */
+    /* No padding needed here now */
+}
+
+.faq-answer p {
+  color: var(--solpower-text-light);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0; /* Remove default margin */
+}

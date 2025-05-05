@@ -1,12 +1,13 @@
-// src/components/InfoCard.js
+// src/Components/InfoCard.js
 import React from 'react';
-import './InfoCard.css';
+import './InfoCard.css'; // Import CSS
 
-// Simple presentational component for displaying an info card
+// Card component for displaying key features/benefits
 const InfoCard = ({ title, description, icon }) => {
   return (
     <div className="info-card">
-      {icon && <div className="info-card-icon">{icon}</div>} {/* Conditionally render icon */}
+      {/* Render icon if provided */}
+      {icon && <div className="info-card-icon">{icon}</div>}
       <h3 className="info-card-title">{title}</h3>
       <p className="info-card-description">{description}</p>
     </div>

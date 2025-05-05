@@ -1,0 +1,140 @@
+/* src/Views/Contact.css */
+.contact-page-wrapper {
+  min-height: calc(100vh - 160px); /* Adjust based on actual Nav/Footer height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; /* Match body background */
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+.contact-form-container {
+  width: 100%;
+  max-width: 550px;
+  background-color: white;
+  padding: 30px 40px; /* More horizontal padding */
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  border: 1px solid #dee2e6;
+}
+
+.contact-form-container h1 {
+  font-size: 2.3rem; /* Adjust size */
+  font-weight: 700; /* Bold */
+  color: #343a40; /* Dark heading */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.contact-form-container p {
+  color: #495057; /* Darker grey */
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Styles for standard input/textarea elements */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  border: 1px solid #ced4da; /* Standard border */
+  border-radius: 4px;
+  padding: 12px 15px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
+.contact-form textarea::placeholder {
+  color: #adb5bd; /* Lighter placeholder */
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #80bdff; /* Blue focus border */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Blue focus shadow */
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button[type="submit"] {
+  background-color: #007bff; /* SolPower primary blue */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem; /* Slightly larger */
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.contact-form button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+.contact-form button[type="submit"]:active {
+  transform: scale(0.98); /* Click effect */
+}
+
+.contact-form button[type="submit"]:disabled {
+  background-color: #6c757d; /* Grey when disabled */
+  cursor: not-allowed;
+}
+
+/* Status message styling */
+.contact-status-message {
+  padding: 12px 15px; /* Adjust padding */
+  margin-top: 20px; /* More space above */
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+}
+
+.contact-status-message.success {
+  background-color: #d1e7dd; /* Bootstrap success background */
+  color: #0f5132; /* Bootstrap success text */
+  border-color: #badbcc; /* Bootstrap success border */
+}
+
+.contact-status-message.error {
+  background-color: #f8d7da; /* Bootstrap danger background */
+  color: #842029; /* Bootstrap danger text */
+  border-color: #f5c2c7; /* Bootstrap danger border */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .contact-form-container {
+    padding: 20px 25px;
+  }
+  .contact-form-container h1 {
+    font-size: 1.8rem;
+  }
+   .contact-form-container p {
+     font-size: 0.95rem;
+     margin-bottom: 25px;
+   }
+   .contact-form {
+     gap: 15px;
+   }
+}

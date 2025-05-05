@@ -1,50 +1,61 @@
-/* src/components/InfoCard.css */
+/* src/Components/InfoCard.css */
 .info-card {
   background-color: #ffffff;
-  border: 2px solid #e0e0e0;
+  border: 1px solid #e0e0e0; /* Slightly lighter border */
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 10px;
-  width: calc(33.33% - 20px); /* Adjusts for 3 cards per row with margins */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07); /* Softer shadow */
+  padding: 25px 20px; /* Adjust padding */
+  margin: 10px; /* Keep margin for spacing in flex container */
+  width: calc(33.333% - 20px); /* Default 3 cards per row */
   text-align: center;
-  transition: transform 0.3s ease-in-out;
-  display: flex; /* Added for better internal alignment */
-  flex-direction: column; /* Added for vertical layout */
-  justify-content: flex-start; /* Align content to the top */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 280px; /* Example min-height for consistency */
 }
 
 .info-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px); /* Slightly more lift */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .info-card-icon {
   font-size: 48px;
-  margin-bottom: 15px;
-  color: #00E676; /* Theme color */
+  margin-bottom: 20px; /* More space below icon */
+  color: #007bff; /* Example SolPower primary color */
+}
+/* Style for SVG icons if using lucide-react */
+.info-card-icon svg {
+  width: 48px;
+  height: 48px;
+  display: inline-block; /* Center SVG properly */
 }
 
 .info-card-title {
-  font-size: 24px;
+  font-size: 1.4rem; /* Adjust size */
+  font-weight: 600; /* Semi-bold */
   margin-bottom: 10px;
-  color: #333;
+  color: #343a40; /* Darker title */
 }
 
 .info-card-description {
-  font-size: 16px;
-  color: #666;
-  flex-grow: 1; /* Allows description to take available space */
+  font-size: 1rem;
+  color: #495057; /* Softer text */
+  flex-grow: 1; /* Allow description to fill space */
+  line-height: 1.6;
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 992px) { /* Changed breakpoint */
   .info-card {
     width: calc(50% - 20px); /* 2 cards per row */
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .info-card {
     width: calc(100% - 20px); /* 1 card per row */
+    min-height: auto; /* Remove min-height */
   }
 }

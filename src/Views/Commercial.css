@@ -1,0 +1,261 @@
+/* src/Views/Commercial.css */
+
+/* --- Variable Defaults (ensure these are defined globally or here) --- */
+:root {
+  --solpower-primary: #0056b3;    /* Slightly darker blue for commercial? */
+  --solpower-secondary: #ffc107;  /* Yellow/Gold */
+  --solpower-green: #28a745;
+  --solpower-text: #333;
+  --solpower-text-light: #555;
+  --solpower-text-dark: #212529;
+  --solpower-border-light: #e0e0e0;
+  --solpower-bg-light: #f8f9fa;
+  --solpower-white: #ffffff;
+  --transition-speed: 0.3s;
+}
+
+/* --- Inherited Styles Reminder --- */
+/* Ensure .page-wrapper, .page-container, .page-title, base .content-section */
+/* are defined in PageStyles.css */
+
+/* --- General Section Styling Overrides (if needed) --- */
+.content-section h2 {
+  color: var(--solpower-primary); /* Use primary color for headings */
+  /* text-align: left; */ /* Optional: Left-align for commercial? */
+}
+
+/* --- Intro Section Specifics --- */
+/* Uses styles from PageStyles.css unless overridden */
+
+/* --- Benefits Section --- */
+.benefits-section {
+  /* Optional background or border */
+}
+
+.commercial-benefits { /* Target the specific UL */
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem; /* Spacing between benefits */
+}
+
+/* 2 columns for medium screens, potentially 3 for large */
+@media (min-width: 768px) {
+  .commercial-benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .commercial-benefits {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
+     gap: 1.8rem;
+  }
+}
+
+.commercial-benefits li {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--solpower-white);
+  padding: 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--solpower-border-light);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  /* border-left: 4px solid var(--solpower-secondary); */ /* Alt accent */
+}
+
+.commercial-benefits .benefit-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  color: var(--solpower-primary); /* Use primary color for icons */
+  margin-top: 0; /* Adjust alignment if needed */
+  width: 24px; /* Ensure consistent width */
+  text-align: center;
+  font-weight: bold; /* Make 'R0' bold */
+}
+
+.commercial-benefits li strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--solpower-text-dark);
+}
+
+/* Partner Info Styling */
+.partner-info {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--solpower-bg-light);
+  border-radius: 6px;
+  border: 1px solid var(--solpower-border-light);
+  display: flex; /* Arrange text and logo */
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.partner-info p {
+  margin: 0;
+  flex-basis: 70%; /* Give text more space */
+  flex-grow: 1;
+  color: var(--solpower-text-light);
+}
+
+.partner-learn-more {
+  display: block; /* Put link on new line */
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: var(--solpower-primary);
+  text-decoration: underline;
+}
+
+.partner-logo {
+  display: block;
+  max-height: 50px; /* Control logo height */
+  width: auto; /* Maintain aspect ratio */
+  flex-shrink: 0; /* Prevent logo from shrinking too much */
+}
+
+/* --- Process Section --- */
+.commercial-process { /* Target the specific OL */
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step-counter;
+  max-width: 850px; /* Slightly wider for potentially longer text */
+  margin: 2rem auto 0 auto;
+}
+
+.commercial-process li {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 2.5rem; /* More space between steps */
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--solpower-border-light); /* Solid line */
+}
+
+.commercial-process li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Use primary color for commercial process steps */
+.commercial-process .step-number {
+  flex-shrink: 0;
+  margin-right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: var(--solpower-primary); /* Primary color background */
+  color: var(--solpower-white); /* White text */
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.commercial-process .step-content {
+  flex-grow: 1;
+}
+
+.commercial-process .step-content strong {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--solpower-text-dark); /* Darker text for step titles */
+}
+
+.commercial-process .step-content {
+  line-height: 1.6;
+  color: var(--solpower-text-light);
+}
+
+/* --- CTA Section Styling --- */
+.commercial-cta { /* Target specific class */
+  background-color: var(--solpower-secondary); /* Use secondary color for contrast */
+  text-align: center;
+  padding: 3rem 1.5rem;
+  margin-top: 3rem;
+  border-radius: 8px;
+  color: var(--solpower-text-dark); /* Dark text on light background */
+}
+
+.commercial-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--solpower-text-dark); /* Dark heading */
+}
+
+.commercial-cta p {
+  margin-bottom: 2rem;
+  color: var(--solpower-text); /* Standard text color */
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Style the Button component within this CTA */
+.commercial-cta .button-component.button-primary {
+  background-color: var(--solpower-primary); /* Primary button color */
+  color: var(--solpower-white);
+  /* Add hover/focus styles if needed and not handled by Button component */
+}
+.commercial-cta .button-component.button-primary:hover {
+   background-color: #004085; /* Darker primary */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Adjust breakpoint if needed */
+  .commercial-benefits {
+      /* Keep 2 columns */
+  }
+}
+
+@media (max-width: 768px) {
+  .commercial-benefits {
+      grid-template-columns: 1fr; /* Stack benefits */
+  }
+  .partner-info {
+      flex-direction: column; /* Stack text and logo */
+      align-items: center;
+      text-align: center;
+  }
+  .partner-info p {
+      flex-basis: auto; /* Reset basis */
+  }
+  .commercial-process .step-number {
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      font-size: 1rem;
+      margin-right: 1rem;
+  }
+   .commercial-process .step-content strong {
+      font-size: 1.1rem;
+  }
+  .commercial-cta h2 {
+    font-size: 1.7rem;
+  }
+   .commercial-cta p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+   /* No major changes needed if already stacking */
+   .commercial-process li {
+       /* Optional: Stack number above text like Residential */
+       /* flex-direction: column; */
+       /* align-items: center; */
+       /* text-align: center; */
+   }
+    /* .commercial-process .step-number { */
+       /* margin-right: 0; */
+       /* margin-bottom: 1rem; */
+   /* } */
+}

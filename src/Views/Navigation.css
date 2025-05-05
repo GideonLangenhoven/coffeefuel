@@ -1,0 +1,212 @@
+/* src/Views/Navigation.css */
+.top-nav {
+  background-color: #2E7D32; /* Material Design Green 800 */
+  padding: 0 25px;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  transition: background-color 0.3s ease-in-out, height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 85px; box-shadow: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.top-nav.scrolled {
+  background-color: #1B5E20; /* Material Design Green 900 - darker when scrolled */
+  height: 70px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo and Brand */
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 0;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-secondary-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Match the initial height of the logo */
+  height: 40px; /* Match the initial height of the logo */
+}
+
+.logo-secondary {
+  height: 40px;
+  width: auto;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  will-change: transform; /* Optimize for animation */
+}
+
+.logo-secondary.hovered {
+  transform: scale(1.5);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover, .logo-secondary:hover {
+  transform: scale(1.03);
+}
+
+/* Hide text if logo image contains it */
+.brand-slogan { display: none; }
+/* OR if logo is just sun graphic: */
+/* .brand-slogan {
+  font-size: 1.8rem; font-weight: 800; user-select: none; cursor: pointer;
+  color: var(--solpower-black); transition: color 0.4s ease, text-shadow 0.4s ease; letter-spacing: -0.5px;
+}
+.brand-slogan:hover { color: var(--solpower-yellow); text-shadow: 0 0 12px rgba(255, 218, 0, 0.9); } */
+
+
+/* Desktop Navigation Links */
+.nav-links { display: flex; list-style: none; gap: 20px; /* Adjusted gap */ margin: 0; padding: 0; }
+.nav-link { position: relative; }
+.nav-link a {
+  color: var(--solpower-white, #ffffff); /* Added fallback */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav-link a::after {
+  content: ''; position: absolute; width: 0; height: 3px; bottom: -4px;
+  left: 0; background-color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+  transition: width 0.3s ease;
+}
+.nav-link a:hover,
+.nav-link a.active {
+  color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+}
+.nav-link a:hover::after, .nav-link a.active::after { width: 100%; }
+
+/* Right Navigation Container */
+.right-nav { display: flex; align-items: center; gap: 15px; }
+
+/* "I'm Interested" Button */
+.contact-button-nav {
+  background-color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+  color: var(--solpower-black, #1a1a1a); /* Added fallback */
+  padding: 8px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-button-nav:hover {
+  background-color: var(--solpower-yellow, #ffdd00); /* Kept yellow background on hover */
+  color: var(--solpower-black, #1a1a1a); /* <<< FIX: Explicitly set text color to black on hover */
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.75);
+}
+
+/* Corner Logo */
+.corner-logo-container { /* No margin needed */ }
+.corner-logo-half-sun {
+  display: block; width: 40px; height: 40px;
+  /* NOTE: Ensure '../assets/images/half-sun-logo.png' is the correct path relative to your CSS file */
+  background-image: url('../assets/images/half-sun-logo.png'); /* Path to half-sun */
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+  opacity: 0.9; filter: brightness(1);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease; cursor: pointer;
+}
+.corner-logo-half-sun:hover { opacity: 1; filter: brightness(1.3); transform: scale(1.08) rotate(5deg); }
+
+/* --- Burger Menu & Mobile Nav --- */
+.burger-menu { display: none; cursor: pointer; padding: 10px; z-index: 1002; position: relative; }
+.burger-bar { width: 28px; height: 3px; background-color: var(--solpower-white, #ffffff); /* Added fallback */ margin: 6px 0; transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease; border-radius: 1px; }
+.burger-menu.active .burger-bar { background-color: var(--solpower-yellow, #ffdd00); } /* Yellow 'X' */
+.burger-menu.active .burger-bar:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.burger-menu.active .burger-bar:nth-child(2) { opacity: 0; }
+.burger-menu.active .burger-bar:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1B5E20; /* Same as scrolled state */
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%); /* Start hidden above */
+  opacity: 0; /* Start transparent */
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  visibility: hidden; /* Hide from accessibility tree when closed */
+}
+
+/* Style for when mobile nav is active/open */
+.mobile-nav.active {
+  transform: translateY(0); /* Slide in */
+  opacity: 1; /* Fade in */
+  visibility: visible; /* Make it visible */
+}
+
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-nav-link {
+  margin: 15px 0;
+}
+
+.mobile-nav-link a {
+  color: var(--solpower-white, #ffffff); /* Added fallback */
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  display: block;
+  padding: 10px;
+}
+
+.mobile-nav-link a:hover,
+.mobile-nav-link a.active {
+  color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+}
+
+.contact-link-mobile {
+  margin-top: 30px;
+}
+
+.contact-link-mobile .contact-button-nav {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+/* Media Query for Tablet / Burger Activation */
+/* Hide links earlier to prevent squishing */
+@media (max-width: 1100px) {
+  .nav-links { display: none; }
+  .corner-logo-container { display: none; } /* Hide corner logo earlier too */
+  .burger-menu { display: block; }
+  .top-nav { padding: 0 20px; }
+  .right-nav { gap: 10px; } /* Reduce gap further */
+}
+
+@media (max-width: 480px) {
+    .logo { height: 40px; }
+    .contact-button-nav { font-size: 0.85rem; padding: 8px 18px; }
+}

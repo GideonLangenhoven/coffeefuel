@@ -1,128 +1,58 @@
 // src/Components/Footer.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+// Removed unused icons: Linkedin, Youtube, Instagram
+import { Facebook, Mail, Phone } from 'lucide-react';
+import './Footer.css';
 
-'use client';
-
-import React, { useState } from 'react';
-import {
-  ChevronDown,
-  ChevronRight,
-  Linkedin,
-  Youtube,
-  Facebook,
-  Mail,
-  Instagram,
-} from 'lucide-react';
-import Button from './Button';
-import Input from './Input';
-import Select from './Select';
-import './Footer.css'; // Import the CSS file
-
-const socialIcons = [
-  {icon: <Linkedin /> },
-  {icon: <Youtube /> },
-  { icon: <Facebook /> },
-  {icon: <Mail /> },
-  { icon: <Instagram /> },
-  // ... other icons with proper names
+// Updated social links
+const socialLinks = [
+  { name: 'Facebook', icon: <Facebook size={20} />, href: '#' }, // Example only
 ];
+const contactDetails = { email: 'info@solpower.co.za', phone: '021 123 4567' };
+const officeLocations = ['Cape Town', 'Johannesburg (Soon)'];
 
 const Footer = () => {
-  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
-
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="grid">
-          <div>
-            <h2 className="title">Connect with us</h2>
-            <p className="link">Franklin@terbigen.com</p>
-            <p className="link">UK +44 (0)20 7220 5410</p>
-          </div>
-
-          <div>
-            <h2 className="title">Find us</h2>
-            <div className="cityGrid">
-              {['Cape Town', 'New York', 'London', 'Sydney'].map((city) => (
-                <p key={city} className="link">
-                  {city}
-                </p>
-              ))}
-            </div>
-          </div>
+      <div className="container footer-grid">
+        {/* Connect */}
+        <div>
+          <h3 className="title">Connect with Us</h3>
+          {contactDetails.email && ( <a href={`mailto:${contactDetails.email}`} className="link footer-link"> <Mail size={16} /> {contactDetails.email} </a> )}
+          {contactDetails.phone && ( <a href={`tel:${contactDetails.phone.replace(/ /g,'')}`} className="link footer-link"> <Phone size={16} /> {contactDetails.phone} </a> )}
+        </div>
+        {/* Quick Links */}
+        <div>
+          <h3 className="title">Quick Links</h3>
+          <Link to="/" className="link footer-link">Home</Link>
+          <Link to="/residential" className="link footer-link">Residential</Link>
+          <Link to="/commercial" className="link footer-link">Commercial</Link>
+          <Link to="/how-it-works" className="link footer-link">How It Works</Link>
+          <Link to="/faqs" className="link footer-link">FAQs</Link>
+          <Link to="/about" className="link footer-link">About Us</Link>
+          <Link to="/contact" className="link footer-link">Contact Us</Link>
+        </div>
+        {/* Offices */}
+        <div>
+          <h3 className="title">Office Locations</h3>
+          {officeLocations.map((city) => ( <p key={city} className="footer-link" style={{cursor: 'default'}}>{city}</p> ))}
+        </div>
+        {/* Follow Us */}
+        <div>
+          <h3 className="title">Follow Us</h3>
+          {socialLinks.length > 0 ? ( <div className="socialIcons"> {socialLinks.map((social) => ( <a key={social.name} href={social.href} className="socialIcon" aria-label={social.name} target="_blank" rel="noopener noreferrer"> {social.icon} <span className="sr-only">{social.name}</span> </a> ))} </div> ) : ( <p className="footer-link" style={{cursor: 'default'}}>Coming Soon</p> )}
         </div>
       </div>
-
-      <div className="container">
-        <h2 className="title">Follow us</h2>
-        <div className="socialIcons">
-          {socialIcons.map((social) => (
-            <a key={social.name} href="#" className="socialIcon" aria-label={social.name}>
-              {social.icon}
-              <span className="sr-only">{social.name}</span>
-            </a>
-          ))}
+      {/* Bottom Bar */}
+      <div className="container footer-bottom">
+        <div className="legalLinks">
+          <Link to="/privacy-policy" className="link legal-link">Privacy Policy</Link>
+          <Link to="/terms-of-use" className="link legal-link">Terms of Use</Link>
         </div>
-      </div>
-
-      <div className="container">
-        <div
-          className="newsletterButton"
-          onClick={() => setIsNewsletterOpen(!isNewsletterOpen)}
-          role="button"
-          tabIndex={0}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              setIsNewsletterOpen(!isNewsletterOpen);
-            }
-          }}
-        >
-          <span>Sign up for our newsletter</span>
-          {isNewsletterOpen ? <ChevronDown /> : <ChevronRight />}
-        </div>
-
-        {isNewsletterOpen && (
-          <form className="newsletterForm">
-            <div className="inputGroup">
-              <Input type="text" placeholder="First name*" required />
-              <Input type="text" placeholder="Last name" />
-            </div>
-            <Input type="email" placeholder="name@example.com*" required />
-            <Select>
-              <option value="">What would you like to hear from us about?</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
-            <p className="legalText">
-              By submitting your details, you are consenting to our privacy policy
-            </p>
-            <Button type="submit" className="submitButton">
-              Submit <ChevronRight className="ml-2" />
-            </Button>
-          </form>
-        )}
-      </div>
-
-      <div className="container">
-        <p className="legalText">© Copyright 2024 Elixirr International Plc</p>
-        <p className="legalText">
-          Elixirr International plc is a company incorporated and registered in England and Wales with company number: 11723404 whose registered office is at 12 Helmet Row, London EC1V 3QJ
-        </p>
-      </div>
-
-      <div className="legalLinks">
-        <a href="#" className="link">
-          Privacy
-        </a>
-        <a href="#" className="link">
-          Terms of Use
-        </a>
-        <a href="#" className="link">
-          Cookie Policy
-        </a>
+        <p className="legalText copyright"> © {new Date().getFullYear()} SolPower (Pty) Ltd. All Rights Reserved. </p>
       </div>
     </footer>
   );
 };
-
 export default Footer;

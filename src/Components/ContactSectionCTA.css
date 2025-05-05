@@ -1,0 +1,37 @@
+/* src/Components/ContactSectionCTA.css */
+.contact-section-cta {
+  background-color: var(--solpower-black);
+  color: var(--solpower-white);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.contact-section-cta h2 {
+  color: var(white);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contact-section-cta p {
+  color: #e0e0e0; /* Light grey text */
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-section-cta .button { /* Style the reusable button */
+  background-color: var(--solpower-yellow);
+  color: var(--solpower-black);
+  font-size: 1rem;
+  padding: 10px 25px;
+}
+.contact-section-cta .button:hover {
+  background-color: #e6c300;
+}
+
+@media (max-width: 768px) {
+  .contact-section-cta h2 { font-size: 1.5rem; }
+  .contact-section-cta p { font-size: 0.95rem; }
+}

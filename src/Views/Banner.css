@@ -1,16 +1,20 @@
+/* src/Views/Banner.css */
 .banner {
-  background-color: #f5f5f5; /* Light gray background */
+  background-color: #e9ecef; /* Light background */
   text-align: center;
-  padding: 20px 0;
-  margin-bottom: 20px;
+  padding: 20px 15px;
+  border-bottom: 1px solid #dee2e6; /* Subtle separator */
 }
 
 .banner h1 {
-  font-size: 2.5rem;
-  color: #333; /* Dark text color */
+  font-size: 1.8rem; /* Adjust size */
+  color: #1e3a8a; /* Example SolPower dark blue */
+  margin: 0 0 5px 0;
+  font-weight: 700; /* Bold */
 }
 
 .banner p {
-  font-size: 1.2rem;
-  color: #666; /* Lighter text color */
+  font-size: 1rem;
+  color: #495057; /* Medium grey text */
+  margin: 0;
 }

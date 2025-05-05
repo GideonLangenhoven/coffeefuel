@@ -1,128 +1,145 @@
-/* src/components/TeamSection.css */
+/* src/Components/TeamSection.css */
+/* Optional section, update content if used */
 .team-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 48px 16px; /* Standard padding */
+  max-width: 1100px; /* Consistent width */
+  margin: 4rem auto; /* Top/bottom margin */
+  padding: 3rem 1rem; /* Padding */
+  background-color: #ffffff; /* White background */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .team-content {
   display: flex;
-  flex-direction: column; /* Default stack layout */
-  gap: 48px;
+  flex-direction: column; /* Stack by default */
+  gap: 3rem; /* Increase gap */
 }
 
 .team-info {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* Spacing within the info block */
+  gap: 1.5rem; /* Adjust gap */
+  text-align: center; /* Center align info text */
+}
+@media (min-width: 1024px) { /* Side-by-side on large screens */
+  .team-info {
+    text-align: left; /* Align left when side-by-side */
+  }
 }
 
 .team-info h2 {
-  font-size: 36px;
+  font-size: 2.2rem; /* Adjust size */
   font-weight: bold;
-  color: #333;
+  color: #1e3a8a; /* Example dark blue */
 }
 
 .team-info p {
-  font-size: 18px;
-  color: #666;
-  line-height: 1.6; /* Improved readability */
+  font-size: 1.05rem; /* Adjust size */
+  color: #4b5563; /* Softer text */
+  line-height: 1.7;
+  max-width: 600px; /* Limit width */
+  margin: 0 auto; /* Center paragraph block */
+}
+@media (min-width: 1024px) {
+  .team-info p {
+    margin: 0; /* Remove centering */
+  }
 }
 
-/* Specific button styling for this section */
 .meet-team-button {
-  display: inline-flex; /* Allows alignment and padding */
+  /* Reuse button styles or define specific */
+  display: inline-flex;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #4a0e4e; /* Theme color - Adjust if needed for coffeefuel */
+  justify-content: center;
+  padding: 0.7rem 1.5rem;
+  background-color: #007bff; /* Example color */
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 500;
+  border-radius: 20px; /* Rounded */
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-start; /* Prevent button stretching full width */
+  align-self: center; /* Center button */
+  text-decoration: none; /* If using Link/a */
+}
+@media (min-width: 1024px) {
+  .meet-team-button {
+    align-self: flex-start; /* Align left */
+  }
 }
 
 .meet-team-button:hover {
-  background-color: #3a0b3e; /* Darker shade on hover */
+  background-color: #0056b3; /* Darker hover */
 }
 
 .team-members {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns by default */
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 2rem; /* Adjust gap */
 }
 
 .team-member {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  /* Add some styling like border or background if desired */
-  /* background-color: #f9f9f9; */
-  /* padding: 16px; */
-  /* border-radius: 8px; */
+  gap: 1rem; /* Space within member card */
+  text-align: center; /* Center text */
+  background-color: #f8f9fa; /* Light background for card */
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
 }
 
-/* Placeholder for member image if added later */
+/* Optional member image */
 .member-image {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  /* max-height: 300px; */ /* Optional max height */
+  width: 120px; /* Example size */
+  height: 120px;
   object-fit: cover;
-  border-radius: 8px;
-  /* background-color: #eee; */ /* Placeholder background */
+  border-radius: 50%; /* Circular image */
+  margin: 0 auto 1rem; /* Center image */
+  background-color: #e0e0e0; /* Placeholder */
 }
 
 .member-info h3 {
-  font-size: 20px;
+  font-size: 1.2rem; /* Adjust size */
   font-weight: 600;
-  color: #333;
-  margin: 0; /* Remove default margin */
+  color: #343a40;
+  margin: 0;
 }
 
 .member-info p {
-  font-size: 14px;
-  color: #666;
-  text-transform: uppercase; /* Style for role */
-  margin: 4px 0 0 0; /* Adjust spacing */
+  font-size: 0.85rem; /* Smaller role text */
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0.25rem 0 0 0;
 }
 
 .view-link {
-  color: #4a0e4e; /* Match button color */
+  color: #007bff; /* Link color */
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
-  align-self: flex-start; /* Align link to start */
+  margin-top: 0.5rem; /* Space above link */
+  font-size: 0.9rem;
 }
-
 .view-link:hover {
-  color: #3a0b3e; /* Darker shade on hover */
+  color: #0056b3;
   text-decoration: underline;
 }
 
-/* Responsive adjustments for larger screens */
+/* Responsive layout */
 @media (min-width: 1024px) {
   .team-content {
-    flex-direction: row; /* Side-by-side layout */
+    flex-direction: row; /* Side-by-side */
+    align-items: flex-start; /* Align tops */
   }
-
-  .team-info,
+  .team-info {
+    flex: 1; /* Take proportional space */
+    max-width: 40%; /* Limit info width */
+  }
   .team-members {
-    width: 50%; /* Each takes half the width */
-  }
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 640px) {
-  .team-members {
-    grid-template-columns: 1fr; /* Single column layout */
-  }
-  .team-info h2 {
-    font-size: 30px; /* Adjust heading size */
-  }
-  .team-info p {
-      font-size: 16px; /* Adjust text size */
+    flex: 1;
+    max-width: 55%;
   }
 }

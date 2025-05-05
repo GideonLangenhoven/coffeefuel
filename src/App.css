@@ -1,3 +1,5 @@
+/* App.css */
+
 .App {
   text-align: center;
 }
@@ -36,3 +38,129 @@
     transform: rotate(360deg);
   }
 }
+
+/* --- Video Popup Styles START --- */
+
+/* Default CSS variable fallbacks - Define these properly in :root below or elsewhere */
+:root {
+  --solpower-black-fallback: #1a1a1a;
+  --solpower-white-fallback: #ffffff;
+  --solpower-yellow-fallback: #ffdd00;
+  /* Define the actual variables here or in index.css */
+  /* Example: */
+  --solpower-black: #000000;
+  --solpower-white: #ffffff;
+  --solpower-yellow: #ffd700;
+}
+
+.video-popup-overlay {
+  /* Positioning & Appearance */
+  position: fixed;
+  inset: 0; /* Short for top: 0; right: 0; bottom: 0; left: 0; */
+  background-color: rgba(0, 0, 0, 0.85); /* Use user's opacity */
+  z-index: 10000; /* Use user's z-index */
+
+  /* Centering Content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Add some padding for smaller screens */
+
+  /* Animation - Runs when the element is added to the DOM */
+  opacity: 1; /* Start visible, animation handles fade-in */
+  animation: fadeInOverlay 0.3s ease-out forwards;
+}
+
+.video-popup-content {
+  /* Sizing & Appearance */
+  position: relative; /* Needed for absolute positioning of children */
+  width: 100%; /* Take full width of padded overlay */
+  max-width: 900px; /* Adjust max width as needed */
+  aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+  background-color: var(--solpower-black, var(--solpower-black-fallback)); /* Use variable or fallback */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* Prevents content spill */
+
+  /* Animation - Runs when the element is added to the DOM */
+  opacity: 1; /* Start visible */
+  transform: scale(1); /* Start at full size */
+  animation: scaleInContent 0.35s 0.05s ease-out forwards; /* Slight delay */
+}
+
+/* Container strictly for holding the iframe and maintaining aspect ratio */
+.video-iframe-container {
+  position: absolute;
+  inset: 0; /* Fill the content box */
+  width: 100%;
+  height: 100%;
+}
+
+.video-popup-iframe {
+  /* Make iframe fill its container */
+  display: block; /* Remove potential extra space below iframe */
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove default iframe border */
+}
+
+.video-popup-close {
+  /* Positioning */
+  position: absolute;
+  top: -15px; /* User's position */
+  right: -10px; /* User's position */
+  z-index: 10; /* User's z-index (relative to content) */
+
+  /* Appearance */
+  background: none; /* User's style */
+  border: none; /* User's style */
+  color: var(--solpower-white, var(--solpower-white-fallback)); /* User's style */
+  font-size: 2.5rem; /* User's size */
+  line-height: 1; /* User's style */
+  padding: 8px; /* User's padding */
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* User's shadow */
+
+  /* Interaction */
+  transition: color 0.2s ease, transform 0.2s ease; /* User's transition */
+}
+
+.video-popup-close:hover {
+  color: var(--solpower-yellow, var(--solpower-yellow-fallback)); /* User's hover color */
+  transform: scale(1.15); /* User's hover effect */
+}
+
+/* Keyframe Animations */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleInContent {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Basic Responsive Adjustments */
+@media (max-width: 600px) {
+  .video-popup-content {
+    max-width: 95%; /* Allow content to be wider on small screens */
+  }
+
+  .video-popup-close {
+    font-size: 2rem;
+    top: -10px;
+    right: -5px;
+  }
+}
+
+/* --- Video Popup Styles END --- */

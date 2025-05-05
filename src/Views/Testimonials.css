@@ -1,0 +1,66 @@
+/* src/Views/PageStyles.css */
+/* General styles for simple content pages */
+
+.page-wrapper {
+  min-height: calc(100vh - 85px - 150px); /* Adjust footer height estimate */
+  display: flex; flex-direction: column;
+  background-color: var(--solpower-white); /* Default white */
+}
+
+/* Reuse container from index.css */
+/* .page-container { ... } */
+
+.page-title {
+  font-size: 2.5rem; color: var(--solpower-black); margin-bottom: 2.5rem;
+  text-align: center; font-weight: 700;
+}
+
+/* Section Navigation Buttons */
+.section-nav {
+  display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--solpower-border-light); padding-bottom: 1.5rem;
+}
+.section-nav button {
+  padding: 0.65rem 1.3rem; background-color: var(--solpower-white);
+  border: 1px solid var(--solpower-border-medium); border-radius: 20px; cursor: pointer;
+  font-size: 0.95rem; font-weight: 500; color: var(--solpower-text-medium);
+  transition: all 0.2s ease;
+}
+.section-nav button:hover {
+  background-color: var(--solpower-yellow-light); border-color: var(--solpower-yellow);
+  color: var(--solpower-black); transform: translateY(-1px);
+}
+
+/* Content Sections */
+.content-section {
+  /* Padding handled by alternating background sections usually */
+  margin-bottom: 0; /* Remove bottom margin if backgrounds touch */
+}
+/* Apply background classes directly in JS */
+
+.content-section h2 {
+  color: var(--solpower-black); margin-bottom: 1.5rem; font-size: 1.8rem;
+  font-weight: 600; text-align: left; /* Align left */
+}
+.content-section p {
+  color: var(--solpower-text-medium); line-height: 1.7; font-size: 1.05rem;
+  max-width: none; /* Allow full width */ margin-left: 0;
+}
+
+/* Testimonial Item Style (can live here or in Testimonials.css) */
+.testimonial-item {
+  margin-bottom: 2rem; padding: 1.5rem; background-color: var(--solpower-white);
+  border-left: 4px solid var(--solpower-yellow); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-radius: 0 4px 4px 0;
+}
+.testimonial-item p { font-style: italic; color: var(--solpower-text-dark); margin-bottom: 1rem; line-height: 1.7; }
+.testimonial-item footer { text-align: right; font-weight: 600; color: var(--solpower-text-light); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  /* ... .page-container, .page-title adjustments ... */
+  .section-nav button { font-size: 0.9rem; padding: 0.6rem 1.1rem; }
+  .content-section h2 { font-size: 1.5rem; }
+  .content-section p { font-size: 1rem; }
+  .testimonial-item { padding: 1rem; }
+}

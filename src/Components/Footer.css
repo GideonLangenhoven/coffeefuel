@@ -1,41 +1,63 @@
-/* src/components/Footer.css */
+/* src/Components/Footer.css - Add SolPower Colors */
 .footer {
-  background-color: black;
-  color: white;
-  padding: 2rem;
+  background-color: var(--solpower-black); /* Use black from logo */
+  color: var(--solpower-white);
+  padding: 3rem 1.5rem 1.5rem; /* Adjust padding */
+  font-size: 0.95rem;
 }
 
-.container {
-  max-width: 72rem;
+.footer .container {
+  max-width: 1200px; /* Match general container width */
   margin: 0 auto;
+  width: 90%;
 }
 
-.grid {
+.footer-grid { /* Renamed from .grid for specificity */
   display: grid;
-  gap: 2rem;
+  gap: 2.5rem; /* Adjust gap */
+  margin-bottom: 2.5rem; /* Space before bottom section */
 }
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+}
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns maybe? Connect, Offices, Follow, Links */
+     gap: 3rem;
   }
 }
 
-.title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.footer .title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--solpower-yellow); /* Yellow titles */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.link {
-  cursor: pointer;
+.footer-link { /* Specific class for footer links */
+  color: #ccc; /* Lighter grey for links */
+  display: block; /* Ensure links are block level */
+  margin-bottom: 0.6rem;
+  transition: color 0.2s;
+  cursor: pointer; /* If using <p> tags, add cursor */
+  display: flex; /* Align icon and text */
+  align-items: center;
+}
+.footer-link:hover {
+  color: var(--solpower-white);
+  text-decoration: none;
+}
+.footer-link svg { /* Style icons */
+   margin-right: 8px;
+   opacity: 0.8;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
-.cityGrid {
+.cityGrid { /* Offices grid */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
@@ -44,63 +66,66 @@
 .socialIcons {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1.5rem; /* Space below icons */
 }
 
 .socialIcon {
-  transition: color 0.3s;
+  color: #ccc; /* Icon color */
+  transition: color 0.3s, transform 0.2s;
 }
-
 .socialIcon:hover {
-  color: #f97316;
+  color: var(--solpower-yellow); /* Yellow hover */
+  transform: scale(1.1);
 }
 
-.newsletterButton {
-  background-color: #f97316;
-  color: white;
-  padding: 1rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Remove Newsletter styles if not used */
+.newsletter-section { margin-top: 1.5rem; }
+.newsletterButton { /* ... styles ... */ }
+.newsletterForm { /* ... styles ... */ }
 
-.newsletterForm {
-  margin-top: 1rem;
+/* Footer Bottom: Copyright & Legal */
+.footer-bottom {
+  border-top: 1px solid #444; /* Separator line */
+  padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.inputGroup {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.submitButton {
-  background-color: #f97316;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #aaa; /* Lighter legal text */
 }
-
-.submitButton:hover {
-  background-color: #ea580c;
-}
-
-.legalText {
-  font-size: 0.875rem;
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
 }
 
 .legalLinks {
   display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  gap: 1.5rem; /* More space */
+  margin-bottom: 0.8rem;
+}
+@media (min-width: 768px) {
+   .legalLinks {
+     margin-bottom: 0;
+     order: 2; /* Move links to the right on desktop */
+   }
+}
+
+.legal-link { /* Specific class for legal links */
+  color: #aaa;
+}
+.legal-link:hover {
+  color: var(--solpower-white);
+}
+
+.copyright {
+  max-width: 500px; /* Limit width */
+}
+@media (min-width: 768px) {
+  .copyright {
+    order: 1; /* Keep copyright on the left */
+  }
 }

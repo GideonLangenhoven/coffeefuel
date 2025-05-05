@@ -1,221 +1,55 @@
 /* src/Views/AboutUs.css */
+/* Hero Section */
+.aboutus-hero {
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/about-hero.jpg'); */ /* Temporarily Commented Out - USER ACTION: Add image */
+  background-color: var(--solpower-black); /* Fallback background */
+  background-size: cover; background-position: center; color: var(--solpower-white);
+  padding: 80px 20px 60px; /* Reduced padding */ text-align: center;
+}
+.hero-content h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 0; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-/* Basic Reset */
-/* Moved reset to index.css or App.css ideally */
-/* body, h1, h2, p, button, section {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-.aboutus-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* Inner container for padding within colored sections */
+.page-container-inner {
+  max-width: 1200px; width: 90%; margin: 0 auto;
 }
 
-.aboutus-container {
-  flex: 1; /* Allows footer to stick to bottom */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px; /* Add horizontal padding */
+/* General Section Styling */
+#our-commitment, #the-team, #why-solpower, #take-action {
+    padding: 4rem 1.5rem; /* Apply standard padding */
 }
-
-/* --- Hero Section --- */
-.aboutus-hero { /* Renamed from generic .hero-section */
-  background-image: url('../assets/images/default-hero.jpg'); /* TODO: Replace with relevant coffeefuel image */
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 120px 20px 80px; /* Adjust padding */
-  text-align: center;
-  position: relative;
-  margin-bottom: 40px; /* Space before nav */
+#our-commitment h2, #the-team h2, #why-solpower h2, #take-action h2 {
+    font-size: 2rem; font-weight: 700; color: var(--solpower-black); margin-bottom: 1.5rem; text-align: center;
 }
+/* Override for dark background section */
+.bg-black h2 { color: var(--solpower-yellow); }
 
-.aboutus-hero::after { /* Dark overlay for text readability */
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  z-index: 0; /* Behind content */
-}
+/* Specific Section Styles */
+.team-profiles .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.profile-container { background-color: var(--solpower-white); padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.07); text-align: center; }
+.profile-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1rem; object-fit: cover; background-color: var(--solpower-border-light); }
+.profile-details h3 { font-size: 1.3rem; color: var(--solpower-black); margin-bottom: 0.25rem; }
+.profile-details h4 { font-size: 0.95rem; color: var(--solpower-text-light); font-weight: 600; margin-bottom: 0.8rem; }
+.profile-details p { font-size: 0.95rem; color: var(--solpower-text-medium); text-align: left; }
 
-.hero-content {
-  position: relative;
-  z-index: 1; /* Above overlay */
-}
+.why-us-section {}
+.why-us-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; text-align: center; }
+.why-us-point .icon { font-size: 2.5rem; color: var(--solpower-yellow); margin-bottom: 1rem; }
+.why-us-point h4 { font-size: 1.2rem; font-weight: 600; color: var(--solpower-text-dark); margin-bottom: 0.5rem; }
+.why-us-point p { font-size: 0.95rem; color: var(--solpower-text-medium); }
 
-.hero-content h1 {
-  font-size: 2.8rem; /* Adjusted size */
-  margin-bottom: 20px;
-  animation: fadeInDown 1s ease forwards; /* Ensure animation stays */
-  font-weight: 700; /* Bolder */
-}
+.action-section blockquote { margin: 1.5rem auto; padding: 1rem 1.5rem; border-left: 4px solid var(--solpower-yellow); background-color: var(--solpower-white); /* White quote bg */ font-style: italic; color: var(--solpower-text-light); max-width: 700px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.action-section blockquote cite { display: block; margin-top: 0.5rem; font-style: normal; font-weight: 600; font-size: 0.9rem; }
 
-.hero-content p {
-  font-size: 1.3rem; /* Adjusted size */
-  margin-bottom: 30px;
-  max-width: 700px; /* Limit width */
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInUp 1s 0.3s ease forwards; /* Delay animation */
-  line-height: 1.6;
-}
+.cta-section-about { text-align: center; padding: 4rem 1.5rem; background-color: var(--solpower-black); color: var(--solpower-white); }
+.cta-section-about h2 { color: var(--solpower-yellow); font-size: 1.8rem; margin-bottom: 1rem; }
+.cta-section-about p { color: #eee; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-final-button { /* Style the specific button */ background-color: var(--solpower-yellow) !important; color: var(--solpower-black) !important; font-size: 1.1rem !important; padding: 12px 30px !important; border-radius: 50px !important; }
+.cta-final-button:hover { background-color: #e6c300 !important; transform: translateY(-2px); }
 
-/* Shared CTA Button Style (consider moving to a global button style) */
-.cta-button {
-  background-color: #00E676; /* Theme color */
-  padding: 12px 28px; /* Adjusted padding */
-  color: #000; /* Black text for contrast */
-  border: none;
-  border-radius: 50px; /* Fully rounded */
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase; /* Style adjustment */
-  letter-spacing: 0.5px;
-}
-
-.cta-button:hover {
-  background-color: #00c464; /* Slightly darker green */
-  transform: translateY(-3px); /* Reduced lift */
-  box-shadow: 0 6px 12px rgba(0, 230, 118, 0.25); /* Adjusted shadow */
-}
-
-/* --- Navigation Buttons --- */
-.aboutus-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  margin: 0 0 50px 0; /* Adjusted margin */
-  padding: 10px 0;
-  background-color: #f8f9fa; /* Light background for nav area */
-  border-radius: 8px;
-}
-
-.aboutus-nav button {
-  background-color: #fff;
-  color: #007BFF; /* Blue color for nav buttons */
-  border: 1px solid #dee2e6; /* Lighter border */
-  padding: 10px 20px;
-  margin: 8px; /* Consistent margin */
-  font-size: 0.95rem;
-  cursor: pointer;
-  border-radius: 20px; /* Rounded corners */
-  transition: all 0.3s ease;
-  font-weight: 600; /* Medium weight */
-}
-
-.aboutus-nav button:hover {
-  background-color: #e9ecef; /* Light grey hover */
-  color: #0056b3; /* Darker blue */
-  border-color: #ced4da;
-  /* transform: translateY(-2px); Remove lift */
-  /* box-shadow: none; Remove shadow */
-}
-
-/* --- Content Sections --- */
-.content-section {
-  padding: 50px 0; /* Vertical padding only, horizontal from container */
-  position: relative;
-  /* border-bottom: 1px solid #eee; */ /* Optional separator lines */
-  margin-bottom: 30px;
-}
-
-.content-section h2 {
-  font-size: 2.2rem; /* Adjusted size */
-  margin-bottom: 35px; /* Increased space after heading */
-  color: #343a40; /* Darker grey */
-  font-weight: 700;
-  position: relative;
-  text-align: left; /* Align headings left */
-}
-
-.content-section h2::after { /* Underline accent */
-  content: '';
-  width: 70px;
-  height: 4px;
-  background-color: #007BFF; /* Match nav button color */
-  position: absolute;
-  bottom: -12px; /* Position below baseline */
-  left: 0; /* Align left */
-}
-
-.content-section p {
-  font-size: 1.1rem; /* Slightly larger text */
-  color: #495057; /* Softer text color */
-  line-height: 1.7; /* Increased line height */
-  margin-bottom: 20px;
-  animation: fadeIn 1s ease forwards; /* Ensure animation stays */
-}
-
-/* --- CTA Section at the end --- */
-.cta-section {
-  background-color: #e9ecef; /* Lighter background */
-  padding: 60px 20px; /* Adjusted padding */
-  text-align: center;
-  margin-top: 40px; /* Space before CTA */
-  border-radius: 8px;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #007BFF; /* Theme color */
-  font-weight: 700;
-}
-
-.cta-section p {
-  font-size: 1.1rem;
-  color: #495057;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Use shared .cta-button style */
-.cta-section .cta-button {
-  background-color: #007BFF; /* Blue background */
-  color: #fff; /* White text */
-}
-
-.cta-section .cta-button:hover {
-  background-color: #0056b3; /* Darker blue */
-  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2); /* Blue shadow */
-}
-
-/* --- Animations (already defined, ensure they run once) --- */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* --- Responsive Design --- */
 @media (max-width: 768px) {
-  .hero-content h1 { font-size: 2.2rem; }
-  .hero-content p { font-size: 1.1rem; }
-  .content-section h2 { font-size: 1.8rem; text-align: center; } /* Center headings on mobile */
-  .content-section h2::after { left: 50%; transform: translateX(-50%); } /* Center underline */
-  .content-section p { font-size: 1rem; }
-  .cta-section h2 { font-size: 1.8rem; }
-  .cta-section p { font-size: 1rem; }
-  .aboutus-nav { padding: 5px 0; }
-  .aboutus-nav button { font-size: 0.9rem; padding: 8px 15px; margin: 5px; }
-  .aboutus-hero { padding: 80px 20px 60px; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .why-us-points { grid-template-columns: 1fr; }
+    .aboutus-hero h1 { font-size: 2.2rem; }
+    .aboutus-hero p { font-size: 1.1rem; }
 }

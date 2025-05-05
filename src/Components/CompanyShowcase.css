@@ -1,56 +1,59 @@
-/* Reset and Base Styles */
-*,
+/* src/Components/CompanyShowcase.css 
+ Reset and Base Styles 
+,
 *::after,
 *::before {
   box-sizing: border-box;
 }
 
-body {
+/* body { // Remove body styles if handled globally
   margin: 0;
   padding: 0;
-}
+} 
 
-/* Component Visibility */
+/* Component Visibility - Assumes JS adds/removes 'visible'/'hidden' */
 .company-showcase-bg.hidden {
   opacity: 0;
+  visibility: hidden;
 }
 
 .company-showcase-bg.visible {
   opacity: 1;
+  visibility: visible;
   transition: opacity 1.5s ease-in;
 }
 
-/* Updated background styling with smaller centered gradient */
+/* Background styling */
 .company-showcase-bg {
-  background: radial-gradient(circle at center, #74a9b5 0%, #ffffff 50%);
-  min-height: 100vh;
-  padding: 3rem;
+  /* TODO: Update background for SolPower theme */
+  background: radial-gradient(circle at center, #e0f2fe 0%, #ffffff 70%); /* Example light blue gradient */
+  min-height: 80vh; /* Adjust height as needed */
+  padding: 4rem 1.5rem; /* Adjust padding */
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-position 0.1s ease-in-out;
 }
 
 .company-showcase-container {
-  max-width: 93.6rem;
+  max-width: 1100px; /* Consistent max width */
   width: 100%;
   margin: 0 auto;
-  padding-top: 70px;
+  /* padding-top: 70px; /* Remove if padding handled by section */
 }
 
 /* Logo Grid Styling */
 .company-showcase-logo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 1.3rem;
-  margin-top: 50px;
-  margin-bottom: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax */
+  gap: 1.5rem; /* Adjust gap */
+  margin-top: 30px;
+  margin-bottom: 4rem;
   justify-items: center;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
+  transition: opacity 1s ease-in 0.5s, transform 1s ease-in 0.5s; /* Add delay */
 }
 
 .company-showcase-logo-grid.animate-logos {
@@ -61,41 +64,40 @@ body {
 .company-showcase-logo-item {
   margin-top: 1rem;
   background-color: white;
-  height: 5.2rem;
-  width: 5.2rem;
+  height: 6rem; /* Adjust size */
+  width: 6rem; /* Adjust size */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.65rem;
-  box-shadow: 0 2.6px 5.2px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem; /* Adjust radius */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Softer shadow */
   overflow: hidden;
+  padding: 0.5rem; /* Padding inside */
 }
 
 .company-showcase-logo-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* Ensure logo fits */
 }
 
-/* Content Section Styling */
+/* Content Section Styling (Text + Image) */
 .company-showcase-content {
   display: flex;
   align-items: center;
   gap: 3rem;
-  flex-direction: row;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-direction: row; /* Default layout */
+  justify-content: space-between; /* Space between */
 }
 
 /* Text Content Styling */
 .company-showcase-text {
-  flex: 2;
+  flex: 1; /* Adjust flex basis */
+  max-width: 55%; /* Adjust max width */
   text-align: left;
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
-  max-width: 600px;
+  transform: translateX(-40px); /* Adjust animation */
+  transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s; /* Adjust timing */
 }
 
 .company-showcase-text.animate-text {
@@ -105,82 +107,60 @@ body {
 
 /* Title Styling */
 .company-showcase-title {
-  font-size: 3.25rem;
+  font-size: 2.5rem; /* Adjust size */
   font-weight: bold;
-  margin-bottom: 1.3rem;
-  color: #0a0a0a;
-  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #1e3a8a; /* Example SolPower dark blue */
+  line-height: 1.3;
 }
 
-/* Empowering Word Hover Animation */
+/* Empowering Word (optional) */
 .empowering-word {
   display: inline-block;
   position: relative;
-  cursor: pointer;
-  overflow: hidden;
+  cursor: default; /* Or pointer if interactive */
+  /* color: #059669; Example highlight */
 }
-
-.empowering-word::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: hsl(280, 80%, 50%);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease-out;
-}
-
-.empowering-word:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+/* Remove hover effect if not needed */
+/* .empowering-word::after { ... } */
+/* .empowering-word:hover::after { ... } */
 
 /* Paragraph Styling */
 .company-showcase-description {
-  margin-bottom: 1.95rem;
-  line-height: 1.6;
-  color: #555;
+  margin-bottom: 1.5rem; /* Adjust spacing */
+  line-height: 1.7;
+  color: #4b5563; /* Softer text color */
+  font-size: 1.05rem;
 }
 
 /* Button Styling */
 .company-showcase-button {
-  background-color: #44337a;
-  color: white;
-  padding: 0.975rem 1.95rem;
-  border: none;
-  border-radius: 9999px;
-  transition: background-color 0.3s, transform 0.2s;
-  cursor: pointer;
-  font-size: 1.3rem;
+  /* Use styles from Button.js or define specific ones */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px; /* Rounded */
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+  background-color: #007bff; /* Example color */
+  color: white;
 }
-
 .company-showcase-button:hover {
-  background-color: #553c9a;
+  background-color: #0056b3;
   transform: translateY(-2px);
 }
 
-.company-showcase-button:active {
-  transform: translateY(0);
-}
-
-.company-showcase-button:focus {
-  outline: 2px solid #ffd700;
-  outline-offset: 2px;
-}
-
-/* Media Section Styling */
+/* Media Section Styling (Image/Video) */
 .company-showcase-media {
   flex: 1;
+  max-width: 40%; /* Adjust width */
   position: relative;
   opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
+  transform: translateX(40px); /* Adjust animation */
+  transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s; /* Adjust timing */
 }
 
 .company-showcase-media.animate-image {
@@ -190,100 +170,44 @@ body {
 
 /* Image Styling */
 .company-showcase-image {
-  width: 32.76vw;
-  height: 32.76vh;
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover;
-  border-radius: 0.65rem;
-  box-shadow: 0 5.2px 7.8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* Adjust radius */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Adjust shadow */
+  cursor: pointer; /* If clickable */
+  transition: transform 0.3s ease;
 }
-
 .company-showcase-image:hover {
-  transform: scale(1.05);
-  cursor: pointer;
+  transform: scale(1.03);
 }
 
-/* Video Overlay Styling */
-.company-showcase-video-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.company-showcase-video-container {
-  position: relative;
-  width: 90%;
-  max-width: 1040px;
-  aspect-ratio: 16 / 9;
-}
-
-.company-showcase-video {
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 0.65rem;
-}
-
-/* Close Button Styling */
-.company-showcase-close-button {
-  position: absolute;
-  top: -2.6rem;
-  right: -2.6rem;
-  background: #44337a;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 2.6rem;
-  height: 2.6rem;
-  cursor: pointer;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.company-showcase-close-button:hover {
-  background-color: #553c9a;
-  transform: scale(1.1);
-}
-
-.company-showcase-close-button:focus {
-  outline: 2px solid #ffd700;
-  outline-offset: 2px;
-}
-
-/* Responsive Styling for Tablets and Phones */
-@media (max-width: 1024px) {
+/* Responsive Styling */
+@media (max-width: 992px) {
   .company-showcase-content {
-    padding: 0 2rem;
-  }
-  
-  .company-showcase-image {
-    width: 40vw;
-    height: 40vh;
-  }
-}
-
-@media (max-width: 768px) {
-  .company-showcase-content {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 1rem;
-  }
-
-  .company-showcase-text {
+    flex-direction: column; /* Stack vertically */
     text-align: center;
   }
-
-  .company-showcase-image {
-    width: 80vw;
-    height: auto;
+  .company-showcase-text,
+  .company-showcase-media {
+    max-width: 90%; /* Allow more width */
+    text-align: center;
+    transform: translateX(0); /* Reset animation base */
   }
-}
+  .company-showcase-media {
+     margin-top: 2rem;
+  }
+  .company-showcase-title {
+     font-size: 2rem;
+  }
+   .company-showcase-description {
+     font-size: 1rem;
+   }
+   .company-showcase-logo-grid {
+     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+   }
+    .company-showcase-logo-item {
+      height: 5rem;
+      width: 5rem;
+    }
+}*/

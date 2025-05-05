@@ -1,0 +1,330 @@
+/*
+* src/Views/Residential.css
+* Styles for the Residential page, aligned with Homepage.css patterns.
+* Assumes Homepage.css provides base variables, button styles, animations, etc.
+* Last Updated: 2025-04-30 (Using current date as requested)
+*/
+
+/* --- Base Page Structure --- */
+.residential-page {
+  /* Add any overall page-specific styles if needed, otherwise can be empty */
+  /* background-color: var(--solpower-white); /* Base background if needed */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- Reusable Container & Section Defaults --- */
+/* Using .page-container-inner from Homepage.css for max-width, margin, base padding */
+.residential-intro-section .page-container-inner,
+.residential-problem-section .page-container-inner,
+.residential-benefits-section .page-container-inner,
+.residential-process-section .page-container-inner {
+   padding-top: var(--spacing-xl);
+   padding-bottom: var(--spacing-xl);
+   /* Default alignment for content within sections */
+   text-align: center;
+}
+/* CTA section relies on Homepage.css styles for .contact-section-cta */
+
+/* --- Section Backgrounds --- */
+.residential-intro-section { background-color: var(--solpower-yellow-light); }
+.residential-problem-section { background-color: var(--solpower-grey); }
+.residential-benefits-section { background-color: var(--solpower-white); }
+.residential-process-section { background-color: var(--solpower-grey); }
+/* Final CTA uses .contact-section-cta which likely has its own bg color from Homepage.css */
+
+
+/* --- Animated Headings --- */
+.residential-page-title, /* For H1 */
+.residential-section-heading { /* For H2s */
+  color: var(--solpower-black);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.4;
+  position: relative;
+  /* Ensure it fits content width for correct underline */
+  display: inline-block;
+  padding-bottom: var(--underline-padding-bottom); /* Space for underline */
+  letter-spacing: -0.02em;
+  /* Centered via parent's text-align: center */
+}
+
+/* Underline Span (structural element in JS) */
+.residential-page-title .underline-span,
+.residential-section-heading .underline-span {
+  position: relative;
+  display: inline;
+}
+
+/* Underline Animation Pseudo-element */
+.residential-page-title::after,
+.residential-section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Matches width of inline-block heading */
+  height: var(--underline-height);
+  background-color: var(--underline-color); /* Solpower Yellow */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+  transition-delay: 0s; /* Base delay */
+}
+
+/* Underline Animation Trigger */
+.residential-page-title.heading-visible::after,
+.residential-section-heading.heading-visible::after {
+  transform: scaleX(1);
+  transition-delay: var(--underline-animation-delay); /* Delay from Homepage vars */
+}
+
+/* Specific Heading Font Sizes */
+.residential-page-title { font-size: 2.6rem; }
+.residential-section-heading { font-size: 2.2rem; }
+
+
+/* --- Paragraph and General Text Styling --- */
+/* Base style for most paragraphs */
+.residential-page .page-container-inner p {
+  color: var(--solpower-text-medium);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 750px; /* Constrain width for readability */
+  margin-left: auto; /* Center by default */
+  margin-right: auto;
+  margin-bottom: var(--spacing-md);
+  font-family: 'Encode Sans', sans-serif;
+  font-weight: var(--font-weight-regular);
+  /* Default alignment will be center due to parent, override where needed */
+}
+
+/* Subtitle in intro */
+.residential-page-subtitle {
+    margin-bottom: var(--spacing-lg); /* Extra space below subtitle */
+    /* Inherits centering and other styles */
+}
+
+/* Paragraphs in sections that should be left-aligned */
+.residential-problem-section .page-container-inner p,
+.residential-process-section .page-container-inner .step-content-wrapper p {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none; /* Allow full width */
+}
+
+/* Strong tag styling */
+.residential-page strong {
+    font-weight: var(--font-weight-semibold); /* Or bold */
+    color: var(--solpower-text-dark); /* Slightly darker */
+}
+
+
+/* --- Intro Section Specifics --- */
+.residential-hero-image { /* Optional hero image */
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Button spacing in intro */
+.residential-intro-section .page-container-inner > div:has(> a > .button-component) {
+    margin-top: var(--spacing-sm);
+}
+
+
+/* --- Benefits Section --- */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  /* Items within grid will be centered due to parent text-align */
+}
+
+.benefit-card {
+  background-color: var(--solpower-white);
+  border-radius: var(--button-border-radius);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--solpower-grey-light); /* Subtle border */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  text-align: center; /* Center content inside card */
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(var(--solpower-yellow-rgb), 0.2); /* Yellow glow */
+  border-color: var(--solpower-yellow); /* Highlight border */
+}
+
+.benefit-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(var(--solpower-yellow-rgb), 0.15); /* Light yellow bg */
+  border-radius: 50%;
+  margin-bottom: var(--spacing-md);
+}
+
+.benefit-icon-wrapper .material-icons-outlined {
+  font-size: 32px;
+  color: var(--solpower-yellow); /* Icon color matches bg tone */
+}
+
+.benefit-card h3 {
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--solpower-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: var(--solpower-text-medium);
+  line-height: 1.6;
+  margin-bottom: 0; /* No margin below last element */
+  max-width: 90%; /* Constrain width within card */
+  margin-left: auto; /* Center paragraph text block */
+  margin-right: auto;
+  text-align: center; /* Ensure text itself is centered */
+}
+
+
+/* --- Process Section --- */
+.process-steps-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 850px; /* Max width of the list */
+  margin: var(--spacing-lg) auto 0; /* Center the list */
+}
+
+.process-step-item {
+  display: flex;
+  align-items: flex-start; /* Align icon/number with top of text */
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  padding-left: 65px; /* Space for the number circle */
+  border-bottom: 1px dashed var(--solpower-grey-light); /* Separator line */
+  text-align: left; /* Align content within li to the left */
+}
+
+.process-step-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.step-number-visual {
+  position: absolute;
+  left: 0;
+  top: 0;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background-color: var(--solpower-yellow); /* Theme color */
+  color: var(--solpower-black);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.4rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.step-content-wrapper {
+  flex-grow: 1;
+}
+
+.step-content-wrapper strong {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--solpower-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Paragraphs within process steps are handled by the general rule + override */
+
+
+/* --- Final CTA Section --- */
+/* No specific styles needed here. */
+/* Relies on `.contact-section-cta` and `.cta-content-white` from Homepage.css */
+/* Ensure the button uses `.btn-solpower-primary` (handled in JS) */
+
+
+/* --- Responsive Adjustments --- */
+/* Using breakpoints consistent with Homepage.css */
+
+@media (max-width: 992px) {
+  .residential-page-title { font-size: 2.3rem; }
+  .residential-section-heading { font-size: 2rem; }
+  .residential-page .page-container-inner p { font-size: 1.05rem; } /* Slightly smaller text */
+
+  .benefits-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md); /* Slightly reduce gap */
+   }
+}
+
+@media (max-width: 768px) {
+  .residential-page-title { font-size: 2rem; }
+  .residential-section-heading { font-size: 1.8rem; }
+  .residential-page .page-container-inner p { font-size: 1rem; }
+
+  /* Stack benefits */
+  .benefits-grid {
+      grid-template-columns: 1fr;
+   }
+  .benefit-card {
+      /* Content already centered */
+  }
+
+  /* Stack process steps */
+  .process-step-item {
+      padding-left: 0; /* Remove side padding */
+      flex-direction: column; /* Stack number/content */
+      align-items: center; /* Center items horizontally */
+      text-align: center; /* Center text below number */
+  }
+  .step-number-visual {
+     position: static; /* Reset absolute positioning */
+     margin-bottom: var(--spacing-md); /* Space below number */
+  }
+  /* Ensure content wrapper and text are centered */
+  .step-content-wrapper {
+      text-align: center;
+      width: 90%; /* Prevent text going full width */
+  }
+  .step-content-wrapper strong {
+      text-align: center;
+  }
+   .step-content-wrapper p {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: none; /* Allow text block centering */
+   }
+}
+
+@media (max-width: 480px) {
+  .residential-page-title { font-size: 1.8rem; }
+  .residential-section-heading { font-size: 1.6rem; }
+  .residential-page .page-container-inner p { font-size: 0.95rem; } /* Smaller text */
+
+  .benefit-icon-wrapper { width: 50px; height: 50px; }
+  .benefit-icon-wrapper .material-icons-outlined { font-size: 28px; }
+  .benefit-card h3 { font-size: 1.15rem; }
+  .benefit-card p { font-size: 0.9rem; max-width: 95%; }
+
+  .step-number-visual { width: 40px; height: 40px; line-height: 40px; font-size: 1.2rem; }
+  .step-content-wrapper strong { font-size: 1.1rem; }
+}
+
+/* Ensure Animation classes from Homepage.css are available */
+/* e.g., .fade-in-up, .fade-in-up.visible */
