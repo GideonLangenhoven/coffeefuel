@@ -1,221 +1,268 @@
-/* src/Views/AboutUs.css */
+/*
+* src/Views/AboutUs.css
+* Styles for the About Us page, aligned with SolPower theme.
+* Last Updated: 2025-05-10
+*/
 
-/* Basic Reset */
-/* Moved reset to index.css or App.css ideally */
-/* body, h1, h2, p, button, section {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+/* Assuming :root variables from a global CSS (like Homepage.css or App.css) are available. */
+:root { /* Fallback/Example variables if not globally defined */
+  --solpower-yellow: #ffc107;
+  --solpower-yellow-rgb: 255, 193, 7;
+  --solpower-yellow-light: #fffbeb;
+  --solpower-black: #212529; /* Using this for hero background */
+  --solpower-black-rgb: 33, 37, 41;
+  --solpower-white: #ffffff;
+  --solpower-grey: #f8f9fa;
+  --solpower-text-dark: #343a40;
+  --solpower-text-medium: #555c63;
+  --underline-color: var(--solpower-yellow);
+  --underline-height: 4px;
+  --underline-padding-bottom: 10px;
+  --underline-transition-duration: 0.6s;
+  --underline-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --underline-animation-delay: 0.5s;
+  --button-border-radius: 8px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 5rem; /* Standard large section padding */
+  --page-max-width-default: 1200px;
+  --page-max-width-large: 1400px;
+}
 
+/* --- Base Page Structure --- */
 .aboutus-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+overflow-x: hidden;
+background-color: var(--solpower-white); /* Default page background */
 }
 
-.aboutus-container {
-  flex: 1; /* Allows footer to stick to bottom */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px; /* Add horizontal padding */
+/* --- Reusable Container & Section Defaults --- */
+.page-container-inner {
+  max-width: var(--page-max-width-default, 1200px);
+  width: 90%; margin: 0 auto; position: relative; z-index: 2;
+}
+@media (min-width: 1600px) { .page-container-inner { max-width: var(--page-max-width-large, 1400px); } }
+
+/* Default section padding */
+.aboutus-hero .page-container-inner, /* Hero might have different padding */
+.aboutus-commitment-section .page-container-inner,
+.aboutus-team-section .page-container-inner,
+.aboutus-why-section .page-container-inner {
+ padding-top: var(--spacing-xxl, 5rem);
+ padding-bottom: var(--spacing-xxl, 5rem);
+ text-align: center; /* Default for section content */
 }
 
-/* --- Hero Section --- */
-.aboutus-hero { /* Renamed from generic .hero-section */
-  background-image: url('../assets/images/default-hero.jpg'); /* TODO: Replace with relevant coffeefuel image */
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 120px 20px 80px; /* Adjust padding */
-  text-align: center;
-  position: relative;
-  margin-bottom: 40px; /* Space before nav */
+/* --- Section Backgrounds --- */
+.aboutus-hero {
+background-color: var(--solpower-black); /* Dark background for hero */
+color: var(--solpower-white);
+/* Consider adding a subtle texture or gradient overlay in future if no image */
+}
+.aboutus-commitment-section { background-color: var(--solpower-grey); }
+.aboutus-team-section { background-color: var(--solpower-yellow-light); }
+.aboutus-why-section { background-color: var(--solpower-white); }
+
+
+/* --- Animated Headings --- */
+/* Page Title (H1 in Hero) */
+.aboutus-hero-title {
+color: var(--solpower-white); /* White text on dark hero */
+font-weight: var(--font-weight-extrabold);
+margin-bottom: var(--spacing-md); /* Tighter margin for hero */
+line-height: 1.2;
+position: relative;
+display: inline-block;
+padding-bottom: var(--underline-padding-bottom);
+letter-spacing: -0.03em;
+font-size: 3rem; /* Large hero title */
+}
+.aboutus-hero-title .underline-span { position: relative; display: inline; }
+.aboutus-hero-title::after { /* Yellow underline for hero title */
+content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: var(--underline-height);
+background-color: var(--solpower-yellow);
+transform: scaleX(0); transform-origin: left;
+transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+}
+.aboutus-hero-title.heading-visible::after { transform: scaleX(1); transition-delay: var(--underline-animation-delay); }
+
+/* Section Headings (H2) */
+.aboutus-section-heading {
+color: var(--solpower-black); /* Default black for light backgrounds */
+font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-xl); /* More space after H2 */
+line-height: 1.3; position: relative; display: inline-block;
+padding-bottom: var(--underline-padding-bottom); letter-spacing: -0.025em;
+font-size: 2.4rem;
+}
+.aboutus-section-heading .underline-span { position: relative; display: inline; }
+.aboutus-section-heading::after { /* Default yellow underline for H2s */
+content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: var(--underline-height);
+background-color: var(--solpower-yellow);
+transform: scaleX(0); transform-origin: left;
+transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+}
+.aboutus-section-heading.heading-visible::after { transform: scaleX(1); transition-delay: var(--underline-animation-delay); }
+
+
+/* --- Paragraph and General Text Styling --- */
+.aboutus-hero .aboutus-hero-subtitle {
+font-size: 1.3rem; line-height: 1.7;
+max-width: 750px; margin: 0 auto var(--spacing-lg) auto;
+color: var(--solpower-white); opacity: 0.9;
+}
+.aboutus-page .section-intro-p { /* For intro paragraphs in sections */
+font-size: 1.15rem; line-height: 1.7; color: var(--solpower-text-medium);
+max-width: 800px; margin-left: auto; margin-right: auto;
+margin-bottom: var(--spacing-xl); text-align: center;
+}
+.aboutus-page p { /* General paragraphs if not section-intro-p */
+color: var(--solpower-text-medium); font-size: 1.1rem; line-height: 1.7;
+max-width: 750px; margin-left: auto; margin-right: auto;
+margin-bottom: var(--spacing-md); font-family: 'Encode Sans', sans-serif;
+font-weight: var(--font-weight-regular);
 }
 
-.aboutus-hero::after { /* Dark overlay for text readability */
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  z-index: 0; /* Behind content */
+
+/* --- Team Section --- */
+.profile-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly larger min for profiles */
+gap: var(--spacing-lg);
+margin-top: var(--spacing-lg);
+}
+.profile-container { /* Styled like a BenefitCard */
+background-color: var(--solpower-white);
+border-radius: var(--button-border-radius);
+padding: var(--spacing-lg);
+box-shadow: 0 5px 15px rgba(var(--solpower-black-rgb), 0.07);
+text-align: center;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.profile-container:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 20px rgba(var(--solpower-black-rgb), 0.1);
+}
+.profile-photo {
+width: 150px; /* Larger photo placeholder */
+height: 150px;
+border-radius: 50%;
+margin: 0 auto var(--spacing-lg);
+background-color: var(--solpower-grey); /* Placeholder bg */
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--solpower-text-medium);
+font-style: italic;
+font-size: 0.9rem;
+border: 3px solid var(--solpower-yellow); /* Themed border */
+}
+.profile-details h3 {
+font-size: 1.4rem;
+color: var(--solpower-black);
+margin-bottom: 0.25rem;
+font-weight: var(--font-weight-bold);
+}
+.profile-details h4 { /* Title/Role */
+font-size: 1rem;
+color: var(--solpower-yellow); /* Yellow accent for title */
+font-weight: var(--font-weight-semibold);
+margin-bottom: var(--spacing-md);
+}
+.profile-details p {
+font-size: 1rem;
+color: var(--solpower-text-medium);
+text-align: center; /* Center profile description */
+line-height: 1.6;
+max-width: 100%; /* Allow it to use the card width */
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1; /* Above overlay */
+/* --- Why SolPower Section --- */
+.why-us-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Can be 2 to 4 columns */
+gap: var(--spacing-lg);
+margin-top: var(--spacing-lg);
+}
+.why-us-point-card { /* Styled like a BenefitCard */
+background-color: var(--solpower-yellow-light); /* Light yellow bg for these cards */
+border-radius: var(--button-border-radius);
+padding: var(--spacing-lg);
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: 0 4px 12px rgba(var(--solpower-black-rgb), 0.05);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+border: 1px solid rgba(var(--solpower-yellow-rgb),0.2);
+}
+.why-us-point-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 6px 18px rgba(var(--solpower-yellow-rgb), 0.15);
+}
+.why-us-icon-wrapper { /* Similar to benefit icon wrapper */
+display: inline-flex; align-items: center; justify-content: center;
+width: 65px; height: 65px;
+background-color: var(--solpower-white); /* White circle on light yellow card */
+border: 2px solid var(--solpower-yellow);
+border-radius: 50%; margin-bottom: var(--spacing-md);
+}
+.why-us-icon-wrapper .material-icons-outlined {
+font-size: 32px; color: var(--solpower-yellow);
+}
+.why-us-point-card h3 { /* Was h4, now h3 for consistency */
+font-size: 1.25rem; font-weight: var(--font-weight-bold);
+color: var(--solpower-black); margin-bottom: var(--spacing-sm);
+}
+.why-us-point-card p {
+font-size: 0.95rem; color: var(--solpower-text-medium);
+line-height: 1.6; margin-bottom: 0;
 }
 
-.hero-content h1 {
-  font-size: 2.8rem; /* Adjusted size */
-  margin-bottom: 20px;
-  animation: fadeInDown 1s ease forwards; /* Ensure animation stays */
-  font-weight: 700; /* Bolder */
+
+/* CTA section is now handled by ContactSectionCTAComponent, previous .cta-section-about can be removed */
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+.aboutus-hero-title { font-size: 2.5rem; }
+.aboutus-hero .aboutus-hero-subtitle { font-size: 1.2rem; }
+.aboutus-section-heading { font-size: 2.1rem; }
+.profile-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.why-us-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 }
 
-.hero-content p {
-  font-size: 1.3rem; /* Adjusted size */
-  margin-bottom: 30px;
-  max-width: 700px; /* Limit width */
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInUp 1s 0.3s ease forwards; /* Delay animation */
-  line-height: 1.6;
-}
-
-/* Shared CTA Button Style (consider moving to a global button style) */
-.cta-button {
-  background-color: #00E676; /* Theme color */
-  padding: 12px 28px; /* Adjusted padding */
-  color: #000; /* Black text for contrast */
-  border: none;
-  border-radius: 50px; /* Fully rounded */
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase; /* Style adjustment */
-  letter-spacing: 0.5px;
-}
-
-.cta-button:hover {
-  background-color: #00c464; /* Slightly darker green */
-  transform: translateY(-3px); /* Reduced lift */
-  box-shadow: 0 6px 12px rgba(0, 230, 118, 0.25); /* Adjusted shadow */
-}
-
-/* --- Navigation Buttons --- */
-.aboutus-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  margin: 0 0 50px 0; /* Adjusted margin */
-  padding: 10px 0;
-  background-color: #f8f9fa; /* Light background for nav area */
-  border-radius: 8px;
-}
-
-.aboutus-nav button {
-  background-color: #fff;
-  color: #007BFF; /* Blue color for nav buttons */
-  border: 1px solid #dee2e6; /* Lighter border */
-  padding: 10px 20px;
-  margin: 8px; /* Consistent margin */
-  font-size: 0.95rem;
-  cursor: pointer;
-  border-radius: 20px; /* Rounded corners */
-  transition: all 0.3s ease;
-  font-weight: 600; /* Medium weight */
-}
-
-.aboutus-nav button:hover {
-  background-color: #e9ecef; /* Light grey hover */
-  color: #0056b3; /* Darker blue */
-  border-color: #ced4da;
-  /* transform: translateY(-2px); Remove lift */
-  /* box-shadow: none; Remove shadow */
-}
-
-/* --- Content Sections --- */
-.content-section {
-  padding: 50px 0; /* Vertical padding only, horizontal from container */
-  position: relative;
-  /* border-bottom: 1px solid #eee; */ /* Optional separator lines */
-  margin-bottom: 30px;
-}
-
-.content-section h2 {
-  font-size: 2.2rem; /* Adjusted size */
-  margin-bottom: 35px; /* Increased space after heading */
-  color: #343a40; /* Darker grey */
-  font-weight: 700;
-  position: relative;
-  text-align: left; /* Align headings left */
-}
-
-.content-section h2::after { /* Underline accent */
-  content: '';
-  width: 70px;
-  height: 4px;
-  background-color: #007BFF; /* Match nav button color */
-  position: absolute;
-  bottom: -12px; /* Position below baseline */
-  left: 0; /* Align left */
-}
-
-.content-section p {
-  font-size: 1.1rem; /* Slightly larger text */
-  color: #495057; /* Softer text color */
-  line-height: 1.7; /* Increased line height */
-  margin-bottom: 20px;
-  animation: fadeIn 1s ease forwards; /* Ensure animation stays */
-}
-
-/* --- CTA Section at the end --- */
-.cta-section {
-  background-color: #e9ecef; /* Lighter background */
-  padding: 60px 20px; /* Adjusted padding */
-  text-align: center;
-  margin-top: 40px; /* Space before CTA */
-  border-radius: 8px;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #007BFF; /* Theme color */
-  font-weight: 700;
-}
-
-.cta-section p {
-  font-size: 1.1rem;
-  color: #495057;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Use shared .cta-button style */
-.cta-section .cta-button {
-  background-color: #007BFF; /* Blue background */
-  color: #fff; /* White text */
-}
-
-.cta-section .cta-button:hover {
-  background-color: #0056b3; /* Darker blue */
-  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2); /* Blue shadow */
-}
-
-/* --- Animations (already defined, ensure they run once) --- */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* --- Responsive Design --- */
 @media (max-width: 768px) {
-  .hero-content h1 { font-size: 2.2rem; }
-  .hero-content p { font-size: 1.1rem; }
-  .content-section h2 { font-size: 1.8rem; text-align: center; } /* Center headings on mobile */
-  .content-section h2::after { left: 50%; transform: translateX(-50%); } /* Center underline */
-  .content-section p { font-size: 1rem; }
-  .cta-section h2 { font-size: 1.8rem; }
-  .cta-section p { font-size: 1rem; }
-  .aboutus-nav { padding: 5px 0; }
-  .aboutus-nav button { font-size: 0.9rem; padding: 8px 15px; margin: 5px; }
-  .aboutus-hero { padding: 80px 20px 60px; }
+.aboutus-hero .page-container-inner,
+.aboutus-commitment-section .page-container-inner,
+.aboutus-team-section .page-container-inner,
+.aboutus-why-section .page-container-inner {
+  padding-top: var(--spacing-xl); /* Reduce padding on smaller screens */
+  padding-bottom: var(--spacing-xl);
+}
+.aboutus-hero-title { font-size: 2.2rem; }
+.aboutus-hero .aboutus-hero-subtitle { font-size: 1.1rem; }
+.aboutus-section-heading { font-size: 1.9rem; }
+.profile-grid { grid-template-columns: 1fr; } /* Stack profiles */
+.why-us-grid { grid-template-columns: 1fr; } /* Stack why-us points */
+.profile-photo { width: 100px; height: 100px; }
+.profile-details h3 { font-size: 1.2rem; }
+.profile-details h4 { font-size: 0.9rem; }
+.profile-details p { font-size: 0.9rem; }
+.why-us-point-card h3 { font-size: 1.15rem; }
+.why-us-point-card p { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .aboutus-hero-title { font-size: 2rem; }
+  .aboutus-hero .aboutus-hero-subtitle { font-size: 1rem; }
+  .aboutus-section-heading { font-size: 1.7rem; }
+  .why-us-icon-wrapper { width: 55px; height: 55px;}
+  .why-us-icon-wrapper .material-icons-outlined {font-size: 28px;}
 }

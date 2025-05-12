@@ -1,0 +1,382 @@
+/*
+* src/Views/Commercial.css
+* Styles for the Commercial page, with new Timeline, site-consistent fonts, and image styles.
+* Last Updated: 2025-05-11
+*/
+
+/* Ensure 'Encode Sans' is imported globally or in a shared CSS file */
+
+:root {
+  --solpower-yellow: #ffc107;
+  --solpower-yellow-rgb: 255, 193, 7;
+  --solpower-yellow-light: #fffbeb;
+  --solpower-black: #212529;
+  --solpower-black-rgb: 33, 37, 41;
+  --solpower-white: #ffffff;
+  --solpower-grey: #f8f9fa;
+  --solpower-text-medium: #555;
+  --solpower-text-dark: #333;
+  --solpower-green-natural: #4C704B;
+
+  --underline-height: 4px;
+  --underline-padding-bottom: 10px;
+  --underline-transition-duration: 0.6s;
+  --underline-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --underline-animation-delay: 0.5s;
+
+  --button-border-radius: 8px;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 5rem;
+  --page-max-width-default: 1200px;
+  --page-max-width-large: 1400px;
+
+  --timeline-content-font: 'Encode Sans', sans-serif;
+  --timeline-heading-font: 'Encode Sans', sans-serif;
+  --timeline-width: 700px;
+  --timeline-container-width: 100%;
+  --timeline-line-color: rgba(255, 255, 255, 0.15);
+  --timeline-item-text-color: var(--solpower-white);
+  --timeline-item-desc-color: rgba(255, 255, 255, 0.8);
+  --timeline-data-text-color: rgba(255, 255, 255, 0.7);
+}
+
+.commercial-page { overflow-x: hidden; background-color: var(--solpower-white); }
+
+.page-container-inner {
+  max-width: var(--page-max-width-default, 1200px);
+  width: 90%; margin: 0 auto; position: relative; z-index: 2;
+}
+@media (min-width: 1600px) { .page-container-inner { max-width: var(--page-max-width-large, 1400px); } }
+
+.commercial-intro-section .page-container-inner,
+.commercial-problem-section.with-video-bg .page-container-inner,
+.commercial-benefits-section .page-container-inner {
+ padding-top: var(--spacing-xxl, 5rem); padding-bottom: var(--spacing-xxl, 5rem);
+}
+
+.commercial-intro-section .page-container-inner,
+.commercial-benefits-section .page-container-inner,
+.commercial-problem-section.with-video-bg .page-container-inner { text-align: center; }
+
+.commercial-intro-section { background-color: var(--solpower-yellow-light); }
+.commercial-benefits-section { background-color: var(--solpower-green-natural); }
+
+.commercial-page-title, .commercial-section-heading {
+  color: var(--solpower-black); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg);
+  line-height: 1.3; position: relative; display: inline-block; padding-bottom: var(--underline-padding-bottom);
+  letter-spacing: -0.025em; font-family: 'Encode Sans', sans-serif;
+}
+.commercial-page-title .underline-span, .commercial-section-heading .underline-span { position: relative; display: inline; }
+
+.commercial-page-title::after, .commercial-section-heading::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: var(--underline-height);
+  background-color: var(--solpower-yellow);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+}
+.commercial-page-title.heading-visible::after, .commercial-section-heading.heading-visible::after {
+  transform: scaleX(1); transition-delay: var(--underline-animation-delay);
+}
+
+.commercial-page-title { font-size: 2.8rem; letter-spacing: -0.03em; }
+.commercial-section-heading { font-size: 2.4rem; }
+
+.commercial-benefits-section .commercial-section-heading { color: var(--solpower-white); }
+.commercial-benefits-section .commercial-section-heading::after { background-color: var(--solpower-white); }
+.commercial-problem-section.with-video-bg .commercial-section-heading { color: var(--solpower-white); }
+.commercial-problem-section.with-video-bg .commercial-section-heading::after { background-color: var(--solpower-yellow); }
+
+
+.commercial-page .page-container-inner p {
+  color: var(--solpower-text-medium); font-size: 1.1rem; line-height: 1.7; max-width: 750px;
+  margin-left: auto; margin-right: auto; margin-bottom: var(--spacing-md);
+  font-family: 'Encode Sans', sans-serif; font-weight: var(--font-weight-regular);
+}
+.commercial-page-subtitle {
+  font-size: 1.2rem; margin-top: var(--spacing-md); margin-bottom: var(--spacing-lg);
+  color: var(--solpower-text-dark); text-align: center; font-family: 'Encode Sans', sans-serif;
+}
+.commercial-page strong { font-weight: var(--font-weight-semibold); color: var(--solpower-black); }
+
+.intro-lottie-animation-wrapper.commercial-lottie-wrapper {
+  width: 320px; height: 320px; margin: var(--spacing-lg) auto;
+  border: 3px solid var(--solpower-yellow); border-radius: 50%;
+  box-sizing: border-box; position: relative; overflow: hidden;
+}
+.intro-button-wrapper { margin-top: var(--spacing-lg); text-align: center; }
+.intro-button-wrapper .btn-large {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+}
+
+.commercial-problem-section.with-video-bg { position: relative; overflow: hidden; background-color: var(--solpower-black); }
+.commercial-problem-section.with-video-bg .background-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; transform: translate(-50%, -50%); z-index: 1; }
+.commercial-problem-section.with-video-bg .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.65); z-index: 2; }
+.commercial-problem-section.with-video-bg .page-container-inner { position: relative; z-index: 3; color: var(--solpower-white); }
+.commercial-page .commercial-problem-section.with-video-bg .commercial-problem-text-content-video p {
+  color: var(--solpower-white); text-align: center; margin-left: auto; margin-right: auto; max-width: 720px;
+  line-height: 1.8; font-family: 'Encode Sans', sans-serif; font-weight: var(--font-weight-regular); margin-bottom: var(--spacing-md);
+}
+.commercial-page .commercial-problem-section.with-video-bg .commercial-problem-text-content-video p strong { color: var(--solpower-yellow); font-weight: var(--font-weight-bold); }
+.commercial-page .commercial-problem-section.with-video-bg .commercial-problem-text-content-video a {
+    color: var(--solpower-yellow); text-decoration: underline; font-weight: var(--font-weight-semibold);
+}
+.commercial-page .commercial-problem-section.with-video-bg .commercial-problem-text-content-video a:hover {
+    text-decoration: none; color: var(--solpower-white);
+}
+
+.benefits-grid.commercial-benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
+.benefit-card.commercial-benefit-card {
+  background-color: var(--solpower-white); border-radius: var(--button-border-radius); padding: var(--spacing-lg) var(--spacing-md);
+  text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden;
+  border: 2px solid transparent; background-clip: padding-box;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; min-height: 280px;
+}
+.benefit-card.commercial-benefit-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 10px 30px rgba(var(--solpower-yellow-rgb), 0.35); }
+.benefit-card.commercial-benefit-card > * { position: relative; z-index: 1; }
+
+.benefit-icon-wrapper.commercial-icon-wrapper {
+  display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px;
+  background-color: var(--solpower-yellow-light);
+  border: 2px solid var(--solpower-yellow);
+  border-radius: 50%; margin-bottom: var(--spacing-md); transition: background-color 0.3s ease;
+}
+.benefit-card.commercial-benefit-card:hover .benefit-icon-wrapper.commercial-icon-wrapper {
+  background-color: var(--solpower-yellow);
+}
+.benefit-icon-wrapper.commercial-icon-wrapper .material-icons-outlined {
+  font-size: 30px; color: var(--solpower-yellow);
+  transition: color 0.3s ease;
+}
+.benefit-card.commercial-benefit-card:hover .benefit-icon-wrapper.commercial-icon-wrapper .material-icons-outlined {
+  color: var(--solpower-black);
+}
+
+.benefit-card.commercial-benefit-card h3 { font-size: 1.25rem; font-weight: var(--font-weight-bold); color: var(--solpower-black); margin-top: 0; margin-bottom: var(--spacing-sm); font-family: 'Encode Sans', sans-serif; }
+.benefit-card.commercial-benefit-card p { font-size: 0.95rem; color: var(--solpower-text-medium); line-height: 1.6; margin-bottom: var(--spacing-sm); flex-grow: 1; max-width: 100%; text-align: center; font-family: 'Encode Sans', sans-serif; }
+.benefit-card-link { display: inline-block; margin-top: auto; padding-top: var(--spacing-xs); font-size: 0.9rem; color: var(--solpower-black); text-decoration: underline; font-weight: var(--font-weight-semibold); font-family: 'Encode Sans', sans-serif; }
+.benefit-card-link:hover { text-decoration: none; color: var(--solpower-yellow); }
+
+.partner-info { margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--solpower-white); border-radius: var(--button-border-radius); border: 1px solid var(--solpower-grey); text-align: center; }
+.partner-info p { margin: 0 auto var(--spacing-sm) auto; color: var(--solpower-text-medium); max-width: 600px; text-align: center; font-family: 'Encode Sans', sans-serif; }
+.partner-info p a { color: var(--solpower-black); font-weight: var(--font-weight-semibold); text-decoration: underline;}
+.partner-info p a:hover { color: var(--solpower-yellow); text-decoration: none;}
+
+/* --- TIMELINE STYLES for Commercial Page --- */
+.commercial-process-timeline-section {
+  width: 100%;
+  background-color: var(--solpower-yellow-light); /* Background for the entire section including the button below */
+}
+
+.timeline-container {
+  width: var(--timeline-container-width);
+  position: relative;
+  padding: 80px 0; /* Padding for top and bottom of timeline content */
+  transition: background-image 0.5s ease-in-out;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-color: var(--solpower-black); 
+}
+
+.timeline-container::before {
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: rgba(var(--solpower-black-rgb), 0.8); 
+  content: "";
+  z-index: 1;
+}
+
+.timeline-header {
+  width: 100%; text-align: center; margin-bottom: 80px;
+  position: relative; z-index: 2;
+}
+
+.timeline-header__title {
+  color: var(--solpower-white);
+  font-size: 2.8rem;
+  font-family: var(--timeline-heading-font); 
+  font-weight: var(--font-weight-bold); 
+  margin: 0;
+}
+
+.timeline-header__subtitle {
+  color: rgba(255, 255, 255, .7);
+  font-family: var(--timeline-heading-font); 
+  font-size: 1rem;
+  letter-spacing: 5px;
+  margin: 10px 0 0 0;
+  font-weight: var(--font-weight-regular); 
+  text-transform: uppercase;
+}
+
+.timeline {
+  display: flex; margin: 0 auto; flex-wrap: wrap; flex-direction: column;
+  max-width: var(--timeline-width); position: relative; z-index: 2;
+}
+
+.timeline::before {
+  position: absolute; left: 50%; width: 3px; height: 100%;
+  margin-left: -1.5px; content: "";
+  background: var(--timeline-line-color);
+}
+
+.timeline-item {
+  padding: 40px 0; opacity: .4; filter: blur(2px);
+  transition: opacity .5s, transform .5s, filter .5s;
+  box-sizing: border-box; width: calc(50% - 40px);
+  display: flex; position: relative; transform: translateY(30px);
+}
+
+.timeline-item::before { 
+  content: attr(data-text); letter-spacing: 3px; width: 100%;
+  position: absolute; color: var(--timeline-data-text-color);
+  font-size: 13px; font-family: var(--timeline-heading-font); 
+  font-weight: var(--font-weight-semibold); 
+  border-left: 2px solid var(--timeline-data-text-color);
+  top: 70%; margin-top: -5px; padding-left: 15px; opacity: 0;
+  right: calc(-100% - 58px); box-sizing: border-box;
+}
+
+.timeline-item:nth-child(even) { align-self: flex-end; }
+.timeline-item:nth-child(even)::before {
+  right: auto; text-align: right; left: calc(-100% - 58px);
+  padding-left: 0; border-left: none;
+  border-right: 2px solid var(--timeline-data-text-color); padding-right: 15px;
+}
+
+.timeline-item--active { opacity: 1; transform: translateY(0); filter: blur(0px); }
+.timeline-item--active::before {
+  top: 50%;
+  transition: top .3s ease-in-out .2s, opacity .3s ease-in-out .2s;
+  opacity: 1;
+}
+
+.timeline__content { width: 100%; padding: 0 10px; box-sizing: border-box; text-align: center; }
+
+.timeline__img {
+  width: 180px; 
+  height: 180px; 
+  border: 3px solid var(--solpower-yellow); 
+  border-radius: 50%; 
+  object-fit: cover; 
+  margin: 0 auto 20px auto; 
+  display: block;
+  box-shadow: 0 5px 15px rgba(var(--solpower-black-rgb), 0.1); 
+}
+
+.timeline__content-title { 
+  font-weight: var(--font-weight-extrabold); 
+  font-size: 3rem; 
+  margin: 0 0 10px 0; 
+  transition: margin .4s;
+  font-family: var(--timeline-heading-font); 
+  color: var(--timeline-item-text-color);
+  text-align: center;
+}
+
+.timeline__content-subtitle { 
+    font-size: 1.5rem;
+    font-family: var(--timeline-heading-font); 
+    color: var(--solpower-yellow); 
+    margin-bottom: 10px;
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+}
+
+.timeline__content-desc {
+  margin: 0; font-size: 1rem; box-sizing: border-box;
+  color: var(--timeline-item-desc-color);
+  font-family: var(--timeline-content-font); 
+  font-weight: var(--font-weight-regular); 
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Responsive Timeline for Commercial Page */
+@media only screen and (max-width: 767px) {
+  .timeline::before { left: 40px; }
+  .timeline-item {
+    align-self: baseline !important; width: 100%;
+    padding: 0 30px 80px 80px; opacity: 1; filter: none; transform: translateY(0);
+  }
+  .timeline-item::before { 
+    left: 10px !important; top: 15px; text-align: left !important; 
+    width: auto; border: none !important;
+    border-left: 2px solid var(--timeline-data-text-color) !important; 
+    padding: 0 0 0 10px !important; transform: none; 
+    margin-top: 0; position: relative; display: block; margin-bottom: 10px; font-size: 12px; 
+  }
+   .timeline-item:nth-child(even)::before {
+    text-align: left !important; border-right: none !important;
+    border-left: 2px solid var(--timeline-data-text-color) !important;
+    padding-right:0 !important; padding-left: 10px !important; left: 10px !important;
+  }
+  .timeline-item:last-child { padding-bottom: 40px; }
+  .timeline__img { width: 120px; height: 120px; margin-bottom: 15px; }
+  .timeline__content-title { font-size: 2.2rem; }
+  .timeline__content-subtitle { font-size: 1.2rem; }
+  .timeline__content-desc { font-size: 0.95rem; }
+  .timeline-header__title { font-size: 2rem; }
+  .timeline-header__subtitle { font-size: 0.9rem; }
+}
+
+/* Styling for the button moved inside .timeline-container */
+.timeline-bottom-button-wrapper {
+    text-align: center;
+    padding-top: var(--spacing-xl); /* Space above the button */
+    padding-bottom: var(--spacing-lg); /* Space below button, within the dark container */
+    position: relative; /* Ensure it's within the z-index flow of timeline-container */
+    z-index: 2; /* Same as other timeline content */
+}
+/* Ensure the button itself is styled appropriately (e.g. .btn-solpower-secondary) */
+/* If .btn-solpower-secondary needs specific text color on dark bg: */
+.timeline-bottom-button-wrapper .btn-solpower-secondary {
+    /* background-color: var(--solpower-white); /* Example: white button on dark bg */
+    /* color: var(--solpower-black); */
+    /* border: 1px solid var(--solpower-yellow); */ /* Or keep existing secondary style */
+}
+
+
+/* General Responsive Adjustments for Commercial Page */
+@media (min-width: 1200px) { .benefits-grid.commercial-benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 992px) {
+  .commercial-page-title { font-size: 2.4rem; }
+  .commercial-section-heading { font-size: 2.1rem; }
+  .commercial-page .page-container-inner p { font-size: 1.05rem; }
+  .intro-lottie-animation-wrapper.commercial-lottie-wrapper { width: 280px; height: 280px; }
+}
+@media (max-width: 768px) {
+  .commercial-page-title { font-size: 2.1rem; letter-spacing: -0.02em; }
+  .commercial-section-heading { font-size: 1.9rem; letter-spacing: -0.015em; }
+  .commercial-page .page-container-inner p { font-size: 1rem; }
+  .commercial-page-subtitle { font-size: 1.1rem; }
+  .intro-lottie-animation-wrapper.commercial-lottie-wrapper { width: 260px; height: 260px; }
+  .benefits-grid.commercial-benefits-grid { grid-template-columns: 1fr; }
+  .partner-info { flex-direction: column; align-items: center; text-align: center; }
+  .partner-info p { flex-basis: auto; }
+}
+@media (max-width: 480px) {
+  .commercial-page-title { font-size: 1.9rem; }
+  .commercial-section-heading { font-size: 1.7rem; }
+  .commercial-page .page-container-inner p { font-size: 0.9rem; }
+  .commercial-page-subtitle { font-size: 1rem; }
+  .intro-lottie-animation-wrapper.commercial-lottie-wrapper { width: 220px; height: 220px; }
+  .commercial-problem-section.with-video-bg .commercial-problem-text-content-video p { max-width: 90%; line-height: 1.7;}
+  .benefit-icon-wrapper.commercial-icon-wrapper { width: 55px; height: 55px; }
+  .benefit-icon-wrapper.commercial-icon-wrapper .material-icons-outlined { font-size: 28px; }
+  .benefit-card.commercial-benefit-card h3 { font-size: 1.1rem; }
+  .benefit-card.commercial-benefit-card p { font-size: 0.85rem; }
+}
+
+.commercial-final-cta.contact-section-cta { /* For the final CTA on the page */ }

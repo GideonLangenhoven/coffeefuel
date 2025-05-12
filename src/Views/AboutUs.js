@@ -1,155 +1,151 @@
-// src/Views/AboutUs.js
-import React, { useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // useNavigate for button clicks
+import React from 'react';
+import { Link } from 'react-router-dom'; // useNavigate can be added if needed elsewhere
+import { Helmet } from 'react-helmet-async';
+import { useInView } from 'react-intersection-observer';
+import './AboutUs.css';
+import Button from '../Components/Button';
 
-// Import necessary components (adjust paths as needed)
-import NavigationBar from './Navigation'; // Assuming Header component is here
-import Footer from '../Components/Footer'; // Assuming Footer component is here
+// Import founder images (ensure these paths are correct relative to this file)
+// And that the filenames EXACTLY match the case of the files on your disk
+import anvorElyPhoto from '../assets/images/anvor.png';
+import franklinPietersePhoto from '../assets/images/franklin.png'; // Corrected case assuming this is the actual filename
 
-// Import styles
-import './AboutUs.css'; // Ensure CSS path is correct
+// --- Reusable Animation Components (as defined in previous pages, ideally shared) ---
+const AnimatedPointComponent = React.forwardRef(
+  ({ children, className, tag: Tag = 'div', delay = 0, threshold = 0.1, triggerOnce = false, style: customStyle = {} }, ref) => {
+    const { ref: intersectionRef, inView } = useInView({ triggerOnce, threshold });
+    const setRefsInternal = (node) => {
+        intersectionRef(node);
+        if (ref) {
+          if (typeof ref === 'function') ref(node);
+          else ref.current = node;
+        }
+      };
+    const combinedClassName = `${className || ''} ${inView ? 'fade-in-up visible' : 'fade-in-up'}`;
+    const finalStyle = { ...customStyle, transitionDelay: `${delay}s` };
+    return <Tag ref={setRefsInternal} className={combinedClassName} style={finalStyle}>{children}</Tag>;
+  }
+);
 
-const AboutUs = () => {
-  const location = useLocation(); // Gets current URL info, including hash
-  const navigate = useNavigate(); // Used for programmatic navigation
-  const sectionRefs = useRef({}); // Store refs to sections for scrolling
+const AnimatedHeadingComponent = ({ text, className = '', level = 'h1', id, threshold = 0.2, rootMargin = "0px 0px -50px 0px", triggerOnce = false }) => {
+  const { ref, inView } = useInView({ triggerOnce, threshold, rootMargin });
+  const Tag = level;
+  const combinedClassName = `${className || ''} ${inView ? 'heading-visible' : ''}`;
+  return <Tag ref={ref} className={combinedClassName} id={id}><span className="underline-span">{text}</span></Tag>;
+};
 
-  // Function to smoothly scroll to a specific section by ID
-  const scrollToSection = (id) => {
-    const element = sectionRefs.current[id];
-    if (element) {
-      const yOffset = -80; // Offset for fixed header height (adjust if necessary)
-      const yPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: yPosition, behavior: 'smooth' });
-    } else {
-      console.warn(`Element with id "${id}" not found for scrolling.`);
-    }
-  };
+const SunriseAnimation = ({ isAnimating }) => {
+    const animationClass = isAnimating ? 'animate-sunrise' : '';
+    return ( <div className={`sunrise-animation-wrapper ${animationClass}`}> <div className="container"> <div className="sky"></div><div className="sea"><div className="light"></div></div> <div className="sun"></div><div className="bird1"></div><div className="birdr1"></div> <div className="bird"></div><div className="birdr"></div><div className="fin"><div className="wave"></div></div> </div> </div> );
+};
+const ContactSectionCTAComponent = ({ title, text, buttonText, buttonLink, className }) => {
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
+  return ( <section ref={ref} className={`contact-section-cta ${className || "cta-content-white"}`}> <SunriseAnimation isAnimating={inView} /> <div className="cta-text-content"> <h2>{title || "Ready to Start Saving?"}</h2> <p>{text || "Get your free, no-obligation quote."}</p> <Link to={buttonLink || "/contact"}><Button className="btn-solpower-primary">{buttonText || "Get My Free Quote"}</Button></Link> </div> </section> );
+};
 
-  // Effect to scroll to section based on URL hash when the component mounts or hash changes
-  useEffect(() => {
-    const hash = location.hash.substring(1); // Get id from #hash in URL
-    if (hash) {
-      // Use setTimeout to ensure the element is rendered before scrolling
-      const timer = setTimeout(() => {
-        scrollToSection(hash);
-      }, 100); // Small delay might be needed
-      return () => clearTimeout(timer); // Cleanup timer
-    } else {
-      // Scroll to top if no hash
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [location.hash]); // Depend on hash changes
+// --- Data for "Why SolPower?" Section ---
+const whySolPowerData = [
+    { id: 'ws1', icon: 'tune', title: 'Customized Solutions', text: 'System design tailored to your unique energy needs and property specifics.' },
+    { id: 'ws2', icon: 'savings', title: 'Simple Access to Funding', text: 'Flexible household & business financing options, including R0-outlay PPAs for commercial clients.' },
+    { id: 'ws3', icon: 'verified_user', title: 'Best-in-Class Warranty', text: 'Comprehensive 10-25 Year warranties on core components, plus our workmanship guarantee.' },
+    { id: 'ws4', icon: 'sync_alt', title: 'Seamless Integration', text: 'We handle all permits, ensure compliant installation, and manage grid connection smoothly.' },
+];
 
-  // Function to handle button clicks for navigation
-  const handleNavClick = (id) => {
-    // Update URL hash without full page reload (optional, good for bookmarking)
-    navigate(`#${id}`);
-    // Scroll to the section
-    scrollToSection(id);
-  };
+// --- Team Member Card Component ---
+const TeamProfileCard = ({ name, title, description, imageUrl, altText, delay }) => (
+    <AnimatedPointComponent className="profile-container" tag="div" delay={delay}>
+        <img src={imageUrl} alt={altText || name} className="profile-photo" />
+        <div className="profile-details">
+            <h3>{name}</h3>
+            <h4>{title}</h4>
+            <p>{description}</p>
+        </div>
+    </AnimatedPointComponent>
+);
 
-  // Ref callback to populate sectionRefs
-  const setSectionRef = (id) => (el) => {
-    sectionRefs.current[id] = el;
-  };
+// --- Why SolPower Point Card Component ---
+const WhySolPowerCard = ({ icon, title, text, delay }) => (
+    <AnimatedPointComponent className="why-us-point-card" tag="div" delay={delay}>
+        <div className="why-us-icon-wrapper">
+            <span className="material-icons-outlined">{icon}</span>
+        </div>
+        <h3>{title}</h3>
+        <p>{text}</p>
+    </AnimatedPointComponent>
+);
 
-  // TODO: Replace all 'Terbigen' related content with 'coffeefuel' content
-  // focusing on energy solutions, ESKOM pain points, solar, backup power etc.
+const AboutUs = ({ paths = {} }) => {
+    const pageTitle = "About SolPower | Your Trusted Solar Energy Partner in South Africa";
+    const metaDescription = "Learn about SolPower's mission, our expert team, and why we are dedicated to providing top-tier solar solutions for homes and businesses across South Africa.";
+    const canonicalUrl = "https://www.YOUR_DOMAIN.co.za" + (paths?.aboutUs || '/about-us');
+    const organizationSchema = { "@context": "https://schema.org", "@type": "Organization", "name": "SolPower", "url": "https://www.YOUR_DOMAIN.co.za", "logo": "https://www.YOUR_DOMAIN.co.za/logo.png", "description": metaDescription, "contactPoint" : [{ "@type" : "ContactPoint", "telephone" : "+27-XXX-XXX-XXXX", "contactType" : "customer service" }]};
 
-  return (
-    <div className="aboutus-page">
-      <NavigationBar />
-      <div className="aboutus-container">
-        {/* --- Hero Section --- */}
-        <section className="aboutus-hero">
-          <div className="hero-content">
-            {/* TODO: Update Hero Content for coffeefuel */}
-            <h1>Powering Your Independence from the Grid</h1>
-            <p>
-              Tired of load shedding and rising electricity costs? Discover reliable, sustainable energy solutions tailored for South African homes and businesses.
-            </p>
-            <button className="cta-button" onClick={() => handleNavClick('our-mission')}>
-              Explore Our Solutions
-            </button>
-          </div>
-        </section>
+    return (
+        <div className="page-wrapper aboutus-page">
+            <Helmet>
+                <title>{pageTitle}</title>
+                <meta name="description" content={metaDescription} />
+                <link rel="canonical" href={canonicalUrl} />
+                <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+            </Helmet>
 
-        {/* --- Navigation Buttons --- */}
-        <nav className="aboutus-nav" aria-label="About Us Sections">
-          {/* TODO: Update section IDs and button text for coffeefuel */}
-          <button onClick={() => handleNavClick('our-mission')}>The Challenge</button>
-          <button onClick={() => handleNavClick('our-approach')}>Our Solution</button>
-          <button onClick={() => handleNavClick('our-services')}>Our Services</button>
-          {/* <button onClick={() => handleNavClick('strategic-relationships')}>Partners</button> */}
-          <button onClick={() => handleNavClick('why-us')}>Why Choose Us</button>
-          {/* <button onClick={() => handleNavClick('frameworks')}>Our Technology</button> */}
-        </nav>
+            <section className="aboutus-hero">
+                 <div className="page-container-inner">
+                    <AnimatedHeadingComponent text="About SolPower" level="h1" className="aboutus-hero-title" />
+                    <AnimatedPointComponent className="aboutus-hero-subtitle" tag="p" delay={0.2}> Your Dedicated Partner for Sustainable Energy Success in South Africa </AnimatedPointComponent>
+                 </div>
+             </section>
 
-        {/* --- Content Sections --- */}
-        {/* TODO: Update all section content for coffeefuel */}
+            <section id="our-commitment" className="aboutus-commitment-section">
+              <div className="page-container-inner">
+                <AnimatedHeadingComponent text="Our Commitment to You" level="h2" className="aboutus-section-heading" />
+                <AnimatedPointComponent tag="p" className="section-intro-p" delay={0.15}> At SolPower, our mission extends beyond simply installing solar panels. We are deeply committed to empowering our residential and commercial clients across South Africa with reliable, affordable, and sustainable energy solutions. Our dedicated team is here to support you at every stage of your journey. Together, we will design a solution tailored to your unique needs that is both cost-saving and environmentally responsible, aligning your goals with a greener, more prosperous future. </AnimatedPointComponent>
+              </div>
+            </section>
 
-        <section id="our-mission" ref={setSectionRef('our-mission')} className="content-section">
-          <h2>The Challenge: Grid Uncertainty</h2>
-          <p>
-            South Africans face constant disruptions from load shedding (like ESKOM issues) and unpredictable electricity price hikes. This unreliability impacts daily life, productivity, and business operations, creating stress and financial burdens for homeowners and commercial users alike. Dependence on the national grid feels increasingly risky.
-          </p>
-        </section>
+            <section id="the-team" className="aboutus-team-section">
+              <div className="page-container-inner">
+                <AnimatedHeadingComponent text="Meet the Founders" level="h2" className="aboutus-section-heading" />
+                <div className="profile-grid">
+                    <TeamProfileCard
+                        name="Anvor Ely"
+                        title="COO & Co-Founder"
+                        description="Bringing 25 years of hands-on engineering project experience to the business. Committed to customer service and engineering excellence, ensuring every SolPower installation meets the highest standards of quality and performance."
+                        imageUrl={anvorElyPhoto}
+                        altText="Anvor Ely, COO & Co-Founder of SolPower"
+                        delay={0.1}
+                    />
+                    <TeamProfileCard
+                        name="Franklin Pieterse"
+                        title="Director & Co-Founder"
+                        description="A business strategy advisor and coach with a background in Electrical Engineering, dedicated to sustainability and transformation. Bringing 30 years of leadership experience to drive impactful change and guide SolPower's vision."
+                        imageUrl={franklinPietersePhoto}
+                        altText="Franklin Pieterse, Director & Co-Founder of SolPower"
+                        delay={0.2}
+                    />
+                </div>
+              </div>
+            </section>
 
-        <section id="our-approach" ref={setSectionRef('our-approach')} className="content-section">
-          <h2>Our Solution: Energy Empowerment</h2>
-          <p>
-            Coffeefuel provides tailored energy solutions designed to give you control and peace of mind. We analyze your specific needs – whether residential or commercial – to recommend and install the most effective systems, from solar power generation to reliable backup solutions. Our goal is to reduce your reliance on the unstable grid and lower your long-term energy costs.
-          </p>
-        </section>
+            <section id="why-solpower" className="aboutus-why-section">
+               <div className="page-container-inner">
+                    <AnimatedHeadingComponent text="Why Choose SolPower?" level="h2" className="aboutus-section-heading" />
+                    <div className="why-us-grid">
+                        {whySolPowerData.map((item, index) => (
+                            <WhySolPowerCard key={item.id} icon={item.icon} title={item.title} text={item.text} delay={index * 0.1} />
+                        ))}
+                    </div>
+               </div>
+            </section>
 
-        <section id="our-services" ref={setSectionRef('our-services')} className="content-section">
-          <h2>Our Services</h2>
-          <p>
-            We offer a range of services including solar panel installation (PV systems), battery backup systems (inverters and batteries) for load shedding, energy efficiency consultations, and system maintenance. We focus on quality components and expert installation to ensure your system performs optimally for years to come. [Link to Services Page?]
-          </p>
-          {/* Consider adding sub-sections or linking to the main Services page */}
-        </section>
-
-         {/* Commenting out sections less relevant to coffeefuel for now */}
-        {/*
-        <section id="strategic-relationships" ref={setSectionRef('strategic-relationships')} className="content-section">
-          <h2>Strategic Relationships / Partners</h2>
-           <p> TODO: Add info about suppliers, technology partners etc. if applicable </p>
-        </section>
-        */}
-
-        <section id="why-us" ref={setSectionRef('why-us')} className="content-section">
-          <h2>Why Choose Coffeefuel?</h2>
-          <p>
-            We understand the frustrations of South African energy users because we experience them too. We combine technical expertise with a commitment to customer satisfaction. We use high-quality equipment, offer transparent pricing, and provide ongoing support. Our focus is on delivering practical, reliable solutions that make a real difference. [Mention founder/team briefly if relevant to expertise/passion].
-          </p>
-          {/* <p> Franklin Pieterse, the Founder... [Update or remove founder section] </p> */}
-        </section>
-
-        {/*
-        <section id="frameworks" ref={setSectionRef('frameworks')} className="content-section">
-           <h2>Our Technology / Approach</h2>
-           <p> TODO: Discuss technology choices, quality standards, installation process etc. </p>
-        </section>
-        */}
-
-        {/* --- Final Call to Action Section --- */}
-        <section className="cta-section">
-          <h2>Ready for Reliable Energy?</h2>
-          <p>
-            Take the first step towards energy independence. Contact us for a free consultation and quote.
-          </p>
-          {/* TODO: Link this button to the contact page/form */}
-          <button className="cta-button" onClick={() => navigate('/contact')}>
-            Get in Touch
-          </button>
-        </section>
-
-      </div> {/* End aboutus-container */}
-      <Footer />
-    </div> // End aboutus-page
-  );
+            <ContactSectionCTAComponent
+                title="Ready to Invest in Your Energy Future?"
+                text="Let SolPower design your path to significant savings, energy independence, and a sustainable footprint. Contact us today for a free, no-obligation consultation."
+                buttonText="Get Your Free Consultation"
+                buttonLink={paths?.contact || "/contact"}
+            />
+        </div>
+    );
 };
 
 export default AboutUs;

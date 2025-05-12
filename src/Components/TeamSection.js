@@ -1,44 +1,42 @@
-// src/components/TeamSection.js
+// src/Components/TeamSection.js
 import React from 'react';
-import './TeamSection.css'; // Ensure CSS path is correct
+import './TeamSection.css'; // Import CSS
+import { Link } from 'react-router-dom'; // Use Link for navigation
 
-// Placeholder data for team members (Update with actual data or fetch from API)
+// TODO: Update with actual SolPower team members or remove if not needed
 const teamMembersData = [
-  { name: 'Chris Weiss', role: 'Partner', link: '#' },
-  { name: 'Dieter Halfar', role: 'Partner', link: '#' },
-  // Add more team members as needed
+  { name: 'Alex Johnson', role: 'Lead Solar Technician', imageUrl: '/path/to/alex.jpg', link: '/about#team-alex' },
+  { name: 'Maria Garcia', role: 'Energy Consultant', imageUrl: '/path/to/maria.jpg', link: '/about#team-maria' },
+  // Add more team members
 ];
 
 const TeamSection = () => {
-  // TODO: Replace hardcoded text with content relevant to 'coffeefuel'
+  // TODO: Update content for SolPower
   return (
-    <section id="team-section" className="team-section"> {/* Added id for potential navigation */}
+    <section id="team-section" className="team-section">
       <div className="team-content">
-        {/* Left side: Information about the team */}
         <div className="team-info">
-          <h2>Our Team</h2>
+          <h2>Meet the SolPower Experts</h2>
           <p>
-            {/* Update this description for coffeefuel */}
-            We're a high-performance, hand-selected team of industry professionals, subject matter experts,
-            career consultants, designers and developers. We shape businesses that will change the world. It's nice
-            to meet you.
+            Our dedicated team of certified technicians, energy consultants, and support staff are passionate about delivering high-quality solar and backup power solutions across South Africa. We're here to guide you every step of the way.
           </p>
-          {/* TODO: Link this button to the actual team page/section if it exists */}
-          <button className="meet-team-button">Meet the Team</button>
+          {/* Use Link component if linking internally */}
+          <Link to="/about#team" className="meet-team-button">
+            More About Our Team
+          </Link>
         </div>
-
-        {/* Right side: Grid of team members */}
         <div className="team-members">
           {teamMembersData.map((member) => (
             <div key={member.name} className="team-member">
-              {/* Placeholder for image - Add <img src={member.imageUrl} alt={member.name} className="member-image" /> when available */}
+              {/* TODO: Add actual image */}
+              <img src={'https://via.placeholder.com/120'} alt={member.name} className="member-image" />
               <div className="member-info">
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
               </div>
-              <a href={member.link} className="view-link" target="_blank" rel="noopener noreferrer">
-                View →
-              </a>
+              <Link to={member.link} className="view-link">
+                View Bio →
+              </Link>
             </div>
           ))}
         </div>

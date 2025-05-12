@@ -13,14 +13,14 @@
   bottom: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #60d54b, #e73c7e, #dd8e40, #3c9ad9);
   background-size: 400% 400%;
   animation: gradientBackground 15s ease infinite;
   transform: translateZ(0);
   z-index: -1;
 }
 
-@keyframes gradientBackground {
+@keyframes  {
   0% {
     background-position: 0% 50%;
   }

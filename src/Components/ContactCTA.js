@@ -1,24 +1,28 @@
+// src/Components/ContactCTA.js
 import React from 'react';
-import styles from './contact-cta.module.css';
+import styles from './contact-cta.module.css'; // Import CSS Module
+import { Link } from 'react-router-dom'; // Use Link for internal navigation
 
 const ContactCTA = () => {
   return (
-    <div className={styles.contactCtaWrapper}>
+    <section className={styles.contactCtaWrapper}> {/* Use section tag */}
+      {/* Background is handled by CSS */}
       <div className={styles.gradientBackground}></div>
       <div className={styles.contactCtaContainer}>
         <div className={styles.contactCtaContent}>
           <h2 className={styles.contactCtaTitle}>
-            Ready to change the game together?
+            Ready to Make the Switch to Solar?
           </h2>
           <p className={styles.contactCtaDescription}>
-            Let's get started today.
+            Get a free, no-obligation quote for your home or business today.
           </p>
-          <button className={styles.contactCtaButton}>
-            Contact us
-          </button>
         </div>
+        {/* Use Link component for routing */}
+        <Link to="/contact" className={styles.contactCtaButton}>
+          Request Your Free Quote
+        </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,338 +1,141 @@
-// NavigationBar.js
-
+// src/Views/Navigation.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './Header.css';
-import logo from '../assets/images/logo512.png';
-import industryImg from '../assets/images/Industry.png';
-import servicesImg from '../assets/images/Services.png';
-import insightsImg from '../assets/images/Insights.png';
-import testimonialsImg from '../assets/images/Testimonials.png';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
+import './Navigation.css';
 
-const NavigationBar = ({ isScrolled }) => {
+// Import Logos
+import solpowerLogoMain from '../assets/images/logo1.png';
+import solpowerLogo from '../assets/images/logo2.png';
+import solpowerLogoHover from '../assets/images/logo3 (1).png';
+
+// NavigationBar component now receives paths from App.js
+const NavigationBar = ({ paths }) => {
   const navigate = useNavigate();
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
-  const reloadHomepage = () => {
-    navigate('/', { replace: true });
-    window.location.reload();
-  };
+  // Define nav items using the paths prop
+  const navItems = [
+    { name: "Home", link: paths.home, id: "home" },
+    { name: "Residential Solar", link: paths.residential, id: "residential" },
+    { name: "Commercial Solar", link: paths.commercial, id: "commercial" },
+    { name: "How It Works", link: paths.howItWorks, id: "how-it-works" },
+    { name: "Solar FAQs", link: paths.faqs, id: "faqs" },
+    { name: "About SolPower", link: paths.about, id: "about" },
+    { name: "Get Quote", link: paths.contact, id: "contact" }, // Changed "Contact" to "Get Quote" for clarity
+  ];
 
-  const toggleDropdown = (dropdownName) => {
-    setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
-  };
+  // Scroll detection effect (Keep as is)
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const closeDropdown = () => {
-    setOpenDropdown(null);
-  };
-
-  const handleBBEEEClick = () => {
-    console.log('BBEEE button clicked');
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Close mobile menu when a link is clicked
-  const handleMobileLinkClick = () => {
+  const goHome = () => navigate(paths.home);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleMobileLinkClick = (path) => {
+    navigate(path);
     setIsMenuOpen(false);
   };
 
-  // Close dropdown when clicking outside
+  // Close mobile menu on resize (Keep as is)
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        openDropdown &&
-        !event.target.closest('.nav-link') &&
-        !event.target.closest('.dropdown-content')
-      ) {
-        setOpenDropdown(null);
-      }
-    };
+    const handleResize = () => (window.innerWidth > 1024 && isMenuOpen) && setIsMenuOpen(false);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
 
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [openDropdown]);
+  // SEO: Descriptive alt text
+  const mainLogoAlt = "SolPower Cape Town - Solar Power Installation & Solutions Logo";
+  const secondaryLogoAlt = "SolPower Secondary Logo Mark";
+  const cornerLogoTitle = "SolPower Homepage"; // Tooltip for the corner logo
 
   return (
     <>
-      <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`top-nav ${isScrolled ? 'scrolled' : ''}`} aria-label="Main navigation menu">
         <div
           className="logo-container"
-          onClick={reloadHomepage}
-          style={{ cursor: 'pointer' }}
+          onClick={goHome}
+          onMouseEnter={() => setIsLogoHovered(true)}
+          onMouseLeave={() => setIsLogoHovered(false)}
+          role="button"
+          tabIndex={0} // Make it keyboard focusable
+          aria-label="Go to SolPower Homepage" // Screen reader accessibility
         >
-          <img src={logo} alt="Logo" className="logo" />
-          <span className="brand-slogan">
-            <span className="terbigen-text">SOL Power</span>
-          </span>
+          <div className="logo-secondary-container">
+            <img
+              src={isLogoHovered ? solpowerLogoHover : solpowerLogo}
+              alt={secondaryLogoAlt}
+              className={`logo-secondary ${isLogoHovered ? 'hovered' : ''}`}
+              loading="lazy" // Defer loading offscreen images
+            />
+          </div>
+          <img
+            src={solpowerLogoMain}
+            alt={mainLogoAlt}
+            className="logo"
+            loading="eager" // Load the main logo immediately
+          />
         </div>
+
         <ul className="nav-links">
-          {/* Industries */}
-          <li className={`nav-link ${openDropdown === 'industries' ? 'open' : ''}`}>
-            <span onClick={() => toggleDropdown('industries')}>
-              <span className="nav-text">Industries</span>
-              <span className="dropdown-arrow">▼</span>
-            </span>
-            {openDropdown === 'industries' && (
-              <div className="dropdown-content">
-                <div className="dropdown-header">
-                  <span>Industries</span>
-                  <span className="close-dropdown" onClick={closeDropdown}>
-                    ×
-                  </span>
-                </div>
-                <Link to="/industries" className="view-all">
-                  View All <span className="right-arrow">→</span>
-                </Link>
-                <div className="dropdown-columns">
-                  <div className="dropdown-column">
-                    <h4>Categories</h4>
-                    <Link to="/industries#manufacturing" onClick={closeDropdown}>Manufacturing</Link>
-                    <Link to="/industries#automotive" onClick={closeDropdown}>Automotive</Link>
-                    <Link to="/industries#healthcare" onClick={closeDropdown}>Healthcare</Link>
-                  </div>
-                  <div className="dropdown-image-column">
-                    <h4>
-                      <Link to="/industries" className="featured-link">
-                        Featured <span className="featured-arrow">→</span>
-                      </Link>
-                    </h4>
-                    <img src={industryImg} alt="Industries" />
-                    <div className="image-links">
-                      <Link to="/industries#client-stories">Industry Insights</Link>
-                      <Link to="/industries#case-studies">Case Studies</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
-          {/* Services */}
-          <li className={`nav-link ${openDropdown === 'services' ? 'open' : ''}`}>
-            <span onClick={() => toggleDropdown('services')}>
-              <span className="nav-text">Services</span>
-              <span className="dropdown-arrow">▼</span>
-            </span>
-            {openDropdown === 'services' && (
-              <div className="dropdown-content">
-                <div className="dropdown-header">
-                  <span>Services</span>
-                  <span className="close-dropdown" onClick={closeDropdown}>
-                    ×
-                  </span>
-                </div>
-                <Link to="/services" className="view-all">
-                  View All <span className="right-arrow">→</span>
-                </Link>
-                <div className="dropdown-columns">
-                  <div className="dropdown-column">
-                    <h4>Categories</h4>
-                    <Link to="/services#consulting" onClick={closeDropdown}>Consulting</Link>
-                    <Link to="/services#strategy" onClick={closeDropdown}>Strategy</Link>
-                    <Link to="/services#technology" onClick={closeDropdown}>Technology</Link>
-                  </div>
-                  <div className="dropdown-image-column">
-                    <h4>
-                      <Link to="/services" className="featured-link">
-                        Featured <span className="featured-arrow">→</span>
-                      </Link>
-                    </h4>
-                    <img src={servicesImg} alt="Services" />
-                    <div className="image-links">
-                      <Link to="/services#service-spotlight">Service Spotlight</Link>
-                      <Link to="/services#expert-teams">Expert Teams</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
-          {/* Insights */}
-          <li className={`nav-link ${openDropdown === 'insights' ? 'open' : ''}`}>
-            <span onClick={() => toggleDropdown('insights')}>
-              <span className="nav-text">Insights</span>
-              <span className="dropdown-arrow">▼</span>
-            </span>
-            {openDropdown === 'insights' && (
-              <div className="dropdown-content">
-                <div className="dropdown-header">
-                  <span>Insights</span>
-                  <span className="close-dropdown" onClick={closeDropdown}>
-                    ×
-                  </span>
-                </div>
-                <Link to="/insights" className="view-all">
-                  View All <span className="right-arrow">→</span>
-                </Link>
-                <div className="dropdown-columns">
-                  <div className="dropdown-column">
-                    <h4>Categories</h4>
-                    <Link to="/insights#blog" onClick={closeDropdown}>Blog</Link>
-                    <Link to="/insights#news" onClick={closeDropdown}>News</Link>
-                    <Link to="/insights#events" onClick={closeDropdown}>Events</Link>
-                  </div>
-                  <div className="dropdown-image-column">
-                    <h4>
-                      <Link to="/insights" className="featured-link">
-                        Featured <span className="featured-arrow">→</span>
-                      </Link>
-                    </h4>
-                    <img src={insightsImg} alt="Insights" />
-                    <div className="image-links">
-                      <Link to="/insights#latest-articles">Latest Articles</Link>
-                      <Link to="/insights#industry-reports">Industry Reports</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
-          {/* About Us */}
-          <li className={`nav-link ${openDropdown === 'about' ? 'open' : ''}`}>
-            <span onClick={() => toggleDropdown('about')}>
-              <span className="nav-text">About Us</span>
-              <span className="dropdown-arrow">▼</span>
-            </span>
-            {openDropdown === 'about' && (
-              <div className="dropdown-content">
-                <div className="dropdown-header">
-                  <span>About Us</span>
-                  <span className="close-dropdown" onClick={closeDropdown}>
-                    ×
-                  </span>
-                </div>
-                <Link to="/about" className="view-all">
-                  View All <span className="right-arrow">→</span>
-                </Link>
-                <div className="dropdown-columns">
-                  <div className="dropdown-column">
-                    <h4>Categories</h4>
-                    <Link to="/about#company" onClick={closeDropdown}>Company</Link>
-                    <Link to="/about#team" onClick={closeDropdown}>Team</Link>
-                    <Link to="/about#careers" onClick={closeDropdown}>Careers</Link>
-                  </div>
-                  <div className="dropdown-image-column">
-                    <h4>
-                      <Link to="/about" className="featured-link">
-                        Featured <span className="featured-arrow">→</span>
-                      </Link>
-                    </h4>
-                    <img src={servicesImg} alt="About Us" />
-                    <div className="image-links">
-                      <Link to="/about#mission">Mission & Vision</Link>
-                      <Link to="/about#values">Our Values</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
-          {/* Testimonials */}
-          <li className={`nav-link ${openDropdown === 'testimonials' ? 'open' : ''}`}>
-            <span onClick={() => toggleDropdown('testimonials')}>
-              <span className="nav-text">Testimonials</span>
-              <span className="dropdown-arrow">▼</span>
-            </span>
-            {openDropdown === 'testimonials' && (
-              <div className="dropdown-content">
-                <div className="dropdown-header">
-                  <span>Testimonials</span>
-                  <span className="close-dropdown" onClick={closeDropdown}>
-                    ×
-                  </span>
-                </div>
-                <Link to="/testimonials" className="view-all">
-                  View All <span className="right-arrow">→</span>
-                </Link>
-                <div className="dropdown-columns">
-                  <div className="dropdown-column">
-                    <h4>Categories</h4>
-                    <Link to="/testimonials#client-stories" onClick={closeDropdown}>Client Stories</Link>
-                    <Link to="/testimonials#success-cases" onClick={closeDropdown}>Success Cases</Link>
-                    <Link to="/testimonials#feedback" onClick={closeDropdown}>Feedback</Link>
-                  </div>
-                  <div className="dropdown-image-column">
-                    <h4>
-                      <Link to="/testimonials" className="featured-link">
-                        Featured <span className="featured-arrow">→</span>
-                      </Link>
-                    </h4>
-                    <img src={testimonialsImg} alt="Testimonials" />
-                    <div className="image-links">
-                      <Link to="/testimonials#top-reviews">Top Reviews</Link>
-                      <Link to="/testimonials#video-testimonials">Video Testimonials</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
+          {navItems.map((item) => (
+            <li key={item.id} className="nav-link">
+              <NavLink
+                to={item.link}
+                className={({ isActive }) => (isActive ? 'active' : '')}
+                // NavLink automatically adds aria-current="page" when active
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
+
         <div className="right-nav">
-          <button className="bbeee-button" onClick={handleBBEEEClick}>
-            BBEEE Level 1 contributor
-          </button>
-          <a href="#contact" className="contact-button">
-            CONTACT
-          </a>
-          <div
+          {/* Changed button text for stronger Call to Action */}
+          <Link to={paths.contact} className="contact-button-nav">
+            Get My Free Quote
+          </Link>
+          <div className="corner-logo-container" title={cornerLogoTitle} onClick={goHome} role="button" tabIndex={0} aria-label={cornerLogoTitle}>
+             <div className="corner-logo-half-sun"></div>
+           </div>
+          <button // Changed to button for better accessibility practices for toggles
             className={`burger-menu ${isMenuOpen ? 'active' : ''}`}
             onClick={toggleMenu}
+            aria-label="Toggle mobile navigation menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav-menu" // Links button to the mobile menu
           >
-            <div className="burger-bar"></div>
-            <div className="burger-bar"></div>
-            <div className="burger-bar"></div>
-          </div>
+            <div className="burger-bar"></div> <div className="burger-bar"></div> <div className="burger-bar"></div>
+          </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`mobile-nav ${isMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-nav-header">
-          <div className="close-icon" onClick={toggleMenu}>
-            &times;
-          </div>
+      {/* Added id for aria-controls */}
+      {isMenuOpen && (
+        <div className="mobile-nav active" id="mobile-nav-menu" role="navigation" aria-label="Mobile navigation menu">
+          <ul className="mobile-nav-links">
+            {navItems.map(item => (
+              <li key={`mobile-${item.id}`} className="mobile-nav-link">
+                <NavLink to={item.link} className={({ isActive }) => isActive ? 'active' : ''} onClick={() => handleMobileLinkClick(item.link)}>
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+            {/* Repeat contact button in mobile menu */}
+            <li className="mobile-nav-link contact-link-mobile">
+              <Link to={paths.contact} className="contact-button-nav" onClick={() => handleMobileLinkClick(paths.contact)}>
+                Get My Free Quote
+              </Link>
+            </li>
+          </ul>
         </div>
-        <ul className="mobile-nav-links">
-          {/* Mobile navigation items */}
-          <li className="mobile-nav-link">
-            <span onClick={handleMobileLinkClick}>
-              <Link to="/industries">Industries</Link>
-            </span>
-          </li>
-          <li className="mobile-nav-link">
-            <span onClick={handleMobileLinkClick}>
-              <Link to="/services">Services</Link>
-            </span>
-          </li>
-          <li className="mobile-nav-link">
-            <span onClick={handleMobileLinkClick}>
-              <Link to="/insights">Insights</Link>
-            </span>
-          </li>
-          <li className="mobile-nav-link">
-            <span onClick={handleMobileLinkClick}>
-              <Link to="/about">About Us</Link>
-            </span>
-          </li>
-          <li className="mobile-nav-link">
-            <span onClick={handleMobileLinkClick}>
-              <Link to="/testimonials">Testimonials</Link>
-            </span>
-          </li>
-          <li className="mobile-nav-link contact-link">
-            <a href="#contact" className="contact-button" onClick={toggleMenu}>
-              CONTACT
-            </a>
-          </li>
-        </ul>
-      </div>
+      )}
     </>
   );
 };

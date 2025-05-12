@@ -1,0 +1,89 @@
+/* --- File: src/Components/ContactSectionCTA.css --- */
+:root {
+  --solpower-white: #ffffff;
+  --solpower-white-rgb: 255, 255, 255;
+  --solpower-black: #212529; /* Fallback if animation doesn't load or for text shadow */
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --font-weight-bold: 700;
+  /* Define a target height for the CTA section */
+  /* Previous animation strip was 180px. A 30% reduction is 126px. */
+  /* Let's set the section height to be slightly more to accommodate text comfortably. */
+  --cta-section-height: 200px; /* ADJUST THIS VALUE AS NEEDED. Try 180px, 220px etc. */
+}
+
+.contact-section-cta { 
+  position: relative; 
+  text-align: center;
+  color: var(--solpower-white); /* Default text color for on top of animation */
+  height: var(--cta-section-height); 
+  padding: var(--spacing-md) 0; /* Minimal vertical padding, height controls overall */
+  box-sizing: border-box;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the text content */
+  align-items: center;
+  overflow: hidden; /* Crucial to clip the underlying animation canvas */
+  background-color: var(--sky-gradient-stop4); /* Fallback if animation doesn't cover/load */
+}
+
+/* .sunrise-animation-wrapper is styled in SunriseAnimation.css */
+/* Its role here is to be the background, filling .contact-section-cta */
+
+.contact-section-cta .cta-text-content { 
+  position: relative; 
+  z-index: 2; /* Text content above the animation */
+  padding: var(--spacing-md); 
+  width: 90%;
+  max-width: 650px; /* Max width for text */
+  /* Add text shadow for readability over potentially busy animation */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6), 0 0 5px rgba(0,0,0,0.5);
+}
+
+.contact-section-cta h2 { 
+  font-size: clamp(1.5rem, 4vw, 2.2rem); /* Adjusted for potentially less vertical space */
+  font-weight: var(--font-weight-bold); 
+  margin-bottom: var(--spacing-sm); 
+  color: var(--solpower-white); 
+}
+
+.contact-section-cta p { 
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem); /* Adjusted */
+  margin-bottom: var(--spacing-md); 
+  color: rgba(var(--solpower-white-rgb), 0.95); /* Brighter paragraph text */
+  line-height: 1.5;
+}
+
+/* Modifier for CTAs that might need dark text if background changes dramatically */
+/* Not typically used if animation is always the background */
+.contact-section-cta.cta-text-dark h2,
+.contact-section-cta.cta-text-dark p { 
+  color: var(--solpower-black); 
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --cta-section-height: 220px; /* Slightly taller on mobile for readability */
+  }
+  .contact-section-cta h2 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+  .contact-section-cta p {
+    font-size: clamp(0.85rem, 3vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --cta-section-height: 240px; /* Even taller for small mobiles */
+  }
+   .contact-section-cta h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  }
+  .contact-section-cta p {
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+    margin-bottom: var(--spacing-lg); /* More space before button */
+  }
+}

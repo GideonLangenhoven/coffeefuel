@@ -1,0 +1,109 @@
+/* --- File: src/Components/SunriseAnimation.css --- */
+:root {
+  --solpower-yellow-fallback: #ffc107;
+  --solpower-yellow-rgb-fallback: 255, 193, 7;
+  --sky-gradient-stop1: rgb(42, 180, 214); /* Brighter top sky */
+  --sky-gradient-stop2: rgb(50, 150, 170); /* Mid tone */
+  --sky-gradient-stop3: rgb(28, 90, 170);  /* Darker blue */
+  --sky-gradient-stop4: rgb(20, 50, 100);  /* Deep blue, not black, for bottom if visible */
+}
+
+.sunrise-animation-wrapper {
+  width: 100%;
+  height: 100%; 
+  position: absolute; /* Crucial for being a background */
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Aligns canvas, though overflow clips it */
+  background: transparent; 
+  z-index: 1; /* Behind text content */
+}
+
+.sunrise-animation-wrapper .container {
+  position: absolute; /* Position canvas within the wrapper */
+  width: 100%; /* Make canvas cover its wrapper, scaling might occur based on aspect */
+  /* Height of the internal animation canvas - this will be clipped by the parent wrapper in CTA */
+  height: 400px; 
+  /* Center the animation canvas if its aspect ratio doesn't match wrapper */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%; /* Ensure it covers for responsiveness */
+  min-height: 100%; /* Ensure it covers for responsiveness */
+  /* object-fit: cover; This would be for img/video, for divs it's more complex */
+}
+
+.sunrise-animation-wrapper .container > div {
+  position: absolute;
+}
+
+.sunrise-animation-wrapper .sky {
+  opacity: .95; /* Max opacity for vibrancy */
+  width: 100%;
+  height: 100%; /* Sky fills its container */
+  top: 0;
+  left: 0;
+  background: radial-gradient(ellipse at 50% 90%, /* Gradient origin lower for more visible sky */
+    var(--sky-gradient-stop1) 0%, 
+    var(--sky-gradient-stop2) 25%, 
+    var(--sky-gradient-stop3) 50%, 
+    var(--sky-gradient-stop4) 100%
+  );
+  z-index: 1;
+}
+
+.sunrise-animation-wrapper .sea {
+  display: none; /* Remove the sea element entirely */
+}
+
+.sunrise-animation-wrapper .sun {
+  width: 70px; /* Adjusted sun size */
+  height: 70px;
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -35px; /* Adjusted for new sun size */
+  /* Adjust 'top' in keyframes to control rise within the visible clipped area */
+  top: 70%; /* Start lower in its 400px canvas, will rise into view */
+  z-index: 5;
+  background: linear-gradient(var(--solpower-yellow, var(--solpower-yellow-fallback)), #f39c12); /* Yellow to orange */
+  box-shadow: 0 0 25px 4px var(--solpower-yellow, var(--solpower-yellow-fallback)), 
+              0 0 50px 8px rgba(var(--solpower-yellow-rgb, var(--solpower-yellow-rgb-fallback)), 0.6);
+}
+
+/* Birds (can be kept or removed if too distracting for a background) */
+.sunrise-animation-wrapper .bird,
+.sunrise-animation-wrapper .birdr,
+.sunrise-animation-wrapper .bird1,
+.sunrise-animation-wrapper .birdr1 {
+  position: absolute; width: 10px; height: 8px;
+  border: 2px solid rgba(0,0,0,0.7); /* Slightly softer birds */
+  border-radius: 50%; z-index: 10; opacity: 0.8;
+}
+.sunrise-animation-wrapper .bird  { top: 20%; left: 0; border-top-color: transparent; border-left-color: transparent; border-bottom-color: transparent; transform: rotateZ(-75deg) scale(0.8); }
+.sunrise-animation-wrapper .birdr { top: 20%; left: 0; border-bottom-color: transparent; border-right-color: transparent; border-top-color: transparent; transform: rotateZ(75deg) scale(0.8); }
+.sunrise-animation-wrapper .bird1 { top: 15%; left: 0; border-top-color: transparent; border-left-color: transparent; border-bottom-color: transparent; transform: rotateZ(-90deg) scale(0.7); }
+.sunrise-animation-wrapper .birdr1{ top: 15%; left: 0; border-bottom-color: transparent; border-right-color: transparent; border-top-color: transparent; transform: rotateZ(90deg) scale(0.7); }
+
+.sunrise-animation-wrapper .fin { display: none; }
+
+/* Keyframes */
+.sunrise-animation-wrapper.animate-sunrise .sun { animation: riseSunVisible 20s ease-out forwards; }
+.sunrise-animation-wrapper.animate-sunrise .bird { animation: birdMove 25s 1s linear infinite, birdFlap .5s linear infinite alternate; }
+.sunrise-animation-wrapper.animate-sunrise .birdr { animation: birdMoveR 25s 1s linear infinite, birdFlap .5s linear infinite alternate; }
+.sunrise-animation-wrapper.animate-sunrise .bird1 { animation: birdMove 25s 2.5s linear infinite, birdFlap .5s linear infinite alternate 1.5s; }
+.sunrise-animation-wrapper.animate-sunrise .birdr1 { animation: birdMoveR 25s 2.5s linear infinite, birdFlap .5s linear infinite alternate 1.5s; }
+
+@keyframes riseSunVisible {
+  0% { top: 70%; opacity: 0.8; } /* Start lower in its 400px canvas, mostly off-screen for a 180px view */
+  20% { top: 50%; opacity: 1; } /* Rises into view */
+  80% { top: 25%; opacity: 1; } /* Peak height within typical CTA view */
+  100% { top: 20%; opacity: 0.9; } /* Stays high */
+}
+
+/* Bird keyframes (can be kept as is or tweaked for subtlety) */
+@keyframes birdMove {from{left:0%;transform:translateY(0px) rotateZ(-75deg) scale(.8)}50%{transform:translateY(-15px) rotateZ(-75deg) scale(.8)}to{left:100%;transform:translateY(0px) rotateZ(-75deg) scale(.8)}}
+@keyframes birdMoveR {from{left:0%;transform:translateY(0px) rotateZ(75deg) scale(.8)}50%{transform:translateY(-15px) rotateZ(75deg) scale(.8)}to{left:100%;transform:translateY(0px) rotateZ(75deg) scale(.8)}}
+@keyframes birdFlap {from{border-radius:90%}to{border-radius:10%}}

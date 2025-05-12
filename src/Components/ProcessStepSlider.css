@@ -1,0 +1,223 @@
+/* --- File: src/Components/ProcessStepSlider.css --- */
+
+:root {
+  /* Define fallbacks if not global */
+  --slider-transition-duration: 0.55s;
+  --slider-transition-timing: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --solpower-yellow: #ffc107;
+  --solpower-yellow-rgb: 255, 193, 7;
+  --solpower-black-rgb: 33, 37, 41;
+  --solpower-white: #ffffff;
+  --solpower-grey-medium: #dee2e6;
+  --solpower-text-dark: #343a40;
+  --border-radius-lg: 12px;
+  --shadow-sm: 0 2px 4px rgba(33, 37, 41, 0.06);
+  --shadow-md: 0 6px 12px rgba(33, 37, 41, 0.1);
+  --shadow-lg: 0 15px 30px rgba(33, 37, 41, 0.18);
+  --glow-shadow-yellow: 0 0 25px 6px rgba(var(--solpower-yellow-rgb), 0.6); /* Increased intensity */
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-sm: 0.5rem;
+  /* ... other needed variables ... */
+}
+
+
+.process-slider-component-wrapper {
+  position: relative;
+  width: 100%;
+  /* margin: var(--spacing-xl) 0; */ /* Let parent control margin */
+}
+
+.process-slider-container {
+  min-height: 400px;
+  max-height: 550px;
+  height: 55vh;
+  position: relative;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.process-slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Base card styles */
+.process-slide-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(50%, 450px, 60%);
+  height: 100%;
+  max-height: 500px;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--solpower-white);
+  border: 1px solid var(--solpower-grey-medium);
+  color: var(--solpower-text-dark);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform var(--slider-transition-duration) var(--slider-transition-timing),
+              opacity var(--slider-transition-duration) ease-in-out,
+              /* Add box-shadow to transition */
+              box-shadow var(--slider-transition-duration) var(--slider-transition-timing);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* State-based positioning and styling */
+.process-slide-card--hidden {
+  transform: translateX(-50%) translateZ(-500px) scale(0.7);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: none; /* No shadow when hidden */
+}
+.process-slide-card--far-prev {
+  transform: translateX(calc(-50% - 55%)) translateZ(-250px) scale(0.85);
+  opacity: 0.5;
+  z-index: 1;
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+.process-slide-card--prev {
+  transform: translateX(calc(-50% - 30%)) translateZ(-100px) scale(0.92);
+  opacity: 0.75;
+  z-index: 5;
+  box-shadow: var(--shadow-md);
+}
+.process-slide-card--active {
+  transform: translateX(-50%) translateZ(0) scale(1);
+  opacity: 1;
+  z-index: 10;
+  /* Added yellow glow effect */
+  box-shadow: var(--shadow-lg), var(--glow-shadow-yellow);
+  cursor: default;
+}
+.process-slide-card--next {
+  transform: translateX(calc(-50% + 30%)) translateZ(-100px) scale(0.92);
+  opacity: 0.75;
+  z-index: 5;
+  box-shadow: var(--shadow-md);
+}
+.process-slide-card--far-next {
+  transform: translateX(calc(-50% + 55%)) translateZ(-250px) scale(0.85);
+  opacity: 0.5;
+  z-index: 1;
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+
+/* Hover effect only on non-active cards */
+.process-slide-card:not(.process-slide-card--active):hover {
+  /* Re-apply positional transforms + hover scale */
+  &.process-slide-card--prev { transform: translateX(calc(-50% - 30%)) translateZ(-100px) scale(1.02); }
+  &.process-slide-card--next { transform: translateX(calc(-50% + 30%)) translateZ(-100px) scale(1.02); }
+  &.process-slide-card--far-prev { transform: translateX(calc(-50% - 55%)) translateZ(-250px) scale(1.02); }
+  &.process-slide-card--far-next { transform: translateX(calc(-50% + 55%)) translateZ(-250px) scale(1.02); }
+  box-shadow: var(--shadow-md); /* Standard shadow increase */
+}
+
+
+/* Card Content Styling (selectors target elements within .process-slide-card) */
+/* (Keep the ::before, .card-content, .card-progress, .card-step-number, .card-title, .card-text, .card-read-more styles from the previous version) */
+.process-slide-card::before { /* ... */ }
+.process-slide-card--active::before { /* ... */ }
+.card-content { /* ... */ }
+.card-progress { /* ... */ }
+.process-slide-card:not(.process-slide-card--active) .card-progress { /* ... */ }
+.card-step-number { /* ... */ }
+.process-slide-card--active .card-step-number { /* ... */ }
+.card-title { /* ... */ }
+.process-slide-card:not(.process-slide-card--active) .card-title { /* ... */ }
+.card-text { /* ... */ }
+.process-slide-card:not(.process-slide-card--active) .card-text { /* ... */ }
+.card-read-more { /* ... */ }
+.process-slide-card--active .card-read-more { /* ... */ }
+.card-read-more:hover { /* ... */ }
+.process-slide-card:not(.process-slide-card--active) .card-read-more:hover { /* ... */ }
+
+
+/* Navigation Buttons */
+.process-slider-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-50%);
+  padding: 0 var(--spacing-sm, 0.5rem);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.slider-nav-button {
+  background-color: rgba(var(--solpower-black-rgb, 33, 37, 41), 0.5);
+  color: var(--solpower-white, #ffffff);
+  border: none;
+  border-radius: 50%;
+  /* Increased size */
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Added box-shadow to transition */
+  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+  pointer-events: all;
+  box-shadow: var(--shadow-sm); /* Base shadow */
+}
+.slider-nav-button:hover:not(:disabled) { /* Apply hover only when not disabled */
+  background-color: rgba(var(--solpower-black-rgb, 33, 37, 41), 0.8);
+  transform: scale(1.1); /* Slightly larger scale */
+  /* Added glow effect on hover */
+  box-shadow: 0 0 18px 4px rgba(var(--solpower-yellow-rgb), 0.55);
+}
+.slider-nav-button:disabled {
+  background-color: rgba(var(--solpower-black-rgb, 33, 37, 41), 0.2);
+  cursor: not-allowed;
+  transform: scale(1);
+  opacity: 0.6;
+  box-shadow: none; /* No shadow or glow when disabled */
+}
+.slider-nav-button .material-icons-outlined {
+  /* Increased icon size */
+  font-size: 28px;
+}
+
+
+/* --- Responsive Adjustments for Slider --- */
+@media (max-width: 767px) {
+  .process-slider-container { /* ... keep mobile styles ... */ }
+  .process-slider-track { /* ... keep mobile styles ... */ }
+  .process-slide-card { /* ... keep mobile styles ... */ }
+  .process-slide-card--active { /* ... keep mobile styles ... */ }
+   /* ... keep mobile styles for hidden/far/prev/next ... */
+   .card-text { min-height: auto; }
+
+   .process-slider-nav { padding: 0; }
+   .slider-nav-button {
+      /* Slightly smaller on mobile */
+      width: 44px;
+      height: 44px;
+      background-color: rgba(var(--solpower-black-rgb, 33, 37, 41), 0.6);
+   }
+   .slider-nav-button .material-icons-outlined { font-size: 24px; }
+    .slider-nav-button.prev { transform: translate(10px, -50%); }
+    .slider-nav-button.next { transform: translate(-10px, -50%); }
+    /* Reset nudge on hover/disabled if needed */
+    .slider-nav-button:hover:not(:disabled) { transform: scale(1.1); }
+    .slider-nav-button.prev:hover:not(:disabled) { transform: translate(10px, -50%) scale(1.1); }
+    .slider-nav-button.next:hover:not(:disabled) { transform: translate(-10px, -50%) scale(1.1); }
+    .slider-nav-button:disabled { transform: translate(0, -50%) scale(1); }
+    .slider-nav-button.prev:disabled { transform: translate(10px, -50%) scale(1); }
+    .slider-nav-button.next:disabled { transform: translate(-10px, -50%) scale(1); }
+}

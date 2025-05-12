@@ -1,0 +1,85 @@
+/* --- File: src/Views/StepDetailPage.css (NEW FILE) --- */
+
+/* Use variables from your main HowItWorks.css or define them here if this is standalone */
+/* For simplicity, assuming variables are globally available or defined in an imported global sheet */
+
+body { /* Ensure body has some basic styling if this page is opened directly */
+  font-family: var(--font-family-base, 'Encode Sans', sans-serif);
+  line-height: var(--line-height-base, 1.6);
+  color: var(--solpower-text-dark, #343a40);
+  background-color: var(--solpower-grey-light, #f8f9fa);
+  margin: 0;
+  padding: 0;
+}
+
+.step-detail-page-container {
+  max-width: 900px;
+  margin: var(--spacing-xl, 3rem) auto;
+  padding: var(--spacing-lg, 1.5rem) var(--spacing-xl, 3rem);
+  background-color: var(--solpower-white, #ffffff);
+  border-radius: var(--border-radius-lg, 12px);
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.15));
+}
+
+.step-detail-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg, 1.5rem);
+  padding-bottom: var(--spacing-md, 1rem);
+  border-bottom: 3px solid var(--solpower-yellow, #ffc107);
+}
+
+.step-detail-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--solpower-black, #212529);
+  font-weight: var(--font-weight-bold, 700);
+  margin: 0;
+}
+
+.step-detail-content {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.75; /* More spacing for detailed text */
+}
+
+.step-detail-content p {
+  margin-bottom: var(--spacing-md, 1rem);
+}
+.step-detail-content p:last-child {
+  margin-bottom: 0;
+}
+
+.step-detail-footer {
+    margin-top: var(--spacing-xl, 3rem);
+    text-align: center;
+}
+
+/* Re-declare button styles if not globally available from HowItWorks.css */
+.btn-solpower-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-family-base, sans-serif);
+  font-weight: var(--font-weight-semibold, 600);
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid var(--solpower-black, #212529);
+  border-radius: var(--border-radius-md, 8px);
+  background-color: var(--solpower-black, #212529);
+  color: var(--solpower-white, #ffffff);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.btn-solpower-secondary:hover {
+  background-color: var(--solpower-grey-dark, #6c757d);
+  border-color: var(--solpower-grey-dark, #6c757d);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+  .step-detail-page-container {
+    margin: var(--spacing-lg, 1.5rem) auto;
+    padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.5rem);
+  }
+  .step-detail-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+}

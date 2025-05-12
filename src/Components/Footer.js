@@ -1,127 +1,116 @@
-// src/Components/Footer.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Facebook, Mail, Phone } from 'lucide-react';
+import ContactCard from './ContactCard'; // Make sure this component exists and is styled appropriately
+import './Footer.css';
 
-'use client';
-
-import React, { useState } from 'react';
-import {
-  ChevronDown,
-  ChevronRight,
-  Linkedin,
-  Youtube,
-  Facebook,
-  Mail,
-  Instagram,
-} from 'lucide-react';
-import Button from './Button';
-import Input from './Input';
-import Select from './Select';
-import './Footer.css'; // Import the CSS file
-
-const socialIcons = [
-  {icon: <Linkedin /> },
-  {icon: <Youtube /> },
-  { icon: <Facebook /> },
-  {icon: <Mail /> },
-  { icon: <Instagram /> },
-  // ... other icons with proper names
+// Define data outside the component for clarity
+const socialLinks = [
+  { name: 'Facebook', icon: <Facebook size={20} />, href: 'https://facebook.com/yourpage' }, // Replace # with actual link
 ];
+const contactDetails = { email: 'info@solpower.co.za', phone: '021 123 4567' };
+const officeLocations = ['Cape Town', 'Johannesburg (Soon)'];
+const quickLinks = [
+  { path: '/', label: 'Home' },
+  { path: '/residential', label: 'Residential' },
+  { path: '/commercial', label: 'Commercial' },
+  { path: '/how-it-works', label: 'How It Works' },
+  { path: '/faqs', label: 'FAQs' },
+  { path: '/about', label: 'About Us' },
+  { path: '/contact', label: 'Contact Us' },
+];
+const legalLinks = [
+    { path: '/privacy-policy', label: 'Privacy Policy'},
+    { path: '/terms-of-use', label: 'Terms of Use'},
+]
 
 const Footer = () => {
-  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
-
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="grid">
-          <div>
-            <h2 className="title">Connect with us</h2>
-            <p className="link">Franklin@terbigen.com</p>
-            <p className="link">UK +44 (0)20 7220 5410</p>
-          </div>
+    <>
+      {/* Ensure ContactCard takes up space correctly or is positioned without affecting the footer negatively */}
+      <ContactCard />
 
-          <div>
-            <h2 className="title">Find us</h2>
-            <div className="cityGrid">
-              {['Cape Town', 'New York', 'London', 'Sydney'].map((city) => (
-                <p key={city} className="link">
-                  {city}
-                </p>
+      <footer className="footer">
+        <div className="container footer-container">
+          {/* Main Footer Content Grid */}
+          <div className="footer-grid">
+            {/* Column 1: Connect */}
+            <div className="footer-column">
+              <h3 className="title">Connect with Us</h3>
+              {contactDetails.email && (
+                <a href={`mailto:${contactDetails.email}`} className="link footer-link icon-link">
+                  <Mail size={16} className="footer-icon" />
+                  <span>{contactDetails.email}</span>
+                </a>
+              )}
+              {contactDetails.phone && (
+                <a href={`tel:${contactDetails.phone.replace(/ /g, '')}`} className="link footer-link icon-link">
+                  <Phone size={16} className="footer-icon" />
+                  <span>{contactDetails.phone}</span>
+                </a>
+              )}
+            </div>
+
+            {/* Column 2: Quick Links */}
+            <div className="footer-column">
+              <h3 className="title">Quick Links</h3>
+              {quickLinks.map((link) => (
+                 <Link key={link.path} to={link.path} className="link footer-link">
+                   {link.label}
+                 </Link>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="container">
-        <h2 className="title">Follow us</h2>
-        <div className="socialIcons">
-          {socialIcons.map((social) => (
-            <a key={social.name} href="#" className="socialIcon" aria-label={social.name}>
-              {social.icon}
-              <span className="sr-only">{social.name}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div className="container">
-        <div
-          className="newsletterButton"
-          onClick={() => setIsNewsletterOpen(!isNewsletterOpen)}
-          role="button"
-          tabIndex={0}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              setIsNewsletterOpen(!isNewsletterOpen);
-            }
-          }}
-        >
-          <span>Sign up for our newsletter</span>
-          {isNewsletterOpen ? <ChevronDown /> : <ChevronRight />}
-        </div>
-
-        {isNewsletterOpen && (
-          <form className="newsletterForm">
-            <div className="inputGroup">
-              <Input type="text" placeholder="First name*" required />
-              <Input type="text" placeholder="Last name" />
+            {/* Column 3: Offices */}
+            <div className="footer-column">
+              <h3 className="title">Office Locations</h3>
+              {officeLocations.map((city) => (
+                <p key={city} className="footer-text">{city}</p>
+              ))}
             </div>
-            <Input type="email" placeholder="name@example.com*" required />
-            <Select>
-              <option value="">What would you like to hear from us about?</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
-            <p className="legalText">
-              By submitting your details, you are consenting to our privacy policy
+
+            {/* Column 4: Follow Us */}
+            <div className="footer-column">
+              <h3 className="title">Follow Us</h3>
+              {socialLinks.length > 0 ? (
+                <div className="socialIcons">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      className="socialIcon"
+                      aria-label={social.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {social.icon}
+                      <span className="sr-only">{social.name}</span> {/* Hidden text for screen readers */}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p className="footer-text">Coming Soon</p>
+              )}
+            </div>
+          </div> {/* End footer-grid */}
+
+          {/* Bottom Bar */}
+          <div className="footer-bottom">
+            <div className="legalLinks">
+              {legalLinks.map((link) => (
+                <Link key={link.path} to={link.path} className="link legal-link">
+                    {link.label}
+                </Link>
+              ))}
+            </div>
+            <p className="copyright">
+              &copy; {new Date().getFullYear()} SolPower (Pty) Ltd. All Rights Reserved.
             </p>
-            <Button type="submit" className="submitButton">
-              Submit <ChevronRight className="ml-2" />
-            </Button>
-          </form>
-        )}
-      </div>
+          </div> {/* End footer-bottom */}
 
-      <div className="container">
-        <p className="legalText">© Copyright 2024 Elixirr International Plc</p>
-        <p className="legalText">
-          Elixirr International plc is a company incorporated and registered in England and Wales with company number: 11723404 whose registered office is at 12 Helmet Row, London EC1V 3QJ
-        </p>
-      </div>
-
-      <div className="legalLinks">
-        <a href="#" className="link">
-          Privacy
-        </a>
-        <a href="#" className="link">
-          Terms of Use
-        </a>
-        <a href="#" className="link">
-          Cookie Policy
-        </a>
-      </div>
-    </footer>
+        </div> {/* End container */}
+      </footer>
+    </>
   );
 };
 

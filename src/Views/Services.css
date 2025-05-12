@@ -1,71 +1,60 @@
-/* Basic Reset */
-body,
-h1,
-h2,
-p,
-button,
-section {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* src/Views/Services.css */
 
-.services-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* Hero Section */
 .services-hero {
-  background-color: #0b0910;
-  color: #fff;
-  padding: 100px 20px;
+  background-color: var(--solpower-black); /* Black hero background */
+  color: var(--solpower-white);
+  padding: 120px 20px 80px; /* Adjusted padding */
   text-align: left;
-  background-size: cover;
-  background-position: center;
+  /* background-image: url('../assets/images/services-hero.jpg'); */ /* Optional background image with overlay */
+  /* background-size: cover; background-position: center; */
   position: relative;
 }
 
-.services-hero::after {
-  content: '';
-  background: rgba(10, 10, 10, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.services-hero::after { /* Optional overlay if using image */
+  /* content: ''; background: rgba(0, 0, 0, 0.6); position: absolute;
+     top: 0; left: 0; right: 0; bottom: 0; z-index: 0; */
 }
 
 .services-header-container {
   position: relative;
   z-index: 1;
+  max-width: 1200px; /* Limit width */
+  margin: 0 auto;
+  width: 90%;
 }
 
 .services-header-title {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
+  font-size: 2.8rem; /* Adjusted size */
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--solpower-yellow); /* Yellow title */
 }
 
 .services-header-description {
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Adjusted size */
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0; /* Align left */
+  opacity: 0.9;
+  line-height: 1.7;
 }
 
+/* Navigation Buttons (Optional - Can remove if not needed) */
 .services-nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: -30px 0 50px 0;
+  margin: 3rem 0; /* Space above/below */
+  padding: 0 20px;
 }
 
 .services-nav button {
-  background-color: transparent;
-  color: #0a0a0a;
-  border: 2px solid #0a0a0a;
-  padding: 12px 30px;
-  margin: 10px;
-  font-size: 1rem;
+  background-color: var(--solpower-white);
+  color: var(--solpower-black);
+  border: 1px solid var(--solpower-border-medium);
+  padding: 10px 25px;
+  margin: 8px;
+  font-size: 0.95rem;
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.3s ease;
@@ -73,112 +62,80 @@ section {
 }
 
 .services-nav button:hover {
-  background-color: #0a0a0a;
-  color: #fff;
+  background-color: var(--solpower-yellow);
+  border-color: var(--solpower-yellow);
+  color: var(--solpower-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Service Sections - Handled by content-section + background classes */
 .service-section {
-  padding: 60px 20px;
-  background-color: #f7f7f7;
+  /* padding: 4rem 1.5rem; */ /* Use content-section padding */
 }
 
-.service-section:nth-child(even) {
-  background-color: #fff;
-}
-
+/* Service Card Styling */
 .service-card {
   max-width: 1000px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
+  margin: 0 auto; /* Center card */
+  background-color: var(--solpower-white);
+  border-radius: 10px;
+  padding: 2.5rem; /* Adjust padding */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--solpower-border-light);
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .service-card h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #0a0a0a;
+  font-size: 1.8rem; /* Adjusted size */
+  margin-bottom: 1.5rem; /* Increased space */
+  color: var(--solpower-black);
   position: relative;
+  padding-bottom: 0.8rem; /* Space for underline */
+  text-align: left; /* Align heading left */
 }
 
-.service-card h2::after {
+.service-card h2::after { /* Underline accent */
   content: '';
-  width: 80px;
+  width: 60px;
   height: 4px;
-  background-color: #0a0a0a;
+  background-color: var(--solpower-yellow); /* Yellow accent */
   position: absolute;
-  bottom: -10px;
+  bottom: 0;
   left: 0;
 }
 
 .service-card p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #555;
+  font-size: 1.05rem; /* Adjust size */
+  line-height: 1.7;
+  color: var(--solpower-text-medium);
+  text-align: left;
+  max-width: none; /* Allow full width */
+  margin-left: 0;
 }
 
-/* Animations */
-.service-card {
-  opacity: 0;
-  animation: fadeInUp 0.6s forwards;
+/* Optional: Add icons or images within cards */
+.service-card .service-icon {
+    /* styles for icon */
+    font-size: 2.5rem;
+    color: var(--solpower-yellow);
+    margin-bottom: 1rem;
+    /* display: inline-block; */
 }
 
-.service-section:nth-child(1) .service-card {
-  animation-delay: 0.2s;
-}
-
-.service-section:nth-child(2) .service-card {
-  animation-delay: 0.4s;
-}
-
-.service-section:nth-child(3) .service-card {
-  animation-delay: 0.6s;
-}
-
-.service-section:nth-child(4) .service-card {
-  animation-delay: 0.8s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .services-header-title {
-    font-size: 2.5rem;
-  }
-
-  .services-header-description {
-    font-size: 1.2rem;
-  }
-
-  .services-nav button {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
-
-  .service-card h2 {
-    font-size: 2rem;
-  }
-
-  .service-card p {
-    font-size: 1rem;
-  }
+  .services-hero { padding: 100px 20px 60px; }
+  .services-header-title { font-size: 2.2rem; }
+  .services-header-description { font-size: 1.1rem; }
+  .services-nav button { padding: 8px 20px; font-size: 0.9rem; }
+  .service-card { padding: 1.5rem; }
+  .service-card h2 { font-size: 1.5rem; }
+  .service-card p { font-size: 1rem; }
 }
-

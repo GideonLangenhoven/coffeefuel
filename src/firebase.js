@@ -1,7 +1,7 @@
 // src/firebase.js
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics, isSupported } from "firebase/analytics"; // Import isSupported for conditional analytics
+import { getAnalytics, isSupported } from "firebase/analytics";
 
 // --- Environment Variable Handling for CREATE REACT APP ---
 // Use REACT_APP_ prefix for all variables. Store them in .env file in the project root
@@ -16,17 +16,14 @@ const firebaseConfig = {
 };
 // --- End Environment Variable Handling ---
 
-
 // Initialize Firebase App
-// Check if already initialized to avoid errors during hot-reloading
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 // Initialize Firestore
 const db = getFirestore(app);
 
-// Initialize Analytics (conditionally, only runs in the browser)
+// Initialize Analytics (conditionally)
 let analytics;
-// Check if running in the browser (where window is defined)
 if (typeof window !== 'undefined') {
   isSupported().then((supported) => {
     if (supported) {
@@ -39,4 +36,4 @@ if (typeof window !== 'undefined') {
 }
 
 // Export the necessary Firebase services
-export { db, analytics, app }; // Export db and analytics (and app if needed elsewhere)
+export { db, analytics, app };

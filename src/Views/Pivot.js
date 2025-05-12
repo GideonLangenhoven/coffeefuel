@@ -1,55 +1,48 @@
-import React from 'react';
+// src/Views/Pivot.js
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom'; // Use Link for button if appropriate
 import './Pivot.css';
-import TotoImage from '../assets/images/Toto.png'; 
-const Pivot = () => {
+import Button from '../Components/Button';
+
+// TODO: Replace with a relevant SolPower image (e.g., system diagram, savings graph)
+import pivotImageDefault from '../assets/images/solar-benefits.jpg';
+
+const Pivot = ({ backgroundClass = "bg-grey" }) => { // Accept background class as prop
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => { /* ... intersection observer logic as before ... */ }, []);
+
   return (
-    <div className="pivotWrapper">
+    // Apply background class passed via prop
+    <section ref={sectionRef} className={`pivotWrapper ${backgroundClass}`}>
       <div className="pivotContainer">
-        {/* Image Section - Now appears first */}
-        <div className="pivotImageWrapper">
-          <img 
-            src={TotoImage} 
-            alt="Satellite dish overlooking city"
-            className="pivotImage visible"
+        <div className={`pivotImageWrapper ${isVisible ? 'visible' : ''}`}>
+          {/* [Placeholder Image: Infographic/Diagram of Solar Savings or How it Works] */}
+          <img
+            src={pivotImageDefault} // Use imported image
+            alt="Infographic showing SolPower benefits"
+            className="pivotImage"
           />
-          {/* Purple Overlay Box */}
-          <div className="pivotOverlay">
-            <div className="percentage">
-              86%
-            </div>
-            <p className="text-sm">
-              of industry visionaries agree:
-            </p>
-            <p className="text-lg">
-              Risk-takers make better leaders.
-            </p>
-          </div>
+          {/* Removed overlay */}
         </div>
 
-        {/* Text Content */}
-        <div className="pivotTextContent">
-          <h2 className="pivotTitle visible">
-            Pivoting for success amidst economic challenges
-          </h2>
-          
-          <p className="pivotText visible">
-            Embracing opportunity in times of change is core to how we operate at the Challenger 
-            Consultancy, and we support our clients in doing the same. It's our fundamental belief 
-            that this is where success is built.
+        <div className={`pivotTextContent ${isVisible ? 'visible' : ''}`}>
+          {/* Updated Content */}
+          <h2 className="pivotTitle">Smart Investment, Sustainable Future</h2>
+          <p className="pivotText">
+            Choosing SolPower isn't just about escaping load shedding; it's a strategic investment. Increase your property value significantly, lock in predictable energy costs immune to Eskom hikes, and enjoy potential earnings by selling surplus power back to the grid (in supported areas).
           </p>
-          
-          <p className="pivotText visible">
-            Our recent study shows that risk-taking is a fundamental factor in achieving growth in
-            business. Those who have remained forward-thinking and made investments for the 
-            future, rather than pressing pause, are finding themselves ahead of the pack.
+          <p className="pivotText">
+            Beyond the savings, you're investing in a cleaner South Africa. Reduce your carbon footprint and power your life with sustainable, renewable energy harnessed directly from the sun. It's good for your wallet, great for the planet.
           </p>
-          
-          <button className="pivotButton">
-            Read the research
-          </button>
+          {/* Update button link/action */}
+          <Link to="/how-it-works">
+            <Button className="pivotButton">See How It Works</Button>
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

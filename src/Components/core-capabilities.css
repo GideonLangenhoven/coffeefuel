@@ -1,0 +1,179 @@
+/* src/Components/core-capabilities.css */
+/* Wrapper with background image */
+.coreCapabilitiesWrapper {
+  /* TODO: Update background for SolPower theme */
+  /* background-image: url('../assets/images/solar-background.jpg'); */
+  background-color: #ffffff; /* Default white */
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 1.5rem; /* Adjust padding */
+  position: relative;
+  overflow: hidden;
+  /* Animate visibility if needed */
+  /* opacity: 0; */
+  /* transition: opacity 0.8s ease-in-out; */
+}
+/* Optional overlay if using background image */
+/* .coreCapabilitiesWrapper::after { ... } */
+/* .coreCapabilitiesWrapper.visible { opacity: 1; } */
+
+/* Container to hold content */
+.coreCapabilitiesContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: center; /* Center title/subtitle */
+}
+
+/* Title and Subtitle Styling */
+.coreCapabilitiesTitle,
+.coreCapabilitiesSubtitle {
+  /* Optional animation */
+  /* opacity: 0; */
+  /* transform: translateY(18px); */
+  /* transition: opacity 0.8s ease, transform 0.8s ease; */
+  margin-bottom: 1rem;
+}
+/* .coreCapabilitiesTitle.fadeIn, */
+/* .coreCapabilitiesSubtitle.fadeIn { opacity: 1; transform: translateY(0); } */
+
+.coreCapabilitiesTitle {
+  font-size: 2.5rem; /* Adjust size */
+  font-weight: bold;
+  color: #1e3a8a; /* Example SolPower dark blue */
+  margin-bottom: 0.75rem; /* Adjust spacing */
+}
+
+.coreCapabilitiesSubtitle {
+  font-size: 1.1rem; /* Adjust size */
+  color: #4b5563; /* Softer text */
+  margin-bottom: 3rem; /* Space before cards */
+  max-width: 700px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* Grid for Capability Cards */
+.capabilitiesGrid {
+  display: grid;
+  /* Adjust columns for responsiveness */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+  gap: 2rem; /* Adjust gap */
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* Capability Card Styling */
+.capabilityCard {
+  width: 100%; /* Take full grid column width */
+  min-height: 380px; /* Ensure consistent height */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes link to bottom */
+  background-color: #ffffff;
+  border-radius: 8px; /* Adjust radius */
+  padding: 2rem 1.5rem; /* Adjust padding */
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  /* Animation properties if needed */
+  /* opacity: 0; */
+  /* transform: translateY(20px); */
+}
+/* .capabilityCard.animateCard { ... } */
+/* .capabilityCard.hiddenCard { ... } */
+
+.capabilityCard:hover {
+  transform: translateY(-8px); /* Lift effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Optional decorative line */
+.cardLine {
+  width: 50px;
+  height: 3px;
+  background-color: #007bff; /* Example accent */
+  margin: 0 auto 1.5rem; /* Spacing */
+  border-radius: 2px;
+}
+
+/* Icon Wrapper */
+.iconWrapper {
+  margin-bottom: 1.5rem; /* Space below icon */
+  display: flex;
+  justify-content: center;
+}
+
+/* Capability Icon */
+.capabilityIcon {
+  width: 60px; /* Adjust size */
+  height: 60px;
+  color: #007bff; /* Example icon color */
+  object-fit: contain; /* If using img tag */
+}
+
+/* Capability Title */
+.capabilityTitle {
+  font-size: 1.4rem; /* Adjust size */
+  margin-bottom: 1rem; /* Adjust spacing */
+  font-weight: 600; /* Semi-bold */
+  color: #343a40;
+}
+
+/* Capability Description */
+.capabilityDescription {
+  font-size: 1rem;
+  margin-bottom: 1.5rem; /* Space before link */
+  color: #4b5563;
+  flex-grow: 1; /* Allow description to push link down */
+  line-height: 1.6;
+}
+
+/* Capability Link */
+.capabilityLink {
+  margin-top: auto; /* Ensure link is at the bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.findOutMore {
+  font-size: 1rem;
+  color: #007bff; /* Link color */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+.findOutMore:hover {
+  color: #0056b3; /* Darker hover */
+  text-decoration: underline;
+}
+.findOutMore .arrowIcon {
+  margin-left: 6px;
+  width: 1em; /* Consistent size with text */
+  height: 1em;
+  transition: transform 0.3s ease;
+}
+.findOutMore:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* Responsive Styles */
+/* Grid handles responsiveness well with auto-fit */
+/* Add specific overrides if needed */
+@media (max-width: 768px) {
+  .coreCapabilitiesTitle { font-size: 2rem; }
+  .coreCapabilitiesSubtitle { font-size: 1rem; margin-bottom: 2rem;}
+  .capabilitiesGrid { gap: 1.5rem; }
+  .capabilityCard { padding: 1.5rem; min-height: auto; }
+  .capabilityTitle { font-size: 1.2rem; }
+  .capabilityDescription { font-size: 0.95rem; }
+}

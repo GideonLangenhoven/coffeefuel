@@ -1,106 +1,231 @@
-/* src/components/Footer.css */
+/* src/Components/Footer.css */
+:root {
+  --solpower-yellow: #ffc107;
+  --solpower-black: #212529;
+  --solpower-white: #ffffff;
+  --solpower-white-rgb: 255, 255, 255; /* RGB for opacity */
+}
+
 .footer {
-  background-color: black;
-  color: white;
-  padding: 2rem;
+  background-color: var(--solpower-black);
+  color: var(--solpower-white);
+  padding: 4rem 0 2rem;
+  position: relative;
+  /* margin-top: 100px; /* Be cautious with fixed margins like this if ContactCard height is variable */
 }
 
-.container {
-  max-width: 72rem;
+/* Renamed to avoid conflict with potentially generic 'container' class */
+.footer-container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.grid {
+/* THIS IS THE KEY FOR HORIZONTAL COLUMNS */
+.footer-grid {
   display: grid;
-  gap: 2rem;
+  /* Auto-fit columns: min 220px, max 1fr (equal share of extra space) */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem; /* Space between grid columns/rows */
+  margin-bottom: 3rem; /* Space before the bottom bar */
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Styles for content WITHIN each column */
+.footer-column {
+  display: flex;
+  flex-direction: column; /* Stacks title and links vertically */
+  gap: 0.5rem; /* Space between items in the column */
 }
 
 .title {
+  color: var(--solpower-yellow);
   font-size: 1.25rem;
-  font-weight: bold;
   margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-.link {
-  cursor: pointer;
+.footer-link {
+  display: block; /* Makes links stack vertically */
+  color: rgba(var(--solpower-white-rgb), 0.85);
+  text-decoration: none;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  position: relative; /* Needed for pseudo-elements or absolute positioning within */
 }
 
-.link:hover {
+.footer-link:hover {
+  color: var(--solpower-yellow);
+  padding-left: 5px; /* Indent text on hover */
+}
+
+/* Specific style for links with icons */
+.icon-link {
+  display: flex; /* Align icon and text horizontally */
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+}
+
+.icon-link .footer-icon {
+  flex-shrink: 0; /* Prevent icon from shrinking if text is long */
+}
+
+/* Optional: Remove hover indent for icon links if desired */
+.icon-link:hover {
+  padding-left: 0;
+}
+.icon-link:hover span {
+   /* Underline only the text part on hover */
   text-decoration: underline;
 }
 
-.cityGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+.footer-text {
+  color: rgba(var(--solpower-white-rgb), 0.85);
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .socialIcons {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
+  align-items: center;
 }
 
 .socialIcon {
-  transition: color 0.3s;
+  color: rgba(var(--solpower-white-rgb), 0.85);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
 }
 
 .socialIcon:hover {
-  color: #f97316;
+  color: var(--solpower-yellow);
+  transform: scale(1.15);
 }
 
-.newsletterButton {
-  background-color: #f97316;
-  color: white;
-  padding: 1rem;
-  border-radius: 9999px;
-  cursor: pointer;
+/* Footer Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid rgba(var(--solpower-white-rgb), 0.1);
+  padding-top: 2.5rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row; /* Horizontal on large screens */
+  justify-content: space-between; /* Pushes items apart */
   align-items: center;
-}
-
-.newsletterForm {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.inputGroup {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.submitButton {
-  background-color: #f97316;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.submitButton:hover {
-  background-color: #ea580c;
-}
-
-.legalText {
-  font-size: 0.875rem;
+  flex-wrap: wrap; /* Allows wrapping if space is tight */
+  gap: 1.5rem;
 }
 
 .legalLinks {
   display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  gap: 2rem; /* Space between Privacy Policy / Terms */
+  flex-wrap: wrap;
+}
+
+.legal-link {
+  color: rgba(var(--solpower-white-rgb), 0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+  color: var(--solpower-yellow);
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: rgba(var(--solpower-white-rgb), 0.65);
+  /* No text-align needed here, space-between handles positioning */
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Tablets and smaller desktops */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Slightly smaller min width */
+    gap: 2rem;
+  }
+  .footer-container {
+      padding: 0 1.25rem;
+  }
+}
+
+/* Smaller tablets and landscape phones */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+   .footer-container {
+      padding: 0 1rem;
+   }
+
+  .footer-grid {
+    /* Often becomes 2 columns here */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min if needed */
+     gap: 2rem 1.5rem; /* row-gap column-gap */
+  }
+  .footer-column {
+     /* Add space below columns when they might stack or be in 2-cols */
+     margin-bottom: 1.5rem;
+  }
+  /* Ensure last column doesn't have extra margin if it's visually okay */
+  .footer-column:last-child {
+      margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 1.15rem;
+  }
+
+  /* Stack bottom bar elements */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center; /* Center items when stacked */
+    gap: 1rem; /* Reduced gap when stacked */
+  }
+
+  .legalLinks {
+    order: 2; /* Show below copyright on mobile */
+    gap: 1rem;
+    /* text-align: center; /* Center text within the links block */
+    justify-content: center; /* Center the links themselves */
+    width: 100%; /* Ensure it can center properly */
+  }
+
+  .copyright {
+    order: 1; /* Show copyright first on mobile */
+    text-align: center;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+    .footer-grid {
+        /* Force single column */
+        grid-template-columns: 1fr;
+        gap: 2rem; /* Only row gap matters now */
+    }
+     .footer-column {
+        margin-bottom: 2rem; /* More space between stacked sections */
+    }
+     .legalLinks {
+        flex-direction: column; /* Stack legal links vertically too */
+        align-items: center;
+        gap: 0.75rem;
+     }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

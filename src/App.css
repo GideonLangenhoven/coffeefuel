@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+/* --- File: src/index.css --- */
+/* ... (keep your existing global styles from index.css) ... */
+
+/* Custom Scrollbar Styles (Primarily for WebKit browsers) */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+  height: 12px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--solpower-grey-light, #f8f9fa); /* Track color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--solpower-yellow, #ffc107); /* Scrollbar thumb color - YELLOW */
+  border-radius: 10px;
+  border: 3px solid var(--solpower-grey-light, #f8f9fa); /* Creates padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--solpower-yellow-dark, #e6ac00); /* Darker yellow on hover */
+}
+
+/* For Firefox - simpler styling */
+/* Note: Firefox scrollbar styling is less customizable */
+/* These properties are applied to the element that has the scrollbar (html or specific containers) */
+/* Applying to html for the main browser scrollbar */
+html {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: var(--solpower-yellow, #ffc107) var(--solpower-grey-light, #f8f9fa); /* thumb track */
+}
+
+/* --- For the "glow on click" --- */
+/*
+  A true "glow on click" for the browser's scrollbar thumb is not possible with CSS.
+  The :active pseudo-class for scrollbar thumbs is not widely supported for complex styling.
+  The best we can do is a hover effect or a static style.
+  If you wanted a custom on-page scroll component, that would be different and allow JS interaction,
+  but for the native browser scrollbar, limitations apply.
+*/

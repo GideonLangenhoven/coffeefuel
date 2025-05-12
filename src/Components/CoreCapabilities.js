@@ -1,116 +1,122 @@
+// src/Components/CoreCapabilities.js
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import './core-capabilities.css';
-import finger from '../assets/images/Finger.png';
-import arrow from '../assets/images/arrow.png';
-import elec from '../assets/images/Elec.png';
-import PC from '../assets/images/PC.png';
+import { Link } from 'react-router-dom'; // Use react-router-dom Link
+import { ArrowRight, Zap, Sun, BatteryCharging } from 'lucide-react'; // Example icons
+import './core-capabilities.css'; // Import CSS (ensure filename is hyphenated)
 
-// Core capabilities data
+// TODO: Update capabilities data for SolPower services
 const capabilities = [
   {
-    icon: finger,
-    title: 'Certified Reinvention Practitioners',
+    icon: <Sun size={50} />, // Use Lucide icon component
+    title: 'Solar Panel Systems',
     description:
-      'Reinvention consulting, transformational leadership, business reinvention strategies',
-    link: '/services#certified-reinvention-practitioners',
+      'Harness clean energy with high-efficiency PV panels tailored for residential and commercial use.',
+    link: '/services#solar',
   },
   {
-    icon: PC,
-    title: 'Business Coaching',
+    icon: <BatteryCharging size={50} />,
+    title: 'Battery Backup Solutions',
     description:
-      'Executive coaching for business leaders, leadership development coaching, business growth coaching',
-    link: '/services#business-coaching',
+      'Ensure uninterrupted power during load shedding with reliable battery storage and inverter systems.',
+    link: '/services#backup',
   },
   {
-    icon: arrow,
-    title: 'Management Consulting',
+    icon: <Zap size={50} />, // Example icon
+    title: 'Energy Consultation',
     description:
-      'Strategic management consulting, change management consulting, organizational transformation services',
-    link: '/services#management-consulting',
+      'Optimize your energy usage and explore the best solutions with our expert consultation services.',
+    link: '/services#consulting',
   },
-  {
-    icon: elec,
-    title: 'Leadership Experience',
-    description:
-      'Experienced business leaders, leadership expertise, seasoned management consultants',
-    link: '/services#leadership-experience',
-  },
+  // Add more services like Maintenance if applicable
+  // {
+  //   icon: <Tool size={50} />, // Example icon
+  //   title: 'System Maintenance',
+  //   description:
+  //     'Keep your system running efficiently with our professional maintenance and support packages.',
+  //   link: '/services#maintenance',
+  // },
 ];
 
-// CapabilityCard component
-const CapabilityCard = ({ capability, index, isVisible }) => {
+// --- CapabilityCard component ---
+const CapabilityCard = ({ capability, isVisible, index }) => {
+  const cardStyle = {
+    // Optional: Define animation delay based on index for staggered effect
+    // animationDelay: isVisible ? `${index * 0.15}s` : '0s',
+  };
+
   return (
     <Link
       to={capability.link}
-      className={`capabilityCard ${isVisible ? 'animateCard' : 'hiddenCard'}`}
-      style={{ animationDelay: `${index * 0.3 + 1}s` }} // Staggered delay for sequential animation
+      className={`capabilityCard ${isVisible ? 'animateCard' : ''}`} // Add animation class if isVisible
+      style={cardStyle}
     >
       <div className="iconWrapper">
-        <img src={capability.icon} alt={capability.title} className="capabilityIcon" />
+        {/* Render the icon component passed in props */}
+        {capability.icon}
       </div>
-      <div className="cardLine"></div>
+      {/* <div className="cardLine"></div> */} {/* Optional decorative line */}
       <h3 className="capabilityTitle">{capability.title}</h3>
       <p className="capabilityDescription">{capability.description}</p>
       <div className="capabilityLink">
         <span className="findOutMore">
-          Find out more
-          <ArrowRight className="arrowIcon" />
+          Learn More
+          <ArrowRight className="arrowIcon" size={16} /> {/* Use Lucide icon */}
         </span>
       </div>
     </Link>
   );
 };
 
-// CoreCapabilities component
+// --- CoreCapabilities component ---
 const CoreCapabilities = () => {
-  const [hasScrolledIntoView, setHasScrolledIntoView] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
-      root: null, // Observing within the viewport
+      root: null,
       rootMargin: '0px',
-      threshold: 0.1, // Trigger when 10% of the component is visible
+      threshold: 0.1, // Trigger when 10% is visible
     };
 
-    const observerCallback = (entries, observer) => {
+    const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setHasScrolledIntoView(true);
-          observer.unobserve(entry.target); // Stop observing after the first trigger
+          setIsVisible(true);
+          observer.unobserve(entry.target); // Observe only once
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const currentRef = wrapperRef.current; // Capture ref
 
-    if (wrapperRef.current) {
-      observer.observe(wrapperRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
-    // Cleanup observer on unmount
     return () => {
-      if (wrapperRef.current) {
-        observer.unobserve(wrapperRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef); // Cleanup
       }
     };
   }, []);
 
+  // TODO: Update Title and Subtitle for SolPower
   return (
-    <div
+    <section // Use section tag
       id="core-capabilities"
       ref={wrapperRef}
-      className={`coreCapabilitiesWrapper ${hasScrolledIntoView ? 'visible' : 'hidden'}`}
+      // Add visibility class for potential wrapper animation
+      className={`coreCapabilitiesWrapper ${isVisible ? 'visible' : ''}`}
     >
       <div className="coreCapabilitiesContainer">
-        <h2 className={`coreCapabilitiesTitle ${hasScrolledIntoView ? 'fadeIn' : ''}`}>
-          Our Core Capabilities
+        {/* Add fadeIn class if isVisible for text animation */}
+        <h2 className={`coreCapabilitiesTitle ${isVisible ? 'fadeIn' : ''}`}>
+          Our Energy Solutions
         </h2>
-        <p className={`coreCapabilitiesSubtitle ${hasScrolledIntoView ? 'fadeIn' : ''}`}>
-          We turn your biggest challenges into stepping stones for success. Let us guide you in
-          transforming pain points into pathways to growth and innovation.
+        <p className={`coreCapabilitiesSubtitle ${isVisible ? 'fadeIn' : ''}`}>
+          From generating your own power with solar panels to ensuring reliable backup during outages, we provide comprehensive solutions for energy independence.
         </p>
 
         <div className="capabilitiesGrid">
@@ -119,12 +125,12 @@ const CoreCapabilities = () => {
               key={index}
               capability={capability}
               index={index}
-              isVisible={hasScrolledIntoView}
+              isVisible={isVisible} // Pass visibility state to card for animation
             />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
