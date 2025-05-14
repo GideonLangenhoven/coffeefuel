@@ -1,39 +1,87 @@
-
-
-/*
 .step-detail-modal-overlay {
-  position: fixed; inset: 0;
-  background-color: rgba(var(--solpower-black-rgb), 0.8);
-  z-index: 1050; display: flex;
-  align-items: center; justify-content: center;
-  padding: var(--spacing-md);
-  animation: fadeInOverlay 0.3s ease-out forwards;
+position: fixed;
+inset: 0;
+background-color: rgba(var(--solpower-black-rgb), 0.8);
+z-index: 1050;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: var(--spacing-md);
+animation: fadeInOverlay 0.3s ease-out forwards;
 }
-.step-detail-modal-content {
-  background-color: var(--modal-bg, var(--solpower-white));
-  padding: var(--modal-padding, var(--spacing-xl));
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
-  width: 100%; max-width: var(--modal-max-width, 700px);
-  max-height: 90vh; overflow-y: auto;
-  position: relative;
-  transform: scale(0.95) translateY(15px); opacity: 0;
-  animation: slideInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
-}
-.step-detail-modal-close {
-  position: absolute; top: var(--spacing-md); right: var(--spacing-md);
-  background: none; border: none; font-size: 1.8rem; color: var(--solpower-grey-dark);
-  cursor: pointer; padding: var(--spacing-sm); line-height: 1;
-  transition: color 0.2s ease, transform 0.2s ease; border-radius: 50%; z-index: 10;
-}
-.step-detail-modal-close:hover {
-  color: var(--solpower-yellow-dark); background-color: var(--solpower-grey-light);
-  transform: scale(1.1) rotate(90deg);
-}
-.step-detail-modal-close .material-icons-outlined { font-size: 30px; display: block; }
-.step-detail-modal-title { /* ... styles ... * / }
-.step-detail-modal-body { /* ... styles ... * / }
-@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideInModal { from { transform: scale(0.95) translateY(15px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
-*/
 
+.step-detail-modal-content {
+background-color: var(--modal-bg, var(--solpower-white));
+padding: var(--modal-padding, var(--spacing-xl));
+border-radius: var(--border-radius-lg);
+box-shadow: var(--shadow-lg);
+width: 100%;
+max-width: var(--modal-max-width, 700px);
+max-height: 90vh;
+overflow-y: auto;
+position: relative;
+transform: scale(0.95) translateY(15px);
+opacity: 0;
+animation: slideInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+}
+
+.step-detail-modal-close {
+position: absolute;
+top: var(--spacing-md);
+right: var(--spacing-md);
+background: none;
+border: none;
+font-size: 1.8rem;
+color: var(--solpower-grey-dark);
+cursor: pointer;
+padding: var(--spacing-sm);
+line-height: 1;
+transition: color 0.2s ease, transform 0.2s ease;
+border-radius: 50%;
+z-index: 10;
+}
+
+.step-detail-modal-close:hover {
+color: var(--solpower-yellow-dark);
+background-color: var(--solpower-grey-light);
+transform: scale(1.1) rotate(90deg);
+}
+
+.step-detail-modal-close .material-icons-outlined {
+font-size: 30px;
+display: block;
+}
+
+.step-detail-modal-title {
+/*... styles ...*/
+/* You can add your specific styles for the modal title here */
+margin-bottom: var(--spacing-md); /* Example style */
+font-size: 1.5rem; /* Example style */
+font-weight: bold; /* Example style */
+}
+
+.step-detail-modal-body {
+/*... styles ...*/
+/* You can add your specific styles for the modal body here */
+margin-bottom: var(--spacing-lg); /* Example style */
+}
+
+@keyframes fadeInOverlay {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+
+@keyframes slideInModal {
+from {
+transform: scale(0.95) translateY(15px);
+opacity: 0;
+}
+to {
+transform: scale(1) translateY(0);
+opacity: 1;
+}
+}

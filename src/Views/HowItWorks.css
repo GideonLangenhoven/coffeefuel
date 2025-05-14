@@ -1,480 +1,511 @@
 /* --- File: src/Views/HowItWorks.css --- */
 
 /* ==========================================================================
-   How It Works Page Styles (CONSOLIDATED V4.7 - Residential Section Style Change)
-   ========================================================================== */
+How It Works Page Styles (CONSOLIDATED V4.9 - Lottie Sizing Adjustment)
+========================================================================== */
 
 /* --- Base Variables & Setup --- */
 :root {
-  /* Core SolPower Colors */
-  --solpower-yellow: #ffc107;
-  --solpower-yellow-rgb: 255, 193, 7;
-  --solpower-yellow-dark: #e6ac00;
-  --solpower-yellow-light: #fffbeb;
-  --solpower-black: #212529;
-  --solpower-black-rgb: 33, 37, 41;
-  --solpower-white: #ffffff;
-  --solpower-grey: #f8f9fa;
-  --solpower-grey-light: #f8f9fa;
-  --solpower-grey-medium: #dee2e6;
-  --solpower-grey-dark: #6c757d;
-  --solpower-text-dark: #343a40;
-  --solpower-text-medium: #555;
-  --solpower-green-natural: #4C704B; /* Added from Commercial.css for new section style */
+/* Core SolPower Colors */
+--solpower-yellow: #ffc107;
+--solpower-yellow-rgb: 255, 193, 7;
+--solpower-yellow-dark: #e6ac00;
+--solpower-yellow-light: #fffbeb;
+--solpower-black: #212529;
+--solpower-black-rgb: 33, 37, 41;
+--solpower-white: #ffffff;
+--solpower-white-rgb: 255, 255, 255;
+--solpower-grey: #f8f9fa;
+--solpower-grey-light: #f8f9fa;
+--solpower-grey-medium: #dee2e6;
+--solpower-grey-dark: #6c757d;
+--solpower-text-dark: #343a40;
+--solpower-text-medium: #555;
+--solpower-green-natural: #4C704B;
 
 
-  /* Layout & Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 3rem;
-  --spacing-xxl: 5rem;
-  --spacing-hero: 6rem;
-  --page-max-width: 1200px;
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --border-radius-xl: 16px;
+/* Layout & Spacing */
+--spacing-xs: 0.25rem;
+--spacing-sm: 0.5rem;
+--spacing-md: 1rem;
+--spacing-lg: 1.5rem;
+--spacing-xl: 3rem;
+--spacing-xxl: 5rem;
+--spacing-hero: 6rem;
+--page-max-width: 1200px;
+--border-radius-sm: 4px;
+--border-radius-md: 8px;
+--border-radius-lg: 12px;
+--border-radius-xl: 16px;
 
 
-  /* Typography */
-  --font-family-base: 'Encode Sans', sans-serif;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --line-height-base: 1.65;
-  --line-height-heading: 1.3;
-  --card-title-font-size: clamp(1.1rem, 2.2vw, 1.25rem);
-  --card-title-line-height: 1.35;
+/* Typography */
+--font-family-base: 'Encode Sans', sans-serif;
+--font-weight-light: 300;
+--font-weight-regular: 400;
+--font-weight-semibold: 600;
+--font-weight-bold: 700;
+--font-weight-extrabold: 800;
+--line-height-base: 1.65;
+--line-height-heading: 1.3;
+--card-title-font-size: clamp(1.1rem, 2vw, 1.2rem);
+--card-title-line-height: 1.35;
 
 
-  /* Transitions & Shadows */
-  --transition-base: all 0.3s ease-in-out;
-  --shadow-sm: 0 2px 5px rgba(var(--solpower-black-rgb), 0.08);
-  --shadow-md: 0 5px 15px rgba(var(--solpower-black-rgb), 0.12);
-  --shadow-lg: 0 10px 25px rgba(var(--solpower-black-rgb), 0.15);
-  --glow-shadow-yellow: 0 0 20px 3px rgba(var(--solpower-yellow-rgb), 0.5);
-  --glow-shadow-yellow-strong: 0 0 28px 6px rgba(var(--solpower-yellow-rgb), 0.65);
-  --glow-shadow-yellow-lottie: 0 0 60px 9px rgba(var(--solpower-yellow-rgb), 0.6);
-  --glow-shadow-yellow-lottie-hover: 0 0 75px 12px rgba(var(--solpower-yellow-rgb), 0.75);
-  --glow-shadow-yellow-button: 0 0 15px 2px rgba(var(--solpower-yellow-rgb), 0.7);
+/* Transitions & Shadows */
+--transition-base: all 0.3s ease-in-out;
+--shadow-sm: 0 2px 5px rgba(var(--solpower-black-rgb), 0.08);
+--shadow-md: 0 5px 15px rgba(var(--solpower-black-rgb), 0.12);
+--shadow-lg: 0 10px 25px rgba(var(--solpower-black-rgb), 0.15);
+--glow-shadow-yellow: 0 0 20px 3px rgba(var(--solpower-yellow-rgb), 0.5);
+--glow-shadow-yellow-strong: 0 0 28px 6px rgba(var(--solpower-yellow-rgb), 0.65);
+--glow-shadow-yellow-lottie: 0 0 60px 9px rgba(var(--solpower-yellow-rgb), 0.6);
+--glow-shadow-yellow-lottie-hover: 0 0 75px 12px rgba(var(--solpower-yellow-rgb), 0.75);
+--glow-shadow-yellow-button: 0 0 15px 2px rgba(var(--solpower-yellow-rgb), 0.7);
 
 
-  /* Underline Animation */
-  --underline-color: var(--solpower-yellow); /* Default underline color */
-  --underline-height: 4px;
-  --underline-padding-bottom: 10px;
-  --underline-transition-duration: 0.6s;
-  --underline-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --underline-animation-delay: 0.4s;
+/* Underline Animation */
+--underline-color: var(--solpower-yellow);
+--underline-height: 4px;
+--underline-padding-bottom: 10px;
+--underline-transition-duration: 0.6s;
+--underline-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+--underline-animation-delay: 0.4s;
 
-  /* Modal */
-  --modal-overlay-bg: rgba(var(--solpower-black-rgb), 0.8);
-  --modal-bg: var(--solpower-white);
-  --modal-max-width: 750px;
-  --modal-padding: var(--spacing-lg);
+/* Modal */
+--modal-overlay-bg: rgba(var(--solpower-black-rgb), 0.8);
+--modal-bg: var(--solpower-white);
+--modal-max-width: 750px;
+--modal-padding: var(--spacing-lg);
 
-  /* Slider (State Managed) */
-  --slider-transition-duration: 0.55s;
-  --slider-transition-timing: cubic-bezier(0.4, 0.0, 0.2, 1);
+/* Slider (State Managed) */
+--slider-transition-duration: 0.55s;
+--slider-transition-timing: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* --- Base Page Structure --- */
 .how-it-works-page {
-  overflow-x: hidden; background-color: var(--solpower-white);
-  font-family: var(--font-family-base); color: var(--solpower-text-dark);
-  line-height: var(--line-height-base);
+overflow-x: hidden; background-color: var(--solpower-white);
+font-family: var(--font-family-base); color: var(--solpower-text-dark);
+line-height: var(--line-height-base);
 }
 .page-wrapper { width: 100%; }
 .page-container-inner {
-  max-width: var(--page-max-width, 1200px); width: 90%;
-  margin: 0 auto; position: relative; z-index: 2;
+max-width: var(--page-max-width, 1200px); width: 90%;
+margin: 0 auto; position: relative; z-index: 2;
 }
 @media (min-width: 1600px) { .page-container-inner { max-width: 1400px; } }
 
 /* --- General Button Styles --- */
 .btn-solpower-primary, .btn-solpower-secondary {
-  display: inline-block; padding: 0.8rem 1.8rem;
-  font-family: var(--font-family-base); font-weight: var(--font-weight-semibold);
-  font-size: 0.95rem; text-align: center; vertical-align: middle;
-  cursor: pointer; border: 1px solid transparent;
-  border-radius: var(--border-radius-md); transition: var(--transition-base);
-  text-decoration: none; user-select: none;
+display: inline-block; padding: 0.8rem 1.8rem;
+font-family: var(--font-family-base); font-weight: var(--font-weight-semibold);
+font-size: 0.95rem; text-align: center; vertical-align: middle;
+cursor: pointer; border: 1px solid transparent;
+border-radius: var(--border-radius-md); transition: var(--transition-base);
+text-decoration: none; user-select: none;
 }
 .btn-solpower-primary {
-  background-color: var(--solpower-yellow); color: var(--solpower-black);
-  border-color: var(--solpower-yellow); box-shadow: var(--shadow-sm);
+background-color: var(--solpower-yellow); color: var(--solpower-black);
+border-color: var(--solpower-yellow); box-shadow: var(--shadow-sm);
 }
 .btn-solpower-primary:hover {
-  background-color: var(--solpower-yellow-dark); border-color: var(--solpower-yellow-dark);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md), var(--glow-shadow-yellow-button);
+background-color: var(--solpower-yellow-dark); border-color: var(--solpower-yellow-dark);
+transform: translateY(-3px);
+box-shadow: var(--shadow-md), var(--glow-shadow-yellow-button);
 }
 .btn-solpower-secondary {
-  background-color: var(--solpower-black); color: var(--solpower-white);
-  border-color: var(--solpower-black);
+background-color: var(--solpower-black); color: var(--solpower-white);
+border-color: var(--solpower-black);
 }
 .btn-solpower-secondary:hover {
-  background-color: var(--solpower-grey-dark); border-color: var(--solpower-grey-dark);
-  transform: translateY(-2px);
+background-color: var(--solpower-grey-dark); border-color: var(--solpower-grey-dark);
+transform: translateY(-2px);
 }
 
 
 /* --- Animation & Heading Styles --- */
 .fade-in-up {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.6s var(--underline-transition-timing), transform 0.6s var(--underline-transition-timing);
+opacity: 0; transform: translateY(30px);
+transition: opacity 0.6s var(--underline-transition-timing), transform 0.6s var(--underline-transition-timing);
 }
 .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
 .how-it-works-page-title,
 .how-it-works-section-heading {
-  line-height: var(--line-height-heading); position: relative;
-  padding-bottom: var(--underline-padding-bottom); margin-bottom: var(--spacing-lg);
+line-height: var(--line-height-heading); position: relative;
+padding-bottom: var(--underline-padding-bottom); margin-bottom: var(--spacing-lg);
 }
 .how-it-works-page-title .underline-span,
 .how-it-works-section-heading .underline-span { position: relative; display: inline; }
 
 .how-it-works-page-title::after,
 .how-it-works-section-heading::after {
-  content: ''; position: absolute; bottom: 0; height: var(--underline-height);
-  background-color: var(--underline-color); /* Default underline color */
-  transform: scaleX(0);
-  transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+content: ''; position: absolute; bottom: 0; height: var(--underline-height);
+background-color: var(--underline-color);
+transform: scaleX(0);
+transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
 }
 .how-it-works-page-title.heading-visible::after,
 .how-it-works-section-heading.heading-visible::after {
-  transform: scaleX(1); transition-delay: var(--underline-animation-delay);
+transform: scaleX(1); transition-delay: var(--underline-animation-delay);
 }
 
 .how-it-works-page-title {
-  color: var(--solpower-white); font-weight: var(--font-weight-extrabold);
-  letter-spacing: -0.03em; font-size: clamp(2.2rem, 5vw, 3rem);
-  display: block; text-align: center;
+color: var(--solpower-white); font-weight: var(--font-weight-extrabold);
+letter-spacing: -0.03em; font-size: clamp(2.2rem, 5vw, 3rem);
+display: block; text-align: center;
 }
-.how-it-works-page-title::after { /* Hero title underline is yellow by default */
-  left: 50%; transform: translateX(-50%) scaleX(0);
-  width: 80%; max-width: 600px; transform-origin: center;
+.how-it-works-page-title::after {
+left: 50%; transform: translateX(-50%) scaleX(0);
+width: 80%; max-width: 600px; transform-origin: center;
 }
 .how-it-works-page-title.heading-visible::after { transform: translateX(-50%) scaleX(1); }
 
-.how-it-works-section-heading { /* Default section heading style */
-  font-weight: var(--font-weight-bold); color: var(--solpower-black);
-  font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center;
-  display: inline-block;
+.how-it-works-section-heading {
+font-weight: var(--font-weight-bold); color: var(--solpower-black);
+font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center;
+display: inline-block;
 }
 .how-it-works-process-section .page-container-inner { text-align: center; }
-.how-it-works-section-heading::after { /* Default section heading underline */
-  left: 0; width: 100%; transform-origin: center;
-  background-color: var(--underline-color); /* Default is yellow */
+.how-it-works-section-heading::after {
+left: 0; width: 100%; transform-origin: center;
+background-color: var(--underline-color);
 }
 
 .section-intro-p {
-  font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.75;
-  max-width: 780px; margin: var(--spacing-sm) auto var(--spacing-xl) auto;
-  text-align: center; color: var(--solpower-text-medium); /* Default intro p color */
+font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.75;
+max-width: 780px; margin: var(--spacing-sm) auto var(--spacing-xl) auto;
+text-align: center; color: var(--solpower-text-medium);
 }
 
 /* --- Intro Hero Section with Video --- */
 .how-it-works-intro-section.with-video-bg {
-  position: relative; overflow: hidden; background-color: var(--solpower-black);
-  color: var(--solpower-white); text-align: center; min-height: 60vh;
-  display: flex; align-items: center; justify-content: center;
+position: relative; overflow: hidden; background-color: var(--solpower-black);
+color: var(--solpower-white); text-align: center; min-height: 60vh;
+display: flex; align-items: center; justify-content: center;
 }
 .how-it-works-intro-section.with-video-bg .page-container-inner {
-  padding-top: var(--spacing-hero); padding-bottom: var(--spacing-hero);
-  position: relative; z-index: 3;
+padding-top: var(--spacing-hero); padding-bottom: var(--spacing-hero);
+position: relative; z-index: 3;
 }
 .background-video {
-  position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
-  width: auto; height: auto; object-fit: cover; transform: translate(-50%, -50%);
-  z-index: 1; opacity: 0.75;
+position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
+width: auto; height: auto; object-fit: cover; transform: translate(-50%, -50%);
+z-index: 1; opacity: 0.75;
 }
 .video-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(var(--solpower-black-rgb), 0.25) 0%, rgba(var(--solpower-black-rgb), 0.55) 100%);
-  z-index: 2;
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+background: linear-gradient(to bottom, rgba(var(--solpower-black-rgb), 0.25) 0%, rgba(var(--solpower-black-rgb), 0.55) 100%);
+z-index: 2;
 }
 .how-it-works-page-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.25rem); margin-top: var(--spacing-lg);
-  color: rgba(255,255,255,0.95); max-width: 800px;
-  margin-left: auto; margin-right: auto; line-height: 1.7;
+font-size: clamp(1rem, 2.5vw, 1.25rem); margin-top: var(--spacing-lg);
+color: rgba(255,255,255,0.95); max-width: 800px;
+margin-left: auto; margin-right: auto; line-height: 1.7;
 }
 
 /* --- Process Sections (Slider Sections) --- */
-.how-it-works-process-section { padding: var(--spacing-xxl) 0; }
+.how-it-works-process-section {
+padding-top: calc(var(--spacing-xxl) * 0.7);
+padding-bottom: var(--spacing-xxl);
+padding-left: 0;
+padding-right: 0;
+}
 
-/* Original Dark Background Style for Commercial Process Section */
+/* Commercial Process Section */
 .section-dark-bg {
-  background-color: var(--solpower-black);
-  color: var(--solpower-grey-light); /* Light text for dark background */
+background-color: var(--solpower-black);
+color: var(--solpower-grey-light);
 }
 .section-dark-bg .how-it-works-section-heading {
-  color: var(--solpower-white); /* White heading text */
+color: var(--solpower-white);
 }
 .section-dark-bg .how-it-works-section-heading::after {
-  background-color: var(--solpower-yellow); /* Yellow underline */
+background-color: var(--solpower-yellow);
 }
 .section-dark-bg .section-intro-p {
-  color: var(--solpower-grey-light);
-  opacity: 0.9;
+color: var(--solpower-grey-light);
+opacity: 0.9;
 }
 
-/* --- NEW Green Natural Background Style for Residential Process Section --- */
+/* Residential Process Section */
 .section-green-natural-bg {
-  background-color: var(--solpower-green-natural);
-  color: var(--solpower-white); /* Default light text for this section */
+background-color: var(--solpower-green-natural);
+color: var(--solpower-white);
 }
 .section-green-natural-bg .how-it-works-section-heading {
-  color: var(--solpower-white); /* White heading text */
+color: var(--solpower-white);
 }
 .section-green-natural-bg .how-it-works-section-heading::after {
-  background-color: var(--solpower-white); /* White underline */
+background-color: var(--solpower-white);
 }
 .section-green-natural-bg .section-intro-p {
-  color: var(--solpower-white);
-  opacity: 0.95; /* Slightly more opaque for better readability on green */
+color: var(--solpower-white);
+opacity: 0.95;
 }
-/* Ensure ProcessStepSlider cards look good on this new green background */
-/* The cards themselves have a white background, so they should be fine. */
-/* Slider nav buttons might need adjustment if their contrast is poor on green. */
 .section-green-natural-bg .slider-nav-button {
-  /* Example: if default black buttons are hard to see, make them lighter */
-  /* background-color: rgba(var(--solpower-white-rgb), 0.3); */
-  /* color: var(--solpower-black); */
+/* Adjust nav contrast if needed */
 }
 .section-green-natural-bg .slider-nav-button:hover:not(:disabled) {
-  /* background-color: rgba(var(--solpower-white-rgb), 0.5); */
+/* Adjust nav hover contrast if needed */
 }
 
 
 /* --- Interstitial Lottie Section --- */
 .interstitial-lottie-section {
-  padding: var(--spacing-xl) 0; background-color: var(--solpower-white);
-  text-align: center;
+padding: var(--spacing-xl) 0; background-color: var(--solpower-white);
+text-align: center;
 }
 .standalone-lottie-wrapper {
-  display: flex; justify-content: center; align-items: center;
+display: flex; justify-content: center; align-items: center;
 }
 .intro-lottie-animation-wrapper {
-  width: clamp(220px, 25vw, 280px); height: clamp(220px, 25vw, 280px);
-  margin: 0 auto; border: 5px solid var(--solpower-yellow);
-  border-radius: 50%; box-sizing: border-box; position: relative;
-  overflow: visible; 
-  background-color: rgba(var(--solpower-yellow-rgb), 0.05);
-  box-shadow: var(--glow-shadow-yellow-lottie);
-  transition: box-shadow 0.4s ease-out;
+width: clamp(220px, 25vw, 280px); height: clamp(220px, 25vw, 280px);
+margin: 0 auto; border: 5px solid var(--solpower-yellow);
+border-radius: 50%; box-sizing: border-box; position: relative;
+overflow: visible;
+background-color: rgba(var(--solpower-yellow-rgb), 0.05);
+box-shadow: var(--glow-shadow-yellow-lottie);
+transition: box-shadow 0.4s ease-out;
 }
 .intro-lottie-animation-wrapper:hover {
-  box-shadow: var(--glow-shadow-yellow-lottie-hover);
+box-shadow: var(--glow-shadow-yellow-lottie-hover);
 }
 .intro-lottie-animation-wrapper dotlottie-player {
-  position: absolute; top: 50%; left: 50%;
-  width: 110%; height: 110%; transform: translate(-50%, -50%);
+position: absolute; top: 50%; left: 50%;
+width: 110%; height: 110%; transform: translate(-50%, -50%);
 }
 
 
 /* ==========================================================================
-   STATE-MANAGED SLIDER STYLES (ProcessStepSlider & ProcessStepCard)
-   ========================================================================== */
+STATE-MANAGED SLIDER STYLES (ProcessStepSlider & ProcessStepCard)
+========================================================================== */
 .process-slider-component-wrapper { position: relative; width: 100%; }
 .process-slider-container {
-  min-height: 380px; max-height: 480px; height: 52vh;
-  position: relative; perspective: 1500px;
-  transform-style: preserve-3d; overflow: hidden;
+min-height: 400px;
+max-height: 550px;
+height: 60vh;
+position: relative; perspective: 1500px;
+transform-style: preserve-3d; overflow: hidden;
 }
 .process-slider-track {
-  position: relative; width: 100%; height: 100%; transform-style: preserve-3d;
-  transition: transform var(--slider-transition-duration) var(--slider-transition-timing);
+position: relative; width: 100%; height: 100%; transform-style: preserve-3d;
+transition: transform var(--slider-transition-duration) var(--slider-transition-timing);
 }
 
 /* --- ProcessStepCard Styling --- */
 .process-slide-card {
-  display: flex; flex-direction: column;
-  position: absolute; top: 0; left: 50%;
-  width: clamp(40%, 360px, 48%);
-  height: 100%; max-height: 450px;
-  border-radius: var(--border-radius-xl);
-  background-color: var(--solpower-white);
-  border: 1px solid var(--solpower-grey-medium);
-  color: var(--solpower-text-dark);
-  transform-style: preserve-3d;
-  transition: transform var(--slider-transition-duration) var(--slider-transition-timing),
-              opacity var(--slider-transition-duration) ease-in-out,
-              box-shadow var(--slider-transition-duration) var(--slider-transition-timing);
-  box-shadow: var(--shadow-md);
-  cursor: pointer; user-select: none;
-  overflow: hidden;
+display: flex; flex-direction: column;
+position: absolute; top: 0; left: 50%;
+width: clamp(35%, 300px, 40%);
+height: 100%; max-height: 520px;
+border-radius: var(--border-radius-xl);
+background-color: var(--solpower-white);
+border: 1px solid var(--solpower-grey-medium);
+color: var(--solpower-text-dark);
+transform-style: preserve-3d;
+transition: transform var(--slider-transition-duration) var(--slider-transition-timing),
+opacity var(--slider-transition-duration) ease-in-out,
+box-shadow var(--slider-transition-duration) var(--slider-transition-timing);
+box-shadow: var(--shadow-md);
+cursor: pointer; user-select: none;
+overflow: hidden;
 }
 .process-slide-card::before {
-  content: ''; display: block; height: 6px;
-  background-color: var(--solpower-yellow); width: 100%;
-  flex-shrink: 0; transition: background-color 0.3s ease, height 0.3s ease;
-  border-top-left-radius: var(--border-radius-xl);
-  border-top-right-radius: var(--border-radius-xl);
+content: ''; display: block; height: 6px;
+background-color: var(--solpower-yellow); width: 100%;
+flex-shrink: 0; transition: background-color 0.3s ease, height 0.3s ease;
+border-top-left-radius: var(--border-radius-xl);
+border-top-right-radius: var(--border-radius-xl);
 }
 .process-slide-card--active::before { background-color: var(--solpower-yellow-dark); height: 8px; }
 
 .card-main-content {
-  padding: var(--spacing-lg); flex-grow: 1;
-  display: flex; flex-direction: column; text-align: left;
-  overflow-y: auto;
+padding: var(--spacing-lg); flex-grow: 1;
+display: flex; flex-direction: column; text-align: left;
+overflow-y: auto;
+padding-bottom: var(--spacing-xl);
 }
 
 .card-header {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-md);
-  flex-shrink: 0;
-  /* Let content determine height. Min-height can be added if absolutely needed but should be generous. */
+display: flex;
+align-items: flex-start;
+margin-bottom: var(--spacing-sm);
+flex-shrink: 0;
 }
 
 .card-step-indicator {
-  display: flex; align-items: center; justify-content: center;
-  background-color: var(--solpower-yellow-light); color: var(--solpower-yellow-dark);
-  font-weight: var(--font-weight-extrabold); border-radius: 50%;
-  width: 44px; height: 44px; font-size: 1.3rem;
-  margin-right: var(--spacing-md); border: 2px solid var(--solpower-yellow);
-  transition: all 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0;
-  box-shadow: none;
+display: flex; align-items: center; justify-content: center;
+background-color: var(--solpower-yellow-light); color: var(--solpower-yellow-dark);
+font-weight: var(--font-weight-extrabold); border-radius: 50%;
+width: 44px; height: 44px; font-size: 1.3rem;
+margin-right: var(--spacing-md); border: 2px solid var(--solpower-yellow);
+transition: all 0.3s ease, box-shadow 0.3s ease;
+flex-shrink: 0;
+box-shadow: none;
 }
 .process-slide-card--active .card-step-indicator {
-  background-color: var(--solpower-yellow); color: var(--solpower-black);
-  transform: scale(1.1); border-color: var(--solpower-yellow-dark);
-  box-shadow: 0 0 15px 3px rgba(var(--solpower-yellow-rgb), 0.7);
+background-color: var(--solpower-yellow); color: var(--solpower-black);
+transform: scale(1.1); border-color: var(--solpower-yellow-dark);
+box-shadow: 0 0 15px 3px rgba(var(--solpower-yellow-rgb), 0.7);
 }
 
 .card-title {
-  font-size: var(--card-title-font-size);
-  font-weight: var(--font-weight-bold);
-  color: var(--solpower-text-dark);
-  line-height: var(--card-title-line-height);
-  flex-grow: 1; 
-  transition: color 0.3s ease;
-  white-space: normal; 
-  word-break: break-word; 
-  overflow-wrap: break-word;
-  /* Set a specific height for the title area to ensure two lines can fit */
-  /* This needs to be tuned with font-size and line-height */
-  height: calc(var(--card-title-line-height) * var(--card-title-font-size) * 2.1); /* Approx 2 lines */
-  overflow: hidden; /* Hide text that exceeds this explicit height */
-  display: block; /* Or -webkit-box with line-clamp if strict ellipsis is desired again */
+font-size: var(--card-title-font-size);
+font-weight: var(--font-weight-bold);
+color: var(--solpower-text-dark);
+line-height: var(--card-title-line-height);
+flex-grow: 1;
+transition: color 0.3s ease;
+white-space: normal;
+word-break: break-word;
+overflow-wrap: break-word;
 }
 .process-slide-card:not(.process-slide-card--active) .card-title { color: var(--solpower-text-medium); }
 
+/* --- Lottie Animation Styling within Card --- */
+.card-lottie-animation {
+width: 100%;
+margin-bottom: var(--spacing-md);
+flex-shrink: 0;
+opacity: 0;
+transform: translateY(10px);
+animation: fadeInLottie 0.6s ease-out 0.3s forwards;
+text-align: center;
+}
+
+/* --- MODIFIED: Lottie Player Sizing --- */
+.card-lottie-animation dotlottie-player {
+display: block; /* Changed to block for easier height/centering */
+margin-left: auto; /* Center horizontally */
+margin-right: auto; /* Center horizontally */
+width: 100%; /* Use available width */
+max-width: 180px; /* Limit max width */
+height: 140px; /* Set fixed height */
+object-fit: contain; /* Ensure aspect ratio is maintained within box */
+}
+/* --- End MODIFIED --- */
+
+
+/* Simple Fade-in Keyframes */
+@keyframes fadeInLottie {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
 .card-text {
-  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
-  color: var(--solpower-text-medium);
-  line-height: var(--line-height-base); margin-bottom: var(--spacing-lg);
-  flex-grow: 1; transition: color 0.3s ease;
-  word-break: break-word;
-  white-space: normal;
+font-size: clamp(0.85rem, 1.7vw, 0.9rem);
+color: var(--solpower-text-medium);
+line-height: var(--line-height-base); margin-bottom: var(--spacing-lg);
+transition: color 0.3s ease;
+word-break: break-word;
+white-space: normal;
 }
 .process-slide-card:not(.process-slide-card--active) .card-text { color: var(--solpower-grey-dark); }
 
 .card-read-more-button {
-  display: inline-block; padding: 0.65rem 1.5rem; font-family: var(--font-family-base);
-  font-weight: var(--font-weight-semibold); font-size: 0.9rem;
-  text-align: center; text-decoration: none; border-radius: var(--border-radius-md);
-  cursor: pointer; user-select: none; align-self: flex-start;
-  margin-top: auto; flex-shrink: 0; background-color: transparent;
-  color: var(--solpower-yellow-dark); border: 2px solid var(--solpower-yellow-light);
-  transition: all 0.25s ease-out, box-shadow 0.3s ease-out;
+display: inline-block; padding: 0.65rem 1.5rem; font-family: var(--font-family-base);
+font-weight: var(--font-weight-semibold); font-size: 0.9rem;
+text-align: center; text-decoration: none; border-radius: var(--border-radius-md);
+cursor: pointer; user-select: none; align-self: flex-start;
+margin-top: auto;
+flex-shrink: 0; background-color: transparent;
+color: var(--solpower-yellow-dark); border: 2px solid var(--solpower-yellow-light);
+transition: all 0.25s ease-out, box-shadow 0.3s ease-out;
 }
 .process-slide-card--active .card-read-more-button {
-  background-color: var(--solpower-yellow); color: var(--solpower-black);
-  border-color: var(--solpower-yellow);
+background-color: var(--solpower-yellow); color: var(--solpower-black);
+border-color: var(--solpower-yellow);
 }
 .card-read-more-button:hover {
-  background-color: var(--solpower-yellow-dark); color: var(--solpower-black);
-  border-color: var(--solpower-yellow-dark); transform: translateY(-2px);
-  box-shadow: var(--shadow-sm), var(--glow-shadow-yellow-button);
+background-color: var(--solpower-yellow-dark); color: var(--solpower-black);
+border-color: var(--solpower-yellow-dark); transform: translateY(-2px);
+box-shadow: var(--shadow-sm), var(--glow-shadow-yellow-button);
 }
 
 .card-progress-bar-wrapper {
-  width: 100%; height: 24px; background-color: var(--solpower-grey-light);
-  border-bottom-left-radius: var(--border-radius-xl);
-  border-bottom-right-radius: var(--border-radius-xl);
-  position: relative; overflow: hidden; flex-shrink: 0;
-  margin-top: auto; border-top: 1px solid var(--solpower-grey-medium);
+width: 100%; height: 24px; background-color: var(--solpower-grey-light);
+border-bottom-left-radius: var(--border-radius-xl);
+border-bottom-right-radius: var(--border-radius-xl);
+position: relative; overflow: hidden; flex-shrink: 0;
+border-top: 1px solid var(--solpower-grey-medium);
 }
 .card-progress-bar-fill {
-  height: 100%; background-color: var(--solpower-yellow);
-  transition: width 0.4s var(--slider-transition-timing), background-color 0.3s ease;
+height: 100%; background-color: var(--solpower-yellow);
+transition: width 0.4s var(--slider-transition-timing), background-color 0.3s ease;
 }
 .process-slide-card--active .card-progress-bar-fill { background-color: var(--solpower-yellow-dark); }
 .card-progress-text {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  font-size: 0.75rem; font-weight: var(--font-weight-semibold);
-  color: var(--solpower-black); opacity: 0.9; white-space: nowrap;
+position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+font-size: 0.75rem; font-weight: var(--font-weight-semibold);
+color: var(--solpower-black); opacity: 0.9; white-space: nowrap;
 }
 .process-slide-card--active .card-progress-text { color: var(--solpower-black); }
 
 /* Card positioning classes */
 .process-slide-card--hidden { transform: translateX(-50%) translateZ(-500px) scale(0.7); opacity: 0; z-index: 0; pointer-events: none; box-shadow: none; }
-.process-slide-card--far-prev { transform: translateX(calc(-50% - 50%)) translateZ(-250px) scale(0.85); opacity: 0.5; z-index: 1; box-shadow: var(--shadow-sm); cursor: default; }
-.process-slide-card--prev { transform: translateX(calc(-50% - 25%)) translateZ(-100px) scale(0.92); opacity: 0.75; z-index: 5; box-shadow: var(--shadow-md); }
+.process-slide-card--far-prev { transform: translateX(calc(-50% - 45%)) translateZ(-250px) scale(0.85); opacity: 0.5; z-index: 1; box-shadow: var(--shadow-sm); cursor: default; }
+.process-slide-card--prev { transform: translateX(calc(-50% - 22%)) translateZ(-100px) scale(0.92); opacity: 0.75; z-index: 5; box-shadow: var(--shadow-md); }
 .process-slide-card--active { transform: translateX(-50%) translateZ(0) scale(1); opacity: 1; z-index: 10; box-shadow: var(--shadow-lg), var(--glow-shadow-yellow-strong); cursor: default; }
-.process-slide-card--next { transform: translateX(calc(-50% + 25%)) translateZ(-100px) scale(0.92); opacity: 0.75; z-index: 5; box-shadow: var(--shadow-md); }
-.process-slide-card--far-next { transform: translateX(calc(-50% + 50%)) translateZ(-250px) scale(0.85); opacity: 0.5; z-index: 1; box-shadow: var(--shadow-sm); cursor: default; }
+.process-slide-card--next { transform: translateX(calc(-50% + 22%)) translateZ(-100px) scale(0.92); opacity: 0.75; z-index: 5; box-shadow: var(--shadow-md); }
+.process-slide-card--far-next { transform: translateX(calc(-50% + 45%)) translateZ(-250px) scale(0.85); opacity: 0.5; z-index: 1; box-shadow: var(--shadow-sm); cursor: default; }
 
 .process-slide-card:not(.process-slide-card--active):hover {
-  &.process-slide-card--prev { transform: translateX(calc(-50% - 25%)) translateZ(-100px) scale(1.02); }
-  &.process-slide-card--next { transform: translateX(calc(-50% + 25%)) translateZ(-100px) scale(1.02); }
-  &.process-slide-card--far-prev { transform: translateX(calc(-50% - 50%)) translateZ(-250px) scale(1.02); }
-  &.process-slide-card--far-next { transform: translateX(calc(-50% + 50%)) translateZ(-250px) scale(1.02); }
-  box-shadow: var(--shadow-lg);
+&.process-slide-card--prev { transform: translateX(calc(-50% - 22%)) translateZ(-100px) scale(1.02); }
+&.process-slide-card--next { transform: translateX(calc(-50% + 22%)) translateZ(-100px) scale(1.02); }
+&.process-slide-card--far-prev { transform: translateX(calc(-50% - 45%)) translateZ(-250px) scale(1.02); }
+&.process-slide-card--far-next { transform: translateX(calc(-50% + 45%)) translateZ(-250px) scale(1.02); }
+box-shadow: var(--shadow-lg);
 }
 
 .process-slider-nav { position: absolute; top: 50%; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; transform: translateY(-50%); padding: 0 var(--spacing-sm); z-index: 20; pointer-events: none; }
 .slider-nav-button { background-color: rgba(var(--solpower-black-rgb), 0.55); color: var(--solpower-white); border: none; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease; pointer-events: all; box-shadow: var(--shadow-sm); }
 .slider-nav-button:hover:not(:disabled) { background-color: rgba(var(--solpower-black-rgb), 0.85); transform: scale(1.12); box-shadow: var(--glow-shadow-yellow); }
-.slider-nav-button:disabled { background-color: rgba(var(--solpower-black-rgb), 33,37,41,0.2); cursor: not-allowed; opacity:0.6; box-shadow:none; transform:scale(1); }
+.slider-nav-button:disabled { background-color: rgba(var(--solpower-black-rgb), 0.2); cursor: not-allowed; opacity:0.6; box-shadow:none; transform:scale(1); }
 .slider-nav-button .material-icons-outlined { font-size: 28px; }
 
 
 /* ==========================================================================
-   MODAL STYLES for StepDetailModal
-   ========================================================================== */
+MODAL STYLES for StepDetailModal
+========================================================================== */
 .step-detail-modal-overlay {
-  position: fixed; inset: 0; background-color: var(--modal-overlay-bg);
-  z-index: 1050; display: flex; align-items: center; justify-content: center;
-  padding: var(--spacing-md); opacity: 0; animation: fadeInOverlayHIW 0.3s ease-out forwards;
+position: fixed; inset: 0; background-color: var(--modal-overlay-bg);
+z-index: 1050; display: flex; align-items: center; justify-content: center;
+padding: var(--spacing-md); opacity: 0; animation: fadeInOverlayHIW 0.3s ease-out forwards;
 }
 .step-detail-modal-content {
-  background-color: var(--modal-bg); padding: var(--modal-padding);
-  border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg);
-  width: 100%; max-width: var(--modal-max-width); max-height: 90vh;
-  overflow-y: auto; position: relative;
-  transform: scale(0.95) translateY(15px); opacity: 0;
-  animation: slideInModalHIW 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+background-color: var(--modal-bg); padding: var(--modal-padding);
+border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg);
+width: 100%; max-width: var(--modal-max-width); max-height: 90vh;
+overflow-y: auto; position: relative;
+transform: scale(0.95) translateY(15px); opacity: 0;
+animation: slideInModalHIW 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
 }
 .step-detail-modal-close {
-  position: absolute; top: var(--spacing-md); right: var(--spacing-md);
-  background: none; border: none; font-size: 1.8rem; color: var(--solpower-grey-dark);
-  cursor: pointer; padding: var(--spacing-sm); line-height: 1;
-  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
-  border-radius: 50%; z-index: 10;
+position: absolute; top: var(--spacing-md); right: var(--spacing-md);
+background: none; border: none; font-size: 1.8rem; color: var(--solpower-grey-dark);
+cursor: pointer; padding: var(--spacing-sm); line-height: 1;
+transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+border-radius: 50%; z-index: 10;
 }
 .step-detail-modal-close:hover {
-  color: var(--solpower-yellow-dark); background-color: var(--solpower-grey-light);
-  transform: scale(1.1) rotate(90deg);
+color: var(--solpower-yellow-dark); background-color: var(--solpower-grey-light);
+transform: scale(1.1) rotate(90deg);
 }
 .step-detail-modal-close .material-icons-outlined { font-size: 30px; display: block; }
 
 .step-detail-modal-title {
-  font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--font-weight-bold);
-  color: var(--solpower-black); text-align: center; margin: 0 0 var(--spacing-md) 0;
-  padding-bottom: var(--spacing-md); border-bottom: 3px solid var(--solpower-yellow);
-  line-height: var(--line-height-heading);
+font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: var(--font-weight-bold);
+color: var(--solpower-black); text-align: center; margin: 0 0 var(--spacing-md) 0;
+padding-bottom: var(--spacing-md); border-bottom: 3px solid var(--solpower-yellow);
+line-height: var(--line-height-heading);
 }
 .step-detail-modal-body {
-  font-size: clamp(0.95rem, 1.8vw, 1rem); line-height: var(--line-height-base);
-  color: var(--solpower-text-dark); padding-top: var(--spacing-sm);
+font-size: clamp(0.95rem, 1.8vw, 1rem); line-height: var(--line-height-base);
+color: var(--solpower-text-dark); padding-top: var(--spacing-sm);
 }
 .step-detail-modal-body p { margin-bottom: var(--spacing-md); }
 .step-detail-modal-body p:last-child { margin-bottom: 0; }
@@ -484,14 +515,14 @@
 
 
 /* ==========================================================================
-   CTA Section Styles
-   ========================================================================== */
+CTA Section Styles
+========================================================================== */
 .contact-section-cta {
-  padding: var(--spacing-xxl) 0; position: relative; text-align: center;
-  overflow: hidden; background-color: var(--solpower-black); color: var(--solpower-white);
+padding: var(--spacing-xxl) 0; position: relative; text-align: center;
+overflow: hidden; background-color: var(--solpower-black); color: var(--solpower-white);
 }
 .contact-section-cta .sunrise-animation-wrapper {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 180px; z-index: 1; opacity: 0.5;
+position: absolute; bottom: 0; left: 0; right: 0; height: 180px; z-index: 1; opacity: 0.5;
 }
 .contact-section-cta .cta-text-content { position: relative; z-index: 2; padding: 0 var(--spacing-md); }
 .contact-section-cta h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: inherit; }
@@ -501,117 +532,140 @@
 
 
 /* ==========================================================================
-   RESPONSIVE ADJUSTMENTS
-   ========================================================================== */
+RESPONSIVE ADJUSTMENTS
+========================================================================== */
 @media (max-width: 992px) {
-  .process-slide-card { width: clamp(45%, 340px, 55%); }
+.process-slide-card {
+width: clamp(40%, 320px, 50%);
 }
+.process-slide-card.process-slide-card--prev { transform: translateX(calc(-50% - 25%)) translateZ(-100px) scale(0.92); }
+.process-slide-card.process-slide-card--next { transform: translateX(calc(-50% + 25%)) translateZ(-100px) scale(0.92); }
+.process-slide-card.process-slide-card--far-prev { transform: translateX(calc(-50% - 50%)) translateZ(-250px) scale(0.85); }
+.process-slide-card.process-slide-card--far-next { transform: translateX(calc(-50% + 50%)) translateZ(-250px) scale(0.85); }
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap');
+.process-slide-card:not(.process-slide-card--active):hover {
+box-shadow: var(--shadow-lg);
+}
+.process-slide-card:not(.process-slide-card--active).process-slide-card--prev:hover { transform: translateX(calc(-50% - 25%)) translateZ(-100px) scale(1.02); }
+.process-slide-card:not(.process-slide-card--active).process-slide-card--next:hover { transform: translateX(calc(-50% + 25%)) translateZ(-100px) scale(1.02); }
+.process-slide-card:not(.process-slide-card--active).process-slide-card--far-prev:hover { transform: translateX(calc(-50% - 50%)) translateZ(-250px) scale(1.02); }
+.process-slide-card:not(.process-slide-card--active).process-slide-card--far-next:hover { transform: translateX(calc(-50% + 50%)) translateZ(-250px) scale(1.02); }
+}
+
 @media (max-width: 768px) {
-  .how-it-works-intro-section.with-video-bg .page-container-inner { padding: var(--spacing-xl) 0; }
-  .how-it-works-process-section { padding: var(--spacing-xl) 0; }
-  .interstitial-lottie-section { padding: var(--spacing-xl) 0; }
-  .intro-lottie-animation-wrapper { width: clamp(180px, 35vw, 220px); height: clamp(180px, 35vw, 220px); }
+.how-it-works-intro-section.with-video-bg .page-container-inner { padding: var(--spacing-xl) 0; }
+.how-it-works-process-section {
+padding-top: calc(var(--spacing-xl) * 0.7);
+padding-bottom: var(--spacing-xl);
+}
+.interstitial-lottie-section { padding: var(--spacing-xl) 0; }
+.intro-lottie-animation-wrapper { width: clamp(180px, 35vw, 220px); height: clamp(180px, 35vw, 220px); }
 
-  .process-slider-container {
-    min-height: 430px; 
-    perspective: none; 
-    overflow-x: auto; 
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch; 
-    scroll-snap-type: x mandatory; 
-  }
-  .process-slider-track {
-    display: flex; 
-    height: 100%;
-    transform-style: flat; 
-    transition: transform var(--slider-transition-duration) var(--slider-transition-timing); 
-    padding-left: max(var(--spacing-md), calc(50vw - var(--card-width-mobile, 280px) / 2 - var(--spacing-sm)));
-    padding-right: max(var(--spacing-md), calc(50vw - var(--card-width-mobile, 280px) / 2 - var(--spacing-sm)));
-  }
-  :root { --card-width-mobile: 80%; }
-  @media (min-width: 400px) { :root { --card-width-mobile: 300px; } }
-
-
-  .process-slide-card {
-    position: relative; 
-    left: auto; top: auto; 
-    width: var(--card-width-mobile); 
-    max-width: 300px; 
-    margin: 0 var(--spacing-sm); 
-    flex-shrink: 0; 
-    height: auto; 
-    min-height: 400px; 
-    transform: none !important; 
-    opacity: 1 !important; 
-    box-shadow: var(--shadow-md) !important; 
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    cursor: default;
-    border-radius: var(--border-radius-lg);
-    scroll-snap-align: center; 
-  }
-  .process-slide-card--active {
-     box-shadow: var(--shadow-lg) !important;
-  }
-
-  .card-main-content { padding: var(--spacing-md); }
-  .card-header { 
-    margin-bottom: var(--spacing-sm); 
-    /* No min-height needed here as title height is now explicit */
-  }
-  .card-step-indicator { width: 38px; height: 38px; font-size: 1.1rem; margin-right: var(--spacing-sm); }
-  .card-title { 
-    font-size: clamp(1.05rem, 2.2vw, 1.2rem); 
-    height: calc(var(--card-title-line-height) * clamp(1.05rem, 2.2vw, 1.2rem) * 2.1); /* Adjust height based on mobile font size */
-    max-height: calc(var(--card-title-line-height) * clamp(1.05rem, 2.2vw, 1.2rem) * 2.2);
-  }
-  .card-text { font-size: 0.85rem; margin-bottom: var(--spacing-md); }
-  .card-read-more-button { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
-  .card-progress-bar-wrapper { height: 20px; }
-  .card-progress-text { font-size: 0.7rem; }
-
-  .process-slider-nav { padding: 0; }
-  .slider-nav-button { width: 42px; height: 42px; background-color: rgba(var(--solpower-black-rgb),0.6); }
-  .slider-nav-button .material-icons-outlined { font-size: 22px; }
-  .slider-nav-button.prev { transform: translate(10px, -50%); } 
-  .slider-nav-button.next { transform: translate(-10px, -50%); }
-  .slider-nav-button:hover:not(:disabled) { transform: scale(1.1); }
-  .slider-nav-button.prev:hover:not(:disabled) { transform: translate(10px, -50%) scale(1.1); }
-  .slider-nav-button.next:hover:not(:disabled) { transform: translate(-10px, -50%) scale(1.1); }
-  .slider-nav-button:disabled { transform: translate(0, -50%) scale(1); }
-  .slider-nav-button.prev:disabled { transform: translate(10px, -50%) scale(1); }
-  .slider-nav-button.next:disabled { transform: translate(-10px, -50%) scale(1); }
+.process-slider-container {
+min-height: 450px;
+height: auto;
+perspective: none;
+overflow-x: auto;
+overflow-y: hidden;
+-webkit-overflow-scrolling: touch;
+scroll-snap-type: x mandatory;
+padding-bottom: var(--spacing-md);
+}
+.process-slider-track {
+display: flex;
+height: auto;
+transform-style: flat;
+transition: none;
+padding-left: max(var(--spacing-md), calc(50vw - var(--card-width-mobile, 280px) / 2 - var(--spacing-sm)));
+padding-right: max(var(--spacing-md), calc(50vw - var(--card-width-mobile, 280px) / 2 - var(--spacing-sm)));
+}
+:root { --card-width-mobile: 75%; }
+@media (min-width: 400px) { :root { --card-width-mobile: 280px; } }
 
 
-  .step-detail-modal-content { max-width: 95%; padding: var(--spacing-lg); }
-  .step-detail-modal-title { font-size: clamp(1.3rem, 4vw, 1.6rem); }
-  .step-detail-modal-body { font-size: 0.95rem; }
+.process-slide-card {
+position: relative;
+left: auto; top: auto;
+width: var(--card-width-mobile);
+max-width: 280px;
+margin: 0 var(--spacing-sm);
+flex-shrink: 0;
+height: auto;
+min-height: 420px;
+transform: none !important;
+opacity: 1 !important;
+box-shadow: var(--shadow-md) !important;
+transition: opacity 0.3s ease, box-shadow 0.3s ease;
+cursor: default;
+border-radius: var(--border-radius-lg);
+scroll-snap-align: center;
+display: flex;
+flex-direction: column;
+}
+.process-slide-card--active {
+box-shadow: var(--shadow-lg) !important;
+}
+
+.card-main-content { padding: var(--spacing-md); padding-bottom: var(--spacing-lg); }
+.card-header {
+margin-bottom: var(--spacing-sm);
+}
+.card-step-indicator { width: 38px; height: 38px; font-size: 1.1rem; margin-right: var(--spacing-sm); }
+.card-title {
+font-size: clamp(1rem, 2.1vw, 1.15rem);
+}
+.card-text { font-size: 0.8rem; margin-bottom: var(--spacing-md); }
+.card-read-more-button { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+.card-progress-bar-wrapper { height: 20px; }
+.card-progress-text { font-size: 0.7rem; }
+
+/* --- MODIFIED: Lottie Player Sizing Mobile --- */
+.card-lottie-animation dotlottie-player {
+max-width: 150px;
+height: 120px; /* Adjusted height for mobile */
+}
+/* --- End MODIFIED --- */
+
+
+.process-slider-nav { display: none; }
+
+
+.step-detail-modal-content { max-width: 95%; padding: var(--spacing-lg); }
+.step-detail-modal-title { font-size: clamp(1.3rem, 4vw, 1.6rem); }
+.step-detail-modal-body { font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
-  .how-it-works-intro-section.with-video-bg .page-container-inner { padding: var(--spacing-lg) 0; }
-  .how-it-works-section-heading { font-size: clamp(1.5rem, 5vw, 1.8rem); }
-  .section-intro-p { font-size: 0.9rem; }
-  .intro-lottie-animation-wrapper { width: clamp(150px, 40vw, 180px); height: clamp(150px, 40vw, 180px); }
+.how-it-works-intro-section.with-video-bg .page-container-inner { padding: var(--spacing-lg) 0; }
+.how-it-works-section-heading { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+.section-intro-p { font-size: 0.9rem; }
+.intro-lottie-animation-wrapper { width: clamp(150px, 40vw, 180px); height: clamp(150px, 40vw, 180px); }
 
-  :root { --card-width-mobile: 85%; } 
-  @media (max-width: 360px) { :root { --card-width-mobile: 90%; } } 
-  
-  .process-slider-track {
-    padding-left: max(var(--spacing-sm), calc(50vw - var(--card-width-mobile, 260px) / 2 - var(--spacing-xs))); 
-    padding-right: max(var(--spacing-sm), calc(50vw - var(--card-width-mobile, 260px) / 2 - var(--spacing-xs)));
-  }
-  .process-slide-card {
-     min-height: 380px; 
-     max-width: 280px; 
-  }
-  .card-step-indicator { width: 34px; height: 34px; font-size: 1rem; }
-  .card-title { 
-      font-size: clamp(1rem, 2vw, 1.15rem); 
-      height: calc(var(--card-title-line-height) * clamp(1rem, 2vw, 1.15rem) * 2.1);
-      max-height: calc(var(--card-title-line-height) * clamp(1rem, 2vw, 1.15rem) * 2.2);
-  }
-  .card-read-more-button { padding: 0.5rem 1rem; font-size: 0.8rem; }
+:root { --card-width-mobile: 80%; }
+@media (min-width: 360px) { :root { --card-width-mobile: 85%; } }
+.process-slider-track {
+padding-left: max(var(--spacing-sm), calc(50vw - var(--card-width-mobile) / 2 - var(--spacing-xs)));
+padding-right: max(var(--spacing-sm), calc(50vw - var(--card-width-mobile) / 2 - var(--spacing-xs)));
+}
+.process-slide-card {
+min-height: 400px;
+max-width: calc(100vw - var(--spacing-md) * 2);
+}
+.card-step-indicator { width: 34px; height: 34px; font-size: 1rem; }
+.card-title {
+font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+.card-text { font-size: 0.75rem; }
+.card-read-more-button { padding: 0.5rem 1rem; font-size: 0.8rem; }
 
-  .step-detail-modal-close { top: var(--spacing-sm); right: var(--spacing-sm); }
-  .step-detail-modal-content { padding: var(--spacing-md); }
+/* --- MODIFIED: Lottie Player Sizing Small Mobile --- */
+.card-lottie-animation dotlottie-player {
+max-width: 120px;
+height: 100px; /* Adjusted height for small mobile */
+}
+/* --- End MODIFIED --- */
+
+
+.step-detail-modal-close { top: var(--spacing-sm); right: var(--spacing-sm); }
+.step-detail-modal-content { padding: var(--spacing-md); }
 }

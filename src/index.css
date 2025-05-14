@@ -1,267 +1,301 @@
-/* src/index.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap'); /* Example Font */
-
-:root {
-  --solpower-yellow: #FFDA00;
-  --solpower-black: #141414; /* Slightly softer black */
-  --solpower-white: #FFFFFF;
-  --solpower-grey-light: #f8f9fa;
-  --solpower-grey-medium: #e9ecef;
-  --solpower-yellow-light: #fffbeb;
-  --solpower-text-dark: #212529;
-  --solpower-text-medium: #495057;
-  --solpower-text-light: #6c757d;
-  --solpower-border-light: #dee2e6;
-  
-  /* Spacing variables */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 4rem;
-  --spacing-xxl: 6rem;
-}
-
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif; /* Apply primary font */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--solpower-white);
-  color: var(--solpower-text-dark);
-  line-height: 1.7; /* Improved line height */
-  font-size: 16px; /* Base font size */
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; padding: 0; }
-img { max-width: 100%; height: auto; display: block; }
-.sr-only { /* ... styles ... */ }
-
-a {
-  color: var(--solpower-black); /* Black links */
-  text-decoration: none;
-  font-weight: 600; /* Bolder links */
-  transition: color 0.2s ease;
-}
-a:hover {
-  color: var(--solpower-yellow);
-  text-decoration: none;
-}
-
-/* Layout */
+/* src/index.css */ 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap'); /* Example Font */ 
+:root { 
+--solpower-yellow: #FFDA00; 
+--solpower-black: #141414; /* Slightly softer black */ 
+--solpower-white: #FFFFFF; 
+--solpower-grey-light: #f8f9fa; 
+--solpower-grey-medium: #e9ecef; 
+--solpower-yellow-light: #fffbeb; 
+--solpower-text-dark: #212529; 
+--solpower-text-medium: #495057; 
+--solpower-text-light: #6c757d; 
+--solpower-border-light: #dee2e6; 
+/* Spacing variables */ 
+--spacing-xs: 0.5rem; 
+--spacing-sm: 1rem; 
+--spacing-md: 2rem; 
+--spacing-lg: 3rem; 
+--spacing-xl: 4rem; 
+--spacing-xxl: 6rem; 
+} 
+body { 
+margin: 0; 
+font-family: 'Montserrat', sans-serif; /* Apply primary font */ 
+-webkit-font-smoothing: antialiased; 
+-moz-osx-font-smoothing: grayscale; 
+background-color: var(--solpower-white); 
+color: var(--solpower-text-dark); 
+line-height: 1.7; /* Improved line height */ 
+font-size: 16px; /* Base font size */ 
+} 
+*, *::before, *::after { box-sizing: border-box; } 
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; padding: 0; } 
+img { max-width: 100%; height: auto; display: block; } 
+.sr-only { /* ... styles ... */ } 
+a { 
+color: var(--solpower-black); /* Black links */ 
+text-decoration: none; 
+font-weight: 600; /* Bolder links */ 
+transition: color 0.2s ease; 
+} 
+a:hover { 
+color: var(--solpower-yellow); 
+text-decoration: none; 
+} 
+/* Layout */ 
 .app-container { 
+display: flex; 
+flex-direction: column; 
+min-height: 100vh; 
+} 
+.main-content { 
+flex-grow: 1; 
+padding-top: 85px; /* Account for fixed header */ 
+} 
+/* Container Styles */ 
+.page-container { 
+padding: var(--spacing-xl) var(--spacing-md); 
+max-width: 1320px; 
+width: 90%; 
+margin: 0 auto; 
+} 
+.page-container-inner { 
+max-width: 1200px; 
+width: 90%; 
+margin: 0 auto; 
+padding: var(--spacing-lg) 0; 
+} 
+/* Base Section Styling */ 
+.content-section { 
+padding: var(--spacing-xl) var(--spacing-md); 
+width: 100%; 
+box-sizing: border-box; 
+} 
+.content-section .section-content-wrapper { 
+max-width: 1200px; 
+width: 90%; 
+margin: 0 auto; 
+} 
+/* Typography Spacing */ 
+.content-section h2 { 
+font-size: 2.5rem; 
+font-weight: 800; 
+color: var(--solpower-black); 
+margin-bottom: var(--spacing-md); 
+text-align: center; 
+letter-spacing: -0.5px; 
+} 
+.content-section h3 { 
+font-size: 1.6rem; 
+font-weight: 700; 
+color: var(--solpower-black); 
+margin-bottom: var(--spacing-sm); 
+} 
+.content-section p { 
+color: var(--solpower-text-medium); 
+margin-bottom: var(--spacing-md); 
+max-width: 750px; 
+margin-left: auto; 
+margin-right: auto; 
+font-size: 1.05rem; 
+} 
+.content-section strong { color: var(--solpower-black); font-weight: 700; } 
+/* Alternating Background Classes */ 
+.bg-white { background-color: var(--solpower-white); } 
+.bg-grey { background-color: var(--solpower-grey-light); } 
+.bg-yellow-light { background-color: var(--solpower-yellow-light); } 
+.bg-black { 
+background-color: var(--solpower-black); color: var(--solpower-white); 
+} 
+.bg-black h2, .bg-black h3 { color: var(--solpower-yellow); } 
+.bg-black p { color: #e0e0e0; } 
+.bg-black a { color: var(--solpower-yellow); } 
+.bg-black a:hover { color: var(--solpower-white); } 
+/* Common Button Style */ 
+.button-solpower { 
+display: inline-block; padding: 12px 30px; border-radius: 50px; 
+background-color: var(--solpower-yellow); color: var(--solpower-black); 
+border: none; font-weight: 700; text-align: center; cursor: pointer; 
+transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease; 
+font-size: 1rem; text-decoration: none; box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+text-transform: uppercase; letter-spacing: 0.5px; 
+} 
+.button-solpower:hover { 
+background-color: #e6c300; transform: translateY(-2px); 
+box-shadow: 0 6px 12px rgba(0,0,0,0.18); text-decoration: none; color: var(--solpower-black); 
+} 
+/* Outline variant */ 
+.button-solpower.outline { 
+background-color: transparent; 
+color: var(--solpower-black); 
+border: 2px solid var(--solpower-yellow); 
+box-shadow: none; 
+} 
+.button-solpower.outline:hover { 
+background-color: var(--solpower-yellow-light); 
+color: var(--solpower-black); 
+box-shadow: none; 
+transform: translateY(-1px); 
+} 
+/* Dark variant */ 
+.button-solpower.dark { 
+background-color: var(--solpower-black); 
+color: var(--solpower-yellow); 
+border: 2px solid var(--solpower-yellow); 
+} 
+.button-solpower.dark:hover { 
+background-color: #333; /* Darker grey */ 
+color: var(--solpower-white); 
+border-color: var(--solpower-white); 
+} 
+/* Responsive Adjustments */ 
+@media (max-width: 1200px) { 
+.page-container { 
+padding: var(--spacing-lg) var(--spacing-sm); 
+} 
+.content-section { 
+padding: var(--spacing-lg) var(--spacing-sm); 
+} 
+} 
+@media (max-width: 768px) { 
+:root { 
+--spacing-xs: 0.25rem; 
+--spacing-sm: 0.75rem; 
+--spacing-md: 1.5rem; 
+--spacing-lg: 2rem; 
+--spacing-xl: 3rem; 
+--spacing-xxl: 4rem; 
+} 
+body { font-size: 15px; } 
+.page-container { 
+padding: var(--spacing-lg) var(--spacing-xs); 
+width: 95%; 
+} 
+.content-section { 
+padding: var(--spacing-lg) var(--spacing-xs); 
+} 
+.content-section h2 { 
+font-size: 1.8rem; 
+margin-bottom: var(--spacing-sm); 
+} 
+.content-section p { 
+font-size: 1rem; 
+margin-bottom: var(--spacing-sm); 
+} 
+} 
+@media (max-width: 480px) { 
+.page-container { 
+padding: var(--spacing-md) var(--spacing-xs); 
+} 
+.content-section { 
+padding: var(--spacing-md) var(--spacing-xs); 
+} 
+.content-section h2 { 
+font-size: 1.6rem; 
+} 
+} 
+/* --- File: src/index.css --- */ 
+/* ... (keep your existing global styles from index.css) ... */ 
+/* Custom Scrollbar Styles (Primarily for WebKit browsers) */ 
+::-webkit-scrollbar { 
+  width: 12px; /* Width of the entire scrollbar */ 
+  height: 12px; /* Height of the horizontal scrollbar */ 
+  } 
+  ::-webkit-scrollbar-track { 
+  background: var(--solpower-grey-light, #f8f9fa); /* Track color */ 
+  border-radius: 10px; 
+  } 
+  ::-webkit-scrollbar-thumb { 
+  background-color: var(--solpower-yellow, #ffc107); /* Scrollbar thumb color - YELLOW */ 
+  border-radius: 10px; 
+  border: 3px solid var(--solpower-grey-light, #f8f9fa); /* Creates padding around thumb */ 
+  } 
+  ::-webkit-scrollbar-thumb:hover { 
+  background-color: var(--solpower-yellow-dark, #e6ac00); /* Darker yellow on hover */ 
+  } 
+  /* For Firefox - simpler styling */ 
+  /* Note: Firefox scrollbar styling is less customizable */ 
+  /* These properties are applied to the element that has the scrollbar (html or specific containers) */ 
+  /* Applying to html for the main browser scrollbar */ 
+  html { 
+  scrollbar-width: thin; /* "auto" or "thin" */ 
+  scrollbar-color: var(--solpower-yellow, #ffc107) var(--solpower-grey-light, #f8f9fa); /* thumb track */ 
+  } 
+  /* --- For the "glow on click" --- */ 
+  /* 
+  A true "glow on click" for the browser's scrollbar thumb is not possible with CSS. 
+  The :active pseudo-class for scrollbar thumbs is not widely supported for complex styling. 
+  The best we can do is a hover effect or a static style. 
+  If you wanted a custom on-page scroll component, that would be different and allow JS interaction, 
+  but for the native browser scrollbar, limitations apply. 
+
+  export default App; App.css - .App { 
+  text-align: center; 
+  } 
+  .App-logo { 
+  height: 40vmin; 
+  pointer-events: none; 
+  } 
+  @media (prefers-reduced-motion: no-preference) { 
+  .App-logo { 
+  animation: App-logo-spin infinite 20s linear; 
+  } 
+  } 
+  .App-header { 
+  background-color: #282c34; 
+  min-height: 100vh; 
   display: flex; 
   flex-direction: column; 
-  min-height: 100vh; 
-}
-
-.main-content { 
-  flex-grow: 1; 
-  padding-top: 85px; /* Account for fixed header */
-}
-
-/* Container Styles */
-.page-container {
-  padding: var(--spacing-xl) var(--spacing-md);
-  max-width: 1320px;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.page-container-inner {
-  max-width: 1200px;
-  width: 90%;
-  margin: 0 auto;
-  padding: var(--spacing-lg) 0;
-}
-
-/* Base Section Styling */
-.content-section {
-  padding: var(--spacing-xl) var(--spacing-md);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.content-section .section-content-wrapper {
-  max-width: 1200px;
-  width: 90%;
-  margin: 0 auto;
-}
-
-/* Typography Spacing */
-.content-section h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--solpower-black);
-  margin-bottom: var(--spacing-md);
-  text-align: center;
-  letter-spacing: -0.5px;
-}
-
-.content-section h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--solpower-black);
-  margin-bottom: var(--spacing-sm);
-}
-
-.content-section p {
-  color: var(--solpower-text-medium);
-  margin-bottom: var(--spacing-md);
-  max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.05rem;
-}
-
-.content-section strong { color: var(--solpower-black); font-weight: 700; }
-
-/* Alternating Background Classes */
-.bg-white { background-color: var(--solpower-white); }
-.bg-grey { background-color: var(--solpower-grey-light); }
-.bg-yellow-light { background-color: var(--solpower-yellow-light); }
-.bg-black {
-  background-color: var(--solpower-black); color: var(--solpower-white);
-}
-.bg-black h2, .bg-black h3 { color: var(--solpower-yellow); }
-.bg-black p { color: #e0e0e0; }
-.bg-black a { color: var(--solpower-yellow); }
-.bg-black a:hover { color: var(--solpower-white); }
-
-/* Common Button Style */
-.button-solpower {
-    display: inline-block; padding: 12px 30px; border-radius: 50px;
-    background-color: var(--solpower-yellow); color: var(--solpower-black);
-    border: none; font-weight: 700; text-align: center; cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
-    font-size: 1rem; text-decoration: none; box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    text-transform: uppercase; letter-spacing: 0.5px;
-}
-.button-solpower:hover {
-    background-color: #e6c300; transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.18); text-decoration: none; color: var(--solpower-black);
-}
-/* Outline variant */
-.button-solpower.outline {
-    background-color: transparent;
-    color: var(--solpower-black);
-    border: 2px solid var(--solpower-yellow);
-    box-shadow: none;
-}
-.button-solpower.outline:hover {
-    background-color: var(--solpower-yellow-light);
-    color: var(--solpower-black);
-    box-shadow: none;
-    transform: translateY(-1px);
-}
-/* Dark variant */
-.button-solpower.dark {
-    background-color: var(--solpower-black);
-    color: var(--solpower-yellow);
-    border: 2px solid var(--solpower-yellow);
-}
-.button-solpower.dark:hover {
-    background-color: #333; /* Darker grey */
-    color: var(--solpower-white);
-    border-color: var(--solpower-white);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .page-container {
-    padding: var(--spacing-lg) var(--spacing-sm);
-  }
+  align-items: center; 
+  justify-content: center; 
+  font-size: calc(10px + 2vmin); 
+  color: white; 
+  } 
+  .App-link { 
+  color: #61dafb; 
+  } 
+  @keyframes App-logo-spin { 
+  from { 
+  transform: rotate(0deg); 
+  } 
+  to { 
+  transform: rotate(360deg); 
+  } 
+  } 
+  /* --- File: src/index.css --- */ 
+  /* ... (keep your existing global styles from index.css) ... */ 
+  /* Custom Scrollbar Styles (Primarily for WebKit browsers) */ 
+  ::-webkit-scrollbar { 
+  width: 12px; /* Width of the entire scrollbar */ 
+  height: 12px; /* Height of the horizontal scrollbar */ 
+  } 
+  ::-webkit-scrollbar-track { 
+  background: var(--solpower-grey-light, #f8f9fa); /* Track color */ 
+  border-radius: 10px; 
+  } 
+  ::-webkit-scrollbar-thumb { 
+  background-color: var(--solpower-yellow, #ffc107); /* Scrollbar thumb color - YELLOW */ 
+  border-radius: 10px; 
+  border: 3px solid var(--solpower-grey-light, #f8f9fa); /* Creates padding around thumb */ 
+  } 
+  ::-webkit-scrollbar-thumb:hover { 
+  background-color: var(--solpower-yellow-dark, #e6ac00); /* Darker yellow on hover */ 
+  } 
+  /* For Firefox - simpler styling */ 
+  /* Note: Firefox scrollbar styling is less customizable */ 
+  /* These properties are applied to the element that has the scrollbar (html or specific containers) */ 
+  /* Applying to html for the main browser scrollbar */ 
+  html { 
+  scrollbar-width: thin; /* "auto" or "thin" */ 
+  scrollbar-color: var(--solpower-yellow, #ffc107) var(--solpower-grey-light, #f8f9fa); /* thumb track */ 
+  } 
+  /* --- For the "glow on click" --- */ 
+  /* 
+  A true "glow on click" for the browser's scrollbar thumb is not possible with CSS. 
+  The :active pseudo-class for scrollbar thumbs is not widely supported for complex styling. 
+  The best we can do is a hover effect or a static style. 
+  If you wanted a custom on-page scroll component, that would be different and allow JS interaction, 
+  but for the native browser scrollbar, limitations apply. 
+  */
   
-  .content-section {
-    padding: var(--spacing-lg) var(--spacing-sm);
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-xxl: 4rem;
-  }
-
-  body { font-size: 15px; }
-  
-  .page-container {
-    padding: var(--spacing-lg) var(--spacing-xs);
-    width: 95%;
-  }
-  
-  .content-section {
-    padding: var(--spacing-lg) var(--spacing-xs);
-  }
-  
-  .content-section h2 { 
-    font-size: 1.8rem;
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .content-section p { 
-    font-size: 1rem;
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .page-container {
-    padding: var(--spacing-md) var(--spacing-xs);
-  }
-  
-  .content-section {
-    padding: var(--spacing-md) var(--spacing-xs);
-  }
-  
-  .content-section h2 { 
-    font-size: 1.6rem;
-  }
-}
-
-/* --- File: src/index.css --- */
-/* ... (keep your existing global styles from index.css) ... */
-
-/* Custom Scrollbar Styles (Primarily for WebKit browsers) */
-::-webkit-scrollbar {
-  width: 12px; /* Width of the entire scrollbar */
-  height: 12px; /* Height of the horizontal scrollbar */
-}
-
-::-webkit-scrollbar-track {
-  background: var(--solpower-grey-light, #f8f9fa); /* Track color */
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--solpower-yellow, #ffc107); /* Scrollbar thumb color - YELLOW */
-  border-radius: 10px;
-  border: 3px solid var(--solpower-grey-light, #f8f9fa); /* Creates padding around thumb */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--solpower-yellow-dark, #e6ac00); /* Darker yellow on hover */
-}
-
-/* For Firefox - simpler styling */
-/* Note: Firefox scrollbar styling is less customizable */
-/* These properties are applied to the element that has the scrollbar (html or specific containers) */
-/* Applying to html for the main browser scrollbar */
-html {
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: var(--solpower-yellow, #ffc107) var(--solpower-grey-light, #f8f9fa); /* thumb track */
-}
-
-/* --- For the "glow on click" --- */
-/*
-  A true "glow on click" for the browser's scrollbar thumb is not possible with CSS.
-  The :active pseudo-class for scrollbar thumbs is not widely supported for complex styling.
-  The best we can do is a hover effect or a static style.
-  If you wanted a custom on-page scroll component, that would be different and allow JS interaction,
-  but for the native browser scrollbar, limitations apply.
-*/
