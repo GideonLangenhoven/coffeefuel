@@ -203,8 +203,8 @@ const Commercial = ({ paths = {} }) => {
 
       {/* Use shared CTA */}
       <ContactSectionCTA
-        title="Secure Your Business's Energy Future & Bottom Line"
-        text="Discover the significant operational savings and energy resilience SolPower's commercial solar solutions can provide your South African business. Schedule your free, no-obligation assessment today."
+        title="Secure Your Business's Energy Future"
+        text="Schedule your free, no-obligation assessment today."
         buttonText="Request My Free Commercial Solar Assessment"
         buttonLink={paths?.contact || '/contact'}
         className="cta-content-white commercial-final-cta" // Example custom class

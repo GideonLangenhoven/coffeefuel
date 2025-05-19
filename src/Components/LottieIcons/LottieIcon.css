@@ -1,0 +1,16 @@
+/* src/Components/LottieIcons/LottieIcon.css */
+.lottie-icon-wrapper {
+  width: 70px; /* Standardized width */
+  height: 70px; /* Standardized height */
+  margin-bottom: var(--spacing-md); /* Consistent spacing below icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevent shrinking if card content is tight */
+}
+
+.lottie-icon-wrapper > dotlottie-player {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}

@@ -1,0 +1,535 @@
+/* src/pages/LearnSolarPage/LearnSolar.css */
+:root {
+  --solpower-yellow: #FFC107; /* Vibrant yellow for accents */
+  --solpower-yellow-light: #FFFBEB; /* Softer yellow for backgrounds */
+  --solpower-yellow-dark: #E0A800; /* Darker yellow for hover states */
+  --solpower-blue-deep: #003366;   /* Deep blue for headings, primary text */
+  --solpower-blue-medium: #005A9C; /* Medium blue for links, interactive elements */
+  --solpower-blue-light: #E6F0F7;  /* Light blue for subtle backgrounds, highlights */
+  --solpower-green-natural: #4CAF50; /* Natural green for secondary accents, success */
+  --solpower-green-light: #E8F5E9;
+  --solpower-grey-dark: #343A40;    /* Dark grey for body text */
+  --solpower-grey-medium: #6C757D;  /* Medium grey for subtext, borders */
+  --solpower-grey-light: #CED4DA;   /* Light grey for dividers, disabled states */
+  --solpower-grey-lightest: #F8F9FA;/* Very light grey for page backgrounds */
+  --solpower-white: #FFFFFF;
+  --solpower-black: #212529;
+
+  --font-primary: 'Encode Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  --text-color-base: var(--solpower-grey-dark);
+  --text-color-headings: var(--solpower-blue-deep);
+  --text-color-links: var(--solpower-blue-medium);
+  --text-color-links-hover: var(--solpower-yellow-dark);
+
+  --spacing-xxs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem;  /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --spacing-xl: 2rem;    /* 32px */
+  --spacing-xxl: 3rem;   /* 48px */
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  --toc-pane-width: 320px;
+  --toc-pane-width-tablet: 280px;
+  --header-height-approx: 70px; /* Approximate height of a fixed header, if you have one */
+}
+
+/* --- Global Resets & Base Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body { /* Apply to body if this CSS is global, otherwise to .learn-solar-page */
+  font-family: var(--font-primary);
+  color: var(--text-color-base);
+  background-color: var(--solpower-grey-lightest);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Learn Solar Page General Layout --- */
+.learn-solar-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container-inner {
+  max-width: 1400px; /* Wider for a more expansive feel */
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Intro Section --- */
+.learn-solar-intro-section {
+  background: linear-gradient(135deg, var(--solpower-blue-deep) 0%, var(--solpower-blue-medium) 100%);
+  color: var(--solpower-white);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-medium);
+}
+.learn-solar-page-main-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.learn-solar-page-sub-title {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  color: var(--solpower-yellow);
+  margin-bottom: var(--spacing-lg);
+}
+.learn-solar-page-intro-p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.9;
+}
+.learn-solar-page-intro-p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Main Layout Container (TOC + Article) --- */
+.learn-solar-layout-container {
+  display: flex;
+  flex-direction: column; /* Mobile first: TOC potentially above content or hidden */
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-md) var(--spacing-xl); /* Page padding */
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto; /* Centering the layout container */
+  min-height: calc(100vh - var(--header-height-approx) - 200px); /* Ensure enough height for scrolling */
+}
+
+/* --- Table of Contents (TOC) Pane --- */
+.learn-solar-toc-wrapper { /* New wrapper for mobile visibility */
+  width: 100%;
+}
+.learn-solar-toc-pane {
+  background-color: var(--solpower-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--solpower-grey-light);
+}
+
+.learn-solar-controls-section-toc {
+  margin-bottom: var(--spacing-lg);
+}
+.learn-solar-search-bar-toc {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--solpower-grey-light);
+  background-color: var(--solpower-grey-lightest);
+  color: var(--text-color-base);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.learn-solar-search-bar-toc:focus {
+  border-color: var(--solpower-yellow);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+  outline: none;
+  background-color: var(--solpower-white);
+}
+
+.toc-scroll-container {
+  overflow-y: auto;
+  flex-grow: 1;
+  /* Max height will be set in media queries for sticky positioning */
+}
+
+.toc-pillar-group {
+  margin-bottom: var(--spacing-xs);
+}
+.toc-pillar-title-button, .toc-section-title-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: var(--spacing-sm) var(--spacing-xs);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: var(--border-radius-sm);
+}
+.toc-pillar-title-button {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color-headings);
+  padding-top: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--solpower-blue-light);
+}
+.toc-pillar-title-button:hover {
+  background-color: var(--solpower-blue-light);
+}
+.toc-section-title-button {
+  font-size: 1rem;
+  font-weight: 600; /* Semi-bold for section titles */
+  color: var(--solpower-green-natural);
+  padding-left: var(--spacing-md); /* Indent section titles */
+}
+.toc-section-title-button:hover {
+  background-color: var(--solpower-green-light);
+}
+
+.toc-expander-icon {
+  font-size: 0.9em;
+  margin-left: var(--spacing-sm);
+  color: var(--solpower-grey-medium);
+  transition: transform 0.25s ease-in-out;
+}
+.toc-pillar-title-button.expanded .toc-expander-icon,
+.toc-section-title-button.expanded .toc-expander-icon {
+  transform: rotate(90deg);
+}
+
+.toc-pillar-content {
+  padding-left: var(--spacing-sm);
+  border-left: 2px solid var(--solpower-yellow);
+  margin-left: var(--spacing-xs); /* Align with pillar title padding */
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+}
+.toc-section-group .toc-article-list {
+  padding-left: var(--spacing-md); /* Further indent article links */
+  margin-top: var(--spacing-xs);
+  list-style: none;
+}
+.toc-article-list {
+  margin: 0;
+  padding: 0;
+}
+.toc-article-item {
+ /* Optional: border for separation if needed */
+}
+.toc-article-link {
+  font-size: 0.95rem;
+  color: var(--text-color-links);
+  text-decoration: none;
+  font-weight: 400;
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease-out;
+  position: relative;
+}
+.toc-article-link:hover,
+.toc-article-link:focus {
+  color: var(--text-color-links-hover);
+  background-color: var(--solpower-yellow-light);
+  transform: translateX(3px);
+}
+.toc-article-item.active .toc-article-link {
+  color: var(--solpower-blue-deep);
+  font-weight: 600;
+  background-color: var(--solpower-yellow-light);
+}
+.toc-article-item.active .toc-article-link::before {
+  content: '';
+  position: absolute;
+  left: -8px; /* Adjust based on padding of parent to align with border-left */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background-color: var(--solpower-yellow);
+  border-radius: 2px;
+}
+
+.toc-no-results {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--solpower-grey-medium);
+  font-style: italic;
+}
+
+/* --- Article Content Pane --- */
+.learn-solar-article-pane {
+  background-color: var(--solpower-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-soft);
+  width: 100%;
+  overflow-y: auto; /* Enables scrolling within the pane */
+  border: 1px solid var(--solpower-grey-light);
+  /* Max height will be set in media queries for sticky positioning */
+}
+.article-content-wrapper {} /* For potential future styling */
+
+.article-title-main {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-color-headings);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.3;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 3px solid var(--solpower-yellow);
+}
+
+.article-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--solpower-grey-medium);
+  min-height: 300px; /* Ensure it takes some space */
+  height: 100%; /* Try to fill pane if empty */
+  padding: var(--spacing-xl);
+  border: 2px dashed var(--solpower-grey-light);
+  border-radius: var(--border-radius-md);
+}
+.article-placeholder p {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  max-width: 450px;
+}
+.article-placeholder-icon {
+  font-size: 3.5rem;
+  color: var(--solpower-grey-light);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Typography within .article-body */
+.article-body {
+  font-size: 1.05rem; /* Slightly larger base for readability */
+}
+.article-body p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.75;
+}
+.article-body strong {
+  font-weight: 600;
+  color: var(--solpower-blue-deep);
+}
+.article-body em {
+  font-style: italic;
+  color: var(--solpower-blue-medium);
+}
+.article-body a {
+  color: var(--text-color-links);
+  text-decoration: none;
+  border-bottom: 1px solid var(--solpower-yellow);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.article-body a:hover {
+  color: var(--text-color-links-hover);
+  border-bottom-color: var(--text-color-links-hover);
+}
+.article-body ul, .article-body ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg); /* Standard indentation */
+}
+.article-body li {
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-xs); /* Small space after bullet/number */
+}
+.article-body ul { list-style-type: disc; }
+.article-body ol { list-style-type: decimal; }
+
+.article-body h1, /* Usually only one H1 per page (the main title) */
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color-headings);
+  line-height: 1.3;
+  font-weight: 600;
+}
+.article-body h2 {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 2px solid var(--solpower-blue-light);
+}
+.article-body h3 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); }
+.article-body h4 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+.article-body h5 { font-size: clamp(1.05rem, 1.8vw, 1.2rem); font-weight: 600; }
+
+/* Table Styles within .article-body */
+.article-body .article-table-container {
+  overflow-x: auto;
+  margin: var(--spacing-lg) 0;
+  border: 1px solid var(--solpower-grey-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-soft);
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.article-body th, .article-body td {
+  border: 1px solid var(--solpower-grey-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  vertical-align: top;
+}
+.article-body th {
+  background-color: var(--solpower-blue-light);
+  font-weight: 600;
+  color: var(--solpower-blue-deep);
+}
+.article-body tr:nth-child(even) td {
+  background-color: var(--solpower-grey-lightest);
+}
+.article-body caption,
+.article-body table + p small {
+  caption-side: bottom;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--solpower-grey-medium);
+  padding: var(--spacing-sm) 0;
+  font-style: italic;
+  margin-top: var(--spacing-xs);
+}
+.article-body table small {
+  font-size: 0.85rem;
+  display: block;
+  margin-top: var(--spacing-xs);
+}
+
+/* Loading Spinner (Simple CSS Spinner) */
+.loading-spinner {
+  border: 4px solid var(--solpower-grey-light);
+  border-top: 4px solid var(--solpower-yellow);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-md);
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Mobile TOC Toggle --- */
+.mobile-toc-toggle-container {
+  display: none; /* Hidden by default, shown on mobile */
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.mobile-toc-toggle-button {
+  background-color: var(--solpower-yellow);
+  color: var(--solpower-blue-deep);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  width: 100%;
+  box-shadow: var(--shadow-soft);
+  transition: background-color 0.2s ease;
+}
+.mobile-toc-toggle-button:hover {
+  background-color: var(--solpower-yellow-dark);
+}
+
+
+/* --- Responsive Adjustments --- */
+
+/* Tablet and smaller (General Mobile Styles) */
+@media (max-width: 767px) {
+  .learn-solar-layout-container {
+    flex-direction: column;
+  }
+  .mobile-toc-toggle-container {
+    display: block; /* Show toggle button */
+  }
+  .learn-solar-toc-wrapper {
+    /* Controlled by 'visible' class for slide/show effect if desired */
+    /* For now, simple show/hide */
+    display: none; 
+    margin-bottom: var(--spacing-lg);
+  }
+  .learn-solar-toc-wrapper.visible {
+    display: block;
+  }
+  .learn-solar-toc-pane {
+     max-height: 60vh; /* Limit height on mobile when visible */
+     position: static; /* Override sticky if it was applied */
+  }
+  .toc-scroll-container {
+    max-height: calc(60vh - 100px); /* Adjust based on search bar height etc. */
+  }
+  .learn-solar-article-pane {
+    max-height: none; /* Allow article to scroll full page */
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .learn-solar-layout-container {
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the top */
+  }
+  .learn-solar-toc-wrapper {
+    width: var(--toc-pane-width-tablet);
+    flex-shrink: 0;
+    position: sticky; /* Make TOC sticky */
+    top: var(--spacing-lg); /* Space from top of viewport */
+    /* Max height for scrolling within sticky TOC */
+    max-height: calc(100vh - var(--spacing-lg) * 2); 
+    /* (100vh - top_spacing - bottom_spacing_you_want) */
+  }
+   .learn-solar-toc-pane {
+     height: 100%; /* Fill the wrapper */
+     max-height: 100%;
+   }
+
+  .toc-scroll-container {
+    /* Max height calculated based on search bar and padding */
+    max-height: calc(100% - 60px - var(--spacing-lg)); /* Adjust 60px if search bar height changes */
+  }
+  .learn-solar-article-pane {
+    flex-grow: 1;
+    /* Allow article content to scroll independently */
+    overflow-y: auto;
+    /* Ensure enough height for scrolling */
+    max-height: calc(100vh - var(--spacing-lg) * 2);
+    padding: var(--spacing-lg);
+    background-color: var(--solpower-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+@media (min-width: 1024px) {
+  .learn-solar-toc-wrapper {
+    width: var(--toc-pane-width);
+  }
+  .article-body {
+    font-size: 1.1rem; /* Slightly larger for very wide screens if desired */
+  }
+}

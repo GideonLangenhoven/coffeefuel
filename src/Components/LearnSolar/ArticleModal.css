@@ -1,0 +1,111 @@
+/* These styles are for ArticleModal if used. 
+   Ensure :root variables from LearnSolar.css are available or redefine them here. */
+
+   .article-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(33, 37, 41, 0.75); /* Direct value for --solpower-black with opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* Higher z-index for modals */
+    padding: 20px;
+    overflow-y: auto; 
+  }
+  
+  .article-modal-content-container {
+    background-color: var(--solpower-white, #ffffff);
+    padding: var(--spacing-lg, 1.5rem) var(--spacing-xl, 2rem);
+    border-radius: var(--button-border-radius, 8px); /* Using button-border-radius */
+    box-shadow: 0 10px 30px rgba(0,0,0, 0.2);
+    position: relative;
+    width: 100%;
+    max-width: 800px; 
+    max-height: 90vh; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-modal-close-button {
+    position: absolute;
+    top: var(--spacing-md, 1rem);
+    right: var(--spacing-md, 1rem);
+    background: transparent;
+    border: none;
+    font-size: 2.5rem; 
+    line-height: 1;
+    color: var(--solpower-grey-text, #6c757d);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+  }
+  
+  .article-modal-close-button:hover {
+    color: var(--solpower-black, #212529);
+  }
+  
+  .article-modal-title {
+    font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive title */
+    color: var(--solpower-text-heading, #212529);
+    font-weight: var(--font-weight-bold, 700);
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg, 1.5rem);
+    line-height: 1.3;
+    border-bottom: 2px solid var(--solpower-yellow, #ffc107);
+    padding-bottom: var(--spacing-sm, 0.75rem);
+    padding-right: calc(var(--spacing-xl, 2rem) + var(--spacing-sm)); /* Space for close button */
+  }
+  
+  .article-modal-body-content {
+    /* Basic styles for the scrollable body */
+    overflow-y: auto; 
+    flex-grow: 1; 
+    padding-right: var(--spacing-sm); /* For scrollbar, if needed */
+  }
+  
+  /* Typography and table styles within the modal can be inherited if 
+     .article-modal-body-content also has the .article-body class from LearnSolar.css,
+     and LearnSolar.css is loaded globally. Otherwise, you'd replicate those styles here. */
+  
+  /* Example: if .article-body class is applied inside ArticleModal.js */
+  .article-modal-body-content.article-body p {
+    font-size: 0.95rem; /* Slightly smaller for modal context if desired */
+    line-height: 1.7;
+  }
+  .article-modal-body-content.article-body h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  }
+  /* Add other overrides or specific modal content styles as needed */
+  
+  
+  /* Responsive adjustments for modal */
+  @media (max-width: 768px) {
+    .article-modal-content-container {
+      padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.5rem);
+      max-height: 85vh;
+    }
+    .article-modal-title {
+      font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+      padding-right: calc(var(--spacing-lg, 1.5rem) + var(--spacing-sm));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .article-modal-overlay {
+      padding: 10px;
+    }
+    .article-modal-content-container {
+      padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
+    }
+    .article-modal-title {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
+    .article-modal-close-button {
+      font-size: 2rem;
+      top: var(--spacing-sm, 0.5rem);
+      right: var(--spacing-sm, 0.5rem);
+    }
+  }

@@ -1,6 +1,25 @@
 /* src/Views/Navigation.css */
+:root {
+  --solpower-white: #ffffff;
+  --solpower-black: #1a1a1a;
+  --solpower-yellow: #ffdd00;
+  --top-nav-bg: #2E7D32; /* Main nav green background */
+  --top-nav-scrolled-bg: #1B5E20;
+  --nav-link-text-color: var(--solpower-white); /* White text for main nav links */
+  --nav-link-hover-text-color: var(--solpower-yellow);
+  --nav-link-active-text-color: var(--solpower-yellow);
+  --nav-link-underline-color: var(--solpower-yellow);
+
+  /* Sub-menu specific colors */
+  --sub-menu-bg: var(--solpower-white); /* White background for sub-menu */
+  --sub-menu-text-color: var(--top-nav-bg); /* Green text for sub-menu items */
+  --sub-menu-hover-text-color: var(--solpower-yellow); /* Yellow text on hover for sub-menu */
+  --sub-menu-active-text-color: var(--solpower-yellow); /* Yellow text when active for sub-menu */
+  /* Removed --sub-menu-hover-bg to avoid background color change on hover for sub-menu items */
+}
+
 .top-nav {
-  background-color: #2E7D32; /* Material Design Green 800 */
+  background-color: var(--top-nav-bg);
   padding: 0 25px;
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   transition: background-color 0.3s ease-in-out, height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -8,7 +27,7 @@
   height: 85px; box-shadow: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .top-nav.scrolled {
-  background-color: #1B5E20; /* Material Design Green 900 - darker when scrolled */
+  background-color: var(--top-nav-scrolled-bg);
   height: 70px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
@@ -33,8 +52,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* Match the initial height of the logo */
-  height: 40px; /* Match the initial height of the logo */
+  width: 40px;
+  height: 40px;
 }
 
 .logo-secondary {
@@ -42,7 +61,7 @@
   width: auto;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
-  will-change: transform; /* Optimize for animation */
+  will-change: transform;
 }
 
 .logo-secondary.hovered {
@@ -54,46 +73,141 @@
   transform: scale(1.03);
 }
 
-/* Hide text if logo image contains it */
 .brand-slogan { display: none; }
-/* OR if logo is just sun graphic: */
-/* .brand-slogan {
-  font-size: 1.8rem; font-weight: 800; user-select: none; cursor: pointer;
-  color: var(--solpower-black); transition: color 0.4s ease, text-shadow 0.4s ease; letter-spacing: -0.5px;
-}
-.brand-slogan:hover { color: var(--solpower-yellow); text-shadow: 0 0 12px rgba(255, 218, 0, 0.9); } */
-
 
 /* Desktop Navigation Links */
-.nav-links { display: flex; list-style: none; gap: 20px; /* Adjusted gap */ margin: 0; padding: 0; }
-.nav-link { position: relative; }
-.nav-link a {
-  color: var(--solpower-white, #ffffff); /* Added fallback */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-link-item {
+  position: relative;
+}
+
+.nav-link-item > a {
+  color: var(--nav-link-text-color);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  padding: 5px 0;
+  padding: 10px 5px;
+  display: block;
   position: relative;
   transition: color 0.2s ease;
 }
-.nav-link a::after {
-  content: ''; position: absolute; width: 0; height: 3px; bottom: -4px;
-  left: 0; background-color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+
+.nav-link-item > a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--nav-link-underline-color);
   transition: width 0.3s ease;
 }
-.nav-link a:hover,
-.nav-link a.active {
-  color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+
+.nav-link-item:hover > a,
+.nav-link-item > a.active {
+  color: var(--nav-link-hover-text-color);
 }
-.nav-link a:hover::after, .nav-link a.active::after { width: 100%; }
+
+.nav-link-item:hover > a::after,
+.nav-link-item > a.active::after {
+  width: 100%;
+}
+
+/* Sub-menu container (ul) */
+.sub-nav-menu {
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--sub-menu-bg); /* White background */
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 1010;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 4px 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-link-item:hover .sub-nav-menu { /* This makes sub-menu appear on hover of parent LI */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sub-nav-link-item {
+  /* No specific styling needed for li itself usually */
+}
+
+/* Styling for NavLink (a) within the sub-menu */
+.sub-nav-link-item a {
+  display: block;
+  padding: 10px 20px; /* Sufficient padding */
+  text-decoration: none;
+  color: var(--sub-menu-text-color); /* Green text */
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  position: relative; /* For the ::after pseudo-element */
+  transition: color 0.2s ease; /* Transition for text color change */
+}
+
+/* Underline effect for sub-menu links */
+.sub-nav-link-item a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px; /* Same height as main link underline */
+  /* Adjust 'bottom' to suit padding. If padding is 10px, -4px from that might be too high or low.
+     Let's try to place it just below the text. Given padding is 10px top/bottom,
+     and font-size is 0.9rem, a bottom value like 5px or 6px from the element's bottom edge might work.
+     Or, if padding is part of the clickable area, bottom: -4px (relative to padding box) should still be fine conceptually.
+     Let's stick to consistency with main links for now. */
+  bottom: 4px; /* Adjusted: Relative to the bottom of the padding box of <a>. Test this value. */
+              /* If you want it below the entire padded area, use a negative value like -2px or -4px */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--nav-link-underline-color); /* Yellow underline */
+  transition: width 0.3s ease;
+}
+
+.sub-nav-link-item a:hover {
+  color: var(--sub-menu-hover-text-color); /* Yellow text on hover */
+  /* No background color change on hover to keep it clean with the underline */
+}
+
+.sub-nav-link-item a:hover::after,
+.sub-nav-link-item a.active::after {
+  width: 100%; /* Show underline on hover and active */
+}
+
+.sub-nav-link-item a.active {
+  color: var(--sub-menu-active-text-color); /* Yellow text when active */
+  /* font-weight: 700; /* Optional: slightly bolder when active */
+}
+
 
 /* Right Navigation Container */
 .right-nav { display: flex; align-items: center; gap: 15px; }
 
-/* "I'm Interested" Button */
 .contact-button-nav {
-  background-color: var(--solpower-yellow, #ffdd00); /* Added fallback */
-  color: var(--solpower-black, #1a1a1a); /* Added fallback */
+  background-color: var(--solpower-yellow, #ffdd00);
+  color: var(--solpower-black, #1a1a1a);
   padding: 8px 20px;
   border-radius: 50px;
   text-decoration: none;
@@ -108,18 +222,16 @@
 }
 
 .contact-button-nav:hover {
-  background-color: var(--solpower-yellow, #ffdd00); /* Kept yellow background on hover */
-  color: var(--solpower-black, #1a1a1a); /* <<< FIX: Explicitly set text color to black on hover */
+  background-color: var(--solpower-yellow, #ffdd00);
+  color: var(--solpower-black, #1a1a1a);
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.75);
 }
 
-/* Corner Logo */
-.corner-logo-container { /* No margin needed */ }
+.corner-logo-container { }
 .corner-logo-half-sun {
   display: block; width: 40px; height: 40px;
-  /* NOTE: Ensure '../assets/images/half-sun-logo.png' is the correct path relative to your CSS file */
-  background-image: url('../assets/images/half-sun-logo.png'); /* Path to half-sun */
+  background-image: url('../assets/images/half-sun-logo.png');
   background-size: contain; background-repeat: no-repeat; background-position: center;
   opacity: 0.9; filter: brightness(1);
   transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease; cursor: pointer;
@@ -128,8 +240,8 @@
 
 /* --- Burger Menu & Mobile Nav --- */
 .burger-menu { display: none; cursor: pointer; padding: 10px; z-index: 1002; position: relative; }
-.burger-bar { width: 28px; height: 3px; background-color: var(--solpower-white, #ffffff); /* Added fallback */ margin: 6px 0; transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease; border-radius: 1px; }
-.burger-menu.active .burger-bar { background-color: var(--solpower-yellow, #ffdd00); } /* Yellow 'X' */
+.burger-bar { width: 28px; height: 3px; background-color: var(--nav-link-text-color, #ffffff); margin: 6px 0; transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease; border-radius: 1px; }
+.burger-menu.active .burger-bar { background-color: var(--solpower-yellow, #ffdd00); }
 .burger-menu.active .burger-bar:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
 .burger-menu.active .burger-bar:nth-child(2) { opacity: 0; }
 .burger-menu.active .burger-bar:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
@@ -140,25 +252,23 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #1B5E20; /* Same as scrolled state */
+  background-color: var(--top-nav-scrolled-bg, #1B5E20);
   z-index: 1001;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-100%); /* Start hidden above */
-  opacity: 0; /* Start transparent */
+  transform: translateY(-100%);
+  opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
-  visibility: hidden; /* Hide from accessibility tree when closed */
+  visibility: hidden;
 }
 
-/* Style for when mobile nav is active/open */
 .mobile-nav.active {
-  transform: translateY(0); /* Slide in */
-  opacity: 1; /* Fade in */
-  visibility: visible; /* Make it visible */
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
-
 
 .mobile-nav-links {
   list-style: none;
@@ -169,44 +279,59 @@
 }
 
 .mobile-nav-link {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .mobile-nav-link a {
-  color: var(--solpower-white, #ffffff); /* Added fallback */
+  color: var(--nav-link-text-color, #ffffff);
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   transition: color 0.3s ease;
   display: block;
-  padding: 10px;
+  padding: 12px;
 }
 
 .mobile-nav-link a:hover,
 .mobile-nav-link a.active {
-  color: var(--solpower-yellow, #ffdd00); /* Added fallback */
+  color: var(--nav-link-hover-text-color, #ffdd00);
 }
 
+.mobile-sub-nav-link a {
+  font-size: 1.2rem;
+  padding-left: 40px;
+  color: var(--solpower-white, #e0e0e0); /* Keeping this distinct for mobile, adjust if needed */
+}
+
+.mobile-sub-nav-link a:hover,
+.mobile-sub-nav-link a.active {
+  color: var(--solpower-yellow, #ffdd00);
+}
+
+
 .contact-link-mobile {
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .contact-link-mobile .contact-button-nav {
   margin: 0 auto;
   display: inline-block;
+  font-size: 1rem;
+  padding: 10px 25px;
 }
 
 /* Media Query for Tablet / Burger Activation */
-/* Hide links earlier to prevent squishing */
 @media (max-width: 1100px) {
   .nav-links { display: none; }
-  .corner-logo-container { display: none; } /* Hide corner logo earlier too */
+  .corner-logo-container { display: none; }
   .burger-menu { display: block; }
   .top-nav { padding: 0 20px; }
-  .right-nav { gap: 10px; } /* Reduce gap further */
+  .right-nav { gap: 10px; }
 }
 
 @media (max-width: 480px) {
     .logo { height: 40px; }
     .contact-button-nav { font-size: 0.85rem; padding: 8px 18px; }
+    .mobile-nav-link a { font-size: 1.3rem; }
+    .mobile-sub-nav-link a { font-size: 1.1rem; }
 }

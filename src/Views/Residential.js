@@ -245,8 +245,8 @@ const Residential = ({ paths = {} }) => {
 
       {/* Use shared CTA */}
       <ContactSectionCTA
-        title="Ready to Take Control of Your Home's Energy?"
-        text="Discover how much you could save with solar. Get your free, no-obligation quote tailored to your home today!"
+        title="Control Your Home's Energy"
+        text="Get your free, no-obligation quote tailored to your home today!"
         buttonText="Get My Free Residential Quote"
         buttonLink={paths?.contact || "/contact"}
         className="cta-content-white" // Example: Keep white text style

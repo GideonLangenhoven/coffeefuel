@@ -1,0 +1,154 @@
+/* src/Components/GuidePointCard/GuidePointCard.css */
+
+/* Shared fade-in animation (if not already globally defined) */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card styles - will apply to both ProblemPointCard and GuidePointCard */
+.guide-point { /* This class is now used by both components */
+  flex: 1 1 280px;
+  max-width: 300px;
+  min-height: 340px; /* Adjust as needed for your content */
+  position: relative;
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  transition: box-shadow 0.4s ease-in-out; /* For glow effect */
+  cursor: pointer;
+}
+
+.guide-point.is-flipped {
+  box-shadow: 0 0 20px 8px rgba(var(--solpower-yellow-rgb, 255, 193, 7), 0.5); /* Persistent glow when flipped */
+}
+
+.guide-point .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.35, 0.03, 0.48, 0.98);
+}
+
+.guide-point.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.guide-point .flip-card-front,
+.guide-point .flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--button-border-radius, 8px);
+  box-shadow: 0 4px 8px rgba(var(--solpower-black-rgb, 0, 0, 0), 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: var(--spacing-lg, 1.5rem);
+  overflow: hidden; /* Ensures content doesn't spill out */
+}
+
+.guide-point .flip-card-front {
+  background-color: var(--solpower-white, #ffffff);
+  color: var(--solpower-text-dark, #333333);
+  z-index: 2;
+  justify-content: flex-start; /* Align content to the start (top) */
+}
+
+/* Styles for the icon area - assuming Icon prop renders something like a Lottie player or an img/svg */
+.guide-point .flip-card-front .lottie-icon-wrapper, /* if you wrap your icon */
+.guide-point .flip-card-front > svg, /* if Icon is an SVG component */
+.guide-point .flip-card-front > img, /* if Icon is an img tag */
+.guide-point .flip-card-front > div:first-child[class*="lottie"] /* a common pattern for Lottie wrappers */ {
+  width: 80px; /* Or your desired icon width */
+  height: 80px; /* Or your desired icon height */
+  margin-top: var(--spacing-sm, 0.75rem);
+  margin-bottom: var(--spacing-md, 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* If your Icon prop directly renders the dotlottie-player or similar */
+.guide-point .flip-card-front dotlottie-player {
+  width: 80px; /* Ensure consistency */
+  height: 80px; /* Ensure consistency */
+  margin-top: var(--spacing-sm, 0.75rem);
+  margin-bottom: var(--spacing-md, 1rem);
+  flex-shrink: 0;
+}
+
+
+.guide-point .flip-card-front .card-text-content {
+  width: 100%;
+  flex-grow: 1; /* Allow text content to take available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align text to the top after icon */
+  align-items: center;
+  gap: var(--spacing-sm, 0.75rem);
+}
+
+.guide-point .flip-card-front h3 {
+  font-size: 1.2rem;
+  margin-top: 0; /* Remove default margin if icon is present, or adjust as needed */
+  color: var(--solpower-black, #212529);
+  font-family: 'Roboto Slab', serif;
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.guide-point .flip-card-front p {
+  font-size: 0.95rem;
+  color: var(--solpower-text-medium, #555555);
+  line-height: 1.5;
+  margin-bottom: 0; /* Remove bottom margin to prevent pushing content down */
+  font-family: 'Encode Sans', sans-serif;
+}
+
+.guide-point .flip-card-back {
+  background-color: var(--solpower-yellow, #ffc107);
+  color: var(--solpower-black, #212529);
+  transform: rotateY(180deg);
+  z-index: 1;
+  justify-content: center; /* Vertically center content on the back */
+}
+
+.guide-point .flip-card-back .card-text-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content within this div */
+  align-items: center;
+  gap: var(--spacing-sm, 0.75rem);
+}
+
+.guide-point .flip-card-back h4 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  font-family: 'Roboto Slab', serif;
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--solpower-black, #212529);
+}
+
+.guide-point .flip-card-back p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Encode Sans', sans-serif;
+  color: var(--solpower-text-dark, #333333);
+}
