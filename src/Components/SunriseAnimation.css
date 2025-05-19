@@ -1,0 +1,82 @@
+/* --- File: src/Components/SunriseAnimation.css --- */
+.radial-gradient-banner {
+  position: relative;
+  width: 100%;
+  /* height: 70%; */ /* This was overridden by ContactSectionCTA.css or is 100% if direct child */
+  overflow: hidden;
+  background-color: #000; /* Fallback, gradient-background-effect should cover it */
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  
+  .gradient-background-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* MODIFIED: Was 70%, changed to 100% */
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 0 100px hsla(0,0%,0%,.3);
+  z-index: 1;
+  }
+  
+  @media (max-width: 600px) {
+  .radial-gradient-banner,
+  .gradient-background-effect {
+  height: 100%; /* MODIFIED: Was 90%, changed to 100% */
+  }
+  }
+  
+  .banner-content-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  }
+  
+  .banner-content-overlay h1 {
+  font-family: 'Croissant One', sans-serif; /* Ensure this font is loaded globally */
+  font-weight: 400;
+  font-size: 2.8em;
+  line-height: 1.3em;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+  }
+  
+  .banner-children-content {
+  margin-top: 20px;
+  }
+  
+  .banner-children-content button,
+  .banner-children-content .button {
+  background-color: var(--solpower-yellow, #FFC107); /* Define --solpower-yellow globally or replace */
+  color: #000000;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .banner-children-content button:hover,
+  .banner-children-content .button:hover {
+  background-color: #e6c300; /* Darker yellow */
+  transform: translateY(-2px);
+  }

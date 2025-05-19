@@ -1,0 +1,112 @@
+/* --- File: src/Components/ContactSectionCTA.css --- */
+:root {
+  --solpower-white: #ffffff;
+  --solpower-white-rgb: 255, 255, 255;
+  --solpower-black-rgb: 0, 0, 0;
+  --solpower-cta-background-fallback: #0d2240;
+
+  --spacing-xs: 0.5rem;  /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --font-weight-bold: 700;
+
+  --solpower-cta-fixed-height: 224px; /* Maintained from previous step */
+}
+
+.contact-section-cta {
+  position: relative;
+  text-align: center;
+  color: var(--solpower-white);
+  overflow: hidden;
+  background: var(--solpower-cta-background-fallback, #0d2240);
+  box-sizing: border-box;
+
+  height: var(--solpower-cta-fixed-height, 224px);
+  min-height: unset;
+
+  /* MODIFIED: Symmetrical padding for vertically centered content */
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+
+  display: flex;
+  flex-direction: column;
+  /* MODIFIED: Center content vertically */
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-section-cta .sunrise-animation-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.contact-section-cta .sunrise-animation-background > .radial-gradient-banner {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-section-cta .cta-text-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 650px;
+  text-shadow: 1px 1px 3px rgba(var(--solpower-black-rgb), 0.65),
+               0 0 6px rgba(var(--solpower-black-rgb), 0.45);
+}
+
+/* Font sizes are 15% smaller (from previous request) */
+.contact-section-cta h2 {
+  font-size: clamp(1.19rem, 2.98vw, 1.7rem);
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+  color: var(--solpower-white);
+}
+
+.contact-section-cta p {
+  font-size: clamp(0.68rem, 1.7vw, 0.81rem);
+  margin-bottom: var(--spacing-md);
+  color: rgba(var(--solpower-white-rgb), 0.9);
+  line-height: 1.45;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button padding and font size are 15% smaller (from previous request) */
+.contact-section-cta .cta-button.btn-solpower-primary {
+  padding: 0.43rem 1.02rem;
+  font-size: clamp(0.68rem, 1.53vw, 0.81rem);
+}
+
+@media (max-width: 768px) {
+  .contact-section-cta {
+     height: calc(var(--solpower-cta-fixed-height, 224px) * 0.9); /* Approx 201.6px */
+     /* MODIFIED: Adjust padding for centered content in shorter height */
+     padding-top: var(--spacing-md);
+     padding-bottom: var(--spacing-md);
+  }
+  /* Font sizes use clamps and will adjust based on their new smaller base values */
+}
+
+@media (max-width: 480px) {
+  .contact-section-cta {
+    height: calc(var(--solpower-cta-fixed-height, 224px) * 0.85); /* Approx 190.4px */
+    /* MODIFIED: Adjust padding for centered content in very short height */
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+  }
+  /* Button text and padding already adjusted for small screens in previous step */
+  .contact-section-cta .cta-button.btn-solpower-primary {
+    padding: 0.34rem 0.68rem;
+    font-size: 0.64rem;
+  }
+}

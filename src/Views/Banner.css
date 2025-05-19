@@ -1,0 +1,20 @@
+/* src/Views/Banner.css */
+.banner {
+  background-color: #e9ecef; /* Light background */
+  text-align: center;
+  padding: 20px 15px;
+  border-bottom: 1px solid #dee2e6; /* Subtle separator */
+}
+
+.banner h1 {
+  font-size: 1.8rem; /* Adjust size */
+  color: #1e3a8a; /* Example SolPower dark blue */
+  margin: 0 0 5px 0;
+  font-weight: 700; /* Bold */
+}
+
+.banner p {
+  font-size: 1rem;
+  color: #495057; /* Medium grey text */
+  margin: 0;
+}

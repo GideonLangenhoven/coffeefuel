@@ -1,0 +1,36 @@
+/* src/Components/Input.css */
+.input {
+  padding: 0.7rem 0.8rem; /* Adjust padding */
+  border: 1px solid #ced4da; /* Standard border */
+  border-radius: 0.25rem;
+  width: 100%;
+  font-size: 1rem;
+  color: #495057;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Style placeholders */
+.input::placeholder {
+  color: #adb5bd;
+  opacity: 1; /* Firefox fix */
+}
+
+/* Focus styles */
+.input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Disabled styles */
+.input:disabled {
+  background-color: #e9ecef;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Add styles for validation states if needed */
+/* .input.is-invalid { ... } */
+/* .input.is-valid { ... } */

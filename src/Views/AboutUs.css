@@ -1,0 +1,474 @@
+/*
+* src/Views/AboutUs.css
+* Styles for the About Us page, aligned with SolPower theme.
+* Last Updated: 2025-05-10
+* Why SolPower cards updated to match Commercial Benefit cards: 2025-05-13
+*/
+
+/* Ensure 'Encode Sans' is imported globally or in a shared CSS file for base font styles */
+/* e.g., @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;600;700;800&display=swap'); */
+
+:root {
+  /* SolPower Palette */
+  --solpower-yellow: #ffc107;
+  --solpower-yellow-rgb: 255, 193, 7;
+  --solpower-yellow-light: #fffbeb;
+  --solpower-black: #212529;
+  --solpower-black-rgb: 33, 37, 41;
+  --solpower-white: #ffffff;
+  --solpower-grey: #f8f9fa; /* Light grey for backgrounds */
+  --solpower-text-dark: #343a40; /* Darker text */
+  --solpower-text-medium: #555c63; /* Medium text */
+  --solpower-text-light: #777; /* Lighter text if needed */
+  
+  /* Typography */
+  --font-family-base: 'Encode Sans', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 3rem; /* 48px */
+  --spacing-xxl: 5rem; /* 80px */
+  
+  /* Borders & Shadows */
+  --button-border-radius: 8px;
+  --card-border-radius: var(--button-border-radius);
+  --shadow-sm: 0 2px 4px rgba(var(--solpower-black-rgb), 0.05);
+  --shadow-md: 0 5px 15px rgba(var(--solpower-black-rgb), 0.07);
+  --shadow-lg: 0 10px 30px rgba(var(--solpower-yellow-rgb), 0.35); /* Highlight shadow */
+  
+  /* Underlines for Headings */
+  --underline-color: var(--solpower-yellow);
+  --underline-height: 4px;
+  --underline-padding-bottom: 10px; /* Space between text and underline */
+  --underline-transition-duration: 0.6s;
+  --underline-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --underline-animation-delay: 0.5s; /* Delay for the underline animation */
+  
+  /* Page Structure */
+  --page-max-width-default: 1200px;
+  --page-max-width-large: 1400px;
+
+  /* CTA Specific Variables (can be centralized if used globally) */
+  --cta-fixed-height-about-us: 224px; /* Fixed height for About Us CTA */
+  --cta-background-fallback: #0d2240; /* Fallback for CTA background */
+}
+  
+/* --- Base Page Structure --- */
+.aboutus-page {
+  overflow-x: hidden;
+  background-color: var(--solpower-white);
+  font-family: var(--font-family-base);
+}
+  
+/* --- Reusable Container & Section Defaults --- */
+.page-container-inner {
+  max-width: var(--page-max-width-default);
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2; /* For content stacking above full-width backgrounds/effects */
+}
+@media (min-width: 1600px) {
+  .page-container-inner {
+    max-width: var(--page-max-width-large);
+  }
+}
+  
+/* Default section padding */
+.aboutus-hero .page-container-inner,
+.aboutus-commitment-section .page-container-inner,
+.aboutus-team-section .page-container-inner,
+.aboutus-why-section .page-container-inner {
+  padding-top: var(--spacing-xxl);
+  padding-bottom: var(--spacing-xxl);
+  text-align: center;
+}
+  
+/* --- Section Backgrounds --- */
+.aboutus-hero {
+  background-color: var(--solpower-black);
+  color: var(--solpower-white);
+}
+.aboutus-commitment-section {
+  background-color: var(--solpower-grey);
+}
+.aboutus-team-section {
+  background-color: var(--solpower-yellow-light);
+}
+.aboutus-why-section {
+  background-color: var(--solpower-white); /* Cards will be white on white background */
+}
+  
+/* --- Animated Headings --- */
+.aboutus-hero-title,
+.aboutus-section-heading {
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.2; /* Adjusted for large headings */
+  position: relative;
+  display: inline-block; /* To allow text-align: center on parent and underline to fit content */
+  padding-bottom: var(--underline-padding-bottom);
+  letter-spacing: -0.025em; /* Slightly tighter letter spacing */
+  font-family: var(--font-family-base); /* Explicitly set for headings */
+}
+  
+.aboutus-hero-title .underline-span, /* Span inside heading for precise underline control */
+.aboutus-section-heading .underline-span {
+  position: relative;
+  display: inline;
+}
+  
+.aboutus-hero-title::after,
+.aboutus-section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--underline-height);
+  background-color: var(--underline-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--underline-transition-duration) var(--underline-transition-timing);
+}
+  
+.aboutus-hero-title.heading-visible::after,
+.aboutus-section-heading.heading-visible::after {
+  transform: scaleX(1);
+  transition-delay: var(--underline-animation-delay);
+}
+  
+/* Specific Heading Styles */
+.aboutus-hero-title {
+  color: var(--solpower-white); /* White text on dark hero */
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.03em;
+}
+  
+.aboutus-section-heading {
+  color: var(--solpower-black); /* Default black for light backgrounds */
+  font-size: 2.4rem;
+  margin-bottom: var(--spacing-xl); /* More space after H2 before content */
+}
+  
+  
+/* --- Paragraph and General Text Styling --- */
+.aboutus-hero .aboutus-hero-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto var(--spacing-lg) auto;
+  color: var(--solpower-white);
+  opacity: 0.9; /* Slightly transparent subtitle on hero */
+  font-weight: var(--font-weight-light);
+}
+  
+.aboutus-page .section-intro-p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--solpower-text-medium);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  font-weight: var(--font-weight-regular);
+}
+  
+.aboutus-page p { /* General paragraphs if not section-intro-p or in hero */
+  color: var(--solpower-text-medium);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-regular);
+}
+  
+  
+/* --- Team Section --- */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+  
+.profile-container {
+  background-color: var(--solpower-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+.profile-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(var(--solpower-black-rgb), 0.1);
+}
+  
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto var(--spacing-lg);
+  border: 3px solid var(--solpower-yellow);
+  object-fit: cover; /* Ensures image covers the area nicely */
+  background-color: var(--solpower-grey); /* Fallback if image is missing */
+}
+  
+.profile-details h3 {
+  font-size: 1.4rem;
+  color: var(--solpower-black);
+  margin-bottom: 0.25rem;
+  font-weight: var(--font-weight-bold);
+}
+  
+.profile-details h4 { /* Title/Role */
+  font-size: 1rem;
+  color: var(--solpower-yellow); /* Yellow accent for title */
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase; /* Optional: for role emphasis */
+  letter-spacing: 0.05em;
+}
+  
+.profile-details p {
+  font-size: 1rem;
+  color: var(--solpower-text-medium);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 100%;
+}
+  
+/* --- Why SolPower Section (Now using benefit card styles) --- */
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+  
+.about-us-benefit-card {
+  background-color: var(--solpower-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--spacing-lg) var(--spacing-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--solpower-grey);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  min-height: 280px;
+  box-shadow: var(--shadow-sm);
+}
+  
+.about-us-benefit-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+  
+.about-us-benefit-card > * {
+  position: relative;
+  z-index: 1;
+}
+  
+.about-us-benefit-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--solpower-yellow-light);
+  border: 2px solid var(--solpower-yellow);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-md);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+  
+.about-us-benefit-card:hover .about-us-benefit-icon-wrapper {
+  background-color: var(--solpower-yellow);
+  transform: scale(1.1);
+}
+  
+.about-us-benefit-icon-wrapper .material-icons-outlined {
+  font-size: 30px;
+  color: var(--solpower-yellow);
+  transition: color 0.3s ease;
+}
+  
+.about-us-benefit-card:hover .about-us-benefit-icon-wrapper .material-icons-outlined {
+  color: var(--solpower-black);
+}
+  
+.about-us-benefit-card h3 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--solpower-black);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+  
+.about-us-benefit-card p {
+  font-size: 0.95rem;
+  color: var(--solpower-text-medium);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  flex-grow: 1;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* --- Styles for Contact Section CTA on About Us Page --- */
+.contact-section-cta.about-us-final-cta {
+  position: relative;
+  text-align: center;
+  color: var(--solpower-white);
+  overflow: hidden;
+  background: var(--cta-background-fallback); /* Using variable defined in :root */
+  box-sizing: border-box;
+
+  height: var(--cta-fixed-height-about-us);
+  min-height: unset;
+
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+}
+
+.contact-section-cta.about-us-final-cta .sunrise-animation-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* This targets the root div of the imported SunriseAnimation component */
+.contact-section-cta.about-us-final-cta .sunrise-animation-background > .radial-gradient-banner {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-section-cta.about-us-final-cta .cta-text-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 650px;
+  text-shadow: 1px 1px 3px rgba(var(--solpower-black-rgb), 0.65),
+               0 0 6px rgba(var(--solpower-black-rgb), 0.45);
+}
+
+.contact-section-cta.about-us-final-cta .cta-text-content h2 {
+  font-size: clamp(1.19rem, 2.98vw, 1.7rem); /* 15% smaller */
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+  color: var(--solpower-white);
+}
+
+.contact-section-cta.about-us-final-cta .cta-text-content p {
+  font-size: clamp(0.68rem, 1.7vw, 0.81rem); /* 15% smaller */
+  margin-bottom: var(--spacing-md);
+  color: rgba(255, 255, 255, 0.9); /* Explicit white for CTA text */
+  line-height: 1.45;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-section-cta.about-us-final-cta .cta-text-content .btn-solpower-primary {
+  padding: 0.43rem 1.02rem; /* 15% smaller padding */
+  font-size: clamp(0.68rem, 1.53vw, 0.81rem); /* 15% smaller font */
+}
+/* --- End of Styles for Contact Section CTA on About Us Page --- */
+  
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .aboutus-hero-title { font-size: 2.6rem; }
+  .aboutus-hero .aboutus-hero-subtitle { font-size: 1.2rem; }
+  .aboutus-section-heading { font-size: 2.2rem; }
+  .profile-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .why-us-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+}
+  
+@media (max-width: 768px) {
+  .aboutus-hero .page-container-inner,
+  .aboutus-commitment-section .page-container-inner,
+  .aboutus-team-section .page-container-inner,
+  .aboutus-why-section .page-container-inner {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+  .aboutus-hero-title { font-size: 2.2rem; }
+  .aboutus-hero .aboutus-hero-subtitle { font-size: 1.1rem; }
+  .aboutus-section-heading { font-size: 2rem; }
+  
+  .profile-grid,
+  .why-us-grid {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+  }
+  
+  .profile-photo { width: 120px; height: 120px; }
+  .profile-details h3 { font-size: 1.3rem; }
+  .profile-details h4 { font-size: 0.95rem; }
+  .profile-details p { font-size: 0.95rem; }
+  
+  .about-us-benefit-card { min-height: auto; padding: var(--spacing-lg); }
+  .about-us-benefit-card h3 { font-size: 1.2rem; }
+  .about-us-benefit-card p { font-size: 0.9rem; }
+
+  /* Responsive adjustments for About Us CTA */
+  .contact-section-cta.about-us-final-cta {
+     height: calc(var(--cta-fixed-height-about-us) * 0.9); /* Approx 201.6px */
+     padding-top: var(--spacing-md);
+     padding-bottom: var(--spacing-md);
+  }
+}
+  
+@media (max-width: 480px) {
+  .aboutus-hero-title { font-size: 1.9rem; }
+  .aboutus-hero .aboutus-hero-subtitle { font-size: 1rem; }
+  .aboutus-section-heading { font-size: 1.7rem; }
+  
+  .about-us-benefit-icon-wrapper { width: 50px; height: 50px;}
+  .about-us-benefit-icon-wrapper .material-icons-outlined {font-size: 26px;}
+  .about-us-benefit-card h3 { font-size: 1.1rem; }
+  .about-us-benefit-card p { font-size: 0.85rem; }
+
+  /* Responsive adjustments for About Us CTA */
+  .contact-section-cta.about-us-final-cta {
+    height: calc(var(--cta-fixed-height-about-us) * 0.85); /* Approx 190.4px */
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+  }
+  .contact-section-cta.about-us-final-cta .cta-text-content .btn-solpower-primary {
+    padding: 0.34rem 0.68rem; /* 15% smaller than original small button */
+    font-size: 0.64rem; /* 15% smaller than original small button font */
+  }
+}

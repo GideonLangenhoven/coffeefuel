@@ -1,0 +1,285 @@
+/* src/Views/HeaderContent.css */
+
+/* Define CSS Variables (adjust colors as needed) */
+:root {
+  --solpower-white: #ffffff;
+  --solpower-black: #000000;
+  --solpower-text-dark: #333333; /* Example */
+  --solpower-yellow: #ffd700; /* Example Gold */
+  /* Add other variables if used */
+}
+
+/* --- Base Header Section --- */
+.header-hero-section {
+  position: relative;
+  color: var(--solpower-text-dark); /* Default text color */
+  overflow: hidden;
+  min-height: 90vh;
+  width: 100%;
+  padding-top: 85px; /* Adjust if you have a fixed navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Background Video --- */
+.header-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* --- Semi-Transparent Overlay --- */
+.header-hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Black overlay with 40% opacity */
+  /* background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)); */ /* Optional gradient overlay */
+  z-index: 1;
+}
+
+/* --- Content Overlay Container --- */
+.header-content-overlay {
+  position: relative;
+  z-index: 2; /* Above video and overlay */
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  padding-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.header-content-overlay.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Text Content --- */
+.text-content {
+  width: 100%;
+}
+
+.text-content h1 {
+  font-size: 3.0rem;
+  line-height: 1.2;
+  margin-top: 0; /* MODIFIED: Removed default browser top margin */
+  margin-bottom: 20px;
+  font-weight: 800;
+  display: flex; /* Use flex for word layout */
+  flex-wrap: wrap; /* Allow words to wrap */
+  justify-content: center; /* Center words horizontally */
+  gap: 0.5rem; /* Space between words */
+  /* Base color and shadow for the h1 container */
+  color: #FFFFFF; /* White color */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Enhanced shadow for visibility */
+}
+
+/* --- Styling for the individual words (spans) --- */
+.text-content h1 .gradient-word {
+  /* --- Make text solid white --- */
+  color: #FFFFFF; /* Explicitly white */
+  background: none; /* Remove background gradient */
+  -webkit-background-clip: initial; /* Reset clipping */
+  background-clip: initial; /* Reset clipping */
+  /* Ensure text shadow is inherited or redeclared if needed */
+  /* text-shadow: inherit; */ /* Usually inherits from h1 */
+
+  /* --- Remove gradient-specific properties --- */
+  /* color: transparent; */ /* REMOVED */
+  /* background-size: 200% 200%; */ /* REMOVED */
+  /* animation: gradientShift 3s ease infinite; */ /* REMOVED/COMMENTED */
+}
+
+/* --- Main content container --- */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* --- Roller Adjustments --- */
+.roller-container {
+  position: relative;
+  height: 65px;
+  margin-top: 15px;
+  overflow: hidden;
+  max-width: 500px; /* Adjust as needed */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: rollerAnimation 48s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.roller-item {
+  height: 65px;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--solpower-white);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
+}
+.roller-item.animate-roller {
+  opacity: 1;
+  transform: translateY(0);
+}
+.roller-item.is-yellow {
+  color: var(--solpower-yellow);
+}
+
+/* --- Roller Animation Keyframes --- */
+/* Make sure keyframe heights match .roller-item height */
+@keyframes rollerAnimation {
+  0%, 11% { transform: translateY(0); }
+  12.5%, 23.5% { transform: translateY(-65px); }
+  25%, 36% { transform: translateY(-130px); }
+  37.5%, 48.5% { transform: translateY(-195px); }
+  50%, 61% { transform: translateY(-260px); }
+  62.5%, 73.5% { transform: translateY(-325px); }
+  75%, 86% { transform: translateY(-390px); }
+  87.5%, 98.5% { transform: translateY(-455px); }
+  100% { transform: translateY(-520px); } /* 8 items * 65px */
+}
+
+/* --- CTA Button --- */
+.cta-container {
+  margin-top: 30px;
+}
+
+.header-content-overlay .cta-button {
+  background-color: var(--solpower-yellow);
+  color: var(--solpower-black);
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s, all 0.3s ease;
+}
+.header-content-overlay.visible .cta-button {
+  opacity: 1;
+  transform: translateY(0);
+}
+.header-content-overlay .cta-button:hover {
+  background-color: var(--solpower-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.75);
+  transform: scale(1.03); /* Note: transform was listed twice, scale is usually preferred on its own or combined carefully */
+}
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 992px) {
+  .header-hero-section {
+    padding-top: 70px;
+    min-height: 70vh;
+  }
+  .header-content-overlay {
+    width: 95%;
+    padding-bottom: 3rem;
+  }
+  .text-content h1 {
+    font-size: 2.2rem;
+  }
+  .roller-container { height: 55px; margin-top: 20px; }
+  .roller-item { height: 55px; font-size: 2.2rem; }
+
+  @keyframes rollerAnimation { /* Update heights */
+    0%, 11% { transform: translateY(0); }
+    12.5%, 23.5% { transform: translateY(-55px); }
+    25%, 36% { transform: translateY(-110px); }
+    37.5%, 48.5% { transform: translateY(-165px); }
+    50%, 61% { transform: translateY(-220px); }
+    62.5%, 73.5% { transform: translateY(-275px); }
+    75%, 86% { transform: translateY(-330px); }
+    87.5%, 98.5% { transform: translateY(-385px); }
+    100% { transform: translateY(-440px); } /* 8 * 55px */
+  }
+}
+
+@media (max-width: 767px) {
+  .header-hero-section {
+    padding-top: 60px;
+    min-height: 80vh;
+  }
+  .text-content h1 {
+    font-size: 2.7rem;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    font-weight: 900; /* Make bolder on smaller screens if desired */
+  }
+  .roller-container { height: 45px; margin-top: 25px; }
+  .roller-item { height: 45px; font-size: 1.8rem; }
+  .cta-container { margin-top: 40px; }
+  .header-content-overlay .cta-button {
+    font-size: 1rem;
+    padding: 12px 25px;
+    min-width: 160px;
+  }
+
+  @keyframes rollerAnimation { /* Update heights */
+    0%, 11% { transform: translateY(0); }
+    12.5%, 23.5% { transform: translateY(-45px); }
+    25%, 36% { transform: translateY(-90px); }
+    37.5%, 48.5% { transform: translateY(-135px); }
+    50%, 61% { transform: translateY(-180px); }
+    62.5%, 73.5% { transform: translateY(-225px); }
+    75%, 86% { transform: translateY(-270px); }
+    87.5%, 98.5% { transform: translateY(-315px); }
+    100% { transform: translateY(-360px); } /* 8 * 45px */
+  }
+}
+
+@media (max-width: 480px) {
+  .text-content h1 {
+    font-size: 2.5rem; /* Adjust for very small screens */
+  }
+  .roller-container { height: 40px; }
+  .roller-item { height: 40px; font-size: 1.6rem; }
+
+  @keyframes rollerAnimation { /* Update heights */
+    0%, 11% { transform: translateY(0); }
+    12.5%, 23.5% { transform: translateY(-40px); }
+    25%, 36% { transform: translateY(-80px); }
+    37.5%, 48.5% { transform: translateY(-120px); }
+    50%, 61% { transform: translateY(-160px); }
+    62.5%, 73.5% { transform: translateY(-200px); }
+    75%, 86% { transform: translateY(-240px); }
+    87.5%, 98.5% { transform: translateY(-280px); }
+    100% { transform: translateY(-320px); } /* 8 * 40px */
+  }
+}

@@ -1,0 +1,62 @@
+.contact-card {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  background-color: var(--solpower-black);
+  color: var(--solpower-white);
+  padding: 1.5rem;
+  z-index: 1000;
+  transition: transform 0.3s ease-out;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card.visible {
+  transform: translateY(-100px);
+}
+
+.contact-card-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.contact-card h3 {
+  font-size: 0.8 rem;
+  margin: 0;
+  color: var(--solpower-yellow);
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 0.5rem;
+}
+
+.contact-card .btn-solpower-primary {
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .contact-card-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .contact-card .btn-solpower-primary {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .contact-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .contact-card p {
+    font-size: 1rem;
+  }
+} 
